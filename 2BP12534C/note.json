@@ -38,9 +38,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n## 1. The African Growth Story\n![Image](https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/3/005/0a6/092/07bc44e.jpg)\n\nThe first economic issue to be taken up is the [growth story of Africa](http://www.imf.org/external/pubs/ft/survey/so/2016/CAR052616A.htm). After an unprecedented growth for the last ten years, which showed a positive growing picture of the \u003cbr/\u003e\u003cbr/\u003e Sub-Saharan Africa, the outlook for the region is dimming. It has suffered a steep slump in growth owing to the softer global economic conditions. Natural resource \u003cbr/\u003e\u003cbr/\u003e producers, especially South Africa, Democratic Republic of Congo and Nigeria have been adversely affected. This section of the notebook aims to analyse the growth \u003cbr/\u003e\u003cbr/\u003e situation in Africa and the factors that have been affecting it.\n\n\u003cbr/\u003e\nThe following abbreviations and country codes have been used in this analysis:\n 1. MG \u003d Madagascar\n 2. MU \u003d Mauritius\n 3. NG \u003d Nigeria\n 4. CF \u003d Central African Republic\n 5. CD \u003d Democratic Republic of Congo\n 6. ZA \u003d South Africa\n",
+      "text": "%md\n## 1. The African Growth Story\n![Image](https://s-media-cache-ak0.pinimg.com/736x/eb/e4/fa/ebe4fa544f49aaf54f72d3beb08761aa.jpg)\n\nThe first economic issue to be taken up is the [growth story of Africa](http://www.imf.org/external/pubs/ft/survey/so/2016/CAR052616A.htm). After an unprecedented growth for the last ten years, which showed a positive growing picture of the \u003cbr/\u003e\u003cbr/\u003e Sub-Saharan Africa, the outlook for the region is dimming. It has suffered a steep slump in growth owing to the softer global economic conditions. Natural resource \u003cbr/\u003e\u003cbr/\u003e producers, especially South Africa, Democratic Republic of Congo and Nigeria have been adversely affected. This section of the notebook aims to analyse the growth \u003cbr/\u003e\u003cbr/\u003e situation in Africa and the factors that have been affecting it.\n\n\u003cbr/\u003e\nThe following abbreviations and country codes have been used in this analysis:\n 1. MG \u003d Madagascar\n 2. MU \u003d Mauritius\n 3. NG \u003d Nigeria\n 4. CF \u003d Central African Republic\n 5. CD \u003d Democratic Republic of Congo\n 6. ZA \u003d South Africa\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 13, 2016 10:52:07 PM",
+      "dateUpdated": "Jun 14, 2016 3:59:05 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -67,11 +67,11 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\u003ch2\u003e1. The African Growth Story\u003c/h2\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/3/005/0a6/092/07bc44e.jpg\" alt\u003d\"Image\" /\u003e\u003c/p\u003e\n\u003cp\u003eThe first economic issue to be taken up is the \u003ca href\u003d\"http://www.imf.org/external/pubs/ft/survey/so/2016/CAR052616A.htm\"\u003egrowth story of Africa\u003c/a\u003e. After an unprecedented growth for the last ten years, which showed a positive growing picture of the \u003cbr /\u003e\u003cbr /\u003e Sub-Saharan Africa, the outlook for the region is dimming. It has suffered a steep slump in growth owing to the softer global economic conditions. Natural resource \u003cbr /\u003e\u003cbr /\u003e producers, especially South Africa, Democratic Republic of Congo and Nigeria have been adversely affected. This section of the notebook aims to analyse the growth \u003cbr /\u003e\u003cbr /\u003e situation in Africa and the factors that have been affecting it.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eThe following abbreviations and country codes have been used in this analysis:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eMG \u003d Madagascar\u003c/li\u003e\n\u003cli\u003eMU \u003d Mauritius\u003c/li\u003e\n\u003cli\u003eNG \u003d Nigeria\u003c/li\u003e\n\u003cli\u003eCF \u003d Central African Republic\u003c/li\u003e\n\u003cli\u003eCD \u003d Democratic Republic of Congo\u003c/li\u003e\n\u003cli\u003eZA \u003d South Africa\u003c/li\u003e\n\u003c/ol\u003e\n"
+        "msg": "\u003ch2\u003e1. The African Growth Story\u003c/h2\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://s-media-cache-ak0.pinimg.com/736x/eb/e4/fa/ebe4fa544f49aaf54f72d3beb08761aa.jpg\" alt\u003d\"Image\" /\u003e\u003c/p\u003e\n\u003cp\u003eThe first economic issue to be taken up is the \u003ca href\u003d\"http://www.imf.org/external/pubs/ft/survey/so/2016/CAR052616A.htm\"\u003egrowth story of Africa\u003c/a\u003e. After an unprecedented growth for the last ten years, which showed a positive growing picture of the \u003cbr /\u003e\u003cbr /\u003e Sub-Saharan Africa, the outlook for the region is dimming. It has suffered a steep slump in growth owing to the softer global economic conditions. Natural resource \u003cbr /\u003e\u003cbr /\u003e producers, especially South Africa, Democratic Republic of Congo and Nigeria have been adversely affected. This section of the notebook aims to analyse the growth \u003cbr /\u003e\u003cbr /\u003e situation in Africa and the factors that have been affecting it.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eThe following abbreviations and country codes have been used in this analysis:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eMG \u003d Madagascar\u003c/li\u003e\n\u003cli\u003eMU \u003d Mauritius\u003c/li\u003e\n\u003cli\u003eNG \u003d Nigeria\u003c/li\u003e\n\u003cli\u003eCF \u003d Central African Republic\u003c/li\u003e\n\u003cli\u003eCD \u003d Democratic Republic of Congo\u003c/li\u003e\n\u003cli\u003eZA \u003d South Africa\u003c/li\u003e\n\u003c/ol\u003e\n"
       },
       "dateCreated": "Jun 5, 2016 7:46:21 AM",
-      "dateStarted": "Jun 13, 2016 10:48:27 PM",
-      "dateFinished": "Jun 13, 2016 10:48:27 PM",
+      "dateStarted": "Jun 14, 2016 3:58:49 PM",
+      "dateFinished": "Jun 14, 2016 3:58:49 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -114,7 +114,7 @@
     {
       "text": "//paragraph to get the name of the home directory of the user; used to generically load the data sets in the subsequent paragraphs\n\nval homeDir \u003d z.input(\"Home Directory\", \"anish\").toString()\n\n//define a general function to transform the input dataframe into a usable one by manually exploding the rows\nimport com.google.gson.Gson\nimport org.apache.spark.sql.DataFrame\nimport scala.collection.mutable.ArraySeq\n\ncase class Observ(OBS_VALUE: String, TIME_PERIOD: String)                       //schema for a single observation value\ncase class DataPoints(REF_AREA: Array[String], Obs: Array[Array[Observ]])       //schema for a single datapoint in the input dataframe\ncase class Row(country: String, value: String, year: String)                    //schema for a single row in the output dataframe\n\ndef explode(inputFrame: DataFrame): DataFrame \u003d {\n    \n    val values \u003d inputFrame.select(\"CompactData.DataSet.Series.REF_AREA\", \"CompactData.DataSet.Series.Obs\")    //get the values : country, value, year\n    val getValues \u003d values.toJSON.collect()\n    \n    val gson \u003d new Gson                                                         //get the gson object used for parsing the json\n    val data \u003d gson.fromJson(getValues(0), classOf[DataPoints])                 //parse the json to get the data\n    \n    var newSeq \u003d new ArraySeq[Row](0)                                           //the arraySeq used to store the exploded rows\n    \n    for(i \u003c- 0 until data.REF_AREA.length){                                     //loop through the entire set of values\n        for(j \u003c- 0 until data.Obs(i).length){\n            newSeq \u003d newSeq.:+(Row(data.REF_AREA(i), data.Obs(i)(j).OBS_VALUE, data.Obs(i)(j).TIME_PERIOD))\n        }\n    }\n    return sc.parallelize(newSeq).toDF()\n}\n\n//define a generic fucntion to get the data corresponding to a specific country and dataset\n\ndef getCountryData(country: String, inputFrame: DataFrame) : String \u003d {                         //define a generic function to get the values in required form\n    \n    val filteredData \u003d inputFrame.filter($\"country\".like(country)).select(\"year\", \"value\")\n    val countryJson \u003d filteredData.toJSON.collect().mkString(\",\")\n    val countryData \u003d new StringBuilder(countryJson).replaceAllLiterally(\"{\",\"[\").replaceAllLiterally(\"}\", \"]\").replaceAllLiterally(\"\\\"\", \"\")\n                                .replaceAllLiterally(\"year:\", \"\").replaceAllLiterally(\"value:\", \" \")\n    return countryData\n}",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 10:51:06 AM",
+      "dateUpdated": "Jun 14, 2016 3:34:54 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -152,15 +152,15 @@
         "msg": "homeDir: String \u003d anish\nimport com.google.gson.Gson\nimport org.apache.spark.sql.DataFrame\nimport scala.collection.mutable.ArraySeq\ndefined class Observ\ndefined class DataPoints\ndefined class Row\nexplode: (inputFrame: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame\ngetCountryData: (country: String, inputFrame: org.apache.spark.sql.DataFrame)String\n"
       },
       "dateCreated": "Jun 4, 2016 8:42:23 AM",
-      "dateStarted": "Jun 14, 2016 10:51:08 AM",
-      "dateFinished": "Jun 14, 2016 10:51:51 AM",
+      "dateStarted": "Jun 14, 2016 3:34:54 PM",
+      "dateFinished": "Jun 14, 2016 3:35:40 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//load the datasets into Zeppelin for analysis\n\n//load the datasets for the analysis of the subject itself\nval broadData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/BroadMoney.json\"))\nval currtData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/CurrentAcct.json\"))\nval revenData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/Revenue.json\"))\nval expenData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/TotalExpend.json\"))\nval capitData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/GCFormation.json\"))\nval savinData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/GNSaving.json\"))\nval debtData  \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/GDPosition.json\"))\nval gdprData  \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/GDPReal.json\"))\n\n//load the datasets for the analysis of the factors affecting the subject\nval cpiData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/CPIAllItems.json\"))\nval expData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/ValOfExp.json\"))\nval bankBData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/BankBranches.json\"))\nval bankUData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/BankUsage.json\"))\nval ngeData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/NetGovtExpen.json\"))\nval feeData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Africa/FEExpen.json\"))\n\nbroadData.registerTempTable(\"BroadData\")\ncurrtData.registerTempTable(\"CurrtData\")\nrevenData.registerTempTable(\"RevenData\")\nexpenData.registerTempTable(\"ExpenData\")\ncapitData.registerTempTable(\"CapitData\")\nsavinData.registerTempTable(\"SavinData\")\ndebtData.registerTempTable(\"DebtData\")\ngdprData.registerTempTable(\"GdprData\")\n\ncpiData.registerTempTable(\"CPIData\")\nexpData.registerTempTable(\"ExpData\")\nbankBData.registerTempTable(\"BankBData\")\nbankUData.registerTempTable(\"BankUData\")\nngeData.registerTempTable(\"NetGovtExpen\")\nfeeData.registerTempTable(\"FEExpen\")\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 10:51:58 AM",
+      "dateUpdated": "Jun 14, 2016 3:36:20 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -188,8 +188,8 @@
         "msg": "broadData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncurrtData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nrevenData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nexpenData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncapitData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nsavinData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ndebtData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ngdprData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncpiData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nexpData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nbankBData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nbankUData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nngeData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nfeeData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\n"
       },
       "dateCreated": "Jun 4, 2016 8:54:27 AM",
-      "dateStarted": "Jun 14, 2016 10:51:59 AM",
-      "dateFinished": "Jun 14, 2016 10:52:26 AM",
+      "dateStarted": "Jun 14, 2016 3:36:21 PM",
+      "dateFinished": "Jun 14, 2016 3:36:50 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -369,9 +369,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n#### ii. Current Account(% of GDP)\n**Current Account** is defined as the sum of the amount of money received from the balance of trade(exports - imports), net income from abroad and the net curr     \u003cbr/\u003e\n-ent transfers and is an important indicator of the health of the nation. Shown below(on the left) is the scatter plot for the Current Account(expressed as % of    \u003cbr/\u003e\nGDP).The highest point for all the years has been that of Nigeria for the year 2005, which has declined thereafter. Unfortunately, the current account percentage   \u003cbr/\u003e\nfor all the nations representing the region has been fairly low for all the years( on or below 0%). This depicts the slow growth in the region.\n\n\u003cbr/\u003e\nIn the paragraph on the right, we perforn clustering on the current account dataset, to get an idea about how the nations will be performing in the years to come. \u003cbr/\u003e\nFor a choice of four clusters, we get the cluster centers as shown below and accordingly group the nations based on the projections contained in the datasets. We  \u003cbr/\u003e\nget the four gropus shown in the result and after using the clustering model for prediction, we find that *none of the nations* will have moderate or good current \u003cbr/\u003e\naccount percentages for the years to come, they will either be low or very low (scroll result on the right).",
+      "text": "%md\n#### ii. Current Account(% of GDP)\n**Current Account** is defined as the sum of the amount of money received from the balance of trade(exports - imports), net income from abroad and the net curr     \u003cbr/\u003e\n-ent transfers and is an important indicator of the health of the nation. Shown below(on the left) is the scatter plot for the Current Account(expressed as % of    \u003cbr/\u003e\nGDP).The highest point for all the years has been that of Nigeria for the year 2005, which has declined thereafter. Unfortunately, the current account percentage   \u003cbr/\u003e\nfor all the nations representing the region has been fairly low for all the years( on or below 0%). This depicts the slow growth in the region.\n\n\u003cbr/\u003e\nIn the paragraph on the right, we perforn clustering on the current account dataset, to get an idea about how the nations will be performing in the years to come. \u003cbr/\u003e\nFor a choice of four clusters, we get the cluster centers as shown below and accordingly group the nations based on the projections contained in the datasets. We  \u003cbr/\u003e\nget the four gropus shown in the result and after using the clustering model for prediction, we find that *none of the nations* will have moderate or good current \u003cbr/\u003e\naccount percentages for the years to come, they will either be low or very low (scroll result on the right).\n\n\u003cbr/\u003e\nBelow the paragraphs that display the current account data, we have a paragraph that displays the three quantities Broad Money, Revenues and the Current Account   \u003cbr/\u003e\nvalues for the nations in a scatter plot, which enables us to see how the quantities have been varying over time, apart from their individual visualizations       \u003cbr/\u003e\nabove. The circles in the plot represent the nations themselves and their radius represents the value of Broad Money which grows and shrinks accordingly. This     \u003cbr/\u003e\nvisualization was implemented using Helium Application.",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 13, 2016 12:11:18 PM",
+      "dateUpdated": "Jun 14, 2016 3:46:46 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -397,224 +397,19 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\u003ch4\u003eii. Current Account(% of GDP)\u003c/h4\u003e\n\u003cp\u003e\u003cstrong\u003eCurrent Account\u003c/strong\u003e is defined as the sum of the amount of money received from the balance of trade(exports - imports), net income from abroad and the net curr     \u003cbr /\u003e\n\u003cbr  /\u003e-ent transfers and is an important indicator of the health of the nation. Shown below(on the left) is the scatter plot for the Current Account(expressed as % of    \u003cbr /\u003e\n\u003cbr  /\u003eGDP).The highest point for all the years has been that of Nigeria for the year 2005, which has declined thereafter. Unfortunately, the current account percentage   \u003cbr /\u003e\n\u003cbr  /\u003efor all the nations representing the region has been fairly low for all the years( on or below 0%). This depicts the slow growth in the region.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eIn the paragraph on the right, we perforn clustering on the current account dataset, to get an idea about how the nations will be performing in the years to come. \u003cbr /\u003e\n\u003cbr  /\u003eFor a choice of four clusters, we get the cluster centers as shown below and accordingly group the nations based on the projections contained in the datasets. We  \u003cbr /\u003e\n\u003cbr  /\u003eget the four gropus shown in the result and after using the clustering model for prediction, we find that \u003cem\u003enone of the nations\u003c/em\u003e will have moderate or good current \u003cbr /\u003e\n\u003cbr  /\u003eaccount percentages for the years to come, they will either be low or very low (scroll result on the right).\u003c/p\u003e\n"
+        "msg": "\u003ch4\u003eii. Current Account(% of GDP)\u003c/h4\u003e\n\u003cp\u003e\u003cstrong\u003eCurrent Account\u003c/strong\u003e is defined as the sum of the amount of money received from the balance of trade(exports - imports), net income from abroad and the net curr     \u003cbr /\u003e\n\u003cbr  /\u003e-ent transfers and is an important indicator of the health of the nation. Shown below(on the left) is the scatter plot for the Current Account(expressed as % of    \u003cbr /\u003e\n\u003cbr  /\u003eGDP).The highest point for all the years has been that of Nigeria for the year 2005, which has declined thereafter. Unfortunately, the current account percentage   \u003cbr /\u003e\n\u003cbr  /\u003efor all the nations representing the region has been fairly low for all the years( on or below 0%). This depicts the slow growth in the region.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eIn the paragraph on the right, we perforn clustering on the current account dataset, to get an idea about how the nations will be performing in the years to come. \u003cbr /\u003e\n\u003cbr  /\u003eFor a choice of four clusters, we get the cluster centers as shown below and accordingly group the nations based on the projections contained in the datasets. We  \u003cbr /\u003e\n\u003cbr  /\u003eget the four gropus shown in the result and after using the clustering model for prediction, we find that \u003cem\u003enone of the nations\u003c/em\u003e will have moderate or good current \u003cbr /\u003e\n\u003cbr  /\u003eaccount percentages for the years to come, they will either be low or very low (scroll result on the right).\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eBelow the paragraphs that display the current account data, we have a paragraph that displays the three quantities Broad Money, Revenues and the Current Account   \u003cbr /\u003e\n\u003cbr  /\u003evalues for the nations in a scatter plot, which enables us to see how the quantities have been varying over time, apart from their individual visualizations       \u003cbr /\u003e\n\u003cbr  /\u003eabove. The circles in the plot represent the nations themselves and their radius represents the value of Broad Money which grows and shrinks accordingly. This     \u003cbr /\u003e\n\u003cbr  /\u003evisualization was implemented using Helium Application.\u003c/p\u003e\n"
       },
       "dateCreated": "Jun 5, 2016 6:24:46 PM",
-      "dateStarted": "Jun 13, 2016 12:10:45 PM",
-      "dateFinished": "Jun 13, 2016 12:10:45 PM",
+      "dateStarted": "Jun 14, 2016 3:46:40 PM",
+      "dateFinished": "Jun 14, 2016 3:46:42 PM",
       "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "//get the current account data in the json format for the scatter plot\n/*\ndef generateYears(begYear: Int, endYear: Int): String \u003d {    //define function to get the years for the json format\n    \n    var yearArr \u003d new Array[String](0)                      //the array to hold the year\n    var year \u003d begYear\n    \n    while(year \u003c\u003d endYear){                                 //generate the year array\n        yearArr \u003d yearArr.:+(\"[\" + year + \", \" + year + \"]\")\n        year +\u003d 1;\n    }\n    return yearArr.mkString(\",\")\n}\n*/\n//get the current account data for the json\nval cfCurrtData \u003d getCountryData(\"CF\", currtData)\nval cdCurrtData \u003d getCountryData(\"CD\", currtData)\nval zaCurrtData \u003d getCountryData(\"ZA\", currtData)\nval ngCurrtData \u003d getCountryData(\"NG\", currtData)\nval mgCurrtData \u003d getCountryData(\"MG\", currtData)\nval muCurrtData \u003d getCountryData(\"MU\", currtData)\n\n//get the broad money data needed for the json\nval cfBroadData \u003d getCountryData(\"CF\", broadData)\nval cdBroadData \u003d getCountryData(\"CD\", broadData)\nval zaBroadData \u003d getCountryData(\"ZA\", broadData)\nval ngBroadData \u003d getCountryData(\"NG\", broadData)\nval mgBroadData \u003d getCountryData(\"MG\", broadData)\nval muBroadData \u003d getCountryData(\"MU\", broadData)\n\n//get the revenue data needed for the json\nval cfRevenData \u003d getCountryData(\"CF\", revenData)\nval cdRevenData \u003d getCountryData(\"CD\", revenData)\nval zaRevenData \u003d getCountryData(\"ZA\", revenData)\nval ngRevenData \u003d getCountryData(\"NG\", revenData)\nval mgRevenData \u003d getCountryData(\"MG\", revenData)\nval muRevenData \u003d getCountryData(\"MU\", revenData)\n",
-      "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 11:01:11 AM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": true,
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1465810755270_1653618624",
-      "id": "20160613-150915_19294597",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "cfCurrtData: String \u003d [2004, -1.77827100868999],[2005, -6.58699576643052],[2006, -3.02368245478139],[2007, -6.22892629100611],[2008, -9.94334194682814],[2009, -9.05463023828573],[2010, -10.1508691372862],[2011, -7.56134582446985],[2012, -4.61295428031648],[2013, -2.99915516146996],[2014, -5.51255055662167],[2015, -12.7549507254236],[2016, -10.8692847643199],[2017, -10.2]\ncdCurrtData: String \u003d [2004, -0.535716629087815],[2005, -3.25160857387921],[2006, 0.334348034972116],[2007, 3.22047860349795],[2008, -0.789369345748801],[2009, -6.13206579364494],[2010, -10.5300298393885],[2011, -5.2110447633281],[2012, -4.57249302177108],[2013, -10.6422529070144],[2014, -9.60282667158138],[2015, -12.1575641875842],[2016, -14.1800731413682],[2017, -12.330546097267]\nzaCurrtData: String \u003d [2004, -2.7659734407496],[2005, -3.12935030202763],[2006, -4.47727519843426],[2007, -5.38340328665249],[2008, -5.53687259477692],[2009, -2.72834180797606],[2010, -1.50090538309932],[2011, -2.15828289449978],[2012, -4.95637608063644],[2013, -5.76556724943673],[2014, -5.44220051950623],[2015, -4.36838018388091],[2016, -4.36728680869663],[2017, -4.86315583238183]\nngCurrtData: String \u003d [2004, 13.3247909504902],[2005, 22.1691014126889],[2006, 16.7716787451532],[2007, 10.7365134259507],[2008, 8.95832674604064],[2009, 5.12722206952893],[2010, 3.86775816357432],[2011, 2.99738306191263],[2012, 4.35710002612728],[2013, 3.86119727735521],[2014, 0.222766915634094],[2015, -2.43120070128068],[2016, -2.80854329909654],[2017, -1.75581434334268]\nmgCurrtData: String \u003d [2004, -9.14310842727181],[2005, -13.7857748351003],[2006, -3.77090871404936],[2007, -12.660958580679],[2008, -20.5750479434189],[2009, -21.1397277950424],[2010, -9.68489304410983],[2011, -6.87773367566186],[2012, -6.90739805961845],[2013, -5.8574933517378],[2014, -0.31505276874424],[2015, -2.16762957062453],[2016, -3.0390008176584],[2017, -4.37894122575226]\nmuCurrtData: String \u003d [2004, -1.75724431430502],[2005, -5.00017310690867],[2006, -9.08856655609902],[2007, -5.42955270125165],[2008, -10.0734189766547],[2009, -7.40701389036458],[2010, -10.3198850152087],[2011, -13.8168669178449],[2012, -7.28522946607497],[2013, -6.31242748925135],[2014, -5.64276129185725],[2015, -5.08440752609549],[2016, -4.52647210381455],[2017, -4.64711452338595]\ncfBroadData: String \u003d [2004, 16.2295577139792],[2005, 18.069351413718],[2006, 15.9233810979757],[2007, 14.004035785737],[2008, 15.1768159629271],[2009, 16.1083070530817],[2010, 17.7958537170556],[2011, 19.2263984974069],[2012, 18.2621734883461],[2013, 28.1227536698492],[2014, 28.7443979907304],[2015, 28.8437352484924],[2016, 28.8437352484924],[2017, 28.8437352484924]\ncdBroadData: String \u003d [2004, 5.2330907862053],[2005, 4.71409146011517],[2006, 6.4049381007738],[2007, 7.58312454243838],[2008, 9.29492192321544],[2009, 10.1553558599829],[2010, 10.5064684985861],[2011, 10.7062556296565],[2012, 11.5615703786993],[2013, 11.5149751764419],[2014, 11.8902847342744],[2015, 11.6491144400466],[2016, 11.6491144400466],[2017, 12.2184509747882]\nzaBroadData: String \u003d [2004, 61.908151234269],[2005, 67.1726285249266],[2006, 73.355061433076],[2007, 79.0508849956056],[2008, 80.7998774198913],[2009, 77.6903086003501],[2010, 75.8045100305385],[2011, 74.5565465357951],[2012, 72.7480780975772],[2013, 71.1271323689291],[2014, 71.024871993594],[2015, 74.5505258606253],[2016, 74.074074074074],[2017, 73.8007380073801]\nngBroadData: String \u003d [2004, 13.4779071889559],[2005, 12.1637540652202],[2006, 14.3791231848713],[2007, 18.3048071625756],[2008, 24.1081934646111],[2009, 27.096223303256],[2010, 20.7781958800974],[2011, 18.8141142844218],[2012, 21.323027791875],[2013, 19.2966149807745],[2014, 20.8725618842971],[2015, 20.9342440767179],[2016, 21.4881090395714],[2017, 21.6668413669339]\nmgBroadData: String \u003d [2004, 25.8882232529239],[2005, 21.5706831572921],[2006, 23.1945963325067],[2007, 24.0004834916656],[2008, 23.1694201700731],[2009, 24.5453342558866],[2010, 24.6558567458884],[2011, 26.1331778300914],[2012, 25.7161698812349],[2013, 25.1909332145222],[2014, 25.4099853211817],[2015, 26.249842948926],[2016, 26.6854035172742],[2017, 26.8096514745308]\nmuBroadData: String \u003d [2004, 98.2605463635273],[2005, 98.9792207070902],[2006, 97.2250564024395],[2007, 98.082123430649],[2008, 99.9991543989738],[2009, 99.4590300247891],[2010, 100.354777356549],[2011, 98.9243926516441],[2012, 100.487057560114],[2013, 99.8044735491774],[2014, 102.791270947728],[2015, 104.623883367302],[2016, 106.445919453075],[2017, 105.96877229547]\ncfRevenData: String \u003d [2004, 8.39691179787679],[2005, 8.30436400798642],[2006, 9.60841726580093],[2007, 10.2779433220988],[2008, 10.3989100838235],[2009, 10.7757248125401],[2010, 11.6099494567877],[2011, 10.7883123169413],[2012, 11.4918931113114],[2013, 5.68002076715042],[2014, 4.90815292488778],[2015, 6.81189734748384],[2016, 7.68764433672959],[2017, 8.12418996619718]\ncdRevenData: String \u003d [2004, 5.50518325967592],[2005, 7.41933005861785],[2006, 9.08229911575404],[2007, 10.0068074259507],[2008, 11.2029240455187],[2009, 10.7474221114935],[2010, 12.0960459954604],[2011, 11.823161649466],[2012, 14.3604284920871],[2013, 12.8866576168351],[2014, 13.3199936730024],[2015, 13.6267397621445],[2016, 13.7946340347082],[2017, 14.2522181709497]\nzaRevenData: String \u003d [2004, 24.2430743759788],[2005, 25.4390088748782],[2006, 27.76253122853],[2007, 28.4166917306259],[2008, 28.2164417531089],[2009, 26.9842415613384],[2010, 26.7198844525799],[2011, 27.0192757948197],[2012, 27.1836519190004],[2013, 27.6168245718838],[2014, 28.2008608464212],[2015, 29.6586683168196],[2016, 30.1393259504867],[2017, 30.2454003688076]\nngRevenData: String \u003d [2004, 24.5749831288663],[2005, 24.7271283119754],[2006, 21.5649748332635],[2007, 17.6226919474307],[2008, 20.5821317158018],[2009, 11.2456620442932],[2010, 12.4206922781168],[2011, 17.7293183099585],[2012, 14.2961551206904],[2013, 11.0472705384894],[2014, 10.5219646805685],[2015, 7.82267511271793],[2016, 5.89896635070626],[2017, 6.83464348850676]\nmgRevenData: String \u003d [2004, 12.0451475055087],[2005, 10.924847832522],[2006, 11.1967748773496],[2007, 11.6846654830638],[2008, 12.5280990733166],[2009, 9.86420069871248],[2010, 11.2306078223729],[2011, 9.72642117259429],[2012, 9.62284161830673],[2013, 9.63157042823325],[2014, 10.1294046996617],[2015, 10.3441199438806],[2016, 10.9892537313433],[2017, 11.4095840224963]\nmuRevenData: String \u003d [2004, 18.9774923598845],[2005, 19.4198468223107],[2006, 18.8755130151234],[2007, 19.3883556422594],[2008, 20.4513407894545],[2009, 21.1500633955956],[2010, 21.2215339104857],[2011, 20.7047747599927],[2012, 20.7566973501346],[2013, 20.9708619395346],[2014, 20.4952867533179],[2015, 21.8246607857086],[2016, 22.3689086010859],[2017, 22.3758370197454]\n"
-      },
-      "dateCreated": "Jun 13, 2016 3:09:15 PM",
-      "dateStarted": "Jun 14, 2016 11:01:11 AM",
-      "dateFinished": "Jun 14, 2016 11:01:18 AM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "//form the json\nval data \u003d s\"\"\"\n[\n    {\n        \"name\" : \"Central African Republic\",\n        \"region\" : \"CF\",\n        \"revenue\" : [$cfRevenData],\n        \"broadMoney\" : [$cfBroadData],\n        \"currtAcct\" : [$cfCurrtData]\n    },\n    {\n        \"name\" : \"Democratic Republic of Congo\",\n        \"region\" : \"CD\",\n        \"revenue\" : [$cdRevenData],\n        \"broadMoney\" : [$cdBroadData],\n        \"currtAcct\" : [$cdCurrtData]\n    },\n    {\n        \"name\" : \"South Africa\",\n        \"region\" : \"SA\",\n        \"revenue\" : [$zaRevenData],\n        \"broadMoney\" : [$zaBroadData],\n        \"currtAcct\" : [$zaCurrtData]\n    },\n    {\n        \"name\" : \"Nigeria\",\n        \"region\" : \"NG\",\n        \"revenue\" : [$ngRevenData],\n        \"broadMoney\" : [$ngBroadData],\n        \"currtAcct\" : [$ngCurrtData]\n    },\n    {\n        \"name\" : \"Madagascar\",\n        \"region\" : \"MG\",\n        \"revenue\" : [$mgRevenData],\n        \"broadMoney\" : [$mgBroadData],\n        \"currtAcct\" : [$mgCurrtData]\n    },\n    {\n        \"name\" : \"Mauritius\",\n        \"region\" : \"MU\",\n        \"revenue\" : [$muRevenData],\n        \"broadMoney\" : [$muBroadData],\n        \"currtAcct\" : [$muCurrtData]\n    }\n]\n\"\"\"",
-      "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 11:17:53 AM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": true,
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1465816738974_-1074120859",
-      "id": "20160613-164858_377631",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "data: String \u003d \n\"\n[\n    {\n        \"name\" : \"Central African Republic\",\n        \"region\" : \"CF\",\n        \"revenue\" : [[2004, 8.39691179787679],[2005, 8.30436400798642],[2006, 9.60841726580093],[2007, 10.2779433220988],[2008, 10.3989100838235],[2009, 10.7757248125401],[2010, 11.6099494567877],[2011, 10.7883123169413],[2012, 11.4918931113114],[2013, 5.68002076715042],[2014, 4.90815292488778],[2015, 6.81189734748384],[2016, 7.68764433672959],[2017, 8.12418996619718]],\n        \"broadMoney\" : [[2004, 16.2295577139792],[2005, 18.069351413718],[2006, 15.9233810979757],[2007, 14.004035785737],[2008, 15.1768159629271],[2009, 16.1083070530817],[2010, 17.7958537170556],[2011, 19.2263984974069],[2012, 18.2621734883461],[2013, 28.1227536698492],[2014, 28.7443979907304],[2015, 28.8437352484924],[2016,..."
-      },
-      "dateCreated": "Jun 13, 2016 4:48:58 PM",
-      "dateStarted": "Jun 14, 2016 11:17:54 AM",
-      "dateFinished": "Jun 14, 2016 11:17:54 AM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%dev run",
-      "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 2:07:22 PM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": true,
-        "editorMode": "ace/mode/scala",
-        "editorHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1465818302588_-1477500815",
-      "id": "20160613-171502_9348017",
-      "result": {
-        "code": "SUCCESS",
-        "type": "ANGULAR",
-        "msg": "\u003cstyle\u003e\n\n#chart {\n  margin-left: -10px;\n  height: 506px;\n}\n\ntext {\n  font: 10px sans-serif;\n}\n\n.dot {\n  stroke: #000;\n}\n\n.axis path, .axis line {\n  fill: none;\n  stroke: #000;\n  shape-rendering: crispEdges;\n}\n\n.label {\n  fill: #777;\n}\n\n.year.label {\n  font: 500 196px \"Helvetica Neue\";\n  fill: #ddd;\n}\n\n.year.label.active {\n  fill: #aaa;\n}\n\n.overlay {\n  fill: none;\n  pointer-events: all;\n  cursor: ew-resize;\n}\n\n\u003c/style\u003e\n\n\u003cp id\u003d\"chart\"\u003e\u003c/p\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v3.min.js\" charset\u003d\"utf-8\"\u003e\u003c/script\u003e\n\u003cscript\u003e\n\n// Various accessors that specify the four dimensions of data to visualize.\nfunction x(d) { return d.revenue; }\nfunction y(d) { return d.currtAcct; }\nfunction radius(d) { return d.broadMoney; }\nfunction color(d) { return d.region; }\nfunction key(d) { return d.name; }\n\n// Chart dimensions.\nvar margin \u003d {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},\n    width \u003d 960 - margin.right,\n    height \u003d 500 - margin.top - margin.bottom;\n\n// Various scales. These domains make assumptions of data, naturally.\nvar xScale \u003d d3.scale.linear().domain([4, 40]).range([0, width]),\n    yScale \u003d d3.scale.linear().domain([-25, 25]).range([height, 0]),\n    radiusScale \u003d d3.scale.sqrt().domain([4, 120]).range([0, 40]),\n    colorScale \u003d d3.scale.category10();\n\n// The x \u0026 y axes.\nvar xAxis \u003d d3.svg.axis().orient(\"bottom\").scale(xScale).ticks(12, d3.format(\",d\")),\n    yAxis \u003d d3.svg.axis().scale(yScale).orient(\"left\");\n\n// Create the SVG container and set the origin.\nvar svg \u003d d3.select(\"#chart\").append(\"svg\")\n    .attr(\"width\", width + margin.left + margin.right)\n    .attr(\"height\", height + margin.top + margin.bottom)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");\n\n// Add the x-axis.\nsvg.append(\"g\")\n    .attr(\"class\", \"x axis\")\n    .attr(\"transform\", \"translate(0,\" + height + \")\")\n    .call(xAxis);\n\n// Add the y-axis.\nsvg.append(\"g\")\n    .attr(\"class\", \"y axis\")\n    .call(yAxis);\n\n// Add an x-axis label.\nsvg.append(\"text\")\n    .attr(\"class\", \"x label\")\n    .attr(\"text-anchor\", \"end\")\n    .attr(\"x\", width)\n    .attr(\"y\", height - 6)\n    .text(\"Revenues\");\n\n// Add a y-axis label.\nsvg.append(\"text\")\n    .attr(\"class\", \"y label\")\n    .attr(\"text-anchor\", \"end\")\n    .attr(\"y\", 6)\n    .attr(\"dy\", \".75em\")\n    .attr(\"transform\", \"rotate(-90)\")\n    .text(\"Current Account\");\n\n// Add the year label; the value is set on transition.\nvar label \u003d svg.append(\"text\")\n    .attr(\"class\", \"year label\")\n    .attr(\"text-anchor\", \"end\")\n    .attr(\"y\", height - 24)\n    .attr(\"x\", width)\n    .text(2004);\n\n// Load the data.\nd3.json(\"data.json\", function(nations) {\n\n  // A bisector since many nation\u0027s data is sparsely-defined.\n  var bisect \u003d d3.bisector(function(d) { return d[0]; });\n\n  // Add a dot per nation. Initialize the data at 1800, and set the colors.\n  var dot \u003d svg.append(\"g\")\n      .attr(\"class\", \"dots\")\n    .selectAll(\".dot\")\n      .data(interpolateData(2004))\n    .enter().append(\"circle\")\n      .attr(\"class\", \"dot\")\n      .style(\"fill\", function(d) { return colorScale(color(d)); })\n      .call(position)\n      .sort(order);\n\n  // Add a title.\n  dot.append(\"title\")\n      .text(function(d) { return d.name; });\n\n  // Add an overlay for the year label.\n  var box \u003d label.node().getBBox();\n\n  var overlay \u003d svg.append(\"rect\")\n        .attr(\"class\", \"overlay\")\n        .attr(\"x\", box.x)\n        .attr(\"y\", box.y)\n        .attr(\"width\", box.width)\n        .attr(\"height\", box.height)\n        .on(\"mouseover\", enableInteraction);\n\n  // Start a transition that interpolates the data based on year.\n  svg.transition()\n      .duration(10000)\n      .ease(\"linear\")\n      .tween(\"year\", tweenYear)\n      .each(\"end\", enableInteraction);\n\n  // Positions the dots based on data.\n  function position(dot) {\n    dot .attr(\"cx\", function(d) { return xScale(x(d)); })\n        .attr(\"cy\", function(d) { return yScale(y(d)); })\n        .attr(\"r\", function(d) { return radiusScale(radius(d)); });\n  }\n\n  // Defines a sort order so that the smallest dots are drawn on top.\n  function order(a, b) {\n    return radius(b) - radius(a);\n  }\n\n  // After the transition finishes, you can mouseover to change the year.\n  function enableInteraction() {\n    var yearScale \u003d d3.scale.linear()\n        .domain([2004, 2017])\n        .range([box.x + 10, box.x + box.width - 10])\n        .clamp(true);\n\n    // Cancel the current transition, if any.\n    svg.transition().duration(0);\n\n    overlay\n        .on(\"mouseover\", mouseover)\n        .on(\"mouseout\", mouseout)\n        .on(\"mousemove\", mousemove)\n        .on(\"touchmove\", mousemove);\n\n    function mouseover() {\n      label.classed(\"active\", true);\n    }\n\n    function mouseout() {\n      label.classed(\"active\", false);\n    }\n\n    function mousemove() {\n      displayYear(yearScale.invert(d3.mouse(this)[0]));\n    }\n  }\n\n  // Tweens the entire chart by first tweening the year, and then the data.\n  // For the interpolated data, the dots and label are redrawn.\n  function tweenYear() {\n    var year \u003d d3.interpolateNumber(2004, 2017);\n    return function(t) { displayYear(year(t)); };\n  }\n\n  // Updates the display to show the specified year.\n  function displayYear(year) {\n    dot.data(interpolateData(year), key).call(position).sort(order);\n    label.text(Math.round(year));\n  }\n\n  // Interpolates the dataset for the given (fractional) year.\n  function interpolateData(year) {\n    return nations.map(function(d) {\n      return {\n        name: d.name,\n        region: d.region,\n        revenue: interpolateValues(d.revenue, year),\n        broadMoney: interpolateValues(d.broadMoney, year),\n        currtAcct: interpolateValues(d.currtAcct, year)\n      };\n    });\n  }\n\n  // Finds (and possibly interpolates) the value for the specified year.\n  function interpolateValues(values, year) {\n    var i \u003d bisect.left(values, year, 0, values.length - 1),\n        a \u003d values[i];\n    if (i \u003e 0) {\n      var b \u003d values[i - 1],\n          t \u003d (year - a[0]) / (b[0] - a[0]);\n      return a[1] * (1 - t) + b[1] * t;\n    }\n    return a[1];\n  }\n});\n\n\u003c/script\u003e\n"
-      },
-      "dateCreated": "Jun 13, 2016 5:15:02 PM",
-      "dateStarted": "Jun 14, 2016 2:07:22 PM",
-      "dateFinished": "Jun 14, 2016 2:07:23 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "",
-      "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 1:27:25 PM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": true,
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1465818299347_-1076607785",
-      "id": "20160613-171459_26598057",
-      "dateCreated": "Jun 13, 2016 5:14:59 PM",
-      "dateStarted": "Jun 14, 2016 1:23:46 PM",
-      "dateFinished": "Jun 14, 2016 1:23:47 PM",
-      "status": "FINISHED",
-      "errorMessage": "",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "",
-      "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 12:19:50 PM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": true,
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1465821303013_-522074659",
-      "id": "20160613-180503_2044842",
-      "dateCreated": "Jun 13, 2016 6:05:03 PM",
-      "dateStarted": "Jun 13, 2016 6:07:46 PM",
-      "dateFinished": "Jun 13, 2016 6:07:46 PM",
-      "status": "FINISHED",
-      "errorMessage": "",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "",
-      "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 12:19:33 PM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": true,
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1465810749783_723680532",
-      "id": "20160613-150909_23516960",
-      "dateCreated": "Jun 13, 2016 3:09:09 PM",
-      "dateStarted": "Jun 14, 2016 8:44:53 AM",
-      "dateFinished": "Jun 14, 2016 8:44:53 AM",
-      "status": "FINISHED",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Current Account(% of GDP)",
       "text": "%sql\nselect country, value, year from CurrtData where year between \u00272004\u0027 and \u00272015\u0027",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 12:18:37 PM",
+      "dateUpdated": "Jun 14, 2016 3:38:47 PM",
       "config": {
         "colWidth": 6.0,
         "graph": {
@@ -684,8 +479,8 @@
         "msg": "country\tvalue\tyear\nCD\t-0.535716629087815\t2004\nCD\t-3.25160857387921\t2005\nCD\t0.334348034972116\t2006\nCD\t3.22047860349795\t2007\nCD\t-0.789369345748801\t2008\nCD\t-6.13206579364494\t2009\nCD\t-10.5300298393885\t2010\nCD\t-5.2110447633281\t2011\nCD\t-4.57249302177108\t2012\nCD\t-10.6422529070144\t2013\nCD\t-9.60282667158138\t2014\nCD\t-12.1575641875842\t2015\nCF\t-1.77827100868999\t2004\nCF\t-6.58699576643052\t2005\nCF\t-3.02368245478139\t2006\nCF\t-6.22892629100611\t2007\nCF\t-9.94334194682814\t2008\nCF\t-9.05463023828573\t2009\nCF\t-10.1508691372862\t2010\nCF\t-7.56134582446985\t2011\nCF\t-4.61295428031648\t2012\nCF\t-2.99915516146996\t2013\nCF\t-5.51255055662167\t2014\nCF\t-12.7549507254236\t2015\nZA\t-2.7659734407496\t2004\nZA\t-3.12935030202763\t2005\nZA\t-4.47727519843426\t2006\nZA\t-5.38340328665249\t2007\nZA\t-5.53687259477692\t2008\nZA\t-2.72834180797606\t2009\nZA\t-1.50090538309932\t2010\nZA\t-2.15828289449978\t2011\nZA\t-4.95637608063644\t2012\nZA\t-5.76556724943673\t2013\nZA\t-5.44220051950623\t2014\nZA\t-4.36838018388091\t2015\nNG\t13.3247909504902\t2004\nNG\t22.1691014126889\t2005\nNG\t16.7716787451532\t2006\nNG\t10.7365134259507\t2007\nNG\t8.95832674604064\t2008\nNG\t5.12722206952893\t2009\nNG\t3.86775816357432\t2010\nNG\t2.99738306191263\t2011\nNG\t4.35710002612728\t2012\nNG\t3.86119727735521\t2013\nNG\t0.222766915634094\t2014\nNG\t-2.43120070128068\t2015\nMU\t-1.75724431430502\t2004\nMU\t-5.00017310690867\t2005\nMU\t-9.08856655609902\t2006\nMU\t-5.42955270125165\t2007\nMU\t-10.0734189766547\t2008\nMU\t-7.40701389036458\t2009\nMU\t-10.3198850152087\t2010\nMU\t-13.8168669178449\t2011\nMU\t-7.28522946607497\t2012\nMU\t-6.31242748925135\t2013\nMU\t-5.64276129185725\t2014\nMU\t-5.08440752609549\t2015\nMG\t-9.14310842727181\t2004\nMG\t-13.7857748351003\t2005\nMG\t-3.77090871404936\t2006\nMG\t-12.660958580679\t2007\nMG\t-20.5750479434189\t2008\nMG\t-21.1397277950424\t2009\nMG\t-9.68489304410983\t2010\nMG\t-6.87773367566186\t2011\nMG\t-6.90739805961845\t2012\nMG\t-5.8574933517378\t2013\nMG\t-0.31505276874424\t2014\nMG\t-2.16762957062453\t2015\n"
       },
       "dateCreated": "Jun 5, 2016 8:35:52 AM",
-      "dateStarted": "Jun 5, 2016 6:45:03 PM",
-      "dateFinished": "Jun 5, 2016 6:45:03 PM",
+      "dateStarted": "Jun 14, 2016 3:38:47 PM",
+      "dateFinished": "Jun 14, 2016 3:38:47 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -723,6 +518,81 @@
       "dateCreated": "Jun 5, 2016 11:08:32 AM",
       "dateStarted": "Jun 5, 2016 6:14:22 PM",
       "dateFinished": "Jun 5, 2016 6:14:31 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//get all the data in the json format for the scatter plot\n\n//get the current account data for the json\nval cfCurrtData \u003d getCountryData(\"CF\", currtData)\nval cdCurrtData \u003d getCountryData(\"CD\", currtData)\nval zaCurrtData \u003d getCountryData(\"ZA\", currtData)\nval ngCurrtData \u003d getCountryData(\"NG\", currtData)\nval mgCurrtData \u003d getCountryData(\"MG\", currtData)\nval muCurrtData \u003d getCountryData(\"MU\", currtData)\n\n//get the broad money data needed for the json\nval cfBroadData \u003d getCountryData(\"CF\", broadData)\nval cdBroadData \u003d getCountryData(\"CD\", broadData)\nval zaBroadData \u003d getCountryData(\"ZA\", broadData)\nval ngBroadData \u003d getCountryData(\"NG\", broadData)\nval mgBroadData \u003d getCountryData(\"MG\", broadData)\nval muBroadData \u003d getCountryData(\"MU\", broadData)\n\n//get the revenue data needed for the json\nval cfRevenData \u003d getCountryData(\"CF\", revenData)\nval cdRevenData \u003d getCountryData(\"CD\", revenData)\nval zaRevenData \u003d getCountryData(\"ZA\", revenData)\nval ngRevenData \u003d getCountryData(\"NG\", revenData)\nval mgRevenData \u003d getCountryData(\"MG\", revenData)\nval muRevenData \u003d getCountryData(\"MU\", revenData)\n\n//form the json\nval data \u003d s\"\"\"\n[\n    {\n        \"name\" : \"Central African Republic\",\n        \"region\" : \"CF\",\n        \"revenue\" : [$cfRevenData],\n        \"broadMoney\" : [$cfBroadData],\n        \"currtAcct\" : [$cfCurrtData]\n    },\n    {\n        \"name\" : \"Democratic Republic of Congo\",\n        \"region\" : \"CD\",\n        \"revenue\" : [$cdRevenData],\n        \"broadMoney\" : [$cdBroadData],\n        \"currtAcct\" : [$cdCurrtData]\n    },\n    {\n        \"name\" : \"South Africa\",\n        \"region\" : \"SA\",\n        \"revenue\" : [$zaRevenData],\n        \"broadMoney\" : [$zaBroadData],\n        \"currtAcct\" : [$zaCurrtData]\n    },\n    {\n        \"name\" : \"Nigeria\",\n        \"region\" : \"NG\",\n        \"revenue\" : [$ngRevenData],\n        \"broadMoney\" : [$ngBroadData],\n        \"currtAcct\" : [$ngCurrtData]\n    },\n    {\n        \"name\" : \"Madagascar\",\n        \"region\" : \"MG\",\n        \"revenue\" : [$mgRevenData],\n        \"broadMoney\" : [$mgBroadData],\n        \"currtAcct\" : [$mgCurrtData]\n    },\n    {\n        \"name\" : \"Mauritius\",\n        \"region\" : \"MU\",\n        \"revenue\" : [$muRevenData],\n        \"broadMoney\" : [$muBroadData],\n        \"currtAcct\" : [$muCurrtData]\n    }\n]\n\"\"\"\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 14, 2016 3:51:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1465810755270_1653618624",
+      "id": "20160613-150915_19294597",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "cfCurrtData: String \u003d [2004, -1.77827100868999],[2005, -6.58699576643052],[2006, -3.02368245478139],[2007, -6.22892629100611],[2008, -9.94334194682814],[2009, -9.05463023828573],[2010, -10.1508691372862],[2011, -7.56134582446985],[2012, -4.61295428031648],[2013, -2.99915516146996],[2014, -5.51255055662167],[2015, -12.7549507254236],[2016, -10.8692847643199],[2017, -10.2]\ncdCurrtData: String \u003d [2004, -0.535716629087815],[2005, -3.25160857387921],[2006, 0.334348034972116],[2007, 3.22047860349795],[2008, -0.789369345748801],[2009, -6.13206579364494],[2010, -10.5300298393885],[2011, -5.2110447633281],[2012, -4.57249302177108],[2013, -10.6422529070144],[2014, -9.60282667158138],[2015, -12.1575641875842],[2016, -14.1800731413682],[2017, -12.330546097267]\nzaCurrtData: String \u003d [2004, -2.7659734407496],[2005, -3.12935030202763],[2006, -4.47727519843426],[2007, -5.38340328665249],[2008, -5.53687259477692],[2009, -2.72834180797606],[2010, -1.50090538309932],[2011, -2.15828289449978],[2012, -4.95637608063644],[2013, -5.76556724943673],[2014, -5.44220051950623],[2015, -4.36838018388091],[2016, -4.36728680869663],[2017, -4.86315583238183]\nngCurrtData: String \u003d [2004, 13.3247909504902],[2005, 22.1691014126889],[2006, 16.7716787451532],[2007, 10.7365134259507],[2008, 8.95832674604064],[2009, 5.12722206952893],[2010, 3.86775816357432],[2011, 2.99738306191263],[2012, 4.35710002612728],[2013, 3.86119727735521],[2014, 0.222766915634094],[2015, -2.43120070128068],[2016, -2.80854329909654],[2017, -1.75581434334268]\nmgCurrtData: String \u003d [2004, -9.14310842727181],[2005, -13.7857748351003],[2006, -3.77090871404936],[2007, -12.660958580679],[2008, -20.5750479434189],[2009, -21.1397277950424],[2010, -9.68489304410983],[2011, -6.87773367566186],[2012, -6.90739805961845],[2013, -5.8574933517378],[2014, -0.31505276874424],[2015, -2.16762957062453],[2016, -3.0390008176584],[2017, -4.37894122575226]\nmuCurrtData: String \u003d [2004, -1.75724431430502],[2005, -5.00017310690867],[2006, -9.08856655609902],[2007, -5.42955270125165],[2008, -10.0734189766547],[2009, -7.40701389036458],[2010, -10.3198850152087],[2011, -13.8168669178449],[2012, -7.28522946607497],[2013, -6.31242748925135],[2014, -5.64276129185725],[2015, -5.08440752609549],[2016, -4.52647210381455],[2017, -4.64711452338595]\ncfBroadData: String \u003d [2004, 16.2295577139792],[2005, 18.069351413718],[2006, 15.9233810979757],[2007, 14.004035785737],[2008, 15.1768159629271],[2009, 16.1083070530817],[2010, 17.7958537170556],[2011, 19.2263984974069],[2012, 18.2621734883461],[2013, 28.1227536698492],[2014, 28.7443979907304],[2015, 28.8437352484924],[2016, 28.8437352484924],[2017, 28.8437352484924]\ncdBroadData: String \u003d [2004, 5.2330907862053],[2005, 4.71409146011517],[2006, 6.4049381007738],[2007, 7.58312454243838],[2008, 9.29492192321544],[2009, 10.1553558599829],[2010, 10.5064684985861],[2011, 10.7062556296565],[2012, 11.5615703786993],[2013, 11.5149751764419],[2014, 11.8902847342744],[2015, 11.6491144400466],[2016, 11.6491144400466],[2017, 12.2184509747882]\nzaBroadData: String \u003d [2004, 61.908151234269],[2005, 67.1726285249266],[2006, 73.355061433076],[2007, 79.0508849956056],[2008, 80.7998774198913],[2009, 77.6903086003501],[2010, 75.8045100305385],[2011, 74.5565465357951],[2012, 72.7480780975772],[2013, 71.1271323689291],[2014, 71.024871993594],[2015, 74.5505258606253],[2016, 74.074074074074],[2017, 73.8007380073801]\nngBroadData: String \u003d [2004, 13.4779071889559],[2005, 12.1637540652202],[2006, 14.3791231848713],[2007, 18.3048071625756],[2008, 24.1081934646111],[2009, 27.096223303256],[2010, 20.7781958800974],[2011, 18.8141142844218],[2012, 21.323027791875],[2013, 19.2966149807745],[2014, 20.8725618842971],[2015, 20.9342440767179],[2016, 21.4881090395714],[2017, 21.6668413669339]\nmgBroadData: String \u003d [2004, 25.8882232529239],[2005, 21.5706831572921],[2006, 23.1945963325067],[2007, 24.0004834916656],[2008, 23.1694201700731],[2009, 24.5453342558866],[2010, 24.6558567458884],[2011, 26.1331778300914],[2012, 25.7161698812349],[2013, 25.1909332145222],[2014, 25.4099853211817],[2015, 26.249842948926],[2016, 26.6854035172742],[2017, 26.8096514745308]\nmuBroadData: String \u003d [2004, 98.2605463635273],[2005, 98.9792207070902],[2006, 97.2250564024395],[2007, 98.082123430649],[2008, 99.9991543989738],[2009, 99.4590300247891],[2010, 100.354777356549],[2011, 98.9243926516441],[2012, 100.487057560114],[2013, 99.8044735491774],[2014, 102.791270947728],[2015, 104.623883367302],[2016, 106.445919453075],[2017, 105.96877229547]\ncfRevenData: String \u003d [2004, 8.39691179787679],[2005, 8.30436400798642],[2006, 9.60841726580093],[2007, 10.2779433220988],[2008, 10.3989100838235],[2009, 10.7757248125401],[2010, 11.6099494567877],[2011, 10.7883123169413],[2012, 11.4918931113114],[2013, 5.68002076715042],[2014, 4.90815292488778],[2015, 6.81189734748384],[2016, 7.68764433672959],[2017, 8.12418996619718]\ncdRevenData: String \u003d [2004, 5.50518325967592],[2005, 7.41933005861785],[2006, 9.08229911575404],[2007, 10.0068074259507],[2008, 11.2029240455187],[2009, 10.7474221114935],[2010, 12.0960459954604],[2011, 11.823161649466],[2012, 14.3604284920871],[2013, 12.8866576168351],[2014, 13.3199936730024],[2015, 13.6267397621445],[2016, 13.7946340347082],[2017, 14.2522181709497]\nzaRevenData: String \u003d [2004, 24.2430743759788],[2005, 25.4390088748782],[2006, 27.76253122853],[2007, 28.4166917306259],[2008, 28.2164417531089],[2009, 26.9842415613384],[2010, 26.7198844525799],[2011, 27.0192757948197],[2012, 27.1836519190004],[2013, 27.6168245718838],[2014, 28.2008608464212],[2015, 29.6586683168196],[2016, 30.1393259504867],[2017, 30.2454003688076]\nngRevenData: String \u003d [2004, 24.5749831288663],[2005, 24.7271283119754],[2006, 21.5649748332635],[2007, 17.6226919474307],[2008, 20.5821317158018],[2009, 11.2456620442932],[2010, 12.4206922781168],[2011, 17.7293183099585],[2012, 14.2961551206904],[2013, 11.0472705384894],[2014, 10.5219646805685],[2015, 7.82267511271793],[2016, 5.89896635070626],[2017, 6.83464348850676]\nmgRevenData: String \u003d [2004, 12.0451475055087],[2005, 10.924847832522],[2006, 11.1967748773496],[2007, 11.6846654830638],[2008, 12.5280990733166],[2009, 9.86420069871248],[2010, 11.2306078223729],[2011, 9.72642117259429],[2012, 9.62284161830673],[2013, 9.63157042823325],[2014, 10.1294046996617],[2015, 10.3441199438806],[2016, 10.9892537313433],[2017, 11.4095840224963]\nmuRevenData: String \u003d [2004, 18.9774923598845],[2005, 19.4198468223107],[2006, 18.8755130151234],[2007, 19.3883556422594],[2008, 20.4513407894545],[2009, 21.1500633955956],[2010, 21.2215339104857],[2011, 20.7047747599927],[2012, 20.7566973501346],[2013, 20.9708619395346],[2014, 20.4952867533179],[2015, 21.8246607857086],[2016, 22.3689086010859],[2017, 22.3758370197454]\n"
+      },
+      "dateCreated": "Jun 13, 2016 3:09:15 PM",
+      "dateStarted": "Jun 14, 2016 11:01:11 AM",
+      "dateFinished": "Jun 14, 2016 11:01:18 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Current Account vs. Revenues",
+      "text": "%dev run",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 14, 2016 4:56:27 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1465818302588_-1477500815",
+      "id": "20160613-171502_9348017",
+      "result": {
+        "code": "SUCCESS",
+        "type": "ANGULAR",
+        "msg": "\u003cstyle\u003e\n\n#chart {\n  margin-left: -10px;\n  height: 506px;\n}\n\ntext {\n  font: 10px sans-serif;\n}\n\n.dot {\n  stroke: #000;\n}\n\n.axis path, .axis line {\n  fill: none;\n  stroke: #000;\n  shape-rendering: crispEdges;\n}\n\n.label {\n  fill: #777;\n}\n\n.year.label {\n  font: 500 196px \"Helvetica Neue\";\n  fill: #ddd;\n}\n\n.year.label.active {\n  fill: #aaa;\n}\n\n.overlay {\n  fill: none;\n  pointer-events: all;\n  cursor: ew-resize;\n}\n\n\u003c/style\u003e\n\n\u003cp id\u003d\"chart\"\u003e\u003c/p\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v3.min.js\" charset\u003d\"utf-8\"\u003e\u003c/script\u003e\n\u003cscript\u003e\n\n// Various accessors that specify the four dimensions of data to visualize.\nfunction x(d) { return d.revenue; }\nfunction y(d) { return d.currtAcct; }\nfunction radius(d) { return d.broadMoney; }\nfunction color(d) { return d.region; }\nfunction key(d) { return d.name; }\n\n// Chart dimensions.\nvar margin \u003d {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},\n    width \u003d 960 - margin.right,\n    height \u003d 500 - margin.top - margin.bottom;\n\n// Various scales. These domains make assumptions of data, naturally.\nvar xScale \u003d d3.scale.linear().domain([4, 40]).range([0, width]),\n    yScale \u003d d3.scale.linear().domain([-25, 25]).range([height, 0]),\n    radiusScale \u003d d3.scale.sqrt().domain([4, 120]).range([0, 40]),\n    colorScale \u003d d3.scale.category10();\n\n// The x \u0026 y axes.\nvar xAxis \u003d d3.svg.axis().orient(\"bottom\").scale(xScale).ticks(12, d3.format(\",d\")),\n    yAxis \u003d d3.svg.axis().scale(yScale).orient(\"left\");\n\n// Create the SVG container and set the origin.\nvar svg \u003d d3.select(\"#chart\").append(\"svg\")\n    .attr(\"width\", width + margin.left + margin.right)\n    .attr(\"height\", height + margin.top + margin.bottom)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");\n\n// Add the x-axis.\nsvg.append(\"g\")\n    .attr(\"class\", \"x axis\")\n    .attr(\"transform\", \"translate(0,\" + height + \")\")\n    .call(xAxis);\n\n// Add the y-axis.\nsvg.append(\"g\")\n    .attr(\"class\", \"y axis\")\n    .call(yAxis);\n\n// Add an x-axis label.\nsvg.append(\"text\")\n    .attr(\"class\", \"x label\")\n    .attr(\"text-anchor\", \"end\")\n    .attr(\"x\", width)\n    .attr(\"y\", height - 6)\n    .text(\"Revenues\");\n\n// Add a y-axis label.\nsvg.append(\"text\")\n    .attr(\"class\", \"y label\")\n    .attr(\"text-anchor\", \"end\")\n    .attr(\"y\", 6)\n    .attr(\"dy\", \".75em\")\n    .attr(\"transform\", \"rotate(-90)\")\n    .text(\"Current Account\");\n\n// Add the year label; the value is set on transition.\nvar label \u003d svg.append(\"text\")\n    .attr(\"class\", \"year label\")\n    .attr(\"text-anchor\", \"end\")\n    .attr(\"y\", height - 24)\n    .attr(\"x\", width)\n    .text(2004);\n\n// Load the data.\nd3.json(\"data.json\", function(nations) {\n\n  // A bisector since many nation\u0027s data is sparsely-defined.\n  var bisect \u003d d3.bisector(function(d) { return d[0]; });\n\n  // Add a dot per nation. Initialize the data at 1800, and set the colors.\n  var dot \u003d svg.append(\"g\")\n      .attr(\"class\", \"dots\")\n    .selectAll(\".dot\")\n      .data(interpolateData(2004))\n    .enter().append(\"circle\")\n      .attr(\"class\", \"dot\")\n      .style(\"fill\", function(d) { return colorScale(color(d)); })\n      .call(position)\n      .sort(order);\n\n  // Add a title.\n  dot.append(\"title\")\n      .text(function(d) { return d.name; });\n\n  // Add an overlay for the year label.\n  var box \u003d label.node().getBBox();\n\n  var overlay \u003d svg.append(\"rect\")\n        .attr(\"class\", \"overlay\")\n        .attr(\"x\", box.x)\n        .attr(\"y\", box.y)\n        .attr(\"width\", box.width)\n        .attr(\"height\", box.height)\n        .on(\"mouseover\", enableInteraction);\n\n  // Start a transition that interpolates the data based on year.\n  svg.transition()\n      .duration(10000)\n      .ease(\"linear\")\n      .tween(\"year\", tweenYear)\n      .each(\"end\", enableInteraction);\n\n  // Positions the dots based on data.\n  function position(dot) {\n    dot .attr(\"cx\", function(d) { return xScale(x(d)); })\n        .attr(\"cy\", function(d) { return yScale(y(d)); })\n        .attr(\"r\", function(d) { return radiusScale(radius(d)); });\n  }\n\n  // Defines a sort order so that the smallest dots are drawn on top.\n  function order(a, b) {\n    return radius(b) - radius(a);\n  }\n\n  // After the transition finishes, you can mouseover to change the year.\n  function enableInteraction() {\n    var yearScale \u003d d3.scale.linear()\n        .domain([2004, 2017])\n        .range([box.x + 10, box.x + box.width - 10])\n        .clamp(true);\n\n    // Cancel the current transition, if any.\n    svg.transition().duration(0);\n\n    overlay\n        .on(\"mouseover\", mouseover)\n        .on(\"mouseout\", mouseout)\n        .on(\"mousemove\", mousemove)\n        .on(\"touchmove\", mousemove);\n\n    function mouseover() {\n      label.classed(\"active\", true);\n    }\n\n    function mouseout() {\n      label.classed(\"active\", false);\n    }\n\n    function mousemove() {\n      displayYear(yearScale.invert(d3.mouse(this)[0]));\n    }\n  }\n\n  // Tweens the entire chart by first tweening the year, and then the data.\n  // For the interpolated data, the dots and label are redrawn.\n  function tweenYear() {\n    var year \u003d d3.interpolateNumber(2004, 2017);\n    return function(t) { displayYear(year(t)); };\n  }\n\n  // Updates the display to show the specified year.\n  function displayYear(year) {\n    dot.data(interpolateData(year), key).call(position).sort(order);\n    label.text(Math.round(year));\n  }\n\n  // Interpolates the dataset for the given (fractional) year.\n  function interpolateData(year) {\n    return nations.map(function(d) {\n      return {\n        name: d.name,\n        region: d.region,\n        revenue: interpolateValues(d.revenue, year),\n        broadMoney: interpolateValues(d.broadMoney, year),\n        currtAcct: interpolateValues(d.currtAcct, year)\n      };\n    });\n  }\n\n  // Finds (and possibly interpolates) the value for the specified year.\n  function interpolateValues(values, year) {\n    var i \u003d bisect.left(values, year, 0, values.length - 1),\n        a \u003d values[i];\n    if (i \u003e 0) {\n      var b \u003d values[i - 1],\n          t \u003d (year - a[0]) / (b[0] - a[0]);\n      return a[1] * (1 - t) + b[1] * t;\n    }\n    return a[1];\n  }\n});\n\n\u003c/script\u003e\n"
+      },
+      "dateCreated": "Jun 13, 2016 5:15:02 PM",
+      "dateStarted": "Jun 14, 2016 4:56:27 PM",
+      "dateFinished": "Jun 14, 2016 4:56:29 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -1060,7 +930,7 @@
       "title": "Gross Debt(2017)",
       "text": "println(s\"\"\"%html \n\u003c!DOCTYPE html\u003e\n\u003cmeta charset\u003d\"utf-8\"\u003e\n\u003cstyle\u003e\n#myDonut3{\n    float: right;\n    position: relative;\n    right: 70px;\n    width: 200;\n    height: 200;\n    margin: auto;\n}\n\n.arc text {\n  font: 10px sans-serif;\n  text-anchor: middle;\n}\n\n.arc path {\n  stroke: #fff;\n}\n\n\u003c/style\u003e\n\n\u003cdiv id\u003d\"myDonut3\"\u003e\u003c/div\u003e   \n\u003cscript\u003e\n\nvar width \u003d 200,\n    height \u003d 200,\n    radius \u003d Math.min(width, height) / 2;\n\nvar color \u003d d3.scale.ordinal()\n    .range([\"#98abc5\", \"#143a6f\", \"#2266c3\", \"#66a1f1\", \"#98b6e0\", \"#d9e1ec\"]);\n\nvar arc \u003d d3.svg.arc()\n    .outerRadius(radius - 10)\n    .innerRadius(radius - 70);\n\nvar pie \u003d d3.layout.pie()\n    .sort(null)\n    .value(function(d) { return d.value; });\n\nvar svg \u003d d3.select(\"#myDonut3\").append(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");\n/*\nd3.csv(\"data.csv\", type, function(error, data) {\n  if (error) throw error;\n*/\n  var data \u003d $json17\n  var g \u003d svg.selectAll(\".arc\")\n      .data(pie(data))\n    .enter().append(\"g\")\n      .attr(\"class\", \"arc\");\n\n  g.append(\"path\")\n      .attr(\"d\", arc)\n      .style(\"fill\", function(d) { return color(d.data.country); });\n\n  g.append(\"text\")\n      .attr(\"transform\", function(d) { return \"translate(\" + arc.centroid(d) + \")\"; })\n      .attr(\"dy\", \".35em\")\n      .text(function(d) { return d.data.country; });\n//});\n\nfunction type(d) {\n  d.value \u003d +d.value;\n  return d;\n}\n\n\u003c/script\u003e\n\n\"\"\")",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 9, 2016 4:58:00 PM",
+      "dateUpdated": "Jun 14, 2016 3:51:57 PM",
       "config": {
         "colWidth": 4.0,
         "graph": {
@@ -2227,9 +2097,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md \nIn the analysis presented above, we have been able to see the complete scenario of the African region\u0027s economy and the factors that have been affecting        \u003cbr/\u003e\nit. In the face of low current account values, constant(non increasing) revenues and low value of exports, the goverment policies will be largely responsible   \u003cbr/\u003e\nfor the expenses to be borne out. As suggested by the IMF, a change of fiscal and government policies may just help the region put itself back on the track of  \u003cbr/\u003e\nprogress although growth will be slow for the next few years.\n\n\u003cbr/\u003e\n## 2. Latin America and Paraguay\n![Image](http://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2014/07/17/101844217-80291294.530x298.jpg?v\u003d1405603939)\n\nThe next issue to be examined is the economic condition of [Latin America and Paraguay](http://www.imf.org/external/pubs/ft/survey/so/2016/car060116a.htm). \u003cbr/\u003e\nParaguay has been mentioned separately because it stands out in terms of economic growth and development even as the other nations of the region face       \u003cbr/\u003e\ntough conditions and recession. We shall have a look at the economic factors that affect the region and how Paraguay has been able to cope with it.\n\n\u003cbr/\u003e\nThe following abbreviations have been used in the analysis below:\n1. BR \u003d Brazil\n2. AR \u003d Argentina\n3. UY \u003d Uruguay\n4. PY \u003d Paraguay\n5. BO \u003d Bolivia",
+      "text": "%md \nIn the analysis presented above, we have been able to see the complete scenario of the African region\u0027s economy and the factors that have been affecting        \u003cbr/\u003e\nit. In the face of low current account values, constant(non increasing) revenues and low value of exports, the goverment policies will be largely responsible   \u003cbr/\u003e\nfor the expenses to be borne out. As suggested by the IMF, a change of fiscal and government policies may just help the region put itself back on the track of  \u003cbr/\u003e\nprogress although growth will be slow for the next few years.\n\n\u003cbr/\u003e\n## 2. Latin America and Paraguay\n![Image](https://iso.500px.com/wp-content/uploads/2014/06/2048-4.jpg)\n\nThe next issue to be examined is the economic condition of [Latin America and Paraguay](http://www.imf.org/external/pubs/ft/survey/so/2016/car060116a.htm). \u003cbr/\u003e\nParaguay has been mentioned separately because it stands out in terms of economic growth and development even as the other nations of the region face       \u003cbr/\u003e\ntough conditions and recession. We shall have a look at the economic factors that affect the region and how Paraguay has been able to cope with it.\n\n\u003cbr/\u003e\nThe following abbreviations have been used in the analysis below:\n1. BR \u003d Brazil\n2. AR \u003d Argentina\n3. UY \u003d Uruguay\n4. PY \u003d Paraguay\n5. BO \u003d Bolivia",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 14, 2016 8:09:31 AM",
+      "dateUpdated": "Jun 14, 2016 4:06:11 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -2255,11 +2125,11 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\u003cp\u003eIn the analysis presented above, we have been able to see the complete scenario of the African region\u0027s economy and the factors that have been affecting        \u003cbr /\u003e\n\u003cbr  /\u003eit. In the face of low current account values, constant(non increasing) revenues and low value of exports, the goverment policies will be largely responsible   \u003cbr /\u003e\n\u003cbr  /\u003efor the expenses to be borne out. As suggested by the IMF, a change of fiscal and government policies may just help the region put itself back on the track of  \u003cbr /\u003e\n\u003cbr  /\u003eprogress although growth will be slow for the next few years.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\u003c/p\u003e\n\u003ch2\u003e2. Latin America and Paraguay\u003c/h2\u003e\n\u003cp\u003e\u003cimg src\u003d\"http://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2014/07/17/101844217-80291294.530x298.jpg?v\u003d1405603939\" alt\u003d\"Image\" /\u003e\u003c/p\u003e\n\u003cp\u003eThe next issue to be examined is the economic condition of \u003ca href\u003d\"http://www.imf.org/external/pubs/ft/survey/so/2016/car060116a.htm\"\u003eLatin America and Paraguay\u003c/a\u003e. \u003cbr /\u003e\n\u003cbr  /\u003eParaguay has been mentioned separately because it stands out in terms of economic growth and development even as the other nations of the region face       \u003cbr /\u003e\n\u003cbr  /\u003etough conditions and recession. We shall have a look at the economic factors that affect the region and how Paraguay has been able to cope with it.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eThe following abbreviations have been used in the analysis below:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eBR \u003d Brazil\u003c/li\u003e\n\u003cli\u003eAR \u003d Argentina\u003c/li\u003e\n\u003cli\u003eUY \u003d Uruguay\u003c/li\u003e\n\u003cli\u003ePY \u003d Paraguay\u003c/li\u003e\n\u003cli\u003eBO \u003d Bolivia\u003c/li\u003e\n\u003c/ol\u003e\n"
+        "msg": "\u003cp\u003eIn the analysis presented above, we have been able to see the complete scenario of the African region\u0027s economy and the factors that have been affecting        \u003cbr /\u003e\n\u003cbr  /\u003eit. In the face of low current account values, constant(non increasing) revenues and low value of exports, the goverment policies will be largely responsible   \u003cbr /\u003e\n\u003cbr  /\u003efor the expenses to be borne out. As suggested by the IMF, a change of fiscal and government policies may just help the region put itself back on the track of  \u003cbr /\u003e\n\u003cbr  /\u003eprogress although growth will be slow for the next few years.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\u003c/p\u003e\n\u003ch2\u003e2. Latin America and Paraguay\u003c/h2\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://iso.500px.com/wp-content/uploads/2014/06/2048-4.jpg\" alt\u003d\"Image\" /\u003e\u003c/p\u003e\n\u003cp\u003eThe next issue to be examined is the economic condition of \u003ca href\u003d\"http://www.imf.org/external/pubs/ft/survey/so/2016/car060116a.htm\"\u003eLatin America and Paraguay\u003c/a\u003e. \u003cbr /\u003e\n\u003cbr  /\u003eParaguay has been mentioned separately because it stands out in terms of economic growth and development even as the other nations of the region face       \u003cbr /\u003e\n\u003cbr  /\u003etough conditions and recession. We shall have a look at the economic factors that affect the region and how Paraguay has been able to cope with it.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eThe following abbreviations have been used in the analysis below:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eBR \u003d Brazil\u003c/li\u003e\n\u003cli\u003eAR \u003d Argentina\u003c/li\u003e\n\u003cli\u003eUY \u003d Uruguay\u003c/li\u003e\n\u003cli\u003ePY \u003d Paraguay\u003c/li\u003e\n\u003cli\u003eBO \u003d Bolivia\u003c/li\u003e\n\u003c/ol\u003e\n"
       },
       "dateCreated": "Jun 9, 2016 7:51:59 AM",
-      "dateStarted": "Jun 14, 2016 8:08:52 AM",
-      "dateFinished": "Jun 14, 2016 8:08:52 AM",
+      "dateStarted": "Jun 14, 2016 4:05:56 PM",
+      "dateFinished": "Jun 14, 2016 4:05:56 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -2299,7 +2169,7 @@
     {
       "text": "//load the datasets into Zeppelin for analysis\n\n//load the datasets used for the analysis of the subject/issue itself\nval balanData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/BOP.json\"))\nval gdpData   \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/GDP.json\"))\nval grosDData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/GrossDebt.json\"))\n\n//laod the datasets used for the analysis of the factors affecting the subject itself\nval assetData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/AssetInvest.json\"))\nval cashFData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/CashFinance.json\"))\nval cashSData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/CashSD.json\"))\nval stockData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/ChangeInStock.json\"))\nval cpiFdData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/CPIFood.json\"))\nval cpiHsData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/CPIHousing.json\"))\nval cpiMcData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/CPIMGS.json\"))\nval cPricData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/CPrices.json\"))\nval cashEData \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/ExpenCash.json\"))\nval lendBorr  \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/LendBorr.json\"))\nval pPParity  \u003d explode(sqlContext.read.json(\"/home/\" + homeDir + \"/ZeppelinData/Paraguay/PPParity.json\"))\n\n//register the temp tables for querying\nbalanData.registerTempTable(\"BOPData\")\ngdpData.registerTempTable(\"GDPData\")\ngrosDData.registerTempTable(\"DebtData\")\nassetData.registerTempTable(\"AssetData\")\ncashFData.registerTempTable(\"CashFData\")\ncashSData.registerTempTable(\"CashSData\")\nstockData.registerTempTable(\"StockData\")\ncpiFdData.registerTempTable(\"CPIFdData\")\ncpiHsData.registerTempTable(\"CPIHsData\")\ncpiMcData.registerTempTable(\"CPIMcData\")\ncPricData.registerTempTable(\"CPricData\")\ncashEData.registerTempTable(\"CashEData\")\nlendBorr.registerTempTable(\"LendBorr\")\npPParity.registerTempTable(\"PPParity\")",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 13, 2016 7:28:47 AM",
+      "dateUpdated": "Jun 14, 2016 4:19:17 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -2327,8 +2197,8 @@
         "msg": "balanData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ngdpData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ngrosDData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nassetData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncashFData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncashSData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nstockData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncpiFdData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncpiHsData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncpiMcData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncPricData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\ncashEData: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\nlendBorr: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\npPParity: org.apache.spark.sql.DataFrame \u003d [country: string, value: string, year: string]\n"
       },
       "dateCreated": "Jun 9, 2016 5:46:16 PM",
-      "dateStarted": "Jun 13, 2016 7:28:48 AM",
-      "dateFinished": "Jun 13, 2016 7:29:14 AM",
+      "dateStarted": "Jun 14, 2016 4:19:17 PM",
+      "dateFinished": "Jun 14, 2016 4:19:31 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -3477,9 +3347,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n#### iv. Consumer Prices\nThe last factor that we shall examine is the percentage change in consumer prices. This factor is an indicator of how stable or unstable the markets of a country    \u003cbr/\u003e\nare. The bar chart shown below indicates that the consumer prices have been the most unstable for Argentina with both the highest and the lowest values occuring in  \u003cbr/\u003e\u003cbr/\u003e     consecutive years. Others such as Brazil and Paraguay have remained largely constant with only slight variations. Consumer Price change is a factor of internal   \u003cbr/\u003e\neconomy which relates only to the households - increase in consumer prices will reduce the purchasing power while a decrease in prices will increase the purchasing  \u003cbr/\u003e\npower. It is used as a net measure of inflation. Controlled inflation indicates healthier internal economy and more inflation indicates a less healthy economy.      \u003cbr/\u003e\nTherefore, it is of utmost importance that the consumer prices be controlled and kept low although this is dependent, to some extent, on the financial institutions. \u003cbr/\u003e\u003cbr/\u003e Fluctuating prices are indicative of unstability in the internal markets.",
+      "text": "%md\n#### iv. Consumer Prices\nThe last factor that we shall examine is the percentage change in consumer prices. This factor is an indicator of how stable or unstable the markets of a country    \u003cbr/\u003e\nare. The bar chart shown below indicates that the consumer prices have been the most unstable for Argentina with both the highest and the lowest values occuring in  \u003cbr/\u003e\u003cbr/\u003e     consecutive years. Others such as Brazil and Paraguay have remained largely constant with only slight variations. Consumer Price change is a factor of internal   \u003cbr/\u003e\neconomy which relates only to the households - increase in consumer prices will reduce the purchasing power while a decrease in prices will increase the purchasing  \u003cbr/\u003e\npower. It is used as a net measure of inflation. Controlled inflation indicates healthier internal economy and more inflation indicates a less healthy economy.      \u003cbr/\u003e\nTherefore, it is of utmost importance that the consumer prices be controlled and kept low although this is dependent, to some extent, on the financial institutions. \u003cbr/\u003e\u003cbr/\u003e Fluctuating prices are indicative of unstability in the internal markets.\n\n\u003cbr/\u003e\nIn the paragraphs that follow, we have the pie charts for the consumer price index sector-wise share for Paraguay, for the years 2010, 2012, 2014. We see that Food, \u003cbr/\u003e\nHousing and Miscellaneous items have the major share equally divided amongst themselves for all of the years with the housing share, which includes housing, water,  \u003cbr/\u003e\ngas, electricity and other fuels increasing slightly over the recent years. These are the major sectors over which the government of Paraguay must have control      \u003cbr/\u003e\nto avoid inflation and ensure balanced demand and supply.",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 13, 2016 1:04:20 PM",
+      "dateUpdated": "Jun 14, 2016 4:49:16 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -3505,11 +3375,11 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\u003ch4\u003eiv. Consumer Prices\u003c/h4\u003e\n\u003cp\u003eThe last factor that we shall examine is the percentage change in consumer prices. This factor is an indicator of how stable or unstable the markets of a country    \u003cbr /\u003e\n\u003cbr  /\u003eare. The bar chart shown below indicates that the consumer prices have been the most unstable for Argentina with both the highest and the lowest values occuring in  \u003cbr /\u003e\u003cbr /\u003e     consecutive years. Others such as Brazil and Paraguay have remained largely constant with only slight variations. Consumer Price change is a factor of internal   \u003cbr /\u003e\n\u003cbr  /\u003eeconomy which relates only to the households - increase in consumer prices will reduce the purchasing power while a decrease in prices will increase the purchasing  \u003cbr /\u003e\n\u003cbr  /\u003epower. It is used as a net measure of inflation. Controlled inflation indicates healthier internal economy and more inflation indicates a less healthy economy.      \u003cbr /\u003e\n\u003cbr  /\u003eTherefore, it is of utmost importance that the consumer prices be controlled and kept low although this is dependent, to some extent, on the financial institutions. \u003cbr /\u003e\u003cbr /\u003e Fluctuating prices are indicative of unstability in the internal markets.\u003c/p\u003e\n"
+        "msg": "\u003ch4\u003eiv. Consumer Prices\u003c/h4\u003e\n\u003cp\u003eThe last factor that we shall examine is the percentage change in consumer prices. This factor is an indicator of how stable or unstable the markets of a country    \u003cbr /\u003e\n\u003cbr  /\u003eare. The bar chart shown below indicates that the consumer prices have been the most unstable for Argentina with both the highest and the lowest values occuring in  \u003cbr /\u003e\u003cbr /\u003e     consecutive years. Others such as Brazil and Paraguay have remained largely constant with only slight variations. Consumer Price change is a factor of internal   \u003cbr /\u003e\n\u003cbr  /\u003eeconomy which relates only to the households - increase in consumer prices will reduce the purchasing power while a decrease in prices will increase the purchasing  \u003cbr /\u003e\n\u003cbr  /\u003epower. It is used as a net measure of inflation. Controlled inflation indicates healthier internal economy and more inflation indicates a less healthy economy.      \u003cbr /\u003e\n\u003cbr  /\u003eTherefore, it is of utmost importance that the consumer prices be controlled and kept low although this is dependent, to some extent, on the financial institutions. \u003cbr /\u003e\u003cbr /\u003e Fluctuating prices are indicative of unstability in the internal markets.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eIn the paragraphs that follow, we have the pie charts for the consumer price index sector-wise share for Paraguay, for the years 2010, 2012, 2014. We see that Food, \u003cbr /\u003e\n\u003cbr  /\u003eHousing and Miscellaneous items have the major share equally divided amongst themselves for all of the years with the housing share, which includes housing, water,  \u003cbr /\u003e\n\u003cbr  /\u003egas, electricity and other fuels increasing slightly over the recent years. These are the major sectors over which the government of Paraguay must have control      \u003cbr /\u003e\n\u003cbr  /\u003eto avoid inflation and ensure balanced demand and supply.\u003c/p\u003e\n"
       },
       "dateCreated": "Jun 12, 2016 1:28:34 PM",
-      "dateStarted": "Jun 13, 2016 1:04:14 PM",
-      "dateFinished": "Jun 13, 2016 1:04:14 PM",
+      "dateStarted": "Jun 14, 2016 4:48:41 PM",
+      "dateFinished": "Jun 14, 2016 4:48:41 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -3584,9 +3454,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//get the data for the pie charts to be drawn\n\n//get the data for the year 2010 \nval food10 \u003d cpiFdData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2010\")).select(\"value\").collect()(0).getString(0)\nval hous10 \u003d cpiHsData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2010\")).select(\"value\").collect()(0).getString(0)\nval misc10 \u003d cpiMcData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2010\")).select(\"value\").collect()(0).getString(0)\n\n//get the data for the year 2012\nval food12 \u003d cpiFdData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2012\")).select(\"value\").collect()(0).getString(0)\nval hous12 \u003d cpiHsData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2012\")).select(\"value\").collect()(0).getString(0)\nval misc12 \u003d cpiMcData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2012\")).select(\"value\").collect()(0).getString(0)\n\n//get the data for the year 2014\nval food14 \u003d cpiFdData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2014\")).select(\"value\").collect()(0).getString(0)\nval hous14 \u003d cpiHsData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2014\")).select(\"value\").collect()(0).getString(0)\nval misc14 \u003d cpiMcData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2014\")).select(\"value\").collect()(0).getString(0)",
+      "text": "//get the data for the pie charts to be drawn\n/*\n//get the data for the year 2010 \nval food10 \u003d cpiFdData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2010\")).select(\"value\").collect()(0).getString(0)\nval hous10 \u003d cpiHsData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2010\")).select(\"value\").collect()(0).getString(0)\nval misc10 \u003d cpiMcData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2010\")).select(\"value\").collect()(0).getString(0)\n\n//get the data for the year 2012\nval food12 \u003d cpiFdData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2012\")).select(\"value\").collect()(0).getString(0)\nval hous12 \u003d cpiHsData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2012\")).select(\"value\").collect()(0).getString(0)\nval misc12 \u003d cpiMcData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2012\")).select(\"value\").collect()(0).getString(0)\n\n//get the data for the year 2014\nval food14 \u003d cpiFdData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2014\")).select(\"value\").collect()(0).getString(0)\nval hous14 \u003d cpiHsData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2014\")).select(\"value\").collect()(0).getString(0)\nval misc14 \u003d cpiMcData.filter($\"country\".like(\"PY\") \u0026\u0026 $\"year\".like(\"2014\")).select(\"value\").collect()(0).getString(0)\n*/\n//form the json for the donut charts\n\n//the json string for 2010 data\nval json10 \u003d s\"\"\"\n[\n    {\n        \"cpiName\" : \"Food\",\n        \"value\" : \"$food10\"\n    },\n    {\n        \"cpiName\" : \"Housing\",\n        \"value\" : \"$hous10\"\n    },\n    {\n        \"cpiName\" : \"Misc\",\n        \"value\" : \"$misc10\"\n    }\n]\n\"\"\"\n//the json string for 2012 data\nval json12 \u003d s\"\"\"\n[\n    {\n        \"cpiName\" : \"Food\",\n        \"value\" : \"$food12\"\n    },\n    {\n        \"cpiName\" : \"Housing\",\n        \"value\" : \"$hous12\"\n    },\n    {\n        \"cpiName\" : \"Misc\",\n        \"value\" : \"$misc12\"\n    }\n]\n\"\"\"\n//the json string for 2014 data\nval json14 \u003d s\"\"\"\n[\n    {\n        \"cpiName\" : \"Food\",\n        \"value\" : \"$food14\"\n    },\n    {\n        \"cpiName\" : \"Housing\",\n        \"value\" : \"$hous14\"\n    },\n    {\n        \"cpiName\" : \"Misc\",\n        \"value\" : \"$misc14\"\n    }\n]\n\"\"\"\n\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 13, 2016 9:03:43 AM",
+      "dateUpdated": "Jun 14, 2016 4:28:53 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -3645,16 +3515,35 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "food10: String \u003d 116.916666666667\n"
+        "msg": "json10: String \u003d \n\"\n[\n    {\n        \"cpiName\" : \"Food\",\n        \"value\" : \"116.916666666667\"\n    },\n    {\n        \"cpiName\" : \"Housing\",\n        \"value\" : \"112.475\"\n    },\n    {\n        \"cpiName\" : \"Misc\",\n        \"value\" : \"112.041666666667\"\n    }\n]\n\"\njson12: String \u003d \n\"\n[\n    {\n        \"cpiName\" : \"Food\",\n        \"value\" : \"129.983333333333\"\n    },\n    {\n        \"cpiName\" : \"Housing\",\n        \"value\" : \"132.941666666667\"\n    },\n    {\n        \"cpiName\" : \"Misc\",\n        \"value\" : \"123.95\"\n    }\n]\n\"\njson14: String \u003d \n\"\n[\n    {\n        \"cpiName\" : \"Food\",\n        \"value\" : \"142.841666666667\"\n    },\n    {\n        \"cpiName\" : \"Housing\",\n        \"value\" : \"146.058333333333\"\n    },\n    {\n        \"cpiName\" : \"Misc\",\n        \"value\" : \"130.658333333333\"\n    }\n]\n\"\n"
       },
       "dateCreated": "Jun 13, 2016 7:51:53 AM",
-      "dateStarted": "Jun 13, 2016 8:56:22 AM",
-      "dateFinished": "Jun 13, 2016 8:56:23 AM",
+      "dateStarted": "Jun 14, 2016 4:28:53 PM",
+      "dateFinished": "Jun 14, 2016 4:28:54 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "config": {},
+      "title": "CPI(sector wise 2010)",
+      "text": "println(s\"\"\"%html \n\u003c!DOCTYPE html\u003e\n\u003cmeta charset\u003d\"utf-8\"\u003e\n\u003cstyle\u003e\n#myDonut4{\n    float: right;\n    position: relative;\n    right: 70px;\n    width: 200;\n    height: 200;\n    margin: auto;\n}\n\n.arc text {\n  font: 10px sans-serif;\n  text-anchor: middle;\n}\n\n.arc path {\n  stroke: #fff;\n}\n\n\u003c/style\u003e\n\n\u003cdiv id\u003d\"myDonut4\"\u003e\u003c/div\u003e   \n\u003cscript\u003e\n\nvar width \u003d 200,\n    height \u003d 200,\n    radius \u003d Math.min(width, height) / 2;\n\nvar color \u003d d3.scale.ordinal()\n    .range([\"#4d8848\", \"#25c419\", \"#bbffb6\"]);\n\nvar arc \u003d d3.svg.arc()\n    .outerRadius(radius - 10)\n    .innerRadius(radius - 70);\n\nvar pie \u003d d3.layout.pie()\n    .sort(null)\n    .value(function(d) { return d.value; });\n\nvar svg \u003d d3.select(\"#myDonut4\").append(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");\n/*\nd3.csv(\"data.csv\", type, function(error, data) {\n  if (error) throw error;\n*/\n  var data \u003d $json10\n  var g \u003d svg.selectAll(\".arc\")\n      .data(pie(data))\n    .enter().append(\"g\")\n      .attr(\"class\", \"arc\");\n\n  g.append(\"path\")\n      .attr(\"d\", arc)\n      .style(\"fill\", function(d) { return color(d.data.cpiName); });\n\n  g.append(\"text\")\n      .attr(\"transform\", function(d) { return \"translate(\" + arc.centroid(d) + \")\"; })\n      .attr(\"dy\", \".35em\")\n      .text(function(d) { return d.data.cpiName; });\n//});\n\nfunction type(d) {\n  d.value \u003d +d.value;\n  return d;\n}\n\n\u003c/script\u003e\n\n\"\"\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 14, 2016 4:37:21 PM",
+      "config": {
+        "colWidth": 4.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
       "settings": {
         "params": {},
         "forms": {}
@@ -3662,8 +3551,93 @@
       "apps": [],
       "jobName": "paragraph_1465750375555_127954075",
       "id": "20160612-222255_10624929",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\n\u003c!DOCTYPE html\u003e\n\u003cmeta charset\u003d\"utf-8\"\u003e\n\u003cstyle\u003e\n#myDonut4{\n    float: right;\n    position: relative;\n    right: 70px;\n    width: 200;\n    height: 200;\n    margin: auto;\n}\n\n.arc text {\n  font: 10px sans-serif;\n  text-anchor: middle;\n}\n\n.arc path {\n  stroke: #fff;\n}\n\n\u003c/style\u003e\n\n\u003cdiv id\u003d\"myDonut4\"\u003e\u003c/div\u003e   \n\u003cscript\u003e\n\nvar width \u003d 200,\n    height \u003d 200,\n    radius \u003d Math.min(width, height) / 2;\n\nvar color \u003d d3.scale.ordinal()\n    .range([\"#4d8848\", \"#25c419\", \"#bbffb6\"]);\n\nvar arc \u003d d3.svg.arc()\n    .outerRadius(radius - 10)\n    .innerRadius(radius - 70);\n\nvar pie \u003d d3.layout.pie()\n    .sort(null)\n    .value(function(d) { return d.value; });\n\nvar svg \u003d d3.select(\"#myDonut4\").append(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");\n/*\nd3.csv(\"data.csv\", type, function(error, data) {\n  if (error) throw error;\n*/\n  var data \u003d \n[\n    {\n        \"cpiName\" : \"Food\",\n        \"value\" : \"116.916666666667\"\n    },\n    {\n        \"cpiName\" : \"Housing\",\n        \"value\" : \"112.475\"\n    },\n    {\n        \"cpiName\" : \"Misc\",\n        \"value\" : \"112.041666666667\"\n    }\n]\n\n  var g \u003d svg.selectAll(\".arc\")\n      .data(pie(data))\n    .enter().append(\"g\")\n      .attr(\"class\", \"arc\");\n\n  g.append(\"path\")\n      .attr(\"d\", arc)\n      .style(\"fill\", function(d) { return color(d.data.cpiName); });\n\n  g.append(\"text\")\n      .attr(\"transform\", function(d) { return \"translate(\" + arc.centroid(d) + \")\"; })\n      .attr(\"dy\", \".35em\")\n      .text(function(d) { return d.data.cpiName; });\n//});\n\nfunction type(d) {\n  d.value \u003d +d.value;\n  return d;\n}\n\n\u003c/script\u003e\n\n\n"
+      },
       "dateCreated": "Jun 12, 2016 10:22:55 PM",
-      "status": "READY",
+      "dateStarted": "Jun 14, 2016 4:29:17 PM",
+      "dateFinished": "Jun 14, 2016 4:29:17 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "CPI(sector wise 2012)",
+      "text": "println(s\"\"\"%html \n\u003c!DOCTYPE html\u003e\n\u003cmeta charset\u003d\"utf-8\"\u003e\n\u003cstyle\u003e\n#myDonut5{\n    float: right;\n    position: relative;\n    right: 70px;\n    width: 200;\n    height: 200;\n    margin: auto;\n}\n\n.arc text {\n  font: 10px sans-serif;\n  text-anchor: middle;\n}\n\n.arc path {\n  stroke: #fff;\n}\n\n\u003c/style\u003e\n\n\u003cdiv id\u003d\"myDonut5\"\u003e\u003c/div\u003e   \n\u003cscript\u003e\n\nvar width \u003d 200,\n    height \u003d 200,\n    radius \u003d Math.min(width, height) / 2;\n\nvar color \u003d d3.scale.ordinal()\n    .range([\"#4d8848\", \"#25c419\", \"#bbffb6\"]);\n\nvar arc \u003d d3.svg.arc()\n    .outerRadius(radius - 10)\n    .innerRadius(radius - 70);\n\nvar pie \u003d d3.layout.pie()\n    .sort(null)\n    .value(function(d) { return d.value; });\n\nvar svg \u003d d3.select(\"#myDonut5\").append(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");\n/*\nd3.csv(\"data.csv\", type, function(error, data) {\n  if (error) throw error;\n*/\n  var data \u003d $json12\n  var g \u003d svg.selectAll(\".arc\")\n      .data(pie(data))\n    .enter().append(\"g\")\n      .attr(\"class\", \"arc\");\n\n  g.append(\"path\")\n      .attr(\"d\", arc)\n      .style(\"fill\", function(d) { return color(d.data.cpiName); });\n\n  g.append(\"text\")\n      .attr(\"transform\", function(d) { return \"translate(\" + arc.centroid(d) + \")\"; })\n      .attr(\"dy\", \".35em\")\n      .text(function(d) { return d.data.cpiName; });\n//});\n\nfunction type(d) {\n  d.value \u003d +d.value;\n  return d;\n}\n\n\u003c/script\u003e\n\n\"\"\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 14, 2016 4:38:04 PM",
+      "config": {
+        "colWidth": 4.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1465902003543_-357540555",
+      "id": "20160614-163003_21669329",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\n\u003c!DOCTYPE html\u003e\n\u003cmeta charset\u003d\"utf-8\"\u003e\n\u003cstyle\u003e\n#myDonut5{\n    float: right;\n    position: relative;\n    right: 70px;\n    width: 200;\n    height: 200;\n    margin: auto;\n}\n\n.arc text {\n  font: 10px sans-serif;\n  text-anchor: middle;\n}\n\n.arc path {\n  stroke: #fff;\n}\n\n\u003c/style\u003e\n\n\u003cdiv id\u003d\"myDonut5\"\u003e\u003c/div\u003e   \n\u003cscript\u003e\n\nvar width \u003d 200,\n    height \u003d 200,\n    radius \u003d Math.min(width, height) / 2;\n\nvar color \u003d d3.scale.ordinal()\n    .range([\"#4d8848\", \"#25c419\", \"#bbffb6\"]);\n\nvar arc \u003d d3.svg.arc()\n    .outerRadius(radius - 10)\n    .innerRadius(radius - 70);\n\nvar pie \u003d d3.layout.pie()\n    .sort(null)\n    .value(function(d) { return d.value; });\n\nvar svg \u003d d3.select(\"#myDonut5\").append(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");\n/*\nd3.csv(\"data.csv\", type, function(error, data) {\n  if (error) throw error;\n*/\n  var data \u003d \n[\n    {\n        \"cpiName\" : \"Food\",\n        \"value\" : \"129.983333333333\"\n    },\n    {\n        \"cpiName\" : \"Housing\",\n        \"value\" : \"132.941666666667\"\n    },\n    {\n        \"cpiName\" : \"Misc\",\n        \"value\" : \"123.95\"\n    }\n]\n\n  var g \u003d svg.selectAll(\".arc\")\n      .data(pie(data))\n    .enter().append(\"g\")\n      .attr(\"class\", \"arc\");\n\n  g.append(\"path\")\n      .attr(\"d\", arc)\n      .style(\"fill\", function(d) { return color(d.data.cpiName); });\n\n  g.append(\"text\")\n      .attr(\"transform\", function(d) { return \"translate(\" + arc.centroid(d) + \")\"; })\n      .attr(\"dy\", \".35em\")\n      .text(function(d) { return d.data.cpiName; });\n//});\n\nfunction type(d) {\n  d.value \u003d +d.value;\n  return d;\n}\n\n\u003c/script\u003e\n\n\n"
+      },
+      "dateCreated": "Jun 14, 2016 4:30:03 PM",
+      "dateStarted": "Jun 14, 2016 4:30:44 PM",
+      "dateFinished": "Jun 14, 2016 4:30:44 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "CPI(sector wise 2014)",
+      "text": "println(s\"\"\"%html \n\u003c!DOCTYPE html\u003e\n\u003cmeta charset\u003d\"utf-8\"\u003e\n\u003cstyle\u003e\n#myDonut6{\n    float: right;\n    position: relative;\n    right: 70px;\n    width: 200;\n    height: 200;\n    margin: auto;\n}\n\n.arc text {\n  font: 10px sans-serif;\n  text-anchor: middle;\n}\n\n.arc path {\n  stroke: #fff;\n}\n\n\u003c/style\u003e\n\n\u003cdiv id\u003d\"myDonut6\"\u003e\u003c/div\u003e   \n\u003cscript\u003e\n\nvar width \u003d 200,\n    height \u003d 200,\n    radius \u003d Math.min(width, height) / 2;\n\nvar color \u003d d3.scale.ordinal()\n    .range([\"#4d8848\", \"#25c419\", \"#bbffb6\"]);\n\nvar arc \u003d d3.svg.arc()\n    .outerRadius(radius - 10)\n    .innerRadius(radius - 70);\n\nvar pie \u003d d3.layout.pie()\n    .sort(null)\n    .value(function(d) { return d.value; });\n\nvar svg \u003d d3.select(\"#myDonut6\").append(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");\n/*\nd3.csv(\"data.csv\", type, function(error, data) {\n  if (error) throw error;\n*/\n  var data \u003d $json14\n  var g \u003d svg.selectAll(\".arc\")\n      .data(pie(data))\n    .enter().append(\"g\")\n      .attr(\"class\", \"arc\");\n\n  g.append(\"path\")\n      .attr(\"d\", arc)\n      .style(\"fill\", function(d) { return color(d.data.cpiName); });\n\n  g.append(\"text\")\n      .attr(\"transform\", function(d) { return \"translate(\" + arc.centroid(d) + \")\"; })\n      .attr(\"dy\", \".35em\")\n      .text(function(d) { return d.data.cpiName; });\n//});\n\nfunction type(d) {\n  d.value \u003d +d.value;\n  return d;\n}\n\n\u003c/script\u003e\n\n\"\"\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 14, 2016 4:39:07 PM",
+      "config": {
+        "colWidth": 4.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1465902059440_1317179462",
+      "id": "20160614-163059_27126808",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\n\u003c!DOCTYPE html\u003e\n\u003cmeta charset\u003d\"utf-8\"\u003e\n\u003cstyle\u003e\n#myDonut6{\n    float: right;\n    position: relative;\n    right: 70px;\n    width: 200;\n    height: 200;\n    margin: auto;\n}\n\n.arc text {\n  font: 10px sans-serif;\n  text-anchor: middle;\n}\n\n.arc path {\n  stroke: #fff;\n}\n\n\u003c/style\u003e\n\n\u003cdiv id\u003d\"myDonut6\"\u003e\u003c/div\u003e   \n\u003cscript\u003e\n\nvar width \u003d 200,\n    height \u003d 200,\n    radius \u003d Math.min(width, height) / 2;\n\nvar color \u003d d3.scale.ordinal()\n    .range([\"#4d8848\", \"#25c419\", \"#bbffb6\"]);\n\nvar arc \u003d d3.svg.arc()\n    .outerRadius(radius - 10)\n    .innerRadius(radius - 70);\n\nvar pie \u003d d3.layout.pie()\n    .sort(null)\n    .value(function(d) { return d.value; });\n\nvar svg \u003d d3.select(\"#myDonut6\").append(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");\n/*\nd3.csv(\"data.csv\", type, function(error, data) {\n  if (error) throw error;\n*/\n  var data \u003d \n[\n    {\n        \"cpiName\" : \"Food\",\n        \"value\" : \"142.841666666667\"\n    },\n    {\n        \"cpiName\" : \"Housing\",\n        \"value\" : \"146.058333333333\"\n    },\n    {\n        \"cpiName\" : \"Misc\",\n        \"value\" : \"130.658333333333\"\n    }\n]\n\n  var g \u003d svg.selectAll(\".arc\")\n      .data(pie(data))\n    .enter().append(\"g\")\n      .attr(\"class\", \"arc\");\n\n  g.append(\"path\")\n      .attr(\"d\", arc)\n      .style(\"fill\", function(d) { return color(d.data.cpiName); });\n\n  g.append(\"text\")\n      .attr(\"transform\", function(d) { return \"translate(\" + arc.centroid(d) + \")\"; })\n      .attr(\"dy\", \".35em\")\n      .text(function(d) { return d.data.cpiName; });\n//});\n\nfunction type(d) {\n  d.value \u003d +d.value;\n  return d;\n}\n\n\u003c/script\u003e\n\n\n"
+      },
+      "dateCreated": "Jun 14, 2016 4:30:59 PM",
+      "dateStarted": "Jun 14, 2016 4:31:36 PM",
+      "dateFinished": "Jun 14, 2016 4:31:37 PM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
