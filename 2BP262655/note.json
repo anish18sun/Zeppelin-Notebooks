@@ -1,0 +1,877 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# **Transportation**\n\nby Anish Singh\nBlog Site : [Zeppelin Notes](https://zeppelinnotes.blogspot.in)\n[Image]\n\n##Introduction\n\n**Transportation** is a notebook that analyses the various means of transport for the region of Europe. Data for all the means of transport and associated indicators\nalong with the map data was provided by the EuroStat European data organization through its bulk download feature. Data was taken for all the means of transport land\n(road and rail), water and air transport. We attempt to examine the individual contributions of each of the means of transport and their overall impacts on the trans\n-port system of Europe. All the means of transport help the commuters in their daily walks of life, to the extent that in some European countries, not knowing how to\ndrive a car would be fine. In their relative importance, some of the means dominate over the others by the preferences of the commuters. With  the  increasing volume\nof road traffic, the metropolitian authorities have to seek new ways to provide services and accordingly increase the transportation capacities. However, as we shall\nsee increasing such capacities may not always relieve traffic. Such issues have been examined in the notebook. More details about the choosing of the datasets may be\nfound on the blog site mentioned above.\n\nThe analysis for this notebook has been done using Apache Flink along with the visualization capabilities of Apache Zeppelin.\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 10:18:52 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466234495560_671402061",
+      "id": "20160618-125135_17194386",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003e\u003cstrong\u003eTransportation\u003c/strong\u003e\u003c/h1\u003e\n\u003cp\u003eby Anish Singh\n\u003cbr  /\u003eBlog Site : \u003ca href\u003d\"https://zeppelinnotes.blogspot.in\"\u003eZeppelin Notes\u003c/a\u003e\n\u003cbr  /\u003e[Image]\u003c/p\u003e\n\u003ch2\u003eIntroduction\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eTransportation\u003c/strong\u003e is a notebook that analyses the various means of transport for the region of Europe. Data for all the means of transport and associated indicators\n\u003cbr  /\u003ealong with the map data was provided by the EuroStat European data organization through its bulk download feature. Data was taken for all the means of transport land\n\u003cbr  /\u003e(road and rail), water and air transport. We attempt to examine the individual contributions of each of the means of transport and their overall impacts on the trans\n\u003cbr  /\u003e-port system of Europe. All the means of transport help the commuters in their daily walks of life, to the extent that in some European countries, not knowing how to\n\u003cbr  /\u003edrive a car would be fine. In their relative importance, some of the means dominate over the others by the preferences of the commuters. With  the  increasing volume\n\u003cbr  /\u003eof road traffic, the metropolitian authorities have to seek new ways to provide services and accordingly increase the transportation capacities. However, as we shall\n\u003cbr  /\u003esee increasing such capacities may not always relieve traffic. Such issues have been examined in the notebook. More details about the choosing of the datasets may be\n\u003cbr  /\u003efound on the blog site mentioned above.\u003c/p\u003e\n\u003cp\u003eThe analysis for this notebook has been done using Apache Flink along with the visualization capabilities of Apache Zeppelin.\u003c/p\u003e\n"
+      },
+      "dateCreated": "Jun 18, 2016 12:51:35 PM",
+      "dateStarted": "Jun 23, 2016 10:18:52 AM",
+      "dateFinished": "Jun 23, 2016 10:18:55 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n# this paragraph downloads the datasets used in the analysis of this notebook\n\n# create the directory for storing the datasets\n#mkdir ~/ZeppelinData/Transportation\n\n# download the datasets used for the analysis\n\n\n# display resulting output to the user in easily readable form after the code is hidden\necho \"This paragraph downloads the datasets used in this notebook.\"\necho \"The following datasets have been used in the analysis that follows :- \"\necho \"Transportation Overview Datasets\"\n\n#continue with the datasets",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 20, 2016 8:46:54 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466391935861_-1276419690",
+      "id": "20160620-083535_15667705",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "This paragraph downloads the datasets used in this notebook.\nThe following datasets have been used in the analysis that follows :- \n"
+      },
+      "dateCreated": "Jun 20, 2016 8:35:35 AM",
+      "dateStarted": "Jun 20, 2016 8:44:09 AM",
+      "dateFinished": "Jun 20, 2016 8:44:11 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%flink\n//this paragraph defines the case classes used to form the schemas for the datasets and some utility functions used in later paragraphs\n\n//define generic case classes to form a generic schema containing only the relevant fields from the datasets\ncase class Column17(typ : String, country : String, y14 : String, y13 : String, y12 : String, y11 : String, y10 : String, y9 : String,\n                    y8 : String, y7 : String, y6 : String, y5 : String, y4 : String, y3 : String, y2 : String, y1 : String, y0 : String){\n                        \n                        def getValues() : Array[String] \u003d {\n                            return Array(y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14)\n                        }\n                    }\n\n//utility function to check the values array returned by the case classes and remove inconsistent values\ndef getGoodValues(valueArr : Array[String]) : Array[String] \u003d {\n    \n    valueArr(0) \u003d if((valueArr(0).equals(\": z\")) || (valueArr(0).equals(\":\"))) \"0\" else valueArr(0)    //set the first value only \n    \n    for(i \u003c- 1 until valueArr.length){                               //iterate over the rest of the array to remove inconsistent values\n    \n        if(valueArr(i).equals(\": z\")){                               //the symbol for no data for the country in this(current) dataset\n            valueArr(i) \u003d \"0\";\n        }\n        else if(valueArr(i).equals(\": \")){\n            valueArr(i) \u003d valueArr(i - 1)\n        }\n    }\n    return valueArr                                                  //return the Array of Good formed values\n}\n\n//define a function to get the value for a particular year and a dataset for a specific category \ndef getYearValue(inputSet : DataSet[Column17], country : String, typ : String, year : Int, startYear : Int) : String \u003d {\n    \n    val filterData \u003d inputSet.filter(ele \u003d\u003e (ele.country.equals(country) \u0026\u0026 ele.typ.equals(typ)))       //get the filtered data for a particular country and type\n    val dataArr    \u003d filterData.collect.toArray                                                         //get the array for the values\n    val valueArr   \u003d dataArr(0).getValues\n    var index      \u003d year - startYear                        //the index into the array for the year passed as parameter\n    var yearVal    \u003d valueArr(index)                         //get the initial value for the year passed as parameter\n    \n    while(yearVal.equals(\": \") \u0026\u0026 index \u003e 0){                //check for the values in the previous years if values is not found in the present year\n        \n        index -\u003d 1;\n        yearVal \u003d valueArr(index)\n    }\n    \n    if(index \u003d\u003d 0 \u0026\u0026 valueArr(index).equals(\": \")){          //if reached the last year without finding any value\n            return \"0\"\n    }\n        \n    return yearVal\n}\n\n//define a generic function to get the values for a particular type of a dataset in the table display format\ndef getTablDispData(inputSet : DataSet[Column17], typ : String, startYear : Int) : String \u003d {\n    \n    val filteredData \u003d inputSet.filter( _.typ.equals(typ))                      //filter the dataset to the type specified for filtering\n    val filDataArr   \u003d filteredData.collect.toArray                             //the array representation for the dataset\n    \n    var resultArr \u003d Array(\"country\\tyear\\tvalue\")                               //form the header for the display format\n    \n    for(i \u003c- 0 until filDataArr.length){\n        var year \u003d startYear\n        var yearValues \u003d filDataArr(i).getValues                                //get the array of values for the current country\n        \n        for(j \u003c- 0 until yearValues.length){\n            resultArr \u003d resultArr.:+(filDataArr(i).country + \"\\t\" + year + \"\\t\" + yearValues(j)) \n            year +\u003d 1\n        }\n    }\n    \n    return resultArr.mkString(\"\\n\")                                             //form the table display by inserting \u0027\\n\u0027 character\n}\n\n//function to generate the values for a specific country and a specific type from a particular function \ndef getCountryData(inputSet : DataSet[Column17], country : String, typ : String , startYear : Int, endYear : Int) : String \u003d {\n    \n    val filterData  \u003d inputSet.filter(ele \u003d\u003e (ele.typ.equals(typ) \u0026\u0026 ele.country.equals(country)))     //get the data for a country and a type from input DataSet\n    val filDataArr  \u003d filterData.collect.toArray                                                       //get the array for the data values\n    val valueArr    \u003d filDataArr(0).getValues\n    val values      \u003d getGoodValues(valueArr)                       //get the values after filtering the data and removing inconsistent values\n    var countryArr  \u003d new Array[String](0)                          //the output array to contain the values\n    var year \u003d startYear\n    \n    while(year \u003c\u003d endYear){\n        countryArr \u003d countryArr.:+(\"{x:\" + year + \", y:\" + values(year - startYear) + \"}\")\n        year +\u003d 1;\n    }\n    return countryArr.mkString(\",\")\n}\n\n//function to get the well formed json string for the visualizations\ndef getJson(inputSet : DataSet[Column17], typ : String) : String \u003d {\n    \n    val geVal  \u003d getCountryData(inputSet, \"DE\", typ, 2000, 2014)    //get the data for Germany\n    val ukVal  \u003d getCountryData(inputSet, \"UK\", typ, 2000, 2014)    //get the data for United Kingdom\n    val frVal  \u003d getCountryData(inputSet, \"FR\", typ, 2000, 2014)    //get the data for France\n    val spVal  \u003d getCountryData(inputSet, \"ES\", typ, 2000, 2014)    //get the data for Spain\n    val itVal  \u003d getCountryData(inputSet, \"IT\", typ, 2000, 2014)    //get the data for Italy\n    \n    //got the values for all the representative nations, now form the json\n    val data \u003d s\"\"\"\n    [\n        {\n            values: [$geVal],\n            key: \u0027Germany\u0027,\n            color: \u0027#ff8221\u0027\n        },\n        {\n            values: [$ukVal],\n            key: \u0027United Kingdom\u0027,\n            color: \u0027#ab2341\u0027\n        },\n        {\n            values: [$frVal],\n            key: \u0027France\u0027,\n            color: \u0027#673ef2\u0027\n        },\n        {\n            values: [$spVal],\n            key: \u0027Spain\u0027,\n            color: \u0027#451afb\u0027\n        },\n        {\n            values: [$itVal],\n            key: \u0027Italy\u0027,\n            color: \u0027#12fa34\u0027\n        }\n    ]\n    \"\"\"\n    \n    return data                     //return the json string\n}\n\n//utility function to form the json string for the various countries(specific to the bullet chart)\ndef getBulletJson(title : String, subTitle : String, val1 : String, val2 : String, color : String) : String \u003d {\n    \n    //simply form the json and return it\n    val bulletJson \u003d s\"\"\"\n    {\n        \"title\": \"$title\",\n        \"subtitle\": \"$subTitle\",\n        \"ranges\": [$val1, $val2],\n        \"color\": \"$color\",\n        \"measures\": [$val2],\n        \"markers\": [$val2]\n        \n    }\n    \"\"\"\n    return bulletJson\n}",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 9:48:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {
+          "Home Directory": "anish"
+        },
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466392689409_1375153714",
+      "id": "20160620-084809_6525567",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "defined class Column17\ngetGoodValues: (valueArr: Array[String])Array[String]\ngetYearValue: (inputSet: org.apache.flink.api.scala.DataSet[Column17], country: String, typ: String, year: Int, startYear: Int)String\ngetTablDispData: (inputSet: org.apache.flink.api.scala.DataSet[Column17], typ: String, startYear: Int)String\ngetCountryData: (inputSet: org.apache.flink.api.scala.DataSet[Column17], country: String, typ: String, startYear: Int, endYear: Int)String\ngetJson: (inputSet: org.apache.flink.api.scala.DataSet[Column17], typ: String)String\ngetBulletJson: (title: String, subTitle: String, val1: String, val2: String, color: String)String\n"
+      },
+      "dateCreated": "Jun 20, 2016 8:48:09 AM",
+      "dateStarted": "Jun 23, 2016 9:48:30 PM",
+      "dateFinished": "Jun 23, 2016 9:48:36 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## 1. Transportation Overview\n[Image]\n\nWe begin with a general overview of the transport facilities of the region. Transportation may, in general, be divided into land, air and waterways. Some of\nthese may have further classifications such as canals and rivers for water ways; motorways, e-roads and railway lines for land transport  and  airways. This\nsection examines some of these means of transport to get an idea about the transportation facilities of the region and their expansion over the recent years.",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 22, 2016 2:30:10 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466391352556_-1342627673",
+      "id": "20160620-082552_11240052",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch2\u003e1. Transportation Overview\u003c/h2\u003e\n\u003cp\u003e[Image]\u003c/p\u003e\n\u003cp\u003eWe begin with a general overview of the transport facilities of the region. Transportation may, in general, be divided into land, air and waterways. Some of\n\u003cbr  /\u003ethese may have further classifications such as canals and rivers for water ways; motorways, e-roads and railway lines for land transport  and  airways. This\n\u003cbr  /\u003esection examines some these means of transport to get an idea about the transportation facilities of the region and their expansion over the recent years.\u003c/p\u003e\n"
+      },
+      "dateCreated": "Jun 20, 2016 8:25:52 AM",
+      "dateStarted": "Jun 22, 2016 1:27:29 PM",
+      "dateFinished": "Jun 22, 2016 1:27:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%flink\n// this paragraph loads the datasets used for the Transportation Overview analysis, the following information presents an overview of loading datasets\n/* 1. Case classes are created for various types of tsv files that differ in the number of columns that they have, for example, Column17 refers to the schema of a file \n   from which 17 columns will be picked. Similarly for other case classes.\n   \n   2. Variables starting with the \u0027raw\u0027 prefix load the entire raw dataset, while the variables with the same name but without the \u0027raw\u0027 prefix contain filtered datasets      that have only country level data which is not further subdivided into sub-country regions.\n   \n   3. Datasets may further be filtered to include only some of the representative nations as visualizing all 32 nations at once may not look good. To be able to visualize a    reasonably good number of nations, two groups of representative nations have been formed. They are : \u0027Rep1\u0027 consisting of United Kingdom, Germany, France, \n   Italy and Spain; and the second group \u0027Rep2\u0027 consisting of Norway, Sweden, Finland, Netherlands and Denmark. Variables containing the data for these groups have the        group suffix after the name of the variable for that dataset. \n*/ \n\n// create the case class for 8 column dataset(Population Distribution of Public Transport)\ncase class Column8(param1 : String, param2 : String, param3 : String, country1 : String, country2 : String, country3 : String, country4 : String, country5 : String){\n    \n    def getValues() : Array[String] \u003d {\n        return Array(country1, country2, country3, country4, country5)                                  //return an array of the values\n    }\n}\n\n\n// load the datasets using flink\u0027s convenience methods for csv type files \n\nval rawRlRdWtNet \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/RailRoadWtrNet.tsv\",\n                                fieldDelimiter \u003d \"\\t\",\n                                includedFields \u003d Array(0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval rlRdWtNet \u003d rawRlRdWtNet.filter(ele \u003d\u003e (ele.country.length \u003d\u003d 2))\nval rlRdWtNetRep1 \u003d rlRdWtNet.filter(ele \u003d\u003e (ele.country.equals(\"UK\") || ele.country.equals(\"DE\") || ele.country.equals(\"FR\") || ele.country.equals(\"IT\") || ele.country                                        .equals(\"ES\")))\n\nval passenTrnsMd \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/PassenTransMode.tsv\",              //this dataset is already at country level\n                                fieldDelimiter \u003d \"\\t\",\n                                includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval passenTrnsMdRep1 \u003d passenTrnsMd.filter(ele \u003d\u003e (ele.country.equals(\"UK\") || ele.country.equals(\"DE\") || ele.country.equals(\"FR\") || ele.country.equals(\"IT\") ||\n                                    ele.country.equals(\"ES\")))\n                                    \nval rawTrnsPopDist \u003d env.readCsvFile[Column8](\"/home/anish/ZeppelinData/Transportation/PopDistPubTran.tsv\",\n                                fieldDelimiter \u003d \"\\t\",\n                                includedFields \u003d Array(1, 2, 3, 13, 17, 18, 20, 36))",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 9:49:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466392925263_-946484090",
+      "id": "20160620-085205_28789562",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "defined class Column8\nrawRlRdWtNet: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@520905\nrlRdWtNet: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@10cc86d\nrlRdWtNetRep1: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@193500e\npassenTrnsMd: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1f3c35a\npassenTrnsMdRep1: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@869ef9\nrawTrnsPopDist: org.apache.flink.api.scala.DataSet[Column8] \u003d org.apache.flink.api.scala.DataSet@1a65ab9\n"
+      },
+      "dateCreated": "Jun 20, 2016 8:52:05 AM",
+      "dateStarted": "Jun 23, 2016 9:49:01 PM",
+      "dateFinished": "Jun 23, 2016 9:49:07 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%flink      //This paragraph can be used to temporarily display the datasets for ease of using them later\n\nrawTrnsPopDist.count\nrawTrnsPopDist.print\n\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 2:12:28 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466498081174_1116137590",
+      "id": "20160621-140441_2066039",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res6: Long \u003d 97\nColumn8(lev_diff,deg_urb,quantile,DE ,ES ,FR ,IT ,UK )\nColumn8(HIGH,DEG1,QUINTILE1,3.4 ,3.4 ,6.5 ,20.1 ,6.1 )\nColumn8(HIGH,DEG1,QUINTILE2,3.0 ,5.5 ,5.3 ,15.7 ,7.7 )\nColumn8(HIGH,DEG1,QUINTILE3,3.2 ,8.5 ,7.3 ,17.1 ,6.0 )\nColumn8(HIGH,DEG1,QUINTILE4,5.4 ,4.6 ,6.9 ,14.8 ,4.6 )\nColumn8(HIGH,DEG1,QUINTILE5,4.4 ,5.4 ,8.1 ,12.4 ,5.4 )\nColumn8(HIGH,DEG1,TOTAL,3.9 ,5.5 ,6.9 ,15.9 ,6.0 )\nColumn8(HIGH,DEG2,QUINTILE1,16.2 ,11.1 ,8.5 ,26.0 ,13.0 )\nColumn8(HIGH,DEG2,QUINTILE2,17.9 ,9.4 ,15.1 ,25.6 ,12.2 )\nColumn8(HIGH,DEG2,QUINTILE3,19.7 ,7.4 ,14.9 ,24.9 ,8.5 )\nColumn8(HIGH,DEG2,QUINTILE4,22.1 ,14.6 ,14.1 ,24.8 ,10.3 )\nColumn8(HIGH,DEG2,QUINTILE5,21.7 ,6.2 ,10.8 ,22.7 ,10.0 )\nColumn8(HIGH,DEG2,TOTAL,19.7 ,10.0 ,12.4 ,24.8 ,10.7 )\nColumn8(HIGH,DEG3,QUINTILE1,26.0 ,13.3 ,14.0 ,26.1 ,24.1 )\nColumn8(HIGH,DEG3,QUINTILE2,31.0 ,15.6 ,14.1 ,22.0 ,23.6 )\nColumn8(HIGH,DEG3,QUINTILE3,36.8 ,12.0 ,21.0 ,25.2 ,23.8 )\nColumn8(HIGH,DEG3,QUINTILE4,36.2 ,16.7 ,15.8 ,27.0 ,29.1 )\nColumn8(HIGH,DEG3,QUINTILE5,44.1 ,14.6 ,19.5 ,22.5 ,29.3 )\nColumn8(HIGH,DEG3,TOTAL,34.3 ,14.4 ,16.8 ,24.7 ,26.3 )\nColumn8(HIGH,TOTAL,QUINTILE1,13.3 ,7.1 ,7.5 ,23.4 ,9.8 )\nColumn8(HIGH,TOTAL,QUINTILE2,16.5 ,8.7 ,8.4 ,20.9 ,11.2 )\nColumn8(HIGH,TOTAL,QUINTILE3,18.1 ,8.8 ,10.4 ,21.5 ,9.1 )\nColumn8(HIGH,TOTAL,QUINTILE4,20.4 ,8.2 ,8.9 ,20.6 ,9.7 )\nColumn8(HIGH,TOTAL,QUINTILE5,19.5 ,6.2 ,9.3 ,17.0 ,10.7 )\nColumn8(HIGH,TOTAL,TOTAL,17.6 ,7.8 ,8.8 ,20.7 ,10.1 )\nColumn8(LOW,DEG1,QUINTILE1,44.4 ,46.6 ,36.3 ,51.5 ,44.1 )\nColumn8(LOW,DEG1,QUINTILE2,47.2 ,47.5 ,37.1 ,55.9 ,39.4 )\nColumn8(LOW,DEG1,QUINTILE3,43.8 ,44.7 ,33.5 ,50.7 ,37.8 )\nColumn8(LOW,DEG1,QUINTILE4,40.1 ,45.2 ,35.8 ,52.6 ,38.6 )\nColumn8(LOW,DEG1,QUINTILE5,40.6 ,45.0 ,31.5 ,54.0 ,33.1 )\nColumn8(LOW,DEG1,TOTAL,43.2 ,45.7 ,34.7 ,53.0 ,38.7 )\nColumn8(LOW,DEG2,QUINTILE1,52.1 ,47.5 ,54.1 ,50.6 ,40.7 )\nColumn8(LOW,DEG2,QUINTILE2,50.3 ,55.3 ,44.3 ,49.5 ,36.7 )\nColumn8(LOW,DEG2,QUINTILE3,49.8 ,58.0 ,43.1 ,49.3 ,37.7 )\nColumn8(LOW,DEG2,QUINTILE4,47.2 ,53.4 ,52.2 ,49.5 ,36.4 )\nColumn8(LOW,DEG2,QUINTILE5,43.3 ,66.2 ,57.9 ,52.6 ,39.3 )\nColumn8(LOW,DEG2,TOTAL,48.3 ,55.4 ,50.3 ,50.2 ,38.0 )\nColumn8(LOW,DEG3,QUINTILE1,46.4 ,55.2 ,44.3 ,53.0 ,37.2 )\nColumn8(LOW,DEG3,QUINTILE2,38.8 ,49.6 ,39.4 ,52.2 ,37.9 )\nColumn8(LOW,DEG3,QUINTILE3,36.7 ,57.4 ,42.7 ,48.6 ,33.9 )\nColumn8(LOW,DEG3,QUINTILE4,31.7 ,56.3 ,40.3 ,45.2 ,31.9 )\nColumn8(LOW,DEG3,QUINTILE5,31.9 ,45.3 ,39.4 ,46.4 ,31.9 )\nColumn8(LOW,DEG3,TOTAL,37.3 ,53.2 ,41.3 ,49.6 ,34.3 )\nColumn8(LOW,TOTAL,QUINTILE1,47.5 ,48.6 ,39.7 ,51.4 ,42.5 )\nColumn8(LOW,TOTAL,QUINTILE2,46.0 ,49.5 ,38.7 ,52.6 ,38.3 )\nColumn8(LOW,TOTAL,QUINTILE3,44.5 ,49.3 ,36.1 ,49.8 ,37.3 )\nColumn8(LOW,TOTAL,QUINTILE4,40.7 ,48.2 ,38.4 ,50.3 ,37.0 )\nColumn8(LOW,TOTAL,QUINTILE5,40.1 ,48.0 ,34.7 ,52.8 ,34.5 )\nColumn8(LOW,TOTAL,TOTAL,43.8 ,48.7 ,37.5 ,51.4 ,37.9 )\nColumn8(VHIGH,DEG1,QUINTILE1,0.7 ,1.5 ,1.8 ,8.0 ,2.7 )\nColumn8(VHIGH,DEG1,QUINTILE2,0.5 ,1.4 ,2.3 ,9.0 ,3.0 )\nColumn8(VHIGH,DEG1,QUINTILE3,1.1 ,1.4 ,3.5 ,5.7 ,3.5 )\nColumn8(VHIGH,DEG1,QUINTILE4,0.8 ,0.5 ,3.6 ,5.6 ,1.8 )\nColumn8(VHIGH,DEG1,QUINTILE5,0.3 ,1.3 ,2.1 ,5.9 ,1.3 )\nColumn8(VHIGH,DEG1,TOTAL,0.7 ,1.2 ,2.6 ,6.8 ,2.5 )\nColumn8(VHIGH,DEG2,QUINTILE1,5.1 ,0.7 ,3.1 ,12.7 ,5.2 )\nColumn8(VHIGH,DEG2,QUINTILE2,5.0 ,3.3 ,4.1 ,10.6 ,7.0 )\nColumn8(VHIGH,DEG2,QUINTILE3,4.0 ,1.4 ,2.8 ,12.3 ,4.0 )\nColumn8(VHIGH,DEG2,QUINTILE4,4.0 ,3.2 ,9.3 ,9.7 ,5.9 )\nColumn8(VHIGH,DEG2,QUINTILE5,5.3 ,1.2 ,2.4 ,10.5 ,4.9 )\nColumn8(VHIGH,DEG2,TOTAL,4.7 ,2.0 ,4.2 ,11.2 ,5.4 )\nColumn8(VHIGH,DEG3,QUINTILE1,15.3 ,4.7 ,9.4 ,13.2 ,21.4 )\nColumn8(VHIGH,DEG3,QUINTILE2,17.0 ,8.0 ,15.0 ,14.0 ,16.0 )\nColumn8(VHIGH,DEG3,QUINTILE3,14.5 ,7.1 ,6.2 ,11.0 ,19.4 )\nColumn8(VHIGH,DEG3,QUINTILE4,16.8 ,4.5 ,12.1 ,14.9 ,16.6 )\nColumn8(VHIGH,DEG3,QUINTILE5,15.0 ,6.8 ,6.9 ,9.6 ,20.7 )\nColumn8(VHIGH,DEG3,TOTAL,15.8 ,6.3 ,10.1 ,12.8 ,18.9 )\nColumn8(VHIGH,TOTAL,QUINTILE1,5.8 ,2.0 ,2.8 ,10.7 ,5.4 )\nColumn8(VHIGH,TOTAL,QUINTILE2,6.9 ,3.4 ,4.5 ,10.6 ,5.9 )\nColumn8(VHIGH,TOTAL,QUINTILE3,5.5 ,2.3 ,3.8 ,9.2 ,5.7 )\nColumn8(VHIGH,TOTAL,QUINTILE4,6.4 ,1.6 ,5.3 ,8.6 ,5.1 )\nColumn8(VHIGH,TOTAL,QUINTILE5,5.3 ,1.7 ,2.5 ,7.8 ,5.6 )\nColumn8(VHIGH,TOTAL,TOTAL,6.0 ,2.2 ,3.7 ,9.4 ,5.5 )\nColumn8(VLOW,DEG1,QUINTILE1,51.5 ,48.5 ,55.4 ,20.4 ,47.1 )\nColumn8(VLOW,DEG1,QUINTILE2,49.3 ,45.6 ,55.3 ,19.4 ,49.9 )\nColumn8(VLOW,DEG1,QUINTILE3,51.9 ,45.4 ,55.6 ,26.5 ,52.7 )\nColumn8(VLOW,DEG1,QUINTILE4,53.8 ,49.7 ,53.8 ,27.0 ,55.0 )\nColumn8(VLOW,DEG1,QUINTILE5,54.6 ,48.3 ,58.4 ,27.8 ,60.1 )\nColumn8(VLOW,DEG1,TOTAL,52.2 ,47.6 ,55.9 ,24.4 ,52.8 )\nColumn8(VLOW,DEG2,QUINTILE1,26.5 ,40.7 ,34.3 ,10.8 ,41.0 )\nColumn8(VLOW,DEG2,QUINTILE2,26.8 ,32.0 ,36.5 ,14.2 ,44.1 )\nColumn8(VLOW,DEG2,QUINTILE3,26.5 ,33.2 ,39.2 ,13.6 ,49.8 )\nColumn8(VLOW,DEG2,QUINTILE4,26.7 ,28.7 ,24.5 ,16.0 ,47.4 )\nColumn8(VLOW,DEG2,QUINTILE5,29.8 ,26.4 ,28.8 ,14.2 ,45.8 )\nColumn8(VLOW,DEG2,TOTAL,27.3 ,32.6 ,33.1 ,13.8 ,45.8 )\nColumn8(VLOW,DEG3,QUINTILE1,12.2 ,26.8 ,32.3 ,7.6 ,17.3 )\nColumn8(VLOW,DEG3,QUINTILE2,13.1 ,26.8 ,31.5 ,11.8 ,22.4 )\nColumn8(VLOW,DEG3,QUINTILE3,12.1 ,23.5 ,30.1 ,15.3 ,22.9 )\nColumn8(VLOW,DEG3,QUINTILE4,15.3 ,22.5 ,31.7 ,12.9 ,22.5 )\nColumn8(VLOW,DEG3,QUINTILE5,9.0 ,33.3 ,34.2 ,21.5 ,18.0 )\nColumn8(VLOW,DEG3,TOTAL,12.6 ,26.1 ,31.8 ,12.8 ,20.6 )\nColumn8(VLOW,TOTAL,QUINTILE1,33.4 ,42.3 ,49.9 ,14.4 ,42.4 )\nColumn8(VLOW,TOTAL,QUINTILE2,30.6 ,38.4 ,48.4 ,15.9 ,44.6 )\nColumn8(VLOW,TOTAL,QUINTILE3,31.8 ,39.6 ,49.7 ,19.5 ,47.9 )\nColumn8(VLOW,TOTAL,QUINTILE4,32.5 ,42.0 ,47.5 ,20.5 ,48.2 )\nColumn8(VLOW,TOTAL,QUINTILE5,35.1 ,44.2 ,53.5 ,22.4 ,49.3 )\nColumn8(VLOW,TOTAL,TOTAL,32.7 ,41.4 ,50.0 ,18.5 ,46.5 )\n"
+      },
+      "dateCreated": "Jun 21, 2016 2:04:41 PM",
+      "dateStarted": "Jun 23, 2016 2:12:28 PM",
+      "dateFinished": "Jun 23, 2016 2:12:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### i. Land and Water Transporation Coverage\nTo provide the transportation facilities, various means are provided such as road networks, water-ways and railway lines. As our first indicator of the trans\n-port facilities we shall take a look of the coverage of these means over the land and water ways.\n\n[Image - for the longest German canal]\nMany European countries have resorted to **inland water transport**  to mitigate the traffic from other means of transport by building  canals  and  navigable\nrivers. The paragraphs that follow show the lengths(in kM) of the canals and the inland water ways(rivers) for the representative nations. Spain does not have\nany canal or navigable water way. Other nations have considerable lengths of means of water transport, with the Canals being the longest for France,  followed\nby Germany(see chart below). Hovering over the markers in the charts shows the previous lengths while the coloured lines show the current length and the light\nregions of the charts show the maximum expansion capacities for the means. We learn from the chart that France had always been at its maximum capacity for pro\n-viding canal transport even in the previous years while others have expended in the recent years with Gernamy and Italy having reached their highest capacity.\nUnited Kingdom has had constant length of canals for all the recent years but has possibilities of expansion.\n\nOn the right side, we have the lengths of the navigable rivers: here again Germany and France have the highest lengths and both have reached their maximum ser\n-ving capacities. They are followed by United Kingdom and Italy with Italy too having reached its maximum capacity of navigable rivers long time back.  As  we\nshall later see, these water ways provide alternative means of transport and are especially helpful in cities and regions with increasing road traffic.",
+      "dateUpdated": "Jun 23, 2016 1:07:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466584223184_-60732069",
+      "id": "20160622-140023_5655024",
+      "dateCreated": "Jun 22, 2016 2:00:23 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Canal Length(in kM)",
+      "text": "%flink\n//this paragraph generates the visualization for canals (length in KM) for all the representative countries\n\n//get the values for the canal datasets specific to the bullet chart visualization\nval geCnl00 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"CNL\", 2000, 2000)                                      //get the values for Germany for the bullet chart\nval geCnl14 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"CNL\", 2014, 2000)\n\nval ukCnl00 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"CNL\", 2000, 2000)                                      //get the values for United Kingdom for bullet chart\nval ukCnl14 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"CNL\", 2014, 2000)\n\nval frCnl00 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"CNL\", 2000, 2000)                                      //get the values for France for bullet chart\nval frCnl14 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"CNL\", 2014, 2000)\n\nval itCnl00 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"CNL\", 2000, 2000)                                      //get the values for Italy for bullet chart\nval itCnl14 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"CNL\", 2014, 2000)\n\n//get the json Strings for the canal data visualization\nval geCnlData \u003d getBulletJson(\"Germany\", \"(in kM)\", geCnl00, geCnl14, \"#092377\")              //form the canal json for Germany\nval ukCnlData \u003d getBulletJson(\"United Kingdom\", \"(in kM)\", ukCnl00, ukCnl14, \"#092377\")       //form the canal json for United Kingdom\nval frCnlData \u003d getBulletJson(\"France\", \"(in kM)\", frCnl00, frCnl14, \"#092377\")               //form the canal json for France\nval itCnlData \u003d getBulletJson(\"Italy\", \"(in kM)\", itCnl00, itCnl14, \"#092377\")                //form the canal json for Italy\n\nprintln(s\"\"\"%html\n\u003c!-- generate the bullet chart for the canal length of Germany --\u003e\n\u003cstyle\u003e\n    #cnlChart1{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"cnlChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $geCnlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#cnlChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the canal length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #cnlChart2{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"cnlChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $ukCnlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#cnlChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the canal length of France --\u003e\n\u003cstyle\u003e\n    #cnlChart3{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"cnlChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $frCnlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#cnlChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the canal length of Italy --\u003e\n\u003cstyle\u003e\n    #cnlChart4{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"cnlChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $itCnlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#cnlChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\"\"\")\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 1:00:26 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "table",
+          "height": 328.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466408151626_-1872939102",
+      "id": "20160620-130551_6339861",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003c!-- generate the bullet chart for the canal length of Germany --\u003e\n\u003cstyle\u003e\n    #cnlChart1{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"cnlChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Germany\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [1958 , 2163 ],\n        \"color\": \"#092377\",\n        \"measures\": [2163 ],\n        \"markers\": [2163 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#cnlChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the canal length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #cnlChart2{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"cnlChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"United Kingdom\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [191 , 159 ],\n        \"color\": \"#092377\",\n        \"measures\": [159 ],\n        \"markers\": [159 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#cnlChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the canal length of France --\u003e\n\u003cstyle\u003e\n    #cnlChart3{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"cnlChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"France\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [5607 , 5607 ],\n        \"color\": \"#092377\",\n        \"measures\": [5607 ],\n        \"markers\": [5607 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#cnlChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the canal length of Italy --\u003e\n\u003cstyle\u003e\n    #cnlChart4{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"cnlChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Italy\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [865 , 950 ],\n        \"color\": \"#092377\",\n        \"measures\": [950 ],\n        \"markers\": [950 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#cnlChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n"
+      },
+      "dateCreated": "Jun 20, 2016 1:05:51 PM",
+      "dateStarted": "Jun 23, 2016 1:00:26 PM",
+      "dateFinished": "Jun 23, 2016 1:00:37 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Navigable River Length(in kM)",
+      "text": "%flink\n//this paragraph generates the visualization for Rivers (length in KM) for all the representative countries\n\n//get the values for the river(inland water ways) for the bullet chart visualizations\nval geRiv00 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"RIV\", 2000, 2000)                                      //get the values for Germany for the bullet chart\nval geRiv14 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"RIV\", 2014, 2000)\n\nval ukRiv00 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"RIV\", 2000, 2000)                                      //get the values for United Kingdom for bullet chart\nval ukRiv14 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"RIV\", 2014, 2000)\n\nval frRiv00 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"RIV\", 2000, 2000)                                      //get the values for France for bullet chart\nval frRiv14 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"RIV\", 2014, 2000)\n\nval itRiv00 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"RIV\", 2000, 2000)                                      //get the values for Italy for bullet chart\nval itRiv14 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"RIV\", 2014, 2000)\n\n//get the json Strings for the canal data visualization\nval geRivData \u003d getBulletJson(\"Germany\", \"(in kM)\", geRiv00, geRiv14, \"#0060ff\")              //form the river json for Germany\nval ukRivData \u003d getBulletJson(\"United Kingdom\", \"(in kM)\", ukRiv00, ukRiv14, \"#0060ff\")       //form the river json for United Kingdom\nval frRivData \u003d getBulletJson(\"France\", \"(in kM)\", frRiv00, frRiv14, \"#0060ff\")               //form the river json for France\nval itRivData \u003d getBulletJson(\"Italy\", \"(in kM)\", itRiv00, itRiv14, \"#0060ff\")                //form the river json for Italy\n\nprintln(s\"\"\"%html\n\u003c!-- generate the bullet chart for the river length of Germany --\u003e\n\u003cstyle\u003e\n    #rivChart1{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"rivChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $geRivData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#rivChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the river length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #rivChart2{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"rivChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $ukRivData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#rivChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the river length of France --\u003e\n\u003cstyle\u003e\n    #rivChart3{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"rivChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $frRivData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#rivChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the river length of Italy --\u003e\n\u003cstyle\u003e\n    #rivChart4{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"rivChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $itRivData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#rivChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\"\"\")\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 1:01:58 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466576071489_-1686261931",
+      "id": "20160622-114431_6815101",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003c!-- generate the bullet chart for the river length of Germany --\u003e\n\u003cstyle\u003e\n    #rivChart1{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"rivChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Germany\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [5510 , 5565 ],\n        \"color\": \"#0060ff\",\n        \"measures\": [5565 ],\n        \"markers\": [5565 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#rivChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the river length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #rivChart2{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"rivChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"United Kingdom\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [962 , 891 ],\n        \"color\": \"#0060ff\",\n        \"measures\": [891 ],\n        \"markers\": [891 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#rivChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the river length of France --\u003e\n\u003cstyle\u003e\n    #rivChart3{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"rivChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"France\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [2894 , 2894 ],\n        \"color\": \"#0060ff\",\n        \"measures\": [2894 ],\n        \"markers\": [2894 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#rivChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the river length of Italy --\u003e\n\u003cstyle\u003e\n    #rivChart4{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"rivChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Italy\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [612 , 612 ],\n        \"color\": \"#0060ff\",\n        \"measures\": [612 ],\n        \"markers\": [612 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#rivChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n"
+      },
+      "dateCreated": "Jun 22, 2016 11:44:31 AM",
+      "dateStarted": "Jun 22, 2016 12:02:58 PM",
+      "dateFinished": "Jun 22, 2016 12:02:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nNext we turn to the main means of transport of perhaps every region - the road and rail network. As a first step, we shall take a look at the lengths of\nroads and the rail lines. More length of roads would indicate better connected regions and cities. On the left side(below) is a bullet chart showing the lengths\nof the motorways for the countries. Overall, France Germany and Spain have the greatest lengths of motorways which is also explained by the size of these countr\n-ies with Spain experiencing the maximum expansion from 9049 kM to the current value of 15051 kM. United Kingdom and Italy lag far behind in the length  of  the\nmotorways.\n\nOn the right side(below) we have the length of all other roads for the countries and surprisingly, United Kingdom which is much smaller that Germany in terms of\nthe land area has nuch greater total length of roads. This explains why Germany has greater lengths of water transport while Britain is able to do even with les\n-ser water way length. France again has the longest total length of roads. In fact, France has had the greatest shares of all the means of transport examined so\nfar which is indicative of the high amount of traffic and large number of commuters in the country (may be even the highest). Even Germany for that matter has h\n-igh volume of traffic but the country is able to handle all that traffic through its various means of transport. As the chart for Italy indicates, it has recen\n-tly had an expansion in the length of roads which suggests a surge in traffic. The nation had already developed its waterways to the maximum. Of all the countr\n-ies, Spain has the least length of all other roads(other than motorways) and this suggests that the region has lesser traffic than the rest.\n\nLastly, we take a look at the rail lines length which is again maximum for Germany and France as these nations have greater volume of traffc and freight, follow\n-ed by the rest of the countries. Germany has the greatest scope for expansion if such a need arises. United Kingdom, Spain and Italy have lesser lengths  of ra\n-il lines.",
+      "dateUpdated": "Jun 23, 2016 12:55:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466585178982_-1619415569",
+      "id": "20160622-141618_4401956",
+      "dateCreated": "Jun 22, 2016 2:16:18 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Motorway Length(in kM)",
+      "text": "%flink\n//this paragraph generates the visualization for Motorways (length in KM) for all the representative countries\n\n//generate the motor way datasets for the representative nations for the bullet chart visualization\nval geMway00 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"MWAY\", 2000, 2000)                    //get the values for Germany for the motorway bullet charts\nval geMway14 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"MWAY\", 2014, 2000)\n\nval ukMway00 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"MWAY\", 2000, 2000)                    //get the values for United Kingdom for the motorway bullet charts\nval ukMway14 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"MWAY\", 2014, 2000)\n\nval frMway00 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"MWAY\", 2000, 2000)                    //get the values for France for the motorway bullet charts\nval frMway14 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"MWAY\", 2014, 2000)\n\nval itMway00 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"MWAY\", 2000, 2000)                    //get the values for Italy for the motorway bullet charts\nval itMway14 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"MWAY\", 2014, 2000)\n\nval esMway00 \u003d getYearValue(rlRdWtNetRep1, \"ES\", \"MWAY\", 2000, 2000)                    //get the values for Spain for the motorway bullet charts\nval esMway14 \u003d getYearValue(rlRdWtNetRep1, \"ES\", \"MWAY\", 2014, 2000)\n\n//get the json Strings for the motor way visualizations\nval geMwayData \u003d getBulletJson(\"Germany\", \"(in kM)\", geMway00, geMway14, \"#382020\")               //form the motorway json for Germany\nval ukMwayData \u003d getBulletJson(\"United Kingdom\", \"(in kM)\", ukMway00, ukMway14, \"#382020\")                //form the motorway json for United Kingdom\nval frMwayData \u003d getBulletJson(\"France\", \"(in kM)\", frMway00, frMway14, \"#382020\")                //form the motorway json for France\nval itMwayData \u003d getBulletJson(\"Italy\", \"(in kM)\", itMway00, itMway14, \"#382020\")                //form the motorway json for Italy\nval esMwayData \u003d getBulletJson(\"Spain\", \"(in kM)\", esMway00, esMway14, \"#382020\")                //form the motorway json for Spain\n\nprintln(s\"\"\"%html\n\u003c!-- generate the bullet chart for the motorway length of Germany --\u003e\n\u003cstyle\u003e\n    #mwayChart1{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $geMwayData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the motorway length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #mwayChart2{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $ukMwayData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the motorway length of France --\u003e\n\u003cstyle\u003e\n    #mwayChart3{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $frMwayData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the motorway length of Italy --\u003e\n\u003cstyle\u003e\n    #mwayChart4{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $itMwayData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the motorway length of Italy --\u003e\n\u003cstyle\u003e\n    #mwayChart5{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart5\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $esMwayData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart5 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\"\"\")\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 1:02:50 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "table",
+          "height": 408.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466501912033_179746303",
+      "id": "20160621-150832_5561717",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003c!-- generate the bullet chart for the motorway length of Germany --\u003e\n\u003cstyle\u003e\n    #mwayChart1{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Germany\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [11712 , 12949 ],\n        \"color\": \"#382020\",\n        \"measures\": [12949 ],\n        \"markers\": [12949 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the motorway length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #mwayChart2{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"United Kingdom\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [3581 , 3760 ],\n        \"color\": \"#382020\",\n        \"measures\": [3760 ],\n        \"markers\": [3760 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the motorway length of France --\u003e\n\u003cstyle\u003e\n    #mwayChart3{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"France\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [9773 , 11469 ],\n        \"color\": \"#382020\",\n        \"measures\": [11469 ],\n        \"markers\": [11469 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the motorway length of Italy --\u003e\n\u003cstyle\u003e\n    #mwayChart4{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Italy\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [6479 , 6751 ],\n        \"color\": \"#382020\",\n        \"measures\": [6751 ],\n        \"markers\": [6751 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the motorway length of Italy --\u003e\n\u003cstyle\u003e\n    #mwayChart5{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"mwayChart5\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Spain\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [9049 , 15051 ],\n        \"color\": \"#382020\",\n        \"measures\": [15051 ],\n        \"markers\": [15051 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#mwayChart5 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n"
+      },
+      "dateCreated": "Jun 21, 2016 3:08:32 PM",
+      "dateStarted": "Jun 23, 2016 1:02:51 PM",
+      "dateFinished": "Jun 23, 2016 1:03:03 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Road Length(in kM)",
+      "text": "%flink\n//this paragraph generates the visualization for Road (length in KM) for all the representative countries\n\n//generate the datasets for all other roadways for the bullet chart visualizations\nval geRd00 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"RD_OTH\", 2000, 2000)                   //get the values for Germany for the other roads bullet chart\nval geRd14 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"RD_OTH\", 2014, 2000)\n\nval ukRd00 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"RD_OTH\", 2000, 2000)                   //get the values for United Kingdom for other roads bullet chart\nval ukRd14 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"RD_OTH\", 2014, 2000)\n\nval frRd00 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"RD_OTH\", 2000, 2000)                   //get the values for France for other roads bullet chart\nval frRd14 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"RD_OTH\", 2014, 2000)\n\nval itRd00 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"RD_OTH\", 2000, 2000)                   //get the values for Italy for the other roads bullet chart\nval itRd14 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"RD_OTH\", 2014, 2000)\n\nval esRd00 \u003d getYearValue(rlRdWtNetRep1, \"ES\", \"RD_OTH\", 2000, 2000)                   //get the values for Spain for the other roads bullet chart\nval esRd14 \u003d getYearValue(rlRdWtNetRep1, \"ES\", \"RD_OTH\", 2014, 2000)\n\n//get the Json Strings for the other roads Datasets\nval geRdData \u003d getBulletJson(\"Germany\", \"(in kM)\", geRd00, geRd14, \"#3a3434\")                           //form the other roads json for Germany\nval ukRdData \u003d getBulletJson(\"United Kingdom\", \"(in kM)\", ukRd00, ukRd14, \"#3a3434\")                    //form the other roads json for United Kingdom\nval frRdData \u003d getBulletJson(\"France\", \"(in kM)\", frRd00, frRd14, \"#3a3434\")                            //form the other roads json for France\nval itRdData \u003d getBulletJson(\"Italy\", \"(in kM)\", itRd00, itRd14, \"#3a3434\")                             //form the other roads json for Italy\nval esRdData \u003d getBulletJson(\"Spain\", \"(in kM)\", esRd00, esRd14, \"#3a3434\")                             //form the other roads json for Spain\n\nprintln(s\"\"\"%html\n\u003c!-- generate the bullet chart for the Road length of Germany --\u003e\n\u003cstyle\u003e\n    #roadChart1{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $geRdData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #roadChart2{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $ukRdData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of France --\u003e\n\u003cstyle\u003e\n    #roadChart3{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $frRdData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of Italy --\u003e\n\u003cstyle\u003e\n    #roadChart4{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $itRdData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of Italy --\u003e\n\u003cstyle\u003e\n    #roadChart5{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart5\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $esRdData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart5 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\"\"\")\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 1:04:10 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466415164004_-1737745877",
+      "id": "20160620-150244_13086438",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003c!-- generate the bullet chart for the Road length of Germany --\u003e\n\u003cstyle\u003e\n    #roadChart1{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Germany\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [219062 , 217198 ],\n        \"color\": \"#3a3434\",\n        \"measures\": [217198 ],\n        \"markers\": [217198 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #roadChart2{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"United Kingdom\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [411239 , 417368 ],\n        \"color\": \"#3a3434\",\n        \"measures\": [417368 ],\n        \"markers\": [417368 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of France --\u003e\n\u003cstyle\u003e\n    #roadChart3{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"France\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [986632 , 1070862 ],\n        \"color\": \"#3a3434\",\n        \"measures\": [1070862 ],\n        \"markers\": [1070862 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of Italy --\u003e\n\u003cstyle\u003e\n    #roadChart4{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Italy\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [161248 , 249288 ],\n        \"color\": \"#3a3434\",\n        \"measures\": [249288 ],\n        \"markers\": [249288 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of Italy --\u003e\n\u003cstyle\u003e\n    #roadChart5{\n        height: 80px;\n        width: 550px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"roadChart5\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Spain\",\n        \"subtitle\": \"(in kM\",\n        \"ranges\": [154508 , 151233 ],\n        \"color\": \"#3a3434\",\n        \"measures\": [151233 ],\n        \"markers\": [151233 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#roadChart5 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n"
+      },
+      "dateCreated": "Jun 20, 2016 3:02:44 PM",
+      "dateStarted": "Jun 22, 2016 11:28:19 AM",
+      "dateFinished": "Jun 22, 2016 11:28:19 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Rail Lines Length(in kM)",
+      "text": "%flink\n//this paragraph generates the visualization for Rail Lines (length in KM) for all the representative countries\n\n//generate the data for the railway lines dataset\n\nval geRl00 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"RL\", 2000, 2000)                   //get the values for Germany for the rail lines bullet chart\nval geRl14 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"RL\", 2014, 2000)\n\nval ukRl00 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"RL\", 2000, 2000)                   //get the values for United Kingdom for rail lines bullet chart\nval ukRl14 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"RL\", 2014, 2000)\n\nval frRl00 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"RL\", 2000, 2000)                   //get the values for France for rail lines bullet chart\nval frRl14 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"RL\", 2014, 2000)\n\nval itRl00 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"RL\", 2000, 2000)                   //get the values for Italy for the rail lines bullet chart\nval itRl14 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"RL\", 2014, 2000)\n\nval esRl00 \u003d getYearValue(rlRdWtNetRep1, \"ES\", \"RL\", 2000, 2000)                   //get the values for Spain for the rail lines bullet chart\nval esRl14 \u003d getYearValue(rlRdWtNetRep1, \"ES\", \"RL\", 2014, 2000)\n\n//get the Json Strings for the rail lines Datasets\nval geRlData \u003d getBulletJson(\"Germany\", \"(in kM)\", geRl00, geRl14, \"#196a3b\")                           //form the rail lines json for Germany\nval ukRlData \u003d getBulletJson(\"United Kingdom\", \"(in kM)\", ukRl00, ukRl14, \"#196a3b\")                    //form the rail lines json for United Kingdom\nval frRlData \u003d getBulletJson(\"France\", \"(in kM)\", frRl00, frRl14, \"#196a3b\")                            //form the rail lines json for France\nval itRlData \u003d getBulletJson(\"Italy\", \"(in kM)\", itRl00, itRl14, \"#196a3b\")                             //form the rail lines json for Italy\nval esRlData \u003d getBulletJson(\"Spain\", \"(in kM)\", esRl00, esRl14, \"#196a3b\")                             //form the rail lines json for Spain\n\n\nprintln(s\"\"\"%html\n\u003c!-- generate the bullet chart for the Rail length of Germany --\u003e\n\u003cstyle\u003e\n    #railChart1{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $geRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the rail length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #railChart2{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $ukRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the rail length of France --\u003e\n\u003cstyle\u003e\n    #railChart3{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $frRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the rail length of Italy --\u003e\n\u003cstyle\u003e\n    #railChart4{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $itRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of Italy --\u003e\n\u003cstyle\u003e\n    #railChart5{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart5\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $esRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart5 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\"\"\")\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 1:05:02 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466418279537_-1128448115",
+      "id": "20160620-155439_8517634",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003c!-- generate the bullet chart for the Rail length of Germany --\u003e\n\u003cstyle\u003e\n    #railChart1{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Germany\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [44730 , 37775 ],\n        \"color\": \"#196a3b\",\n        \"measures\": [37775 ],\n        \"markers\": [37775 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the rail length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #railChart2{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"United Kingdom\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [16989 , 16209 ],\n        \"color\": \"#196a3b\",\n        \"measures\": [16209 ],\n        \"markers\": [16209 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the rail length of France --\u003e\n\u003cstyle\u003e\n    #railChart3{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"France\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [31740 , 29386 ],\n        \"color\": \"#196a3b\",\n        \"measures\": [29386 ],\n        \"markers\": [29386 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the rail length of Italy --\u003e\n\u003cstyle\u003e\n    #railChart4{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Italy\",\n        \"subtitle\": \"(in kM)\",\n        \"ranges\": [15927 , 16655 ],\n        \"color\": \"#196a3b\",\n        \"measures\": [16655 ],\n        \"markers\": [16655 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of Italy --\u003e\n\u003cstyle\u003e\n    #railChart5{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart5\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d \n    {\n        \"title\": \"Spain\",\n        \"subtitle\": \"(in kM\",\n        \"ranges\": [12310 , 15900 ],\n        \"color\": \"#196a3b\",\n        \"measures\": [15900 ],\n        \"markers\": [15900 ]\n        \n    }\n    \n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart5 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n"
+      },
+      "dateCreated": "Jun 20, 2016 3:54:39 PM",
+      "dateStarted": "Jun 22, 2016 12:33:37 PM",
+      "dateFinished": "Jun 22, 2016 12:33:37 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### ii. Passenger Transportation Modes\nThe next indicator that we shall take a look at, is the modal split of passenger transport usage, that is how many have been using buses, private cars and tra\n-ins for transport. The modal split will be by percentage of the total traffic in all the land transport usage combined. The bar charts below show  that buses\nand trains, the only major alternatives to cars, form meagre precentages of the total land transport usage and car usage in the form of taxis and private cars\ndominate as the main means of transport.\n\nThe bus usage chart tells us that public transport in the form of buses is more prevalent in Spain and Italy, with percentages remaining consistently high  for\nall of the recent years. Other representative countries do not favour the use of public transport to pecentage greater than 7%. More use of public transport in\nsome countries may help in managing traffic and congestion better.\n\nCar usage precentages have stayed high and almost the same for all countries in the recent years forming a dominant percentage in the range of 80 to 90. All of\nthe representative countries are European car manufacturers with companies such as Wolksvagon and Audi, therefore the high percentage of car usage is  somewhat\nexpected, although it may contribute to degraded traffic conditions. One good thing is that the car usage of these nations has not been increasing - it has sta\n-yed contant over time(as evident in the data displayed from 1999 to 2013). Italy with the least length of roads and motorways still has good percentage of car\nand road public transport usage which is an indication of greater congestion on the roads than the rest of the countries. For the ending year  2013,  UK  leads\nthe others in car usage and stands at a value of 86%.\n\nTrain usage has been high for France which has the fastest train service in the world -the Trans Grand Vitesse with speeds upto 574.8 kmph; followed by Germany\nand the United Kingdom. Overall, train usage is low with highest use percentage value under 10% of the total traffic volume. This is indicative  of  the extent \nto which train transport helps to relieve the road traffic volume for the countries. We can also observe that Italy  and  Spain  that had high usage  of  buses\n(road public transport) are low on train usage. This may be helpful in relieving train transport for goods and freight. To accomodate more train usage, Germany\nand France also have more lengths of tracks(as in the chart above).\n\n[Insert TGV image here]",
+      "dateUpdated": "Jun 23, 2016 12:56:53 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466578780109_1604142358",
+      "id": "20160622-122940_5961954",
+      "dateCreated": "Jun 22, 2016 12:29:40 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Bus Usage(% of Total Traffic)",
+      "text": "%flink\n\n//get the bus data for the representative countries\nval busData \u003d getTablDispData(passenTrnsMdRep1, \"BUS_TOT\", 1999)\nprintln(s\"%table $busData\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 10:59:17 AM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "value",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "helium": {},
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466654712887_1638890863",
+      "id": "20160623-093512_19594803",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\tyear\tvalue\nDE\t1999\t6.9 \nDE\t2000\t7.1 \nDE\t2001\t6.9 \nDE\t2002\t6.7 \nDE\t2003\t6.8 \nDE\t2004\t6.7 \nDE\t2005\t6.7 \nDE\t2006\t6.6 \nDE\t2007\t6.5 \nDE\t2008\t6.3 \nDE\t2009\t6.1 \nDE\t2010\t6 \nDE\t2011\t5.9 \nDE\t2012\t5.7 \nDE\t2013\t5.8 \nES\t1999\t13.8 \nES\t2000\t13.5 \nES\t2001\t13.7 \nES\t2002\t12.3 \nES\t2003\t11.8 \nES\t2004\t13.2 \nES\t2005\t12.9 \nES\t2006\t12 \nES\t2007\t14 \nES\t2008\t14.3 \nES\t2009\t13.3 \nES\t2010\t12.3 \nES\t2011\t13.5 \nES\t2012\t13.7 \nES\t2013\t13.2 \nFR\t1999\t5.2 \nFR\t2000\t5.3 \nFR\t2001\t4.9 \nFR\t2002\t5 \nFR\t2003\t5 \nFR\t2004\t5.1 \nFR\t2005\t5.2 \nFR\t2006\t5.3 \nFR\t2007\t5.5 \nFR\t2008\t5.2 \nFR\t2009\t5.2 \nFR\t2010\t5.3 \nFR\t2011\t5.4 \nFR\t2012\t5.4 \nFR\t2013\t5.4 \nIT\t1999\t11.5 \nIT\t2000\t10.9 \nIT\t2001\t11 \nIT\t2002\t11.1 \nIT\t2003\t11.1 \nIT\t2004\t11.1 \nIT\t2005\t12.2 \nIT\t2006\t12.4 \nIT\t2007\t12.4 \nIT\t2008\t12.4 \nIT\t2009\t11.7 \nIT\t2010\t12.1 \nIT\t2011\t12.6 \nIT\t2012\t13.9 \nIT\t2013\t13.3 \nUK\t1999\t6.5\nUK\t2000\t6.6\nUK\t2001\t6.5\nUK\t2002\t5.6\nUK\t2003\t6.1\nUK\t2004\t5.6\nUK\t2005\t5.8\nUK\t2006\t5.5\nUK\t2007\t5.5\nUK\t2008\t5.9\nUK\t2009\t6\nUK\t2010\t6.2\nUK\t2011\t5.9\nUK\t2012\t5.9\nUK\t2013\t5.7\n"
+      },
+      "dateCreated": "Jun 23, 2016 9:35:12 AM",
+      "dateStarted": "Jun 23, 2016 10:05:33 AM",
+      "dateFinished": "Jun 23, 2016 10:05:33 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Car Usage(% of Total Traffic)",
+      "text": "%flink\n\n//get the car data for the representative countries\nval carData \u003d getTablDispData(passenTrnsMdRep1, \"CAR\", 1999)\nprintln(s\"%table $carData\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 10:59:48 AM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "value",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "helium": {},
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466654845847_1241409144",
+      "id": "20160623-093725_16824395",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\tyear\tvalue\nDE\t1999\t85.7 \nDE\t2000\t85.2 \nDE\t2001\t85.5 \nDE\t2002\t86.2 \nDE\t2003\t86.1 \nDE\t2004\t85.8 \nDE\t2005\t85.8 \nDE\t2006\t85.6 \nDE\t2007\t85.7 \nDE\t2008\t85.6 \nDE\t2009\t86 \nDE\t2010\t86 \nDE\t2011\t85.9 \nDE\t2012\t85.4 \nDE\t2013\t85.7 \nES\t1999\t81.2 \nES\t2000\t81 \nES\t2001\t80.8 \nES\t2002\t82.5 \nES\t2003\t83.1 \nES\t2004\t81.7 \nES\t2005\t82 \nES\t2006\t82.8 \nES\t2007\t81 \nES\t2008\t80.3 \nES\t2009\t81.4 \nES\t2010\t82.3 \nES\t2011\t80.9 \nES\t2012\t80.7 \nES\t2013\t80.7 \nFR\t1999\t86.6 \nFR\t2000\t86.1 \nFR\t2001\t86.6 \nFR\t2002\t86.4 \nFR\t2003\t86.6 \nFR\t2004\t86.2 \nFR\t2005\t85.8 \nFR\t2006\t85.3 \nFR\t2007\t84.9 \nFR\t2008\t85.6\nFR\t2009\t85.4 \nFR\t2010\t85.5 \nFR\t2011\t85.3 \nFR\t2012\t85.1 \nFR\t2013\t85.2 \nIT\t1999\t83 \nIT\t2000\t83.3\nIT\t2001\t83.2 \nIT\t2002\t83.3 \nIT\t2003\t83.4 \nIT\t2004\t83.4 \nIT\t2005\t81.8 \nIT\t2006\t81.5 \nIT\t2007\t81.6 \nIT\t2008\t81.7 \nIT\t2009\t82.8 \nIT\t2010\t82.4 \nIT\t2011\t81.7 \nIT\t2012\t79.6 \nIT\t2013\t80.4 \nUK\t1999\t88.1 \nUK\t2000\t88.1 \nUK\t2001\t88.2 \nUK\t2002\t89.1 \nUK\t2003\t88.5 \nUK\t2004\t88.7 \nUK\t2005\t88.3 \nUK\t2006\t88.3 \nUK\t2007\t87.9 \nUK\t2008\t87.2 \nUK\t2009\t87 \nUK\t2010\t86.3 \nUK\t2011\t86.2 \nUK\t2012\t86 \nUK\t2013\t86 \n"
+      },
+      "dateCreated": "Jun 23, 2016 9:37:25 AM",
+      "dateStarted": "Jun 23, 2016 10:43:57 AM",
+      "dateFinished": "Jun 23, 2016 10:43:58 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Train Usage(% of Total Traffic)",
+      "text": "%flink\n\nval trnData \u003d getTablDispData(passenTrnsMdRep1, \"TRN\", 1999)                    //get the train data for representative countries\nprintln(s\"%table $trnData\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 11:01:32 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "value",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "helium": {},
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466658826080_933313334",
+      "id": "20160623-104346_14765730",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\tyear\tvalue\nDE\t1999\t7.5 \nDE\t2000\t7.7 \nDE\t2001\t7.6 \nDE\t2002\t7.1 \nDE\t2003\t7.2 \nDE\t2004\t7.5 \nDE\t2005\t7.5 \nDE\t2006\t7.8 \nDE\t2007\t7.8 \nDE\t2008\t8.1 \nDE\t2009\t7.9 \nDE\t2010\t8 \nDE\t2011\t8.2 \nDE\t2012\t8.9 \nDE\t2013\t8.5 \nES\t1999\t5 \nES\t2000\t5.4 \nES\t2001\t5.5 \nES\t2002\t5.2 \nES\t2003\t5.1 \nES\t2004\t5 \nES\t2005\t5.1 \nES\t2006\t5.2 \nES\t2007\t5 \nES\t2008\t5.5 \nES\t2009\t5.4 \nES\t2010\t5.4 \nES\t2011\t5.6 \nES\t2012\t5.6 \nES\t2013\t6.1 \nFR\t1999\t8.2 \nFR\t2000\t8.6 \nFR\t2001\t8.5 \nFR\t2002\t8.7 \nFR\t2003\t8.4 \nFR\t2004\t8.7 \nFR\t2005\t9.1 \nFR\t2006\t9.4 \nFR\t2007\t9.6 \nFR\t2008\t9.3 \nFR\t2009\t9.4 \nFR\t2010\t9.3\nFR\t2011\t9.3 \nFR\t2012\t9.5 \nFR\t2013\t9.4 \nIT\t1999\t5.4 \nIT\t2000\t5.8 \nIT\t2001\t5.8 \nIT\t2002\t5.6 \nIT\t2003\t5.5 \nIT\t2004\t5.5 \nIT\t2005\t6 \nIT\t2006\t6.1 \nIT\t2007\t6 \nIT\t2008\t6 \nIT\t2009\t5.5 \nIT\t2010\t5.6 \nIT\t2011\t5.8 \nIT\t2012\t6.4 \nIT\t2013\t6.3 \nUK\t1999\t5.3 \nUK\t2000\t5.3 \nUK\t2001\t5.3 \nUK\t2002\t5.3 \nUK\t2003\t5.4 \nUK\t2004\t5.7 \nUK\t2005\t5.9 \nUK\t2006\t6.2 \nUK\t2007\t6.6 \nUK\t2008\t6.9 \nUK\t2009\t6.9 \nUK\t2010\t7.5 \nUK\t2011\t7.9 \nUK\t2012\t8.2 \nUK\t2013\t8.4 \n"
+      },
+      "dateCreated": "Jun 23, 2016 10:43:46 AM",
+      "dateStarted": "Jun 23, 2016 10:52:39 AM",
+      "dateFinished": "Jun 23, 2016 10:52:40 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### iii. Difficulty in Accessing Public Transport\nDaily commuters face a lot of difficulties in getting easy access to means of transport, so we shall examine the distribution of population by level of\ndifficulty in accessing public transport, income quantile and degree of urbanization for the year 2012.",
+      "dateUpdated": "Jun 23, 2016 1:23:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466659359258_-1527008098",
+      "id": "20160623-105239_9287673",
+      "dateCreated": "Jun 23, 2016 10:52:39 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%flink\n//this paragraph generates the json String required for the Radial Reingold Tilford Tree\n\ncase class Column4(diffclt : String, deg : String, quant : String, value : String)                  //the case class specific to the data for a particular country\n\nval gerData \u003d rawTrnsPopDist.filter(ele \u003d\u003e !(ele.param1.equals(\"lev_diff\")))                        //filter the dataset to get only values for Germany\n                            .map(ele \u003d\u003e Column4(ele.param1, ele.param2, ele.param3, ele.country1))\nval ukData  \u003d rawTrnsPopDist.filter(ele \u003d\u003e !(ele.param1.equals(\"lev_diff\")))                        //filter the dataset to get only values for UK\n                            .map(ele \u003d\u003e Column4(ele.param1, ele.param2, ele.param3, ele.country5))\nval frData  \u003d rawTrnsPopDist.filter(ele \u003d\u003e !(ele.param1.equals(\"lev_diff\")))                        //filter the dataset to get only values for France\n                            .map(ele \u003d\u003e Column4(ele.param1, ele.param2, ele.param3, ele.country3))\nval itData  \u003d rawTrnsPopDist.filter(ele \u003d\u003e !(ele.param1.equals(\"lev_diff\")))                        //filter the dataset to get only values for Italy\n                            .map(ele \u003d\u003e Column4(ele.param1, ele.param2, ele.param3, ele.country4))\nval spData  \u003d rawTrnsPopDist.filter(ele \u003d\u003e !(ele.param1.equals(\"lev_diff\")))                        //filter the dataset to get only values for Spain\n                            .map(ele \u003d\u003e Column4(ele.param1, ele.param2, ele.param3, ele.country2))\n\n//generate the data specific to a particular country in the tree json format\ndef getTreeJson(inputSet : DataSet[Column4], country : String) : String \u003d {\n    \n    val dataArr \u003d inputSet.collect.toArray          //the array representation for the data of this country\n    \n    var degNodeStr \u003d new String                     //these strings hold the json data specific to a degree of urbanization\n    var degNodeArr \u003d new Array[String](0)\n    var degResult  \u003d new String\n    \n    var diffNodeStr \u003d new String                    //these strings hold the json data specific to a level of difficulty\n    var diffNodeArr \u003d new Array[String](0)\n    var diffResult  \u003d new String\n    \n    var countryNodeStr \u003d new String                 //these strings hold the json data specific to a country\n    var countryNodeArr \u003d new Array[String](0)\n    var countryResult  \u003d new String\n    \n    var diff \u003d dataArr(0).diffclt                   //the first value of the level of difficulty\n    var deg  \u003d dataArr(0).deg                       //the first value of the degree in the first row\n    \n    for(i \u003c- 0 until dataArr.length){               //iterate over the entire array to form the json\n        \n        if(! (deg.equals(dataArr(i).deg))){         //if current index degree is not equal to prev. degree\n            \n            degNodeStr \u003d degNodeArr.mkString(\",\\n\")\n            degNodeArr \u003d new Array[String](0)\n            degResult  \u003d s\"\"\"\n            {\n                \"name\": \"$deg\",\n                \"children\": [$degNodeStr]\n            }\n            \"\"\"\n            diffNodeArr \u003d diffNodeArr.:+(degResult)\n            deg \u003d dataArr(i).deg\n        }\n        \n        if(! (diff.equals(dataArr(i).diffclt))){    //if the current index difficulty !\u003d previous difficulty\n            \n            diffNodeStr \u003d diffNodeArr.mkString(\",\\n\")\n            diffNodeArr \u003d new Array[String](0)\n            diffResult \u003d s\"\"\"\n            {\n                \"name\": \"$diff\",\n                \"children\": [$diffNodeStr]\n            }\n            \"\"\"\n            countryNodeArr \u003d countryNodeArr.:+(diffResult)\n            diff \u003d dataArr(i).diffclt\n        }\n        \n        var quantile \u003d dataArr(i).quant\n        var value \u003d dataArr(i).value\n        degNodeArr \u003d degNodeArr.:+(\"{ \\\"name\\\": \\\"\" + quantile + \"(\" + value + \")\\\", \\\"size\\\": \" + value + \" }\")    //each individual value of the json\n    }\n    \n    //flush the last values that were reached in the end\n    degNodeStr \u003d degNodeArr.mkString(\",\\n\")\n    degResult  \u003d s\"\"\"\n    {\n        \"name\": \"$deg\",\n        \"children\": [$degNodeStr]\n    }\n    \"\"\"\n    diffNodeArr \u003d diffNodeArr.:+(degResult)\n    diffNodeStr \u003d diffNodeArr.mkString(\",\\n\")\n    diffResult  \u003d s\"\"\"\n    {\n        \"name\": \"$diff\",\n        \"children\": [$diffNodeStr]\n    }\n    \"\"\"\n    countryNodeArr \u003d countryNodeArr.:+(diffResult)\n    countryNodeStr \u003d countryNodeArr.mkString(\",\\n\")\n    countryResult  \u003d s\"\"\"\n    {\n        \"name\": \"$country\",\n        \"children\": [$countryNodeStr]\n    }\n    \"\"\"\n    \n    return countryResult                                    //return the final result\n}",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 10:41:08 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466677502929_158383682",
+      "id": "20160623-155502_7867401",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "defined class Column4\ngerData: org.apache.flink.api.scala.DataSet[Column4] \u003d org.apache.flink.api.scala.DataSet@9e66fe\nukData: org.apache.flink.api.scala.DataSet[Column4] \u003d org.apache.flink.api.scala.DataSet@199055e\nfrData: org.apache.flink.api.scala.DataSet[Column4] \u003d org.apache.flink.api.scala.DataSet@1b043cb\nitData: org.apache.flink.api.scala.DataSet[Column4] \u003d org.apache.flink.api.scala.DataSet@346974\nspData: org.apache.flink.api.scala.DataSet[Column4] \u003d org.apache.flink.api.scala.DataSet@13f3934\ngetTreeJson: (inputSet: org.apache.flink.api.scala.DataSet[Column4], country: String)String\n"
+      },
+      "dateCreated": "Jun 23, 2016 3:55:02 PM",
+      "dateStarted": "Jun 23, 2016 10:41:08 PM",
+      "dateFinished": "Jun 23, 2016 10:41:11 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%flink\n//this paragraph generates the json for the Reingold Tilford Tree\n\nval gerJson \u003d getTreeJson(gerData, \"Germany\")                       //get the Json data for Germany\nval ukJson  \u003d getTreeJson(ukData, \"United Kingdom\")                 //get the Json data for United Kingdom\nval frJson  \u003d getTreeJson(frData, \"France\")                         //get the Json data for France\nval itJson  \u003d getTreeJson(itData, \"Italy\")                          //get the Json data for Italy\nval spJson  \u003d getTreeJson(spData, \"Spain\")                          //get the Json data for Spain\n\nval countryJson \u003d s\"\"\"\n{\n   \"name\": \"Country\",\n   \"children\": [ $gerJson , $ukJson , $frJson , $itJson , $spJson ]\n}\n\"\"\"",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 10:52:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466698613173_2017979997",
+      "id": "20160623-214653_8652865",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "Column4(HIGH,DEG1,QUINTILE1,6.1 )\nColumn4(HIGH,DEG1,QUINTILE2,7.7 )\nColumn4(HIGH,DEG1,QUINTILE3,6.0 )\nColumn4(HIGH,DEG1,QUINTILE4,4.6 )\nColumn4(HIGH,DEG1,QUINTILE5,5.4 )\nColumn4(HIGH,DEG1,TOTAL,6.0 )\nColumn4(HIGH,DEG2,QUINTILE1,13.0 )\nColumn4(HIGH,DEG2,QUINTILE2,12.2 )\nColumn4(HIGH,DEG2,QUINTILE3,8.5 )\nColumn4(HIGH,DEG2,QUINTILE4,10.3 )\nColumn4(HIGH,DEG2,QUINTILE5,10.0 )\nColumn4(HIGH,DEG2,TOTAL,10.7 )\nColumn4(HIGH,DEG3,QUINTILE1,24.1 )\nColumn4(HIGH,DEG3,QUINTILE2,23.6 )\nColumn4(HIGH,DEG3,QUINTILE3,23.8 )\nColumn4(HIGH,DEG3,QUINTILE4,29.1 )\nColumn4(HIGH,DEG3,QUINTILE5,29.3 )\nColumn4(HIGH,DEG3,TOTAL,26.3 )\nColumn4(HIGH,TOTAL,QUINTILE1,9.8 )\nColumn4(HIGH,TOTAL,QUINTILE2,11.2 )\nColumn4(HIGH,TOTAL,QUINTILE3,9.1 )\nColumn4(HIGH,TOTAL,QUINTILE4,9.7 )\nColumn4(HIGH,TOTAL,QUINTILE5,10.7 )\nColumn4(HIGH,TOTAL,TOTAL,10.1 )\nColumn4(LOW,DEG1,QUINTILE1,44.1 )\nColumn4(LOW,DEG1,QUINTILE2,39.4 )\nColumn4(LOW,DEG1,QUINTILE3,37.8 )\nColumn4(LOW,DEG1,QUINTILE4,38.6 )\nColumn4(LOW,DEG1,QUINTILE5,33.1 )\nColumn4(LOW,DEG1,TOTAL,38.7 )\nColumn4(LOW,DEG2,QUINTILE1,40.7 )\nColumn4(LOW,DEG2,QUINTILE2,36.7 )\nColumn4(LOW,DEG2,QUINTILE3,37.7 )\nColumn4(LOW,DEG2,QUINTILE4,36.4 )\nColumn4(LOW,DEG2,QUINTILE5,39.3 )\nColumn4(LOW,DEG2,TOTAL,38.0 )\nColumn4(LOW,DEG3,QUINTILE1,37.2 )\nColumn4(LOW,DEG3,QUINTILE2,37.9 )\nColumn4(LOW,DEG3,QUINTILE3,33.9 )\nColumn4(LOW,DEG3,QUINTILE4,31.9 )\nColumn4(LOW,DEG3,QUINTILE5,31.9 )\nColumn4(LOW,DEG3,TOTAL,34.3 )\nColumn4(LOW,TOTAL,QUINTILE1,42.5 )\nColumn4(LOW,TOTAL,QUINTILE2,38.3 )\nColumn4(LOW,TOTAL,QUINTILE3,37.3 )\nColumn4(LOW,TOTAL,QUINTILE4,37.0 )\nColumn4(LOW,TOTAL,QUINTILE5,34.5 )\nColumn4(LOW,TOTAL,TOTAL,37.9 )\nColumn4(VHIGH,DEG1,QUINTILE1,2.7 )\nColumn4(VHIGH,DEG1,QUINTILE2,3.0 )\nColumn4(VHIGH,DEG1,QUINTILE3,3.5 )\nColumn4(VHIGH,DEG1,QUINTILE4,1.8 )\nColumn4(VHIGH,DEG1,QUINTILE5,1.3 )\nColumn4(VHIGH,DEG1,TOTAL,2.5 )\nColumn4(VHIGH,DEG2,QUINTILE1,5.2 )\nColumn4(VHIGH,DEG2,QUINTILE2,7.0 )\nColumn4(VHIGH,DEG2,QUINTILE3,4.0 )\nColumn4(VHIGH,DEG2,QUINTILE4,5.9 )\nColumn4(VHIGH,DEG2,QUINTILE5,4.9 )\nColumn4(VHIGH,DEG2,TOTAL,5.4 )\nColumn4(VHIGH,DEG3,QUINTILE1,21.4 )\nColumn4(VHIGH,DEG3,QUINTILE2,16.0 )\nColumn4(VHIGH,DEG3,QUINTILE3,19.4 )\nColumn4(VHIGH,DEG3,QUINTILE4,16.6 )\nColumn4(VHIGH,DEG3,QUINTILE5,20.7 )\nColumn4(VHIGH,DEG3,TOTAL,18.9 )\nColumn4(VHIGH,TOTAL,QUINTILE1,5.4 )\nColumn4(VHIGH,TOTAL,QUINTILE2,5.9 )\nColumn4(VHIGH,TOTAL,QUINTILE3,5.7 )\nColumn4(VHIGH,TOTAL,QUINTILE4,5.1 )\nColumn4(VHIGH,TOTAL,QUINTILE5,5.6 )\nColumn4(VHIGH,TOTAL,TOTAL,5.5 )\nColumn4(VLOW,DEG1,QUINTILE1,47.1 )\nColumn4(VLOW,DEG1,QUINTILE2,49.9 )\nColumn4(VLOW,DEG1,QUINTILE3,52.7 )\nColumn4(VLOW,DEG1,QUINTILE4,55.0 )\nColumn4(VLOW,DEG1,QUINTILE5,60.1 )\nColumn4(VLOW,DEG1,TOTAL,52.8 )\nColumn4(VLOW,DEG2,QUINTILE1,41.0 )\nColumn4(VLOW,DEG2,QUINTILE2,44.1 )\nColumn4(VLOW,DEG2,QUINTILE3,49.8 )\nColumn4(VLOW,DEG2,QUINTILE4,47.4 )\nColumn4(VLOW,DEG2,QUINTILE5,45.8 )\nColumn4(VLOW,DEG2,TOTAL,45.8 )\nColumn4(VLOW,DEG3,QUINTILE1,17.3 )\nColumn4(VLOW,DEG3,QUINTILE2,22.4 )\nColumn4(VLOW,DEG3,QUINTILE3,22.9 )\nColumn4(VLOW,DEG3,QUINTILE4,22.5 )\nColumn4(VLOW,DEG3,QUINTILE5,18.0 )\nColumn4(VLOW,DEG3,TOTAL,20.6 )\nColumn4(VLOW,TOTAL,QUINTILE1,42.4 )\nColumn4(VLOW,TOTAL,QUINTILE2,44.6 )\nColumn4(VLOW,TOTAL,QUINTILE3,47.9 )\nColumn4(VLOW,TOTAL,QUINTILE4,48.2 )\nColumn4(VLOW,TOTAL,QUINTILE5,49.3 )\nColumn4(VLOW,TOTAL,TOTAL,46.5 )\n"
+      },
+      "dateCreated": "Jun 23, 2016 9:46:53 PM",
+      "dateStarted": "Jun 23, 2016 10:42:02 PM",
+      "dateFinished": "Jun 23, 2016 10:42:04 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%flink\nprintln(gerJson)\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 23, 2016 9:58:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466699060022_1040591384",
+      "id": "20160623-215420_16381732",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\n    {\n        \"name\": \"Germany\",\n        \"children\": [\n            {\n                \"name\": \"lev_diff\",\n                \"children\": [\n            {\n                \"name\": \"deg_urb\",\n                \"children\": [{ \"name\": \"quantile(DE )\", \"size\": DE  }]\n            }\n            ]\n            }\n            ,\n\n            {\n                \"name\": \"HIGH\",\n                \"children\": [\n            {\n                \"name\": \"DEG1\",\n                \"children\": [{ \"name\": \"QUINTILE1(3.4 )\", \"size\": 3.4  },\n{ \"name\": \"QUINTILE2(3.0 )\", \"size\": 3.0  },\n{ \"name\": \"QUINTILE3(3.2 )\", \"size\": 3.2  },\n{ \"name\": \"QUINTILE4(5.4 )\", \"size\": 5.4  },\n{ \"name\": \"QUINTILE5(4.4 )\", \"size\": 4.4  },\n{ \"name\": \"TOTAL(3.9 )\", \"size\": 3.9  }]\n            }\n            ,\n\n            {\n                \"name\": \"DEG2\",\n                \"children\": [{ \"name\": \"QUINTILE1(16.2 )\", \"size\": 16.2  },\n{ \"name\": \"QUINTILE2(17.9 )\", \"size\": 17.9  },\n{ \"name\": \"QUINTILE3(19.7 )\", \"size\": 19.7  },\n{ \"name\": \"QUINTILE4(22.1 )\", \"size\": 22.1  },\n{ \"name\": \"QUINTILE5(21.7 )\", \"size\": 21.7  },\n{ \"name\": \"TOTAL(19.7 )\", \"size\": 19.7  }]\n            }\n            ,\n\n            {\n                \"name\": \"DEG3\",\n                \"children\": [{ \"name\": \"QUINTILE1(26.0 )\", \"size\": 26.0  },\n{ \"name\": \"QUINTILE2(31.0 )\", \"size\": 31.0  },\n{ \"name\": \"QUINTILE3(36.8 )\", \"size\": 36.8  },\n{ \"name\": \"QUINTILE4(36.2 )\", \"size\": 36.2  },\n{ \"name\": \"QUINTILE5(44.1 )\", \"size\": 44.1  },\n{ \"name\": \"TOTAL(34.3 )\", \"size\": 34.3  }]\n            }\n            ,\n\n            {\n                \"name\": \"TOTAL\",\n                \"children\": [{ \"name\": \"QUINTILE1(13.3 )\", \"size\": 13.3  },\n{ \"name\": \"QUINTILE2(16.5 )\", \"size\": 16.5  },\n{ \"name\": \"QUINTILE3(18.1 )\", \"size\": 18.1  },\n{ \"name\": \"QUINTILE4(20.4 )\", \"size\": 20.4  },\n{ \"name\": \"QUINTILE5(19.5 )\", \"size\": 19.5  },\n{ \"name\": \"TOTAL(17.6 )\", \"size\": 17.6  }]\n            }\n            ]\n            }\n            ,\n\n            {\n                \"name\": \"LOW\",\n                \"children\": [\n            {\n                \"name\": \"DEG1\",\n                \"children\": [{ \"name\": \"QUINTILE1(44.4 )\", \"size\": 44.4  },\n{ \"name\": \"QUINTILE2(47.2 )\", \"size\": 47.2  },\n{ \"name\": \"QUINTILE3(43.8 )\", \"size\": 43.8  },\n{ \"name\": \"QUINTILE4(40.1 )\", \"size\": 40.1  },\n{ \"name\": \"QUINTILE5(40.6 )\", \"size\": 40.6  },\n{ \"name\": \"TOTAL(43.2 )\", \"size\": 43.2  }]\n            }\n            ,\n\n            {\n                \"name\": \"DEG2\",\n                \"children\": [{ \"name\": \"QUINTILE1(52.1 )\", \"size\": 52.1  },\n{ \"name\": \"QUINTILE2(50.3 )\", \"size\": 50.3  },\n{ \"name\": \"QUINTILE3(49.8 )\", \"size\": 49.8  },\n{ \"name\": \"QUINTILE4(47.2 )\", \"size\": 47.2  },\n{ \"name\": \"QUINTILE5(43.3 )\", \"size\": 43.3  },\n{ \"name\": \"TOTAL(48.3 )\", \"size\": 48.3  }]\n            }\n            ,\n\n            {\n                \"name\": \"DEG3\",\n                \"children\": [{ \"name\": \"QUINTILE1(46.4 )\", \"size\": 46.4  },\n{ \"name\": \"QUINTILE2(38.8 )\", \"size\": 38.8  },\n{ \"name\": \"QUINTILE3(36.7 )\", \"size\": 36.7  },\n{ \"name\": \"QUINTILE4(31.7 )\", \"size\": 31.7  },\n{ \"name\": \"QUINTILE5(31.9 )\", \"size\": 31.9  },\n{ \"name\": \"TOTAL(37.3 )\", \"size\": 37.3  }]\n            }\n            ,\n\n            {\n                \"name\": \"TOTAL\",\n                \"children\": [{ \"name\": \"QUINTILE1(47.5 )\", \"size\": 47.5  },\n{ \"name\": \"QUINTILE2(46.0 )\", \"size\": 46.0  },\n{ \"name\": \"QUINTILE3(44.5 )\", \"size\": 44.5  },\n{ \"name\": \"QUINTILE4(40.7 )\", \"size\": 40.7  },\n{ \"name\": \"QUINTILE5(40.1 )\", \"size\": 40.1  },\n{ \"name\": \"TOTAL(43.8 )\", \"size\": 43.8  }]\n            }\n            ]\n            }\n            ,\n\n            {\n                \"name\": \"VHIGH\",\n                \"children\": [\n            {\n                \"name\": \"DEG1\",\n                \"children\": [{ \"name\": \"QUINTILE1(0.7 )\", \"size\": 0.7  },\n{ \"name\": \"QUINTILE2(0.5 )\", \"size\": 0.5  },\n{ \"name\": \"QUINTILE3(1.1 )\", \"size\": 1.1  },\n{ \"name\": \"QUINTILE4(0.8 )\", \"size\": 0.8  },\n{ \"name\": \"QUINTILE5(0.3 )\", \"size\": 0.3  },\n{ \"name\": \"TOTAL(0.7 )\", \"size\": 0.7  }]\n            }\n            ,\n\n            {\n                \"name\": \"DEG2\",\n                \"children\": [{ \"name\": \"QUINTILE1(5.1 )\", \"size\": 5.1  },\n{ \"name\": \"QUINTILE2(5.0 )\", \"size\": 5.0  },\n{ \"name\": \"QUINTILE3(4.0 )\", \"size\": 4.0  },\n{ \"name\": \"QUINTILE4(4.0 )\", \"size\": 4.0  },\n{ \"name\": \"QUINTILE5(5.3 )\", \"size\": 5.3  },\n{ \"name\": \"TOTAL(4.7 )\", \"size\": 4.7  }]\n            }\n            ,\n\n            {\n                \"name\": \"DEG3\",\n                \"children\": [{ \"name\": \"QUINTILE1(15.3 )\", \"size\": 15.3  },\n{ \"name\": \"QUINTILE2(17.0 )\", \"size\": 17.0  },\n{ \"name\": \"QUINTILE3(14.5 )\", \"size\": 14.5  },\n{ \"name\": \"QUINTILE4(16.8 )\", \"size\": 16.8  },\n{ \"name\": \"QUINTILE5(15.0 )\", \"size\": 15.0  },\n{ \"name\": \"TOTAL(15.8 )\", \"size\": 15.8  }]\n            }\n            ,\n\n            {\n                \"name\": \"TOTAL\",\n                \"children\": [{ \"name\": \"QUINTILE1(5.8 )\", \"size\": 5.8  },\n{ \"name\": \"QUINTILE2(6.9 )\", \"size\": 6.9  },\n{ \"name\": \"QUINTILE3(5.5 )\", \"size\": 5.5  },\n{ \"name\": \"QUINTILE4(6.4 )\", \"size\": 6.4  },\n{ \"name\": \"QUINTILE5(5.3 )\", \"size\": 5.3  },\n{ \"name\": \"TOTAL(6.0 )\", \"size\": 6.0  }]\n            }\n            ]\n            }\n            ,\n\n    {\n        \"name\": \"VLOW\",\n        \"children\": [\n            {\n                \"name\": \"DEG1\",\n                \"children\": [{ \"name\": \"QUINTILE1(51.5 )\", \"size\": 51.5  },\n{ \"name\": \"QUINTILE2(49.3 )\", \"size\": 49.3  },\n{ \"name\": \"QUINTILE3(51.9 )\", \"size\": 51.9  },\n{ \"name\": \"QUINTILE4(53.8 )\", \"size\": 53.8  },\n{ \"name\": \"QUINTILE5(54.6 )\", \"size\": 54.6  },\n{ \"name\": \"TOTAL(52.2 )\", \"size\": 52.2  }]\n            }\n            ,\n\n            {\n                \"name\": \"DEG2\",\n                \"children\": [{ \"name\": \"QUINTILE1(26.5 )\", \"size\": 26.5  },\n{ \"name\": \"QUINTILE2(26.8 )\", \"size\": 26.8  },\n{ \"name\": \"QUINTILE3(26.5 )\", \"size\": 26.5  },\n{ \"name\": \"QUINTILE4(26.7 )\", \"size\": 26.7  },\n{ \"name\": \"QUINTILE5(29.8 )\", \"size\": 29.8  },\n{ \"name\": \"TOTAL(27.3 )\", \"size\": 27.3  }]\n            }\n            ,\n\n            {\n                \"name\": \"DEG3\",\n                \"children\": [{ \"name\": \"QUINTILE1(12.2 )\", \"size\": 12.2  },\n{ \"name\": \"QUINTILE2(13.1 )\", \"size\": 13.1  },\n{ \"name\": \"QUINTILE3(12.1 )\", \"size\": 12.1  },\n{ \"name\": \"QUINTILE4(15.3 )\", \"size\": 15.3  },\n{ \"name\": \"QUINTILE5(9.0 )\", \"size\": 9.0  },\n{ \"name\": \"TOTAL(12.6 )\", \"size\": 12.6  }]\n            }\n            ,\n\n    {\n        \"name\": \"TOTAL\",\n        \"children\": [{ \"name\": \"QUINTILE1(33.4 )\", \"size\": 33.4  },\n{ \"name\": \"QUINTILE2(30.6 )\", \"size\": 30.6  },\n{ \"name\": \"QUINTILE3(31.8 )\", \"size\": 31.8  },\n{ \"name\": \"QUINTILE4(32.5 )\", \"size\": 32.5  },\n{ \"name\": \"QUINTILE5(35.1 )\", \"size\": 35.1  },\n{ \"name\": \"TOTAL(32.7 )\", \"size\": 32.7  }]\n    }\n    ]\n    }\n    ]\n    }\n    \n"
+      },
+      "dateCreated": "Jun 23, 2016 9:54:20 PM",
+      "dateStarted": "Jun 23, 2016 9:58:58 PM",
+      "dateFinished": "Jun 23, 2016 9:58:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1466699338665_1291830771",
+      "id": "20160623-215858_9643832",
+      "dateCreated": "Jun 23, 2016 9:58:58 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Transportation",
+  "id": "2BP262655",
+  "angularObjects": {
+    "2BKYVPVHQ:shared_process": [],
+    "2BJHT1EUY:shared_process": [],
+    "2BHNGA31P:shared_process": [],
+    "2BKANQRJP:shared_process": [],
+    "2BHHZGS2H:shared_process": [],
+    "2BKCY8U96:shared_process": [],
+    "2BJK6TKNA:shared_process": [],
+    "2BGSWRYAZ:shared_process": [],
+    "2BM95J7ZS:shared_process": [],
+    "2BM8CEXAK:shared_process": [],
+    "2BHNSU7Q1:shared_process": [],
+    "2BJQHFGZ4:shared_process": [],
+    "2BGNRNVYW:shared_process": [],
+    "2BM4AWSEE:shared_process": [],
+    "2BHCW1XSS:shared_process": [],
+    "2BJ2SKSZC:shared_process": [],
+    "2BKAJNA6U:shared_process": [],
+    "2BJ8NAWSV:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
