@@ -76,7 +76,7 @@
     {
       "text": "%flink\n//this paragraph defines the case classes used to form the schemas for the datasets and some utility functions used in later paragraphs\n\ncase class CommonType1(country : String, values : Array[String])                  //define a common type1 for the different types of datasets\ncase class CommonType2(country : String, typ : String , values : Array[String])   //define a common type2 for the different types of datasets\n \n//define a generic case class to form a generic schema containing only the relevant fields from the datasets\ncase class Column17(typ : String, country : String, y14 : String, y13 : String, y12 : String, y11 : String, y10 : String, y9 : String,\n                    y8 : String, y7 : String, y6 : String, y5 : String, y4 : String, y3 : String, y2 : String, y1 : String, y0 : String){\n                        \n                        def getValues() : Array[String] \u003d {\n                            return Array(y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14)\n                        }\n                    }\n\n//utility function to check the values array returned by the case classes and remove inconsistent values\ndef getGoodValues(valueArr : Array[String]) : Array[String] \u003d {\n    \n    valueArr(0) \u003d if((valueArr(0).equals(\": z\")) || (valueArr(0).equals(\": \"))) \"0\" else valueArr(0)    //set the first value only \n    \n    for(i \u003c- 1 until valueArr.length){                               //iterate over the rest of the array to remove inconsistent values\n    \n        if(valueArr(i).equals(\": z\")){                               //the symbol for no data for the country in this(current) dataset\n            valueArr(i) \u003d \"0\";\n        }\n        else if(valueArr(i).equals(\": \")){\n            valueArr(i) \u003d valueArr(i - 1)\n        }\n    }\n    return valueArr                                                  //return the Array of Good formed values\n}\n\n//define a function to get the value for a particular year and a dataset for a specific category \ndef getYearValue(inputSet : DataSet[Column17], country : String, typ : String, year : Int, startYear : Int) : String \u003d {\n    \n    val filterData \u003d inputSet.filter(ele \u003d\u003e (ele.country.equals(country) \u0026\u0026 ele.typ.equals(typ)))       //get the filtered data for a particular country and type\n    val dataArr    \u003d filterData.collect.toArray                                                         //get the array for the values\n    val valueArr   \u003d dataArr(0).getValues\n    var index      \u003d year - startYear                        //the index into the array for the year passed as parameter\n    var yearVal    \u003d valueArr(index)                         //get the initial value for the year passed as parameter\n    \n    while(yearVal.equals(\": \") \u0026\u0026 index \u003e 0){                //check for the values in the previous years if values is not found in the present year\n        \n        index -\u003d 1;\n        yearVal \u003d valueArr(index)\n    }\n    \n    if(index \u003d\u003d 0 \u0026\u0026 valueArr(index).equals(\": \")){          //if reached the last year without finding any value\n            return \"0\"\n    }\n        \n    return yearVal\n}\n\n//define a generic function to get the values in the table display format - Row(country, year, value)\ndef getTablDispData1(inputSet : DataSet[CommonType1], startYear : Int) : String \u003d {\n    \n    val dataArr   \u003d inputSet.collect.toArray                                      //collect the values as an array\n    \n    var resultArr \u003d Array(\"country\\tyear\\tvalue\")                                 //form the header for the display format\n    \n    for(i \u003c- 0 until dataArr.length){\n        var year \u003d startYear\n        var yearValues \u003d getGoodValues(dataArr(i).values)                         //get the array of values for the current country\n        \n        for(j \u003c- 0 until yearValues.length){\n            resultArr \u003d resultArr.:+(dataArr(i).country + \"\\t\" + year + \"\\t\" + yearValues(j))\n            year +\u003d 1\n        }\n    }\n    \n    return resultArr.mkString(\"\\n\")                                               //form the table display by inserting \u0027\\n\u0027 character\n}\n\n//define a generic function to get the values for a particular type of a dataset in the table display format\ndef getTablDispData2(inputSet : DataSet[CommonType2], typ : String, startYear : Int) : String \u003d {\n    \n    val dataArr \u003d inputSet.collect.toArray                                        //collect the values as an array\n    \n    var resultArr \u003d Array(\"country\\tyear\\tvalue\\t\" + typ)                         //form the header for the display format\n    \n    for(i \u003c- 0 until dataArr.length){\n        var year \u003d startYear\n        var yearValues \u003d getGoodValues(dataArr(i).values)                         //get the array of values for the current country\n        \n        for(j \u003c- 0 until yearValues.length){\n            resultArr \u003d resultArr.:+(dataArr(i).country + \"\\t\" + year + \"\\t\" + yearValues(j) + \"\\t\" + dataArr(i).typ) \n            year +\u003d 1\n        }\n    }\n    \n    return resultArr.mkString(\"\\n\")                                             //form the table display by inserting \u0027\\n\u0027 character\n}\n\n//define a generic function to get the values in the comparison format for table display of two datasets\ndef getCmpTablDisp(inputXSet : DataSet[CommonType1], inputYSet : DataSet[CommonType1], startXYear : Int, startYYear : Int) : String \u003d {\n\n    val dataXArr \u003d inputXSet.collect.toArray                                    //collect the values as an array\n    val dataYArr \u003d inputYSet.collect.toArray\n    \n    var resultArr \u003d Array(\"country\\txValue\\tyValue\")                            //form the header for the display format\n    val outLength \u003d Math.min(dataXArr.length, dataYArr.length)\n    val xStIndex  \u003d if(startYYear \u003e startXYear) startYYear - startXYear else 0  //starting index for the x values by the year\n    val yStIndex  \u003d if(startXYear \u003e startYYear) startXYear - startYYear else 0  //starting index for the y values by the year\n    val inLength  \u003d Math.min(dataXArr(0).values.length - xStIndex, dataYArr(0).values.length - yStIndex)\n    \n    for(i \u003c- 0 until outLength){\n        var yearXValues \u003d getGoodValues(dataXArr(i).values)                     //get the values for the current country\n        var yearYValues \u003d getGoodValues(dataYArr(i).values)\n        var xIndex \u003d xStIndex\n        var yIndex \u003d yStIndex\n        \n        for(j \u003c- 0 until inLength){\n                resultArr \u003d resultArr.:+(dataXArr(i).country + \"\\t\" + yearXValues(xIndex) + \"\\t\" + yearYValues(yIndex))\n                xIndex +\u003d 1\n                yIndex +\u003d 1\n        }\n    }\n    \n    return resultArr.mkString(\"\\n\")                                             //form the table display by inserting \u0027\\n\u0027 character\n}\n\n//function to generate the values for a specific country and a specific type from a particular function \ndef getCountryData(inputSet : DataSet[Column17], country : String, typ : String , startYear : Int, endYear : Int) : String \u003d {\n    \n    val filteredData  \u003d inputSet.filter(ele \u003d\u003e (ele.typ.equals(typ) \u0026\u0026 ele.country.equals(country)))     //get the data for a country and a type from input DataSet\n    val filDataArr    \u003d filteredData.collect.toArray                                                     //get the array for the data values\n    val valueArr      \u003d filDataArr(0).getValues\n    val values        \u003d getGoodValues(valueArr)                       //get the values after filtering the data and removing inconsistent values\n    var countryArr    \u003d new Array[String](0)                          //the output array to contain the values\n    var year \u003d startYear\n    \n    while(year \u003c\u003d endYear){\n        countryArr \u003d countryArr.:+(\"{x:\" + year + \", y:\" + values(year - startYear) + \"}\")\n        year +\u003d 1;\n    }\n    return countryArr.mkString(\",\")\n}\n\n//function to get the well formed json string for the visualizations\ndef getJson(inputSet : DataSet[Column17], typ : String) : String \u003d {\n    \n    val geVal  \u003d getCountryData(inputSet, \"DE\", typ, 2000, 2014)    //get the data for Germany\n    val ukVal  \u003d getCountryData(inputSet, \"UK\", typ, 2000, 2014)    //get the data for United Kingdom\n    val frVal  \u003d getCountryData(inputSet, \"FR\", typ, 2000, 2014)    //get the data for France\n    val spVal  \u003d getCountryData(inputSet, \"ES\", typ, 2000, 2014)    //get the data for Spain\n    val itVal  \u003d getCountryData(inputSet, \"IT\", typ, 2000, 2014)    //get the data for Italy\n    \n    //got the values for all the representative nations, now form the json\n    val data \u003d s\"\"\"\n    [\n        {\n            values: [$geVal],\n            key: \u0027Germany\u0027,\n            color: \u0027#ff8221\u0027\n        },\n        {\n            values: [$ukVal],\n            key: \u0027United Kingdom\u0027,\n            color: \u0027#ab2341\u0027\n        },\n        {\n            values: [$frVal],\n            key: \u0027France\u0027,\n            color: \u0027#673ef2\u0027\n        },\n        {\n            values: [$spVal],\n            key: \u0027Spain\u0027,\n            color: \u0027#451afb\u0027\n        },\n        {\n            values: [$itVal],\n            key: \u0027Italy\u0027,\n            color: \u0027#12fa34\u0027\n        }\n    ]\n    \"\"\"\n    \n    return data                     //return the json string\n}\n\n//utility function to form the json string for the various countries(specific to the bullet chart)\ndef getBulletJson(title : String, subTitle : String, val1 : String, val2 : String, color : String) : String \u003d {\n    \n    //simply form the json and return it\n    val bulletJson \u003d s\"\"\"\n    {\n        \"title\": \"$title\",\n        \"subtitle\": \"$subTitle\",\n        \"ranges\": [$val1, $val2],\n        \"color\": \"$color\",\n        \"measures\": [$val2],\n        \"markers\": [$val2]\n        \n    }\n    \"\"\"\n    return bulletJson\n}",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 29, 2016 11:26:39 AM",
+      "dateUpdated": "Jun 30, 2016 11:16:57 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -106,8 +106,8 @@
         "msg": "defined class CommonType1\ndefined class CommonType2\ndefined class Column17\ngetGoodValues: (valueArr: Array[String])Array[String]\ngetYearValue: (inputSet: org.apache.flink.api.scala.DataSet[Column17], country: String, typ: String, year: Int, startYear: Int)String\ngetTablDispData1: (inputSet: org.apache.flink.api.scala.DataSet[CommonType1], startYear: Int)String\ngetTablDispData2: (inputSet: org.apache.flink.api.scala.DataSet[CommonType2], typ: String, startYear: Int)String\ngetCmpTablDisp: (inputXSet: org.apache.flink.api.scala.DataSet[CommonType1], inputYSet: org.apache.flink.api.scala.DataSet[CommonType1], startXYear: Int, startYYear: Int)String\ngetCountryData: (inputSet: org.apache.flink.api.scala.DataSet[Column17], country: String, typ: String, startYear: Int, endYear: Int)String\ngetJson: (inputSet: org.apache.flink.api.scala.DataSet[Column17], typ: String)String\ngetBulletJson: (title: String, subTitle: String, val1: String, val2: String, color: String)String\n"
       },
       "dateCreated": "Jun 20, 2016 8:48:09 AM",
-      "dateStarted": "Jun 29, 2016 11:26:40 AM",
-      "dateFinished": "Jun 29, 2016 11:27:14 AM",
+      "dateStarted": "Jun 30, 2016 11:17:00 AM",
+      "dateFinished": "Jun 30, 2016 11:17:38 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -151,7 +151,7 @@
     {
       "text": "%flink\n// this paragraph loads the datasets used for the Transportation Overview analysis, the following information presents an overview of loading datasets\n/* 1. Case classes are created for various types of tsv files that differ in the number of columns that they have, for example, Column17 refers to the schema of a file \n   from which 17 columns will be picked. Similarly for other case classes.\n   \n   2. Variables starting with the \u0027raw\u0027 prefix load the entire raw dataset, while the variables with the same name but without the \u0027raw\u0027 prefix contain filtered datasets      that have only country level data which is not further subdivided into sub-country regions.\n   \n   3. Datasets may further be filtered to include only some of the representative nations as visualizing all 32 nations at once may not look good. To be able to visualize a    reasonably good number of nations, two groups of representative nations have been formed. They are : \u0027Rep1\u0027 consisting of United Kingdom, Germany, France, \n   Italy and Spain; and the second group \u0027Rep2\u0027 consisting of Norway, Sweden, Finland, Netherlands and Denmark. Variables containing the data for these groups have the        group suffix after the name of the variable for that dataset. \n*/ \n \n// create the case class for 8 column dataset(Population Distribution of Public Transport)\ncase class Column8(param1 : String, param2 : String, param3 : String, country1 : String, country2 : String, country3 : String, country4 : String, country5 : String){\n    \n    def getValues() : Array[String] \u003d {\n        return Array(country1, country2, country3, country4, country5)                                  //return an array of the values\n    }\n}\n\n// create case class for 9 column dataset(Number of trips by mode of transport)\ncase class Column9(purp : String, dur : String, region : String, mode : String, country : String, y14 : String, y13 : String, y12 : String, y11 : String){\n    \n    def getValues() : Array[String] \u003d {\n        return Array(y11, y12, y13, y14)                                                                //return an array of values\n    }\n}\n\n// load the datasets using flink\u0027s convenience methods for csv type files \n\nval rawRlRdWtNet \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/RailRoadWtrNet.tsv\",\n                                fieldDelimiter \u003d \"\\t\",\n                                includedFields \u003d Array(0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval rlRdWtNet \u003d rawRlRdWtNet.filter(ele \u003d\u003e (ele.country.length \u003d\u003d 2))\nval rlRdWtNetRep1 \u003d rlRdWtNet.filter(ele \u003d\u003e (ele.country.equals(\"UK\") || ele.country.equals(\"DE\") || ele.country.equals(\"FR\") || ele.country.equals(\"IT\") || ele.country                                        .equals(\"ES\")))\n\nval passenTrnsMd \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/PassenTransMode.tsv\",              //this dataset is already at country level\n                                fieldDelimiter \u003d \"\\t\",\n                                includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval passenTrnsMdRep1 \u003d passenTrnsMd.filter(ele \u003d\u003e (ele.country.equals(\"UK\") || ele.country.equals(\"DE\") || ele.country.equals(\"FR\") || ele.country.equals(\"IT\") ||\n                                    ele.country.equals(\"ES\")))\n                                    \nval rawTrnsPopDist \u003d env.readCsvFile[Column8](\"/home/anish/ZeppelinData/Transportation/PopDistPubTran.tsv\",\n                                fieldDelimiter \u003d \"\\t\",\n                                includedFields \u003d Array(1, 2, 3, 13, 17, 18, 20, 36))\n\nval rawTripsTrnsMd \u003d env.readCsvFile[Column9](\"/home/anish/ZeppelinData/Transportation/TripsTransMode.tsv\",\n                                fieldDelimiter \u003d \"\\t\",\n                                includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8, 9))\nval tripsTrnsMd \u003d rawTripsTrnsMd.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || ele.country.equals(\"IT\") || \n                                ele.country.equals(\"ES\"))) \n\nval rawTransCPI \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/TransCPI.tsv\",\n                                fieldDelimiter \u003d \"\\t\",\n                                includedFields \u003d Array(0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20))\nval transCPI \u003d rawTransCPI.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || ele.country.equals(\"IT\") ||\n                                ele.country.equals(\"ES\")))",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 29, 2016 12:52:48 PM",
+      "dateUpdated": "Jun 29, 2016 5:50:48 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -176,11 +176,11 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "defined class Column8\ndefined class Column9\nrawRlRdWtNet: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1f8024c\nrlRdWtNet: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1627db4\nrlRdWtNetRep1: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1b34d31\npassenTrnsMd: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1030f72\npassenTrnsMdRep1: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1378a7d\nrawTrnsPopDist: org.apache.flink.api.scala.DataSet[Column8] \u003d org.apache.flink.api.scala.DataSet@1bf233c\nrawTripsTrnsMd: org.apache.flink.api.scala.DataSet[Column9] \u003d org.apache.flink.api.scala.DataSet@909ae4\ntripsTrnsMd: org.apache.flink.api.scala.DataSet[Column9] \u003d org.apache.flink.api.scala.DataSet@30ed6c\nrawTransCPI: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1c80099\ntransCPI: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@3230ae\n"
+        "msg": "defined class Column8\ndefined class Column9\nrawRlRdWtNet: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1051a43\nrlRdWtNet: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@18014e3\nrlRdWtNetRep1: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@73bbe9\npassenTrnsMd: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1b0518e\npassenTrnsMdRep1: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@bddf6a\nrawTrnsPopDist: org.apache.flink.api.scala.DataSet[Column8] \u003d org.apache.flink.api.scala.DataSet@1aa7126\nrawTripsTrnsMd: org.apache.flink.api.scala.DataSet[Column9] \u003d org.apache.flink.api.scala.DataSet@c8a1ee\ntripsTrnsMd: org.apache.flink.api.scala.DataSet[Column9] \u003d org.apache.flink.api.scala.DataSet@1e22519\nrawTransCPI: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@18456aa\ntransCPI: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1923642\n"
       },
       "dateCreated": "Jun 20, 2016 8:52:05 AM",
-      "dateStarted": "Jun 29, 2016 12:52:49 PM",
-      "dateFinished": "Jun 29, 2016 12:52:54 PM",
+      "dateStarted": "Jun 29, 2016 5:50:48 PM",
+      "dateFinished": "Jun 29, 2016 5:50:55 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -400,7 +400,7 @@
       "title": "Rail Lines Length(in kM)",
       "text": "%flink\n//this paragraph generates the visualization for Rail Lines (length in KM) for all the representative countries\n\n//generate the data for the railway lines dataset\n\nval geRl00 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"RL\", 2000, 2000)                   //get the values for Germany for the rail lines bullet chart\nval geRl14 \u003d getYearValue(rlRdWtNetRep1, \"DE\", \"RL\", 2014, 2000)\n\nval ukRl00 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"RL\", 2000, 2000)                   //get the values for United Kingdom for rail lines bullet chart\nval ukRl14 \u003d getYearValue(rlRdWtNetRep1, \"UK\", \"RL\", 2014, 2000)\n\nval frRl00 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"RL\", 2000, 2000)                   //get the values for France for rail lines bullet chart\nval frRl14 \u003d getYearValue(rlRdWtNetRep1, \"FR\", \"RL\", 2014, 2000)\n\nval itRl00 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"RL\", 2000, 2000)                   //get the values for Italy for the rail lines bullet chart\nval itRl14 \u003d getYearValue(rlRdWtNetRep1, \"IT\", \"RL\", 2014, 2000)\n\nval esRl00 \u003d getYearValue(rlRdWtNetRep1, \"ES\", \"RL\", 2000, 2000)                   //get the values for Spain for the rail lines bullet chart\nval esRl14 \u003d getYearValue(rlRdWtNetRep1, \"ES\", \"RL\", 2014, 2000)\n\n//get the Json Strings for the rail lines Datasets\nval geRlData \u003d getBulletJson(\"Germany\", \"(in kM)\", geRl00, geRl14, \"#196a3b\")                           //form the rail lines json for Germany\nval ukRlData \u003d getBulletJson(\"United Kingdom\", \"(in kM)\", ukRl00, ukRl14, \"#196a3b\")                    //form the rail lines json for United Kingdom\nval frRlData \u003d getBulletJson(\"France\", \"(in kM)\", frRl00, frRl14, \"#196a3b\")                            //form the rail lines json for France\nval itRlData \u003d getBulletJson(\"Italy\", \"(in kM)\", itRl00, itRl14, \"#196a3b\")                             //form the rail lines json for Italy\nval esRlData \u003d getBulletJson(\"Spain\", \"(in kM)\", esRl00, esRl14, \"#196a3b\")                             //form the rail lines json for Spain\n\n\nprintln(s\"\"\"%html\n\u003c!-- generate the bullet chart for the Rail length of Germany --\u003e\n\u003cstyle\u003e\n    #railChart1{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart1\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $geRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart1 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the rail length of United Kingdom --\u003e\n\u003cstyle\u003e\n    #railChart2{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart2\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $ukRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart2 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the rail length of France --\u003e\n\u003cstyle\u003e\n    #railChart3{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart3\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $frRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart3 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the rail length of Italy --\u003e\n\u003cstyle\u003e\n    #railChart4{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart4\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $itRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart4 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\n\u003c!-- generate the bullet chart for the road length of Italy --\u003e\n\u003cstyle\u003e\n    #railChart5{\n        height: 80px;\n        width: 1100px; \n    }\n\u003c/style\u003e\n\u003cdiv id\u003d\"railChart5\"\u003e\n    \u003csvg\u003e\u003c/svg\u003e\n\u003c/div\u003e    \n\u003cscript\u003e\n      nv.addGraph(function() {\n        var data \u003d $esRlData\n        var chart \u003d nv.models.bulletChart();\n    \n        d3.select(\u0027#railChart5 svg\u0027)\n            .datum(data)\n            .transition().duration(1000)\n            .call(chart);\n    \n        return chart;\n    });\n\u003c/script\u003e\n\"\"\")\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 24, 2016 5:44:15 PM",
+      "dateUpdated": "Jun 29, 2016 5:40:30 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -414,7 +414,8 @@
         },
         "enabled": true,
         "editorHide": true,
-        "title": true
+        "title": true,
+        "editorMode": "ace/mode/scala"
       },
       "settings": {
         "params": {},
@@ -599,7 +600,7 @@
       "title": "Train Usage(% of Total Traffic)",
       "text": "%flink\n\nval trnData \u003d passenTrnsMdRep1.filter( _.typ.equals(\"TRN\"))                     //get the train data for representative countries\nval trnCType \u003d trnData.map(ele \u003d\u003e CommonType1(ele.country, ele.getValues))\nval trnTable \u003d getTablDispData1(trnCType, 1999)\nprintln(s\"%table $trnTable\")",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 29, 2016 12:53:17 PM",
+      "dateUpdated": "Jun 29, 2016 6:29:26 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -659,8 +660,8 @@
         "msg": "country\tyear\tvalue\nDE\t1999\t7.5 \nDE\t2000\t7.7 \nDE\t2001\t7.6 \nDE\t2002\t7.1 \nDE\t2003\t7.2 \nDE\t2004\t7.5 \nDE\t2005\t7.5 \nDE\t2006\t7.8 \nDE\t2007\t7.8 \nDE\t2008\t8.1 \nDE\t2009\t7.9 \nDE\t2010\t8 \nDE\t2011\t8.2 \nDE\t2012\t8.9 \nDE\t2013\t8.5 \nES\t1999\t5 \nES\t2000\t5.4 \nES\t2001\t5.5 \nES\t2002\t5.2 \nES\t2003\t5.1 \nES\t2004\t5 \nES\t2005\t5.1 \nES\t2006\t5.2 \nES\t2007\t5 \nES\t2008\t5.5 \nES\t2009\t5.4 \nES\t2010\t5.4 \nES\t2011\t5.6 \nES\t2012\t5.6 \nES\t2013\t6.1 \nFR\t1999\t8.2 \nFR\t2000\t8.6 \nFR\t2001\t8.5 \nFR\t2002\t8.7 \nFR\t2003\t8.4 \nFR\t2004\t8.7 \nFR\t2005\t9.1 \nFR\t2006\t9.4 \nFR\t2007\t9.6 \nFR\t2008\t9.3 \nFR\t2009\t9.4 \nFR\t2010\t9.3\nFR\t2011\t9.3 \nFR\t2012\t9.5 \nFR\t2013\t9.4 \nIT\t1999\t5.4 \nIT\t2000\t5.8 \nIT\t2001\t5.8 \nIT\t2002\t5.6 \nIT\t2003\t5.5 \nIT\t2004\t5.5 \nIT\t2005\t6 \nIT\t2006\t6.1 \nIT\t2007\t6 \nIT\t2008\t6 \nIT\t2009\t5.5 \nIT\t2010\t5.6 \nIT\t2011\t5.8 \nIT\t2012\t6.4 \nIT\t2013\t6.3 \nUK\t1999\t5.3 \nUK\t2000\t5.3 \nUK\t2001\t5.3 \nUK\t2002\t5.3 \nUK\t2003\t5.4 \nUK\t2004\t5.7 \nUK\t2005\t5.9 \nUK\t2006\t6.2 \nUK\t2007\t6.6 \nUK\t2008\t6.9 \nUK\t2009\t6.9 \nUK\t2010\t7.5 \nUK\t2011\t7.9 \nUK\t2012\t8.2 \nUK\t2013\t8.4 \n"
       },
       "dateCreated": "Jun 23, 2016 10:43:46 AM",
-      "dateStarted": "Jun 29, 2016 12:53:08 PM",
-      "dateFinished": "Jun 29, 2016 12:53:10 PM",
+      "dateStarted": "Jun 29, 2016 6:28:36 PM",
+      "dateFinished": "Jun 29, 2016 6:28:39 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -760,7 +761,7 @@
       "title": "Population Distribution by difficulty in accessing public transport(% of population) - Germany",
       "text": "%flink                              //generate the visualization for the tree for Germany\nprintln(\"\"\"%html\n\u003c!DOCTYPE html\u003e\n\u003cmeta charset\u003d\"utf-8\"\u003e\n\u003cstyle\u003e\n\n#radial1{\n  float: inline-end;\n  position: relative;\n  left: 70px;\n  bottom: 50px;\n  width: 760px;\n  height: 760px;\n}\n\n.node circle {\n  fill: #fff;\n  stroke: steelblue;\n  stroke-width: 1.5px;\n}\n\n.node {\n  font: 10px sans-serif;\n}\n\n.link {\n  fill: none;\n  stroke: #ccc;\n  stroke-width: 1.5px;\n}\n\n\u003c/style\u003e\n\u003cdiv id\u003d\"radial1\"\u003e\u003c/div\u003e\n\u003cscript src\u003d\"//d3js.org/d3.v3.min.js\"\u003e\u003c/script\u003e\n\u003cscript\u003e\n\nvar diameter \u003d 900;\n\nvar tree \u003d d3.layout.tree()\n    .size([360, diameter / 2 - 240])\n    .separation(function(a, b) { return (a.parent \u003d\u003d b.parent ? 1 : 2) / a.depth; });\n\nvar diagonal \u003d d3.svg.diagonal.radial()\n    .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });\n\nvar svg \u003d d3.select(\"#radial1\").append(\"svg\")\n    .attr(\"width\", diameter)\n    .attr(\"height\", diameter - 150)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + diameter / 2 + \",\" + diameter / 2 + \")\");\n\nd3.json(\"Germany.json\", function(error, root) {\n  if (error) throw error;\n\n  var nodes \u003d tree.nodes(root),\n      links \u003d tree.links(nodes);\n\n  var link \u003d svg.selectAll(\".link\")\n      .data(links)\n    .enter().append(\"path\")\n      .attr(\"class\", \"link\")\n      .attr(\"d\", diagonal);\n\n  var node \u003d svg.selectAll(\".node\")\n      .data(nodes)\n    .enter().append(\"g\")\n      .attr(\"class\", \"node\")\n      .attr(\"transform\", function(d) { return \"rotate(\" + (d.x - 90) + \")translate(\" + d.y + \")\"; })\n\n  node.append(\"circle\")\n      .attr(\"r\", 4.5);\n\n  node.append(\"text\")\n      .attr(\"dy\", \".31em\")\n      .attr(\"text-anchor\", function(d) { return d.x \u003c 180 ? \"start\" : \"end\"; })\n      .attr(\"transform\", function(d) { return d.x \u003c 180 ? \"translate(8)\" : \"rotate(180)translate(-8)\"; })\n      .text(function(d) { return d.name; });\n});\n\nd3.select(self.frameElement).style(\"height\", diameter - 150 + \"px\");\n\n\u003c/script\u003e\n\"\"\")\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 24, 2016 9:24:36 PM",
+      "dateUpdated": "Jun 30, 2016 11:08:52 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -790,8 +791,8 @@
         "msg": "\u003c!DOCTYPE html\u003e\n\u003cmeta charset\u003d\"utf-8\"\u003e\n\u003cstyle\u003e\n\n#radial1{\n  float: inline-end;\n  position: relative;\n  left: 70px;\n  bottom: 50px;\n  width: 760px;\n  height: 760px;\n}\n\n.node circle {\n  fill: #fff;\n  stroke: steelblue;\n  stroke-width: 1.5px;\n}\n\n.node {\n  font: 10px sans-serif;\n}\n\n.link {\n  fill: none;\n  stroke: #ccc;\n  stroke-width: 1.5px;\n}\n\n\u003c/style\u003e\n\u003cdiv id\u003d\"radial1\"\u003e\u003c/div\u003e\n\u003cscript src\u003d\"//d3js.org/d3.v3.min.js\"\u003e\u003c/script\u003e\n\u003cscript\u003e\n\nvar diameter \u003d 900;\n\nvar tree \u003d d3.layout.tree()\n    .size([360, diameter / 2 - 240])\n    .separation(function(a, b) { return (a.parent \u003d\u003d b.parent ? 1 : 2) / a.depth; });\n\nvar diagonal \u003d d3.svg.diagonal.radial()\n    .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });\n\nvar svg \u003d d3.select(\"#radial1\").append(\"svg\")\n    .attr(\"width\", diameter)\n    .attr(\"height\", diameter - 150)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + diameter / 2 + \",\" + diameter / 2 + \")\");\n\nd3.json(\"Germany.json\", function(error, root) {\n  if (error) throw error;\n\n  var nodes \u003d tree.nodes(root),\n      links \u003d tree.links(nodes);\n\n  var link \u003d svg.selectAll(\".link\")\n      .data(links)\n    .enter().append(\"path\")\n      .attr(\"class\", \"link\")\n      .attr(\"d\", diagonal);\n\n  var node \u003d svg.selectAll(\".node\")\n      .data(nodes)\n    .enter().append(\"g\")\n      .attr(\"class\", \"node\")\n      .attr(\"transform\", function(d) { return \"rotate(\" + (d.x - 90) + \")translate(\" + d.y + \")\"; })\n\n  node.append(\"circle\")\n      .attr(\"r\", 4.5);\n\n  node.append(\"text\")\n      .attr(\"dy\", \".31em\")\n      .attr(\"text-anchor\", function(d) { return d.x \u003c 180 ? \"start\" : \"end\"; })\n      .attr(\"transform\", function(d) { return d.x \u003c 180 ? \"translate(8)\" : \"rotate(180)translate(-8)\"; })\n      .text(function(d) { return d.name; });\n});\n\nd3.select(self.frameElement).style(\"height\", diameter - 150 + \"px\");\n\n\u003c/script\u003e\n\n"
       },
       "dateCreated": "Jun 23, 2016 9:46:53 PM",
-      "dateStarted": "Jun 24, 2016 9:24:37 PM",
-      "dateFinished": "Jun 24, 2016 9:24:59 PM",
+      "dateStarted": "Jun 30, 2016 11:08:53 AM",
+      "dateFinished": "Jun 30, 2016 11:08:54 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -2786,9 +2787,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%flink\n//this paragraph loads the datasets for rail transport analysis \n\n//define the case classes to create the schema for loading data\n\n/*\nval rawTrnTraffic \u003d env.readCsvFile[(String, String, String)](\"/home/anish/ZeppelinData/Transportation/TrainTraffic.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(1, 2, 3))\nval trnTraffic \u003d rawTrnTraffic.filter(ele \u003d\u003e (ele._1.contains(\"DES\") || ele._1.contains(\"ESS\") || ele._1.contains(\"UKS\") || ele._1.contains(\"FRS\") || \n                                    ele._1.contains(\"ITS\")))\nval trnTrafficRep1 \u003d trnTraffic.map (ele \u003d\u003e (ele._1.substring(0,2), ele._2, ele._3))            //get the data for the representative countries as a whole\n\n\nval rawRailCars \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/RailCars.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval railCars \u003d rawRailCars.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"ES\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || \n                                    ele.country.equals(\"IT\")))\n*/\n\nval rawPassenRlVcl \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/PassenRailVehicle.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval passenRlVcl \u003d rawPassenRlVcl.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"ES\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || \n                                    ele.country.equals(\"IT\")))\n\nval rawPassenRlVclCapa \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/PassenRailVehicleCapa.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval passenRlVclCapa \u003d rawPassenRlVclCapa.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"ES\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || \n                                    ele.country.equals(\"IT\")))\n",
+      "text": "%flink\n//this paragraph loads the datasets for rail transport analysis \n\n//case class for loading datasest of specific type annual rail passengers \ncase class Column14(unit : String, country : String, y15 : String, y14 : String, y13 : String, y12 : String , y11 : String, y10 : String, y9 : String,\n                    y8 : String, y7 : String, y6 : String, y5 : String, y4 : String){\n        \n        def getValues() : Array[String] \u003d {\n            return Array(y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15)\n        }\n}\n\n//case class for loading the datset of specifc type railway employment\ncase class Column8(typ : String, country : String, y12 : String, y11 : String, y10 : String, y9 : String, y8 : String, y7 : String){\n        \n        def getValues() : Array[String] \u003d {\n            return Array(y7, y8, y9, y10, y11, y12)\n        }\n}\n\n/*\nval rawTrnTraffic \u003d env.readCsvFile[(String, String, String)](\"/home/anish/ZeppelinData/Transportation/TrainTraffic.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(1, 2, 3))\nval trnTraffic \u003d rawTrnTraffic.filter(ele \u003d\u003e (ele._1.contains(\"DES\") || ele._1.contains(\"ESS\") || ele._1.contains(\"UKS\") || ele._1.contains(\"FRS\") || \n                                    ele._1.contains(\"ITS\")))\nval trnTrafficRep1 \u003d trnTraffic.map (ele \u003d\u003e (ele._1.substring(0,2), ele._2, ele._3))            //get the data for the representative countries as a whole\n\nval rawRailCars \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/RailCars.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval railCars \u003d rawRailCars.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"ES\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || \n                                    ele.country.equals(\"IT\")))\n\nval rawPassenRlVcl \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/PassenRailVehicle.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval passenRlVcl \u003d rawPassenRlVcl.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"ES\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || \n                                    ele.country.equals(\"IT\")))\n\nval rawPassenRlVclCapa \u003d env.readCsvFile[Column17](\"/home/anish/ZeppelinData/Transportation/PassenRailVehicleCapa.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))\nval passenRlVclCapa \u003d rawPassenRlVclCapa.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"ES\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || \n                                    ele.country.equals(\"IT\")))\n\nval rawAnnRlPassen \u003d env.readCsvFile[Column14](\"/home/anish/ZeppelinData/Transportation/RailAnnPassenTrans.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))\nval annRlPassen \u003d rawAnnRlPassen.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || ele.country.equals(\"IT\") ||\n                                    ele.country.equals(\"ES\")))\n*/\n\nval rawRlEmp \u003d env.readCsvFile[Column8](\"/home/anish/ZeppelinData/Transportation/RailEmployment.tsv\",\n                                    fieldDelimiter \u003d \"\\t\",\n                                    includedFields \u003d Array(1, 2, 3, 4, 5, 6, 7, 8))\nval rlEmp \u003d rawRlEmp.filter(ele \u003d\u003e (ele.country.equals(\"DE\") || ele.country.equals(\"UK\") || ele.country.equals(\"FR\") || ele.country.equals(\"IT\") ||\n                                    ele.country.equals(\"ES\")))\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 29, 2016 2:21:52 PM",
+      "dateUpdated": "Jun 30, 2016 12:09:27 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -2813,18 +2814,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "rawPassenRlVcl: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@1480c17\npassenRlVcl: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@9de806\nrawPassenRlVclCapa: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@153c590\npassenRlVclCapa: org.apache.flink.api.scala.DataSet[Column17] \u003d org.apache.flink.api.scala.DataSet@40b2e4\n"
+        "msg": "defined class Column14\ndefined class Column8\nrawRlEmp: org.apache.flink.api.scala.DataSet[Column8] \u003d org.apache.flink.api.scala.DataSet@12230e2\nrlEmp: org.apache.flink.api.scala.DataSet[Column8] \u003d org.apache.flink.api.scala.DataSet@19289fc\n"
       },
       "dateCreated": "Jun 28, 2016 10:39:30 PM",
-      "dateStarted": "Jun 29, 2016 2:21:52 PM",
-      "dateFinished": "Jun 29, 2016 2:21:54 PM",
+      "dateStarted": "Jun 30, 2016 12:09:28 PM",
+      "dateFinished": "Jun 30, 2016 12:09:30 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%flink\n//rough paragraph used for printing the values\n\npassenRlVclCapa.count\npassenRlVclCapa.print\n",
+      "text": "%flink\n//rough paragraph used for printing the values\n\nrlEmp.count\nrlEmp.print\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 29, 2016 2:23:29 PM",
+      "dateUpdated": "Jun 30, 2016 12:09:39 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -2848,17 +2849,17 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "res36: Long \u003d 13\nColumn17(COA,DE,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,944.37 r,1034.77 )\nColumn17(COA,ES,: ,25 ,26 ,27 ,30 ,24 ,24 ,25 ,36 ,37 ,: ,17 ,22 ,26.4 ,39 )\nColumn17(COA,FR,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: )\nColumn17(COA,IT,: ,: ,644 ,: ,: ,: ,: ,: ,: ,: ,58 ,: ,: ,696 ,705 )\nColumn17(RCA_TRL,DE,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,474205 r,376.88 )\nColumn17(RCA_TRL,ES,: ,172 ,251 ,258 ,295 ,234 ,239 ,245 ,214 ,214 ,: ,231 ,231 ,229 ,228 )\nColumn17(RCA_TRL,FR,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: )\nColumn17(RCA_TRL,IT,: ,: ,98 e,: ,: ,: ,: ,: ,: ,: ,750 ,: ,: ,222 ,208 )\nColumn17(TOTAL,DE,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,1394.45 ,1411.65 )\nColumn17(TOTAL,ES,: ,170 ,275 ,283 ,324 ,258 ,263 ,270 ,250 ,251 ,: ,248 ,253 ,255.4 ,267 )\nColumn17(TOTAL,FR,: ,: ,: ,: ,: ,1329 ,: ,: ,1295 ,1279 ,1271 r,1278 ,1274 ,1276 ,1279 )\nColumn17(TOTAL,IT,: ,: ,772 ,845 ,845 ,860 ,865 ,798 ,788 ,846 ,808 ,: ,: ,918 ,913 )\nColumn17(TOTAL,UK,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: ,: )\n"
+        "msg": "res26: Long \u003d 35\nColumn8(G000,DE,: ,: ,36793 ,: ,: ,: )\nColumn8(G000,ES,3098 ,: ,: ,: ,: ,: )\nColumn8(G000,FR,: ,: ,: ,: ,: ,: )\nColumn8(G000,IT,: ,: ,: ,: ,: ,: )\nColumn8(G000,UK,: ,: ,: ,: ,: ,: )\nColumn8(G002,DE,: ,: ,96418 ,: ,: ,: )\nColumn8(G002,ES,23945 ,: ,: ,: ,: ,: )\nColumn8(G002,FR,: ,: ,: ,: ,: ,: )\nColumn8(G002,IT,: ,: ,: ,: ,: ,: )\nColumn8(G002,UK,: ,: ,: ,: ,: ,: )\nColumn8(G003,DE,: ,: ,37602 ,: ,: ,: )\nColumn8(G003,ES,9737 ,: ,: ,: ,: ,: )\nColumn8(G003,FR,: ,: ,: ,: ,: ,: )\nColumn8(G003,IT,: ,: ,: ,: ,: ,: )\nColumn8(G003,UK,: ,: ,: ,: ,: ,: )\nColumn8(G004,DE,: ,: ,57188 ,: ,: ,: )\nColumn8(G004,ES,5312 ,: ,: ,: ,: ,: )\nColumn8(G004,FR,: ,: ,: ,: ,: ,: )\nColumn8(G004,IT,: ,: ,: ,: ,: ,: )\nColumn8(G004,UK,: ,: ,: ,: ,: ,: )\nColumn8(G005,DE,: ,: ,1628 ,: ,: ,: )\nColumn8(G005,ES,8896 ,: ,: ,: ,: ,: )\nColumn8(G005,FR,: ,: ,: ,: ,: ,: )\nColumn8(G005,IT,: ,: ,: ,: ,: ,: )\nColumn8(G005,UK,: ,: ,: ,: ,: ,: )\nColumn8(G006,DE,: ,: ,1491 ,: ,: ,: )\nColumn8(G006,ES,13866 ,: ,: ,: ,: ,: )\nColumn8(G006,FR,: ,: ,: ,: ,: ,: )\nColumn8(G006,IT,: ,: ,: ,: ,: ,: )\nColumn8(G006,UK,: ,: ,: ,: ,: ,: )\nColumn8(TOTAL,DE,: ,: ,134702 ,: ,: ,60399)\nColumn8(TOTAL,ES,27043 ,20613 ,: ,20671 ,20893 ,20763 )\nColumn8(TOTAL,FR,165928 ,: ,: ,: ,: ,164298)\nColumn8(TOTAL,IT,71930 ,73728 ,80153 b,78991 ,83335 ,87421 )\nColumn8(TOTAL,UK,: ,: ,: ,56000 ,: ,52000)\n"
       },
       "dateCreated": "Jun 29, 2016 8:23:33 AM",
-      "dateStarted": "Jun 29, 2016 2:23:29 PM",
-      "dateFinished": "Jun 29, 2016 2:23:32 PM",
+      "dateStarted": "Jun 30, 2016 12:09:40 PM",
+      "dateFinished": "Jun 30, 2016 12:09:44 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n#### i. Train Traffic and Number of Rail Cars\nThe first factor that we shall examine for rail transport is the train traffic in terms of the number of trains running in the representative countries and the\nnumber of rail cars. This will give us an idea of the relative capacities of the train transport system. As evident in the pie charts shown below, Germany  has\nthe greatest number of trains both in terms of goods trains and passenger trains although the share of passenger trains is less. Germany is followed by the  UK\nhaving the second largest share and then the rest of the countries. The number of rail cars bar chart shown right below the pie charts also confirms  the  fact\nthat Germany is ahead of others in the usage of train transport system having the greatest number of rail cars althroughout. All of these graphs indicate  that\nSpain has the least usage of train transport services.\n\nRight beside the number of rail cars chart, we compare the train usage against the number of rail cars for the representative countries and get to see a  clear\npicture of he congestion in the train transport system. Only Spain that had the least usage of train transport, has increased its stock of rail cars indicating\nthat the train traffic in terms of the number of passengers is more relieved as compared to the other nations; although the train usage itself has increased on\n-ly by a meagre 1.1%. Same is the case with Italy, the number of rail cars have increased in some proportion to the increase in the train usage.  However,  for\nthe other nations this is not the case. For France, the number of rail cars increased for the initial years but didn\u0027t change after that and  for  Germany  and\nthe United Kingdom there has been no change in the number of rail cars at all. This may not be a problem for France and Germany as the train usage also increas\n-ed by only 1-2% but for Britain it might have lead to greater passenger traffic on trains as train usage increased by 3-4% of population.",
-      "dateUpdated": "Jun 29, 2016 1:24:45 PM",
+      "text": "%md\n#### i. Train Traffic and Number of Rail Cars\nThe first factor that we shall examine for rail transport is the train traffic in terms of the number of trains running in the representative countries and the\nnumber of rail cars. This will give us an idea of the relative capacities of the train transport system. As evident in the pie charts shown below, Germany  has\nthe greatest number of trains both in terms of goods trains and passenger trains although the share of passenger trains is less. Germany is followed by the  UK\nhaving the second largest share and then the rest of the countries. The number of rail cars bar chart shown right below the pie charts also confirms  the  fact\nthat Germany is ahead of others in the usage of train transport system having the greatest number of rail cars althroughout. All of these graphs indicate  that\nSpain has the least usage of train transport services.\n\nRight beside the number of rail cars chart, we compare the track length against the number of rail cars for the representative countries and get to see a clear\npicture of he congestion in the train transport system. For Spain and France, the track length has gone up to some extent, but not at all in proportion to  the\nincreasing number of rail cars. Although this does not usually happen in rail transport that rail track lengths are increased in proportion to  the  rail  cars  \nbut still it provides some idea about the increasing train traffic on rail tracks. Only, Italy has had significant increase in the length of track as  compared\nto the rail cars. Other nations have had no increase in the track length indicating that the train traffic has only increased.",
+      "dateUpdated": "Jun 29, 2016 6:10:00 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -3014,7 +3015,7 @@
       "title": "No. of Rail Cars",
       "text": "%flink\n//this paragraph\u0027s used for the visualization of the number of railcars \n\nval railCarsCType \u003d railCars.map(ele \u003d\u003e CommonType1(ele.country, ele.getValues))                //get the common type values for number of rail cars set\nval railCarsTable \u003d getTablDispData1(railCarsCType, 1999)\nprintln(s\"%table $railCarsTable\")\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 29, 2016 1:02:45 PM",
+      "dateUpdated": "Jun 29, 2016 5:56:23 PM",
       "config": {
         "colWidth": 6.0,
         "graph": {
@@ -3074,16 +3075,16 @@
         "msg": "country\tyear\tvalue\nDE\t1999\t1796 \nDE\t2000\t2235 \nDE\t2001\t2235 \nDE\t2002\t2235 \nDE\t2003\t2235 \nDE\t2004\t2235 \nDE\t2005\t2235 \nDE\t2006\t2235 \nDE\t2007\t2235 \nDE\t2008\t2235 \nDE\t2009\t2235 \nDE\t2010\t2235 \nDE\t2011\t2235 \nDE\t2012\t2235 \nDE\t2013\t2235 \nES\t1999\t149 \nES\t2000\t142 \nES\t2001\t141 \nES\t2002\t140 \nES\t2003\t140 \nES\t2004\t147 \nES\t2005\t161 \nES\t2006\t138 \nES\t2007\t135 \nES\t2008\t137 \nES\t2009\t142 \nES\t2010\t149 \nES\t2011\t148 \nES\t2012\t151 \nES\t2013\t151 \nFR\t1999\t736 \nFR\t2000\t783 \nFR\t2001\t848 \nFR\t2002\t923 \nFR\t2003\t956 \nFR\t2004\t975 \nFR\t2005\t996 \nFR\t2006\t996 \nFR\t2007\t996 \nFR\t2008\t996 \nFR\t2009\t996 \nFR\t2010\t996 \nFR\t2011\t996 \nFR\t2012\t996 \nFR\t2013\t996 \nIT\t1999\t818 \nIT\t2000\t818 \nIT\t2001\t818 \nIT\t2002\t808 \nIT\t2003\t745 \nIT\t2004\t707 \nIT\t2005\t765 \nIT\t2006\t788 \nIT\t2007\t781 \nIT\t2008\t773 \nIT\t2009\t754 \nIT\t2010\t756 \nIT\t2011\t756 \nIT\t2012\t711 \nIT\t2013\t711 \nUK\t1999\t1685\nUK\t2000\t1685\nUK\t2001\t1685\nUK\t2002\t1685\nUK\t2003\t1685\nUK\t2004\t1685\nUK\t2005\t1685\nUK\t2006\t1685\nUK\t2007\t1685\nUK\t2008\t1685\nUK\t2009\t1685\nUK\t2010\t1685\nUK\t2011\t1685\nUK\t2012\t1685\nUK\t2013\t1685\nDE\t1999\t3748 \nDE\t2000\t4711 \nDE\t2001\t4711 \nDE\t2002\t4711 \nDE\t2003\t4711 \nDE\t2004\t4711 \nDE\t2005\t4711 \nDE\t2006\t4711 \nDE\t2007\t4711 \nDE\t2008\t4711 \nDE\t2009\t4711 \nDE\t2010\t4711 \nDE\t2011\t4711 \nDE\t2012\t4711 \nDE\t2013\t4711 \nES\t1999\t641 \nES\t2000\t652 \nES\t2001\t665 \nES\t2002\t664 \nES\t2003\t664 \nES\t2004\t679 \nES\t2005\t719 \nES\t2006\t757 \nES\t2007\t827 \nES\t2008\t876 \nES\t2009\t932 \nES\t2010\t930 \nES\t2011\t990 \nES\t2012\t982 \nES\t2013\t982 \nFR\t1999\t1387 \nFR\t2000\t1392 \nFR\t2001\t1405 r\nFR\t2002\t1435 r\nFR\t2003\t1448 \nFR\t2004\t1504 \nFR\t2005\t1580 \nFR\t2006\t1580 \nFR\t2007\t1580 \nFR\t2008\t1580 \nFR\t2009\t1580 \nFR\t2010\t1580 \nFR\t2011\t1580 \nFR\t2012\t1580 \nFR\t2013\t1580 \nIT\t1999\t610 \nIT\t2000\t627 \nIT\t2001\t627 \nIT\t2002\t787 \nIT\t2003\t655 \nIT\t2004\t671 \nIT\t2005\t719 \nIT\t2006\t716 \nIT\t2007\t532 \nIT\t2008\t495 \nIT\t2009\t611 \nIT\t2010\t611 \nIT\t2011\t611 \nIT\t2012\t591 \nIT\t2013\t591 \nUK\t1999\t2198\nUK\t2000\t2198\nUK\t2001\t2198\nUK\t2002\t2198\nUK\t2003\t2198\nUK\t2004\t2198\nUK\t2005\t2198\nUK\t2006\t2198\nUK\t2007\t2198\nUK\t2008\t2198\nUK\t2009\t2198\nUK\t2010\t2198\nUK\t2011\t2198\nUK\t2012\t2198\nUK\t2013\t2198\nDE\t1999\t5544 \nDE\t2000\t6946 \nDE\t2001\t6946 \nDE\t2002\t6946 \nDE\t2003\t6946 \nDE\t2004\t6946 \nDE\t2005\t7639 \nDE\t2006\t7639 \nDE\t2007\t7639 \nDE\t2008\t7639 \nDE\t2009\t7639 \nDE\t2010\t7639 \nDE\t2011\t7639 \nDE\t2012\t7639 \nDE\t2013\t7639 \nES\t1999\t790 \nES\t2000\t794 \nES\t2001\t806 \nES\t2002\t804 \nES\t2003\t804 \nES\t2004\t826 \nES\t2005\t880 \nES\t2006\t895 \nES\t2007\t962 \nES\t2008\t1013 \nES\t2009\t1074 \nES\t2010\t1079 \nES\t2011\t1138 \nES\t2012\t1142 \nES\t2013\t1142 \nFR\t1999\t2123 \nFR\t2000\t2175 \nFR\t2001\t2253 r\nFR\t2002\t2358 r\nFR\t2003\t2404 \nFR\t2004\t2479 \nFR\t2005\t2576 \nFR\t2006\t2576 \nFR\t2007\t2576 \nFR\t2008\t2576 \nFR\t2009\t2576 \nFR\t2010\t2576 \nFR\t2011\t2576 \nFR\t2012\t1887 \nFR\t2013\t1887 \nIT\t1999\t1428 \nIT\t2000\t1445 \nIT\t2001\t1445 \nIT\t2002\t1595 \nIT\t2003\t1400 \nIT\t2004\t1318 \nIT\t2005\t1483 \nIT\t2006\t1504 \nIT\t2007\t1313 \nIT\t2008\t1268 \nIT\t2009\t1365 \nIT\t2010\t1367 \nIT\t2011\t1367 \nIT\t2012\t1302 \nIT\t2013\t1302 \nUK\t1999\t3883\nUK\t2000\t3883\nUK\t2001\t3883\nUK\t2002\t3883\nUK\t2003\t3883\nUK\t2004\t3883\nUK\t2005\t3883\nUK\t2006\t3883\nUK\t2007\t3883\nUK\t2008\t3883\nUK\t2009\t3883\nUK\t2010\t3883\nUK\t2011\t3883\nUK\t2012\t3883\nUK\t2013\t3883\n"
       },
       "dateCreated": "Jun 29, 2016 11:15:33 AM",
-      "dateStarted": "Jun 29, 2016 11:57:27 AM",
-      "dateFinished": "Jun 29, 2016 11:57:29 AM",
+      "dateStarted": "Jun 29, 2016 5:54:46 PM",
+      "dateFinished": "Jun 29, 2016 5:54:51 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "title": "Train Usage vs. No. of Rail Cars",
-      "text": "%flink\n//paragraph to compare the usage of trains with the number of rail car available\n\nval trnCmpTable \u003d getCmpTablDisp(railCarsCType, trnCType, 1999, 1999)                   //get the comparison data in teh table format\nprintln(s\"%table $trnCmpTable\")\n",
+      "title": "Track Length vs. No. of Rail Cars",
+      "text": "%flink\n//paragraph to compare the usage of trains with the number of rail car available\n\n//get the CommonType1 for the rail track length data\nval railLenCType \u003d rlRdWtNetRep1.filter(ele \u003d\u003e ele.typ.equals(\"RL\")).map(ele \u003d\u003e CommonType1(ele.country, ele.getValues))\nval trnCmpTable \u003d getCmpTablDisp(railLenCType, railCarsCType, 2000, 1999)\nprintln(s\"%table $trnCmpTable\")\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jun 29, 2016 1:03:13 PM",
+      "dateUpdated": "Jun 29, 2016 6:27:52 PM",
       "config": {
         "colWidth": 6.0,
         "graph": {
@@ -3144,16 +3145,31 @@
       "result": {
         "code": "SUCCESS",
         "type": "TABLE",
-        "msg": "country\txValue\tyValue\nDE\t1796 \t7.5 \nDE\t2235 \t7.7 \nDE\t2235 \t7.6 \nDE\t2235 \t7.1 \nDE\t2235 \t7.2 \nDE\t2235 \t7.5 \nDE\t2235 \t7.5 \nDE\t2235 \t7.8 \nDE\t2235 \t7.8 \nDE\t2235 \t8.1 \nDE\t2235 \t7.9 \nDE\t2235 \t8 \nDE\t2235 \t8.2 \nDE\t2235 \t8.9 \nDE\t2235 \t8.5 \nES\t149 \t5 \nES\t142 \t5.4 \nES\t141 \t5.5 \nES\t140 \t5.2 \nES\t140 \t5.1 \nES\t147 \t5 \nES\t161 \t5.1 \nES\t138 \t5.2 \nES\t135 \t5 \nES\t137 \t5.5 \nES\t142 \t5.4 \nES\t149 \t5.4 \nES\t148 \t5.6 \nES\t151 \t5.6 \nES\t151 \t6.1 \nFR\t736 \t8.2 \nFR\t783 \t8.6 \nFR\t848 \t8.5 \nFR\t923 \t8.7 \nFR\t956 \t8.4 \nFR\t975 \t8.7 \nFR\t996 \t9.1 \nFR\t996 \t9.4 \nFR\t996 \t9.6 \nFR\t996 \t9.3 \nFR\t996 \t9.4 \nFR\t996 \t9.3\nFR\t996 \t9.3 \nFR\t996 \t9.5 \nFR\t996 \t9.4 \nIT\t818 \t5.4 \nIT\t818 \t5.8 \nIT\t818 \t5.8 \nIT\t808 \t5.6 \nIT\t745 \t5.5 \nIT\t707 \t5.5 \nIT\t765 \t6 \nIT\t788 \t6.1 \nIT\t781 \t6 \nIT\t773 \t6 \nIT\t754 \t5.5 \nIT\t756 \t5.6 \nIT\t756 \t5.8 \nIT\t711 \t6.4 \nIT\t711 \t6.3 \nUK\t1685\t5.3 \nUK\t1685\t5.3 \nUK\t1685\t5.3 \nUK\t1685\t5.3 \nUK\t1685\t5.4 \nUK\t1685\t5.7 \nUK\t1685\t5.9 \nUK\t1685\t6.2 \nUK\t1685\t6.6 \nUK\t1685\t6.9 \nUK\t1685\t6.9 \nUK\t1685\t7.5 \nUK\t1685\t7.9 \nUK\t1685\t8.2 \nUK\t1685\t8.4 \n"
+        "msg": "country\txValue\tyValue\nDE\t44730 \t2235 \nDE\t44439 \t2235 \nDE\t44324 \t2235 \nDE\t43793 \t2235 \nDE\t43180 e\t2235 \nDE\t38206 \t2235 \nDE\t38165 \t2235 \nDE\t38005 \t2235 \nDE\t37798 \t2235 \nDE\t37934 \t2235 \nDE\t37669 \t2235 \nDE\t37846 \t2235 \nDE\t37941 \t2235 \nDE\t37860 \t2235 \nES\t12310 \t142 \nES\t12310 \t141 \nES\t12298 \t140 \nES\t12828 \t140 \nES\t12837 \t147 \nES\t12839 \t161 \nES\t13024 \t138 \nES\t13368 \t135 \nES\t15550 b\t137 \nES\t15257 \t142 \nES\t15837 \t149 \nES\t15932 \t148 \nES\t15922 \t151 \nES\t15937 \t151 \nFR\t31740 \t783 \nFR\t31569 \t848 \nFR\t31502 \t923 \nFR\t31178 \t956 \nFR\t31072 \t975 \nFR\t31066 \t996 \nFR\t31076 \t996 \nFR\t31349 \t996 \nFR\t31234 \t996 \nFR\t29699 \t996 \nFR\t29503 \t996 \nFR\t29671 \t996 \nFR\t29588 \t996 \nFR\t29243 \t996 \nIT\t15927 \t818 \nIT\t15988 \t818 \nIT\t15934 \t808 \nIT\t15913 \t745 \nIT\t15864 \t707 \nIT\t16165 \t765 \nIT\t16237 \t788 \nIT\t16293 \t781 \nIT\t16472 \t773 \nIT\t16626 \t754 \nIT\t16648 \t756 \nIT\t16661 \t756 \nIT\t16676 \t711 \nIT\t16686 \t711 \nUK\t16989 \t1685\nUK\t16992 \t1685\nUK\t16992 \t1685\nUK\t17010 \t1685\nUK\t16833 \t1685\nUK\t16456 \t1685\nUK\t16150 \t1685\nUK\t16248 \t1685\nUK\t16267 \t1685\nUK\t16267 \t1685\nUK\t16206 \t1685\nUK\t16230 \t1685\nUK\t16195 \t1685\nUK\t16193 \t1685\nDE\t125 \t4711 \nDE\t124 \t4711 \nDE\t124 \t4711 \nDE\t123 \t4711 \nDE\t121 \t4711 \nDE\t107 \t4711 \nDE\t107 \t4711 \nDE\t106 \t4711 \nDE\t106 \t4711 \nDE\t106 \t4711 \nDE\t105 \t4711 \nDE\t106 \t4711 \nDE\t106 \t4711 \nDE\t106 \t4711 \nES\t24 \t652 \nES\t24 \t665 \nES\t24 \t664 \nES\t25 \t664 \nES\t25 \t679 \nES\t25 \t719 \nES\t26 \t757 \nES\t27 \t827 \nES\t31 b\t876 \nES\t30 \t932 \nES\t32 \t930 \nES\t32 \t990 \nES\t32 \t982 \nES\t32 \t982 \nFR\t50 \t1392 \nFR\t50 \t1405 r\nFR\t50 \t1435 r\nFR\t49 \t1448 \nFR\t49 \t1504 \nFR\t49 \t1580 \nFR\t49 \t1580 \nFR\t50 \t1580 \nFR\t49 \t1580 \nFR\t47 \t1580 \nFR\t47 \t1580 \nFR\t47 \t1580 \nFR\t47 \t1580 \nFR\t46 \t1580 \nIT\t54 \t627 \nIT\t54 \t627 \nIT\t54 \t787 \nIT\t54 \t655 \nIT\t54 \t671 \nIT\t55 \t719 \nIT\t55 \t716 \nIT\t55 \t532 \nIT\t56 \t495 \nIT\t56 \t611 \nIT\t56 \t611 \nIT\t56 \t611 \nIT\t57 \t591 \nIT\t57 \t591 \nUK\t70 \t2198\nUK\t70 \t2198\nUK\t70 \t2198\nUK\t70 \t2198\nUK\t69 \t2198\nUK\t68 \t2198\nUK\t67 \t2198\nUK\t67 \t2198\nUK\t67 \t2198\nUK\t67 \t2198\nUK\t67 \t2198\nUK\t67 \t2198\nUK\t67 \t2198\nUK\t67 \t2198\n"
       },
       "dateCreated": "Jun 29, 2016 11:47:11 AM",
-      "dateStarted": "Jun 29, 2016 12:59:57 PM",
-      "dateFinished": "Jun 29, 2016 1:00:01 PM",
+      "dateStarted": "Jun 29, 2016 5:55:55 PM",
+      "dateFinished": "Jun 29, 2016 5:56:00 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "config": {},
+      "text": "%md\n#### ii. Passenger Rail Vehicle and Capacities\nNext, we\u0027ll take a look at the total number of passenger rail vehicles in the representative countries and their seating capacities to get an exact picture\nof the rail service providing capacities and how they\u0027ve changed over time. The same trends follow here too, Germany has the most number of passenger  rail\nvehicles and incomparably more seating capacities than the rest of the countries. Even as it has the greatest length of tracks, Germany depends on rail tra\n-nsport more than the rest of the countries which indicates that rail transport helps to relieve other means of transport(particularly road transport) more.\nGermany is followed by Italy, having lesser number of rail vehicles but significantly more seating capacities. France, that had the second greatest  length\nof tracks also has good number of seating capacities. For the others, seating capacities and the number of rail vehicles largely remain the same over time,\nwith the lowest being for Spain which seems to be using train services on a minimal scale.\n\nThe paragraph below the bar charts compares the train usage against the number of passenger rail vehicles. The following cases may arise for this graph :-\n\n\u003e *The train usage increase is equal to the increase in the number of passenger rail cars*\n\nThis would be the ideal case in which the railway authorities of the countries are able to scale the rail infrastructure according to the increasing demands.\nSince the number of people using the train services cannot be reduced, it would result in just the ideal amount of traffic, both in terms of the trains runn\n-ing on tracks and for the passengers inside the train coaches.\n\n\u003e *The train usage is more than the increase in the number of passenger rail cars*\n\nAlthough this may not lead to congestion on the railway tracks because the rail cars don\u0027t increase, it would impact the passengers in  the  train  coaches.\nThey may have to face increasing congestion or may be even compete with fellow passengers for seats. However, the chances of this happening  are  altogether\nvery low due to the less population in European countries and considering the fact that train usage is within 9% of the total population of commuters.\n\n\u003e *The train usage is less than the increase in the number of passenger rail cars*\n\nThis is hardly going to be the case as it is understood and observed that the countries and their railway authorities are reluctant in increasing the number\nof rail cars or passenger carrying vehicles. This is so because of the altogether less usage of rail transport, so the investment in rail infrastructure wou\n-ld not provide the expected returns to compensate for the investments. \n\nFrance again out performs the other nations in terms of how well it has been able to scale its rail infrastructure with increasing train usage. This indicat\n-es that trains in France may be relatively less congested than the other countries, considering the fact that for a 1.1% increase in population, the number\nof passenger rail cars increased by 1000 units. Italy too is on the same line as France as it has been able to increase its passenger rail vehicles with not\neven 1% increase in the train usage. Spain has also increased its passenger rail cars without significant increase in the train usage. However, in the  case\nof Spain and Italy this may cause unecessary traffic on rail tracks. For Germany and England, the passenger rail tracks have not increased with increase  in\ntrain usage leading to slightly more congestion in the trains.\n",
+      "dateUpdated": "Jun 29, 2016 8:43:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
       "settings": {
         "params": {},
         "forms": {}
@@ -3166,7 +3182,56 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "config": {},
+      "title": "No. of Passenger Rail Vehicles",
+      "text": "%flink\n//this paragraph displays the total passenger rail vehicles\n\nval passenRlVclCType \u003d passenRlVcl.map(ele \u003d\u003e CommonType1(ele.country, ele.getValues))          //create the common type for the visualization\nval passenRlVclTable \u003d getTablDispData1(passenRlVclCType, 1999)\nprintln(s\"%table $passenRlVclTable\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 30, 2016 9:50:38 AM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "value",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "helium": {},
+        "title": true,
+        "editorHide": true
+      },
       "settings": {
         "params": {},
         "forms": {}
@@ -3174,7 +3239,504 @@
       "apps": [],
       "jobName": "paragraph_1467186888269_64608631",
       "id": "20160629-132448_25578896",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\tyear\tvalue\nDE\t1999\t14811\nDE\t2000\t14071 \nDE\t2001\t12771 \nDE\t2002\t13009 \nDE\t2003\t13009 \nDE\t2004\t13009 \nDE\t2005\t13009 \nDE\t2006\t13009 \nDE\t2007\t13009 \nDE\t2008\t13009 \nDE\t2009\t13009 \nDE\t2010\t13009 \nDE\t2011\t13009 \nDE\t2012\t13009 \nDE\t2013\t13009 \nES\t1999\t1345 \nES\t2000\t1207 \nES\t2001\t1146 \nES\t2002\t1250 \nES\t2003\t1250 \nES\t2004\t1265 \nES\t2005\t1323 \nES\t2006\t1310 \nES\t2007\t1194 \nES\t2008\t1257 \nES\t2009\t1253 \nES\t2010\t1250 \nES\t2011\t1215 \nES\t2012\t698 \nES\t2013\t698 \nFR\t1999\t7493 \nFR\t2000\t7340 \nFR\t2001\t7204 \nFR\t2002\t7028 \nFR\t2003\t6738 \nFR\t2004\t6559 \nFR\t2005\t6409 \nFR\t2006\t6249 \nFR\t2007\t5800 \nFR\t2008\t5629 \nFR\t2009\t5629 \nFR\t2010\t5629 \nFR\t2011\t5629 \nFR\t2012\t5629 \nFR\t2013\t5629 \nIT\t1999\t9620 \nIT\t2000\t9632 \nIT\t2001\t9632 \nIT\t2002\t8788 \nIT\t2003\t8319 \nIT\t2004\t8010 \nIT\t2005\t8279 \nIT\t2006\t7975 \nIT\t2007\t8038 \nIT\t2008\t7614 \nIT\t2009\t7486 \nIT\t2010\t7476 \nIT\t2011\t6951 \nIT\t2012\t6288 \nIT\t2013\t6288 \nUK\t1999\t2496\nUK\t2000\t2496\nUK\t2001\t2496\nUK\t2002\t2496\nUK\t2003\t2496\nUK\t2004\t2496\nUK\t2005\t2496\nUK\t2006\t2496\nUK\t2007\t2496\nUK\t2008\t2496\nUK\t2009\t2496\nUK\t2010\t2496\nUK\t2011\t2496\nUK\t2012\t2496\nUK\t2013\t2496\nDE\t1999\t5631\nDE\t2000\t7026 \nDE\t2001\t8093 \nDE\t2002\t8714 \nDE\t2003\t8714 \nDE\t2004\t8714 \nDE\t2005\t8714 \nDE\t2006\t8714 \nDE\t2007\t8714 \nDE\t2008\t8714 \nDE\t2009\t8714 \nDE\t2010\t8714 \nDE\t2011\t8714 \nDE\t2012\t8714 \nDE\t2013\t8714 \nES\t1999\t2484 \nES\t2000\t2494 \nES\t2001\t2508 \nES\t2002\t2492 \nES\t2003\t2492 \nES\t2004\t2578 \nES\t2005\t2274 \nES\t2006\t2552 \nES\t2007\t2664 \nES\t2008\t2811 \nES\t2009\t3241 \nES\t2010\t3337 \nES\t2011\t3513 \nES\t2012\t3316 \nES\t2013\t3316 \nFR\t1999\t8271 \nFR\t2000\t8354 \nFR\t2001\t8449 \nFR\t2002\t8657 \nFR\t2003\t8822\nFR\t2004\t9071 \nFR\t2005\t9470 \nFR\t2006\t9738 \nFR\t2007\t10063 \nFR\t2008\t10626 \nFR\t2009\t10626 \nFR\t2010\t10626 \nFR\t2011\t10626 \nFR\t2012\t10626 \nFR\t2013\t10626 \nIT\t1999\t2960 \nIT\t2000\t2303 \nIT\t2001\t2303 \nIT\t2002\t2219 \nIT\t2003\t2055 \nIT\t2004\t2026 \nIT\t2005\t1546 \nIT\t2006\t2018 \nIT\t2007\t1711 \nIT\t2008\t1668 \nIT\t2009\t1644 \nIT\t2010\t1644 \nIT\t2011\t1644 \nIT\t2012\t1547 \nIT\t2013\t1547 \nUK\t1999\t8247\nUK\t2000\t8247\nUK\t2001\t8247\nUK\t2002\t8247\nUK\t2003\t8247\nUK\t2004\t8247\nUK\t2005\t8247\nUK\t2006\t8247\nUK\t2007\t8247\nUK\t2008\t8247\nUK\t2009\t8247\nUK\t2010\t8247\nUK\t2011\t8247\nUK\t2012\t8247\nUK\t2013\t8247\nDE\t1999\t20442\nDE\t2000\t21097 \nDE\t2001\t20864 \nDE\t2002\t21723 \nDE\t2003\t21723 \nDE\t2004\t21723 \nDE\t2005\t12047 \nDE\t2006\t12047 \nDE\t2007\t12047 \nDE\t2008\t12047 \nDE\t2009\t12047 \nDE\t2010\t12047 \nDE\t2011\t12047 \nDE\t2012\t12047 \nDE\t2013\t12047 \nES\t1999\t3829 \nES\t2000\t3701 \nES\t2001\t3654 \nES\t2002\t3742 \nES\t2003\t3742 \nES\t2004\t3843 \nES\t2005\t3597 \nES\t2006\t3862 \nES\t2007\t3858 \nES\t2008\t4068 \nES\t2009\t4494 \nES\t2010\t4587 \nES\t2011\t4728 \nES\t2012\t4344 \nES\t2013\t4344 \nFR\t1999\t15764 \nFR\t2000\t15694 \nFR\t2001\t16653\nFR\t2002\t15685 \nFR\t2003\t15553 \nFR\t2004\t15630 \nFR\t2005\t15879 \nFR\t2006\t15987 \nFR\t2007\t15863 \nFR\t2008\t16255 \nFR\t2009\t16255 \nFR\t2010\t16255 \nFR\t2011\t16255 \nFR\t2012\t15358 \nFR\t2013\t15358 \nIT\t1999\t12580 \nIT\t2000\t11935 \nIT\t2001\t11935 \nIT\t2002\t11007 \nIT\t2003\t10374 \nIT\t2004\t10036 \nIT\t2005\t9825 \nIT\t2006\t9993 \nIT\t2007\t9749 \nIT\t2008\t9282 \nIT\t2009\t9130 \nIT\t2010\t9120 \nIT\t2011\t8595 \nIT\t2012\t7835 \nIT\t2013\t7835 \nUK\t1999\t10743\nUK\t2000\t10743\nUK\t2001\t10743\nUK\t2002\t10743\nUK\t2003\t10743\nUK\t2004\t10743\nUK\t2005\t10743\nUK\t2006\t10743\nUK\t2007\t10743\nUK\t2008\t10743\nUK\t2009\t10743\nUK\t2010\t10743\nUK\t2011\t10743\nUK\t2012\t10743\nUK\t2013\t10743\n"
+      },
       "dateCreated": "Jun 29, 2016 1:24:48 PM",
+      "dateStarted": "Jun 29, 2016 4:24:24 PM",
+      "dateFinished": "Jun 29, 2016 4:24:27 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Seating Capacities(in thousands)",
+      "text": "%flink\n//paragraph to visualize the seating capacities in the passenger rail vehicles\n\nval passenRlVclCapaCType \u003d passenRlVclCapa.map(ele \u003d\u003e CommonType1(ele.country, ele.getValues))          //get the values in the common type for visualization\nval passenRlVclCapaTable \u003d getTablDispData1(passenRlVclCapaCType, 1999)\nprintln(s\"%table $passenRlVclCapaTable\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 30, 2016 12:03:56 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "value",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "helium": {},
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1467197664106_58250596",
+      "id": "20160629-162424_14174788",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\tyear\tvalue\nDE\t1999\t1034.77 \nDE\t2000\t944.37\nDE\t2001\t944.37\nDE\t2002\t944.37\nDE\t2003\t944.37\nDE\t2004\t944.37\nDE\t2005\t944.37\nDE\t2006\t944.37\nDE\t2007\t944.37\nDE\t2008\t944.37\nDE\t2009\t944.37\nDE\t2010\t944.37\nDE\t2011\t944.37\nDE\t2012\t944.37\nDE\t2013\t944.37\nES\t1999\t39 \nES\t2000\t26.4 \nES\t2001\t22 \nES\t2002\t17 \nES\t2003\t17 \nES\t2004\t37 \nES\t2005\t36 \nES\t2006\t25 \nES\t2007\t24 \nES\t2008\t24 \nES\t2009\t30 \nES\t2010\t27 \nES\t2011\t26 \nES\t2012\t25 \nES\t2013\t25 \nFR\t1999\t0\nFR\t2000\t0\nFR\t2001\t0\nFR\t2002\t0\nFR\t2003\t0\nFR\t2004\t0\nFR\t2005\t0\nFR\t2006\t0\nFR\t2007\t0\nFR\t2008\t0\nFR\t2009\t0\nFR\t2010\t0\nFR\t2011\t0\nFR\t2012\t0\nFR\t2013\t0\nIT\t1999\t705 \nIT\t2000\t696 \nIT\t2001\t696 \nIT\t2002\t696 \nIT\t2003\t58 \nIT\t2004\t58 \nIT\t2005\t58 \nIT\t2006\t58 \nIT\t2007\t58 \nIT\t2008\t58 \nIT\t2009\t58 \nIT\t2010\t58 \nIT\t2011\t644 \nIT\t2012\t644 \nIT\t2013\t644 \nDE\t1999\t376.88 \nDE\t2000\t474205\nDE\t2001\t474205\nDE\t2002\t474205\nDE\t2003\t474205\nDE\t2004\t474205\nDE\t2005\t474205\nDE\t2006\t474205\nDE\t2007\t474205\nDE\t2008\t474205\nDE\t2009\t474205\nDE\t2010\t474205\nDE\t2011\t474205\nDE\t2012\t474205\nDE\t2013\t474205\nES\t1999\t228 \nES\t2000\t229 \nES\t2001\t231 \nES\t2002\t231 \nES\t2003\t231 \nES\t2004\t214 \nES\t2005\t214 \nES\t2006\t245 \nES\t2007\t239 \nES\t2008\t234 \nES\t2009\t295 \nES\t2010\t258 \nES\t2011\t251 \nES\t2012\t172 \nES\t2013\t172 \nFR\t1999\t0\nFR\t2000\t0\nFR\t2001\t0\nFR\t2002\t0\nFR\t2003\t0\nFR\t2004\t0\nFR\t2005\t0\nFR\t2006\t0\nFR\t2007\t0\nFR\t2008\t0\nFR\t2009\t0\nFR\t2010\t0\nFR\t2011\t0\nFR\t2012\t0\nFR\t2013\t0\nIT\t1999\t208 \nIT\t2000\t222 \nIT\t2001\t222 \nIT\t2002\t222 \nIT\t2003\t750 \nIT\t2004\t750 \nIT\t2005\t750 \nIT\t2006\t750 \nIT\t2007\t750 \nIT\t2008\t750 \nIT\t2009\t750 \nIT\t2010\t750 \nIT\t2011\t98 e\nIT\t2012\t98 e\nIT\t2013\t98 e\nDE\t1999\t1411.65 \nDE\t2000\t1394.45 \nDE\t2001\t1394.45 \nDE\t2002\t1394.45 \nDE\t2003\t1394.45 \nDE\t2004\t1394.45 \nDE\t2005\t1394.45 \nDE\t2006\t1394.45 \nDE\t2007\t1394.45 \nDE\t2008\t1394.45 \nDE\t2009\t1394.45 \nDE\t2010\t1394.45 \nDE\t2011\t1394.45 \nDE\t2012\t1394.45 \nDE\t2013\t1394.45 \nES\t1999\t267 \nES\t2000\t255.4 \nES\t2001\t253 \nES\t2002\t248 \nES\t2003\t248 \nES\t2004\t251 \nES\t2005\t250 \nES\t2006\t270 \nES\t2007\t263 \nES\t2008\t258 \nES\t2009\t324 \nES\t2010\t283 \nES\t2011\t275 \nES\t2012\t170 \nES\t2013\t170 \nFR\t1999\t1279 \nFR\t2000\t1276 \nFR\t2001\t1274 \nFR\t2002\t1278 \nFR\t2003\t1271\nFR\t2004\t1279 \nFR\t2005\t1295 \nFR\t2006\t1295 \nFR\t2007\t1295 \nFR\t2008\t1329 \nFR\t2009\t1329 \nFR\t2010\t1329 \nFR\t2011\t1329 \nFR\t2012\t1329 \nFR\t2013\t1329 \nIT\t1999\t913 \nIT\t2000\t918 \nIT\t2001\t918 \nIT\t2002\t918 \nIT\t2003\t808 \nIT\t2004\t846 \nIT\t2005\t788 \nIT\t2006\t798 \nIT\t2007\t865 \nIT\t2008\t860 \nIT\t2009\t845 \nIT\t2010\t845 \nIT\t2011\t772 \nIT\t2012\t772 \nIT\t2013\t772 \nUK\t1999\t744\nUK\t2000\t744\nUK\t2001\t744\nUK\t2002\t744\nUK\t2003\t744\nUK\t2004\t744\nUK\t2005\t744\nUK\t2006\t744\nUK\t2007\t744\nUK\t2008\t744\nUK\t2009\t744\nUK\t2010\t744\nUK\t2011\t744\nUK\t2012\t744\nUK\t2013\t744\n"
+      },
+      "dateCreated": "Jun 29, 2016 4:24:24 PM",
+      "dateStarted": "Jun 30, 2016 12:03:56 PM",
+      "dateFinished": "Jun 30, 2016 12:03:58 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Train Usage vs. No. of Passenger Rail Vehicles",
+      "text": "%flink\n//compare the train usage against the passenger rail cars\n\n//first get the total passenger train cars in the common type format\nval passenRlVclCType2 \u003d passenRlVcl.filter(ele \u003d\u003e ele.typ.equals(\"TOTAL\")).map(ele \u003d\u003e CommonType1(ele.country, ele.getValues))\nval passenUsgCmpTable \u003d getCmpTablDisp(passenRlVclCType2, trnCType, 1999, 1999)\nprintln(s\"%table $passenUsgCmpTable\")\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 30, 2016 9:54:22 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "scatterChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "xValue",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "xValue",
+              "index": 1.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "yValue",
+              "index": 2.0,
+              "aggr": "sum"
+            },
+            "group": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "size": {
+              "name": "yValue",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "helium": {},
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1467198324618_-71879900",
+      "id": "20160629-163524_30251563",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\txValue\tyValue\nDE\t20442\t7.5 \nDE\t21097 \t7.7 \nDE\t20864 \t7.6 \nDE\t21723 \t7.1 \nDE\t21723 \t7.2 \nDE\t21723 \t7.5 \nDE\t12047 \t7.5 \nDE\t12047 \t7.8 \nDE\t12047 \t7.8 \nDE\t12047 \t8.1 \nDE\t12047 \t7.9 \nDE\t12047 \t8 \nDE\t12047 \t8.2 \nDE\t12047 \t8.9 \nDE\t12047 \t8.5 \nES\t3829 \t5 \nES\t3701 \t5.4 \nES\t3654 \t5.5 \nES\t3742 \t5.2 \nES\t3742 \t5.1 \nES\t3843 \t5 \nES\t3597 \t5.1 \nES\t3862 \t5.2 \nES\t3858 \t5 \nES\t4068 \t5.5 \nES\t4494 \t5.4 \nES\t4587 \t5.4 \nES\t4728 \t5.6 \nES\t4344 \t5.6 \nES\t4344 \t6.1 \nFR\t15764 \t8.2 \nFR\t15694 \t8.6 \nFR\t16653\t8.5 \nFR\t15685 \t8.7 \nFR\t15553 \t8.4 \nFR\t15630 \t8.7 \nFR\t15879 \t9.1 \nFR\t15987 \t9.4 \nFR\t15863 \t9.6 \nFR\t16255 \t9.3 \nFR\t16255 \t9.4 \nFR\t16255 \t9.3\nFR\t16255 \t9.3 \nFR\t15358 \t9.5 \nFR\t15358 \t9.4 \nIT\t12580 \t5.4 \nIT\t11935 \t5.8 \nIT\t11935 \t5.8 \nIT\t11007 \t5.6 \nIT\t10374 \t5.5 \nIT\t10036 \t5.5 \nIT\t9825 \t6 \nIT\t9993 \t6.1 \nIT\t9749 \t6 \nIT\t9282 \t6 \nIT\t9130 \t5.5 \nIT\t9120 \t5.6 \nIT\t8595 \t5.8 \nIT\t7835 \t6.4 \nIT\t7835 \t6.3 \nUK\t10743\t5.3 \nUK\t10743\t5.3 \nUK\t10743\t5.3 \nUK\t10743\t5.3 \nUK\t10743\t5.4 \nUK\t10743\t5.7 \nUK\t10743\t5.9 \nUK\t10743\t6.2 \nUK\t10743\t6.6 \nUK\t10743\t6.9 \nUK\t10743\t6.9 \nUK\t10743\t7.5 \nUK\t10743\t7.9 \nUK\t10743\t8.2 \nUK\t10743\t8.4 \n"
+      },
+      "dateCreated": "Jun 29, 2016 4:35:24 PM",
+      "dateStarted": "Jun 29, 2016 6:32:16 PM",
+      "dateFinished": "Jun 29, 2016 6:32:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### iii. Rail Transport Passengers and Railway Employment\nPassengers form the most crucial component of any transport system. We will now have a look at the number of passengers making use of the rail transport system.\nThe total distance travelled has been the highest for France and Germany and this is understood because they have the maximum number of passenger rail  vehicles\ncombined with the maximum train usage. The total distances travelled have been increasing for United Kingdom which experianced a rapid surge in the amount of tr\n-ain usage but this occurs without any increase in the number of passenger rail cars. For Italy and Spain, the total travel distances have remained largely cons\n-tant which indicates no increase in the usage of train transport services.\n\nTo the right(below), we have a graph showing the total number of passengers that have been using the train services. As indicated by all of the graphs and charts\nabove, we have Germany leading the others by a great margin with a net increase in the number of passengers. This is followed by United Kingdom and  France.  The\nrest of the nations have had the number of passengers constant, althroughout. For France, the total distance travelled has been high and increasing  without  any\nappreciable increase in the number of passengers, which means that passenger usage of the train servies has increased. This may be due to an increase in the serv\n-ices being offered - more trains running within the same time schedule without any increase in the length of tracks or the rail cars; or it may be due to the pa\n-ssengers shift of commuting choices and relative preference to the usage of trains caused by factors like cheaper fares and quick service.\n",
+      "dateUpdated": "Jun 30, 2016 9:36:49 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1467205336486_1686693631",
+      "id": "20160629-183216_8018223",
+      "dateCreated": "Jun 29, 2016 6:32:16 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Total Distance Travelled(in million kM)",
+      "text": "%flink\n//parargraph to generate the visualization for the total distances travelled by the passengers\n\nval annRlPassenCType1 \u003d annRlPassen.filter( _.unit.equals(\"MIO_PKM\")).map(ele \u003d\u003e CommonType1(ele.country, ele.getValues))   //get the common type for the dataset\nval annRlPassenTable1 \u003d getTablDispData1(annRlPassenCType1, 2004)\nprintln(s\"%table $annRlPassenTable1\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 30, 2016 8:44:55 AM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "lineChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "value",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "helium": {},
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1467213214177_846260229",
+      "id": "20160629-204334_28396827",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\tyear\tvalue\nDE\t2004\t75903 \nDE\t2005\t74944 \nDE\t2006\t78735 \nDE\t2007\t79098 \nDE\t2008\t82428 \nDE\t2009\t81206 \nDE\t2010\t82837 \nDE\t2011\t82837 \nDE\t2012\t93918 \nDE\t2013\t89450 \nDE\t2014\t90978 \nDE\t2015\t90978 \nES\t2004\t20328 \nES\t2005\t21151 \nES\t2006\t21620 \nES\t2007\t21362 \nES\t2008\t23453 \nES\t2009\t23055 \nES\t2010\t22348 \nES\t2011\t22937 \nES\t2012\t22452 \nES\t2013\t23766 \nES\t2014\t25146 \nES\t2015\t26247\nFR\t2004\t74359 \nFR\t2005\t76884 \nFR\t2006\t79809 \nFR\t2007\t81961 \nFR\t2008\t86516 \nFR\t2009\t88610 \nFR\t2010\t88610 \nFR\t2011\t88610 \nFR\t2012\t91205 \nFR\t2013\t90485 \nFR\t2014\t89499 \nFR\t2015\t89499 \nIT\t2004\t49254 \nIT\t2005\t50088 \nIT\t2006\t50185 \nIT\t2007\t49780 \nIT\t2008\t49524 \nIT\t2009\t48124 \nIT\t2010\t47172 \nIT\t2011\t47172 \nIT\t2012\t46759 \nIT\t2013\t48739 \nIT\t2014\t49957 \nIT\t2015\t49957 \nUK\t2004\t43474 \nUK\t2005\t44642 \nUK\t2006\t47297 \nUK\t2007\t50474 \nUK\t2008\t53002 \nUK\t2009\t52765 \nUK\t2010\t55831 \nUK\t2011\t58462 \nUK\t2012\t60783 \nUK\t2013\t61950 \nUK\t2014\t64711 \nUK\t2015\t64711 \n"
+      },
+      "dateCreated": "Jun 29, 2016 8:43:34 PM",
+      "dateStarted": "Jun 30, 2016 8:35:56 AM",
+      "dateFinished": "Jun 30, 2016 8:35:58 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "No. of Passengers(in thousands)",
+      "text": "%flink\n//parargraph to generate the visualization for the population of passengers that have used rail transport\n\nval annRlPassenCType2 \u003d annRlPassen.filter( _.unit.equals(\"THS_PAS\")).map(ele \u003d\u003e CommonType1(ele.country, ele.getValues))   //get the common type for the dataset\nval annRlPassenTable2 \u003d getTablDispData1(annRlPassenCType2, 2004)\nprintln(s\"%table $annRlPassenTable2\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 30, 2016 9:52:57 AM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "lineChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "value",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "helium": {},
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1467255912260_893241084",
+      "id": "20160630-083512_9543765",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\tyear\tvalue\nDE\t2004\t2091268 \nDE\t2005\t2130469 \nDE\t2006\t2228926 \nDE\t2007\t2226952 \nDE\t2008\t2336683 \nDE\t2009\t2323243 \nDE\t2010\t2368375 \nDE\t2011\t2368375 \nDE\t2012\t2564498 \nDE\t2013\t2612764 \nDE\t2014\t2693080 \nDE\t2015\t2693080 \nES\t2004\t593847 \nES\t2005\t615685 \nES\t2006\t628832 \nES\t2007\t620421 \nES\t2008\t614514 \nES\t2009\t578265 \nES\t2010\t564392 \nES\t2011\t579440 \nES\t2012\t568865 \nES\t2013\t563602 \nES\t2014\t564606 \nES\t2015\t568699\nFR\t2004\t943899 \nFR\t2005\t983766 \nFR\t2006\t1021931 \nFR\t2007\t1065423 \nFR\t2008\t1093033 \nFR\t2009\t1101640 \nFR\t2010\t1101640 \nFR\t2011\t1101640 \nFR\t2012\t1150297 \nFR\t2013\t1164822 \nFR\t2014\t1157679 \nFR\t2015\t1157679 \nIT\t2004\t728177 \nIT\t2005\t759863 \nIT\t2006\t753536 \nIT\t2007\t774480 \nIT\t2008\t802440 \nIT\t2009\t799873 \nIT\t2010\t838892 \nIT\t2011\t838892 \nIT\t2012\t854836 \nIT\t2013\t854756 \nIT\t2014\t864123 \nIT\t2015\t864123 \nUK\t2004\t1069673 \nUK\t2005\t1103668 \nUK\t2006\t1156866 \nUK\t2007\t1238500 \nUK\t2008\t1304591 \nUK\t2009\t1271551 \nUK\t2010\t1366485 \nUK\t2011\t1463612 \nUK\t2012\t1543261 \nUK\t2013\t1599484 \nUK\t2014\t1679746 \nUK\t2015\t1679746 \n"
+      },
+      "dateCreated": "Jun 30, 2016 8:35:12 AM",
+      "dateStarted": "Jun 30, 2016 8:41:45 AM",
+      "dateFinished": "Jun 30, 2016 8:41:47 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n",
+      "dateUpdated": "Jun 30, 2016 9:59:02 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1467256305166_1926860520",
+      "id": "20160630-084145_26177679",
+      "dateCreated": "Jun 30, 2016 8:41:45 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Passenger Rail Vehicles vs. No. of Passengers(in thousands)",
+      "text": "%flink\n//paragraph used for the visualization of passenger rail vehicles and the number of passengers\n\nval passenRlVclCType3 \u003d passenRlVcl.filter(ele \u003d\u003e ele.typ.equals(\"TOTAL\")).map(ele \u003d\u003e CommonType1(ele.country, ele.getValues)) //get the values in the common type format\nval passenNumCmpTable \u003d getCmpTablDisp(annRlPassenCType2, passenRlVclCType3, 2004, 1999)\nprintln(s\"%table $passenNumCmpTable\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 30, 2016 12:17:00 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "scatterChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "xValue",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "xValue",
+              "index": 1.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "yValue",
+              "index": 2.0,
+              "aggr": "sum"
+            },
+            "group": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "size": {
+              "name": "yValue",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "helium": {},
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1467259619036_14588967",
+      "id": "20160630-093659_24718658",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\txValue\tyValue\nDE\t2091268 \t21723 \nDE\t2130469 \t12047 \nDE\t2228926 \t12047 \nDE\t2226952 \t12047 \nDE\t2336683 \t12047 \nDE\t2323243 \t12047 \nDE\t2368375 \t12047 \nDE\t2368375 \t12047 \nDE\t2564498 \t12047 \nDE\t2612764 \t12047 \nES\t593847 \t3843 \nES\t615685 \t3597 \nES\t628832 \t3862 \nES\t620421 \t3858 \nES\t614514 \t4068 \nES\t578265 \t4494 \nES\t564392 \t4587 \nES\t579440 \t4728 \nES\t568865 \t4344 \nES\t563602 \t4344 \nFR\t943899 \t15630 \nFR\t983766 \t15879 \nFR\t1021931 \t15987 \nFR\t1065423 \t15863 \nFR\t1093033 \t16255 \nFR\t1101640 \t16255 \nFR\t1101640 \t16255 \nFR\t1101640 \t16255 \nFR\t1150297 \t15358 \nFR\t1164822 \t15358 \nIT\t728177 \t10036 \nIT\t759863 \t9825 \nIT\t753536 \t9993 \nIT\t774480 \t9749 \nIT\t802440 \t9282 \nIT\t799873 \t9130 \nIT\t838892 \t9120 \nIT\t838892 \t8595 \nIT\t854836 \t7835 \nIT\t854756 \t7835 \nUK\t1069673 \t10743\nUK\t1103668 \t10743\nUK\t1156866 \t10743\nUK\t1238500 \t10743\nUK\t1304591 \t10743\nUK\t1271551 \t10743\nUK\t1366485 \t10743\nUK\t1463612 \t10743\nUK\t1543261 \t10743\nUK\t1599484 \t10743\n"
+      },
+      "dateCreated": "Jun 30, 2016 9:36:59 AM",
+      "dateStarted": "Jun 30, 2016 9:55:13 AM",
+      "dateFinished": "Jun 30, 2016 9:55:16 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Persons Employed in Railways",
+      "text": "%flink\n//paragraph to visualize the railway employment services.\n\nval rlEmpCType \u003d rlEmp.filter( _.typ.equals(\"TOTAL\")).map(ele \u003d\u003e CommonType1(ele.country, ele.getValues))   //get the common type format for visualization\nval rlEmpTable \u003d getTablDispData1(rlEmpCType, 2007)\nprintln(s\"%table $rlEmpTable\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jun 30, 2016 12:18:36 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 325.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "value",
+              "index": 2.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [
+            {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "scatter": {
+            "xAxis": {
+              "name": "country",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "year",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "helium": {},
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1467260712773_-372718023",
+      "id": "20160630-095512_3148887",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "country\tyear\tvalue\nDE\t2007\t60399\nDE\t2008\t60399\nDE\t2009\t60399\nDE\t2010\t134702 \nDE\t2011\t134702 \nDE\t2012\t134702 \nES\t2007\t20763 \nES\t2008\t20893 \nES\t2009\t20671 \nES\t2010\t20671 \nES\t2011\t20613 \nES\t2012\t27043 \nFR\t2007\t164298\nFR\t2008\t164298\nFR\t2009\t164298\nFR\t2010\t164298\nFR\t2011\t164298\nFR\t2012\t165928 \nIT\t2007\t87421 \nIT\t2008\t83335 \nIT\t2009\t78991 \nIT\t2010\t80153 b\nIT\t2011\t73728 \nIT\t2012\t71930 \nUK\t2007\t52000\nUK\t2008\t52000\nUK\t2009\t56000 \nUK\t2010\t56000 \nUK\t2011\t56000 \nUK\t2012\t56000 \n"
+      },
+      "dateCreated": "Jun 30, 2016 9:55:12 AM",
+      "dateStarted": "Jun 30, 2016 12:14:22 PM",
+      "dateFinished": "Jun 30, 2016 12:14:25 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1467269062433_-1371355583",
+      "id": "20160630-121422_5766950",
+      "dateCreated": "Jun 30, 2016 12:14:22 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
