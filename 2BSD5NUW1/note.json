@@ -1,0 +1,140 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# **WorldWideWeb**\n\nby Anish Singh\nblog site : [Zeppelin Notes](http://zeppelinnotes.blogspot.in)\n[Image]\n\n#### Introduction\n**WorldWideWeb** is a notebook that explores web crawl data and performs analysis on that data to gain interesting insights. The data used for the analysis is open data made available by the\ncommon crawl organization which provides web crawl data for free and open use. The common crawl organization builds and maintains an open repository web crawl data that can be  accessed  and\nanalysed by anyone. They have the web crawl data for the last seven years and the data is available in three formats : the WARC format, containing the raw crawl data, the WAT format, contain\n-ing the metadata for the crawled data and the WET format, containing the text extracted from the crawled data. The WARC format has largely been used for analysis in this  notebook  and  the\nother formats have been used as and when required. For the analysis and manipulation of the Warc format files, no tool other than the Warcbase library could have been more useful.  The  data\nfor only the month of May 2016 has been considered as the entire corpus is too large to be analysed at once, considering the fact that this notebook was running on a m4.xlarge EC2  instance.\nThe data for the month of May is divided into segments and only six segments have been considered, again due to the restricting capabilities of the machine used to design this notebook. More\ninformation about the design of the notebook and choosing of the data sets may be found on the blogsite mentioned above.\n\nThis notebook uses Apache Spark for analysis of common crawl data and the visualization capabilities of Apache Zeppelin.",
+      "dateUpdated": "Jul 16, 2016 2:03:22 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468654360603_553258185",
+      "id": "20160716-073240_1314434417",
+      "dateCreated": "Jul 16, 2016 7:32:40 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n#this paragraph downlaods the common crawl datasets needed for analysis\n\n#download the datasets for the first three segments of May\n wget -O ~/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz \"https://commoncrawl.s3.amazonaws.com/crawl-data/CC-MAIN-2016-22/segments/1464049270134.8/warc/CC-MAIN-20160524002110-00000-ip-10-185-217-139.ec2.internal.warc.gz\"\n wget -O ~/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz \"https://commoncrawl.s3.amazonaws.com/crawl-data/CC-MAIN-2016-22/segments/1464049270134.8/warc/CC-MAIN-20160524002110-00001-ip-10-185-217-139.ec2.internal.warc.gz\"\n wget -O ~/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz \"https://commoncrawl.s3.amazonaws.com/crawl-data/CC-MAIN-2016-22/segments/1464049270134.8/warc/CC-MAIN-20160524002110-00000-ip-10-185-217-139.ec2.internal.warc.gz\"\n \n#download the datasets for the last two segments of May\n wget -O ~/ZeppelinData/commonCrawl/MayWarcSeg4.warc.gz \"https://commoncrawl.s3.amazonaws.com/crawl-data/CC-MAIN-2016-22/segments/1464056639771.99/warc/CC-MAIN-20160524022359-00242-ip-10-185-217-139.ec2.internal.warc.gz\"\n wget -O ~/ZeppelinData/commonCrawl/MayWarcSeg5.warc.gz \"https://commoncrawl.s3.amazonaws.com/crawl-data/CC-MAIN-2016-22/segments/1464056639771.99/warc/CC-MAIN-20160524022359-00243-ip-10-185-217-139.ec2.internal.warc.gz\"\n wget -O ~/ZeppelinData/commonCrawl/MayWarcSeg6.warc.gz \"https://commoncrawl.s3.amazonaws.com/crawl-data/CC-MAIN-2016-22/segments/1464056639771.99/warc/CC-MAIN-20160524022359-00244-ip-10-185-217-139.ec2.internal.warc.gz\"\n ",
+      "dateUpdated": "Jul 16, 2016 12:51:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468654366832_874154092",
+      "id": "20160716-073246_1723222826",
+      "dateCreated": "Jul 16, 2016 7:32:46 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")\n",
+      "dateUpdated": "Jul 16, 2016 1:32:25 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468675569903_1868297183",
+      "id": "20160716-132609_624363099",
+      "dateCreated": "Jul 16, 2016 1:26:09 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData  \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May \n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                      //combine the data for the last three segments of May",
+      "dateUpdated": "Jul 16, 2016 1:44:27 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468675947869_509083299",
+      "id": "20160716-133227_1365870344",
+      "dateCreated": "Jul 16, 2016 1:32:27 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "WorldWideWeb",
+  "id": "2BSD5NUW1",
+  "angularObjects": {
+    "2BPV8SYCR:shared_process": [],
+    "2BQY4H7KP:shared_process": [],
+    "2BQ94M8XE:shared_process": [],
+    "2BRPGMCVY:shared_process": [],
+    "2BTGH6J1E:shared_process": [],
+    "2BQVNEWQH:shared_process": [],
+    "2BS6FEEZP:shared_process": [],
+    "2BRNVU7RK:shared_process": [],
+    "2BRYHD875:shared_process": [],
+    "2BR8UCVZJ:shared_process": [],
+    "2BQVSK9XW:shared_process": [],
+    "2BRE76T2Z:shared_process": [],
+    "2BRAMBNCV:shared_process": [],
+    "2BS58EH64:shared_process": [],
+    "2BS7KGCEQ:shared_process": [],
+    "2BSW2PR8X:shared_process": [],
+    "2BRQ172X7:shared_process": [],
+    "2BSFSRXUA:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
