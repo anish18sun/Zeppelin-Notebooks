@@ -58,7 +58,8 @@
     },
     {
       "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")\n",
-      "dateUpdated": "Jul 16, 2016 1:32:25 PM",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 17, 2016 3:18:48 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -80,13 +81,21 @@
       "apps": [],
       "jobName": "paragraph_1468675569903_1868297183",
       "id": "20160716-132609_624363099",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@41508a8a\n"
+      },
       "dateCreated": "Jul 16, 2016 1:26:09 PM",
-      "status": "READY",
+      "dateStarted": "Jul 17, 2016 3:18:48 AM",
+      "dateFinished": "Jul 17, 2016 3:18:54 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData  \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May \n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                      //combine the data for the last three segments of May",
-      "dateUpdated": "Jul 16, 2016 1:44:27 PM",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 17, 2016 3:18:59 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -108,7 +117,232 @@
       "apps": [],
       "jobName": "paragraph_1468675947869_509083299",
       "id": "20160716-133227_1365870344",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\nmayWarcSeg1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[2] at map at RecordLoader.scala:45\nmayWarcSeg2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[5] at map at RecordLoader.scala:45\nmayWarcSeg3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[8] at map at RecordLoader.scala:45\nmayBegData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[10] at union at \u003cconsole\u003e:41\nmayWarcSeg4: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[13] at map at RecordLoader.scala:45\nmayWarcSeg5: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[16] at map at RecordLoader.scala:45\nmayWarcSeg6: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[19] at map at RecordLoader.scala:45\nmayEndData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[21] at union at \u003cconsole\u003e:41\n"
+      },
       "dateCreated": "Jul 16, 2016 1:32:27 PM",
+      "dateStarted": "Jul 17, 2016 3:18:59 AM",
+      "dateFinished": "Jul 17, 2016 3:19:09 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## 1. Domain Frequency\nThe domain frequencies as extracted from the web crawl data would be a good indicator of the presense of various domains on the web and the extent to which they are spread. This introductory\nsection attempts to examine the domain frequencies to get an idea about the domains that have been more prominent in the crawl data under consideration for both the introductory and the endi\n-ng sections of May. The paragraph below first generates the data needed for the visualization (generates the frequency data) and the paragraphs that follow display the data. For the beginni\n-ng period of May, we find that the domains : \u0027fangraphs.com\u0027, \u0027osnews.com\u0027, \u0027packages.ubuntu.com\u0027 and \u0027google.com\u0027 are on the top. \u0027fangraphs.com\u0027 is a site for baseball news and blog while\n\u0027osnews.com\u0027 is based on blogs and reports about products and companies in the computer industry. The remaining top two domains hold their positions for well understood reasons.\n\nAs for the ending sections of May, the domains change their relative positions with \u0027economist.com\u0027 taking the top position, followed by \u0027build.com\u0027, \u0027dailytech.com\u0027 and \u0027theday.com\u0027.  These\nwebsites too are news and blog sites with the \u0027economist.com\u0027 concerned with the economics of the world; \u0027dailytech.com\u0027 is again a news and blog site for the information about the  computer\nindustry; only \u0027build.com\u0027 is a site among the others that is not a news website and offers solutions for building homes and decor of houses. The websites that were at the top in the beginni\n-ng have receeded to lower positions for the ending segments data.\n\n\u003e *More Frequency may get more Ad revenues*\n\nAdvertisement is undoubtfully one of the greatest sources of revenues on the web. Greater frequency of certain domains on the web indicates that they are comparatively more prominent than ot\n-hers which may also help them with more ad revenues as more prominent domains will be able to draw more web traffic to their site. Some of the domains contain specifc content which can help\nin targeted advertising. For example, \u0027fangraphs.com\u0027 shows content only about baseball and so it will attract people who are interested in the game and this fact could be used by  companies \nthat manufacture and sell baseball equipment to target the ads to only those people. When I visited \u0027osnews.com\u0027, I got two ads : one for \u0027Aruba\u0027 cloud solutions and another for Dell XPS lap\n-tops.\n\n\u003e *Domain Frequencies may help understand position on the web*\n\nDomain frequencies may help understand the current position of a particular domain on the web. Domains having more frequencies have better current positions on the web and hence are able  to\ndraw more traffic to their website in comparison to any other webiste that displays content on the same topic. More prominent domains will have more ad revenues therefore frequency  data  is\nan important tool of measuring a website\u0027s performance on the web. Once people working on a domain know the relative positions on the web, they can figure out what changes led to a  decrease\nor increase in the traffic to their site and compare their website presentaiton against those that have more or less frequencies enabling them to get a measure of themselves and enhancing th\n-eir chances of improvement. This can be noticed in the frequency data shown below, for the beginning segments, \u0027osnews.com\u0027 has been on top for news related to computer industry  while  for\nthe ending segments, \u0027dailytech.com\u0027 gained the top position in terms of the frequncies. Apart from other factors, this may be due recent changes in the websites and their presentation.",
+      "dateUpdated": "Jul 17, 2016 5:05:40 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468725539925_-258982988",
+      "id": "20160717-031859_373936478",
+      "dateCreated": "Jul 17, 2016 3:18:59 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph generates the data needed for visualization\n\nval mayBegFreq \u003d mayBegData.keepValidPages()                        //get the domain frequency data for the beginning sections of May\n                           .map(r \u003d\u003e ExtractDomain(r.getUrl))\n                           .countItems()\n                           .take(60)\n                           \nval mayEndFreq \u003d mayEndData.keepValidPages()                        //get the domain frequency data for the ending sections of May\n                           .map(r \u003d\u003e ExtractDomain(r.getUrl))\n                           .countItems()\n                           .take(60)\n                           \nval mayBegFreqTbl \u003d sc.parallelize(mayBegFreq).toDF().registerTempTable(\"MayBegFreq\")\nval mayEndFreqTbl \u003d sc.parallelize(mayEndFreq).toDF().registerTempTable(\"MayEndFreq\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 17, 2016 4:01:49 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468725908911_-740179100",
+      "id": "20160717-032508_711515394",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "mayBegFreq: Array[(String, Int)] \u003d Array((www.fangraphs.com,125), (www.osnews.com,104), (forums.animesuki.com,101), (packages.ubuntu.com,97), (www.google.com,97), (www.kenyaun.org,96), (www.atoygarden.com,96), (www.wineexpress.com,95), (www.elegavenue.com,94), (www.blowoutcards.com,94), (www.insidehoops.com,93), (www.unhcr.org,92), (item.rakuten.co.jp,92), (www.jeepgarage.org,91), (www.dailytech.com,90), (www.heraldnet.com,89), (www.pbase.com,88), (www.democraticunderground.com,88), (www.chiefsplanet.com,88), (www.diaperswappers.com,87), (www.newrushmoreradio.com,87), (imgur.com,87), (www.tndeer.com,87), (starizona.com,87), (www.defensivecarry.com,86), (www.texasmotorspeedway.com,84), (www.camaro5.com,83), (www.lucasforums.com,82), (www.upi.com,81), (www.orangemane.com,80), (lists.w3.or...mayEndFreq: Array[(String, Int)] \u003d Array((www.economist.com,115), (www.build.com,106), (www.dailytech.com,98), (www.vesalia.de,97), (www.theday.com,96), (www.boxofficemojo.com,94), (www.callingcards.com,92), (www.tylerpaper.com,92), (www.orangemane.com,91), (www.lucasforums.com,91), (www.newrushmoreradio.com,89), (www.twopeasinabucket.com,89), (www.hotrodders.com,88), (www.elegavenue.com,87), (www.cosplay.com,87), (www.islamicfinder.org,87), (www.osnews.com,86), (hvac-talk.com,86), (www.dreamstime.com,85), (www.kenyaun.org,84), (www.insidehoops.com,84), (www.musicnotes.com,84), (www.heraldnet.com,84), (packages.ubuntu.com,83), (www.timesargus.com,83), (www.beau-coup.com,82), (forum.e46fanatics.com,82), (www.chiefsplanet.com,82), (www.bimmerfest.com,82), (forums.zimbra.com,82), (www.canc...mayBegFreqTbl: Unit \u003d ()\nmayEndFreqTbl: Unit \u003d ()\n"
+      },
+      "dateCreated": "Jul 17, 2016 3:25:08 AM",
+      "dateStarted": "Jul 17, 2016 4:01:49 AM",
+      "dateFinished": "Jul 17, 2016 4:05:49 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Domain Frequencies(May Beginning)",
+      "text": "%sql\nselect MBF._1 as Domain, MBF._2 as Frequency from MayBegFreq MBF",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 17, 2016 4:14:26 AM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Domain",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Frequency",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Domain",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Frequency",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "helium": {},
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468726424620_-1887180157",
+      "id": "20160717-033344_1077678638",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Domain\tFrequency\nwww.fangraphs.com\t125\nwww.osnews.com\t104\nforums.animesuki.com\t101\npackages.ubuntu.com\t97\nwww.google.com\t97\nwww.kenyaun.org\t96\nwww.atoygarden.com\t96\nwww.wineexpress.com\t95\nwww.elegavenue.com\t94\nwww.blowoutcards.com\t94\nwww.insidehoops.com\t93\nwww.unhcr.org\t92\nitem.rakuten.co.jp\t92\nwww.jeepgarage.org\t91\nwww.dailytech.com\t90\nwww.heraldnet.com\t89\nwww.pbase.com\t88\nwww.democraticunderground.com\t88\nwww.chiefsplanet.com\t88\nwww.diaperswappers.com\t87\nwww.newrushmoreradio.com\t87\nimgur.com\t87\nwww.tndeer.com\t87\nstarizona.com\t87\nwww.defensivecarry.com\t86\nwww.texasmotorspeedway.com\t84\nwww.camaro5.com\t83\nwww.lucasforums.com\t82\nwww.upi.com\t81\nwww.orangemane.com\t80\nlists.w3.org\t80\nwww.imagekind.com\t80\nwww.360cities.net\t80\nwww.build.com\t79\nwww.sailnet.com\t79\nwww.myfitnesspal.com\t78\nwww.opensecrets.org\t78\nwww.golfsmith.com\t77\nperezhilton.com\t77\nwww.summitpost.org\t77\nwww.timesargus.com\t77\nwww.beau-coup.com\t76\nwww.terrysvillage.com\t76\nwww.cancer.gov\t76\nwww.appbrain.com\t76\nwww.delmarfans.com\t75\nchroniclingamerica.loc.gov\t75\nwww.cosplay.com\t75\nforum.e46fanatics.com\t74\nwww.jjill.com\t74\nwww.greatlakes4x4.com\t74\nwww.maxbimmer.com\t74\nwww.dreamstime.com\t74\nwww.tylerpaper.com\t74\nwww.marksdailyapple.com\t74\nwww.twopeasinabucket.com\t73\nwww.findagrave.com\t73\nwww.airliners.net\t73\nwww.wakeworld.com\t73\ndocs.oracle.com\t73\n"
+      },
+      "dateCreated": "Jul 17, 2016 3:33:44 AM",
+      "dateStarted": "Jul 17, 2016 4:08:04 AM",
+      "dateFinished": "Jul 17, 2016 4:08:05 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Domain Frequencies(May Ending)",
+      "text": "%sql \nselect MEF._1 as Domain, MEF._2 as Frequency from MayEndFreq MEF",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 17, 2016 4:14:36 AM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "multiBarChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Domain",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Frequency",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Domain",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Frequency",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "helium": {},
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468728484862_817482312",
+      "id": "20160717-040804_2122775753",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Domain\tFrequency\nwww.economist.com\t115\nwww.build.com\t106\nwww.dailytech.com\t98\nwww.vesalia.de\t97\nwww.theday.com\t96\nwww.boxofficemojo.com\t94\nwww.callingcards.com\t92\nwww.tylerpaper.com\t92\nwww.orangemane.com\t91\nwww.lucasforums.com\t91\nwww.newrushmoreradio.com\t89\nwww.twopeasinabucket.com\t89\nwww.hotrodders.com\t88\nwww.elegavenue.com\t87\nwww.cosplay.com\t87\nwww.islamicfinder.org\t87\nwww.osnews.com\t86\nhvac-talk.com\t86\nwww.dreamstime.com\t85\nwww.kenyaun.org\t84\nwww.insidehoops.com\t84\nwww.musicnotes.com\t84\nwww.heraldnet.com\t84\npackages.ubuntu.com\t83\nwww.timesargus.com\t83\nwww.beau-coup.com\t82\nforum.e46fanatics.com\t82\nwww.chiefsplanet.com\t82\nwww.bimmerfest.com\t82\nforums.zimbra.com\t82\nwww.cancer.gov\t82\nwww.diyaudio.com\t82\nchroniclingamerica.loc.gov\t81\nwww.adidas.com\t81\nwww.atoygarden.com\t81\nwww.blowoutcards.com\t80\nwww.fangraphs.com\t80\nitem.rakuten.co.jp\t79\nwww.iherb.com\t78\nvotesmart.org\t78\nwww.maxbimmer.com\t78\nforums.animesuki.com\t77\nwww.wineexpress.com\t77\nwww.bullshido.net\t77\nwww.360cities.net\t77\nwww.medicinenet.com\t77\nwww.camaro5.com\t77\nwww.delmarfans.com\t76\nwww.beeradvocate.com\t76\nwww.discoverlife.org\t75\nwww.bikepics.com\t74\nlists.w3.org\t74\nwww.marksdailyapple.com\t74\ntvtropes.org\t73\nbleacherreport.com\t73\necom.datajoe.com\t72\nwww.myfitnesspal.com\t71\nmail-index.netbsd.org\t71\nwww.auswaertiges-amt.de\t71\nstarizona.com\t71\n"
+      },
+      "dateCreated": "Jul 17, 2016 4:08:04 AM",
+      "dateStarted": "Jul 17, 2016 4:11:22 AM",
+      "dateFinished": "Jul 17, 2016 4:11:22 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## 2. Analysis of the Site Link Structure\nWe shall analyse the site link structure for the May crawl data.",
+      "dateUpdated": "Jul 17, 2016 5:07:07 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468728682169_-1170455603",
+      "id": "20160717-041122_311565590",
+      "dateCreated": "Jul 17, 2016 4:11:22 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
