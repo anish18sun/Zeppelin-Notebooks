@@ -59,7 +59,7 @@
     {
       "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 17, 2016 3:18:48 AM",
+      "dateUpdated": "Jul 20, 2016 9:12:11 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -84,18 +84,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@41508a8a\n"
+        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@743caec8\n"
       },
       "dateCreated": "Jul 16, 2016 1:26:09 PM",
-      "dateStarted": "Jul 17, 2016 3:18:48 AM",
-      "dateFinished": "Jul 17, 2016 3:18:54 AM",
+      "dateStarted": "Jul 20, 2016 9:12:11 AM",
+      "dateFinished": "Jul 20, 2016 9:12:17 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData  \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May \n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                      //combine the data for the last three segments of May",
+      "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May\n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                     //combine the data for the last three segments of May",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 17, 2016 3:18:59 AM",
+      "dateUpdated": "Jul 20, 2016 9:12:40 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -123,8 +123,8 @@
         "msg": "import org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\nmayWarcSeg1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[2] at map at RecordLoader.scala:45\nmayWarcSeg2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[5] at map at RecordLoader.scala:45\nmayWarcSeg3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[8] at map at RecordLoader.scala:45\nmayBegData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[10] at union at \u003cconsole\u003e:41\nmayWarcSeg4: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[13] at map at RecordLoader.scala:45\nmayWarcSeg5: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[16] at map at RecordLoader.scala:45\nmayWarcSeg6: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[19] at map at RecordLoader.scala:45\nmayEndData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[21] at union at \u003cconsole\u003e:41\n"
       },
       "dateCreated": "Jul 16, 2016 1:32:27 PM",
-      "dateStarted": "Jul 17, 2016 3:18:59 AM",
-      "dateFinished": "Jul 17, 2016 3:19:09 AM",
+      "dateStarted": "Jul 20, 2016 9:12:40 AM",
+      "dateFinished": "Jul 20, 2016 9:12:50 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -343,6 +343,226 @@
       "jobName": "paragraph_1468728682169_-1170455603",
       "id": "20160717-041122_311565590",
       "dateCreated": "Jul 17, 2016 4:11:22 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph attempts to generate the data needed for site link structure analysis\n/*\nimport StringUtils._\nimport org.apache.spark.rdd.RDD\nimport org.warcbase.spark.archive.io.ArchiveRecord\n\ndef getSankeyRep(inputDom : RDD[ArchiveRecord]) : Array[String] \u003d {                     //function to extract links from the crawl data for a particular domain\n    \n    inputDom.flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))                   //perform the series of extractions and filtering\n            .map(r \u003d\u003e (ExtractDomain(r._1), ExtractDomain(r._2)))\n            .filter(r \u003d\u003e (r._1.compareTo(r._2) !\u003d 0))\n            .map(r \u003d\u003e (r, 1))\n            .reduceByKey((x, y) \u003d\u003e x + y)\n            .map(r \u003d\u003e \"[ \u0027\" + r._1._1 + \"\u0027, \u0027\" + r._1._2 + \"\u0027, \" + r._2 + \" ]\")\n            .take(10)\n}\n\nval mayBegLink1 \u003d mayBegData.keepValidPages()                                           //generate the data for visualization for only \u0027www.fangraphs.com\u0027\n                            .keepDomains(Set(\"www.fangraphs.com\"))\nval mayBegLnkWt1 \u003d \"[\" + getSankeyRep(mayBegLink1).mkString(\",\") + \"]\"                  //get the link data for \u0027fangraphs.com\u0027 in Sankey representation\n*/\n                            \nval mayBegLink2 \u003d mayBegData.keepValidPages()                                           //generate the data for visualization for only \u0027www.osnews.com\u0027\n                            .keepDomains(Set(\"www.osnews.com\"))\nval mayBegLnkWt2 \u003d \"[\" + getSankeyRep(mayBegLink2).mkString(\",\") + \"]\"                  //get the link data for \u0027osnews.com\u0027 in Sankey representation\n\n\n                            /*.flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n                            .map(r \u003d\u003e (ExtractDomain(r._1), ExtractDomain(r._2)))\n                            .filter(r \u003d\u003e (r._1.compareTo(r._2) !\u003d 0))\n                            .map(r \u003d\u003e (r, 1))\n                            .reduceByKey((x, y) \u003d\u003e x + y)\n                            .map(r \u003d\u003e \"[ \u0027\" + r._1._1 + \"\u0027, \u0027\" + r._1._2 + \"\u0027, \" + r._2 + \" ]\")\n                            .take(20)\n                            \nval mayBegSanRep1 \u003d \"[\" + mayBegLink1.mkString(\",\") + \"]\"\n\nval mayBEgLink2 \u003d mayBegData.keepValidPages()\n                            .keepDomains(Set(\"www.osnews.com\"))\n*/\n/*\nval mayBegLinks \u003d mayBegData.keepValidPages()                                           //extract the link structure for the beginning segments of May\n                            .keepDomains(Set(\"www.fangraphs.com\", \"www.osnews.com\", \"www.google.com\"))\n                            .flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n                            .map(r \u003d\u003e (ExtractDomain(r._1), ExtractDomain(r._2)))\n                            .filter(r \u003d\u003e (r._1.compareTo(r._2) !\u003d 0))\n                            .map(r \u003d\u003e (r, 1))\n\nval mayEndLinks \u003d mayEndData.keepValidPages()                                           //extract the link structure for the ending segments of May\n                            .keepDomains(Set(\"www.economist.com\", \"www.build.com\", \"www.dailytech.com\"))\n                            .flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n                            .map(r \u003d\u003e (ExtractDomain(r._1), ExtractDomain(r._2)))\n                            .filter(r \u003d\u003e (r._1.compareTo(r._2) !\u003d 0))\n                            .map(r \u003d\u003e (r, 1))\n\nval mayBegLnkWt \u003d mayBegLinks.reduceByKey((x, y) \u003d\u003e x + y)\n                             .map(r \u003d\u003e \"[ \u0027\" + r._1._1 + \"\u0027, \u0027\" + r._1._2 + \"\u0027, \" + r._2 + \" ]\")\n                             .take(20)\n*/\n\n//val mayBegSanRep \u003d \"[\" + mayBegLnkWt.mkString(\",\") + \"]\"\n//val mayEndSanRep \u003d \"[\" + mayEndLinks.mkString(\",\") + \"]\"\n\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 20, 2016 10:37:47 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468737680086_101191989",
+      "id": "20160717-064120_1940741597",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "mayBegLink2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[49] at filter at RecordRDD.scala:82\nmayBegLnkWt2: String \u003d [[ \u0027www.osnews.com\u0027, \u0027img19.imageshack.us\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.youtube.com\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kdenews.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.persiadesign.net\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027wiki.videolan.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kde.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.theverge.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027blogs.zdnet.com\u0027, 2 ],[ \u0027www.osnews.com\u0027, \u0027www.h-online.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027tweakers.net\u0027, 1 ]]\n"
+      },
+      "dateCreated": "Jul 17, 2016 6:41:20 AM",
+      "dateStarted": "Jul 20, 2016 10:37:47 AM",
+      "dateFinished": "Jul 20, 2016 10:39:48 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//count the number of elements in the rdds\nmayBegLinks.count()\n//mayEndLinks.count()",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 20, 2016 7:55:16 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468914115060_-1806170053",
+      "id": "20160719-074155_787667829",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res39: Long \u003d 3225\n"
+      },
+      "dateCreated": "Jul 19, 2016 7:41:55 AM",
+      "dateStarted": "Jul 20, 2016 7:55:16 AM",
+      "dateFinished": "Jul 20, 2016 7:57:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//sankey representation for outlinks from \u0027osnews.com\u0027\n\nprintln(s\"\"\"%html\n\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \u003c/head\u003e\n  \n   \u003cdiv id\u003d\"sankey2\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows($mayBegLnkWt2);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey2\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n\n\"\"\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 20, 2016 10:44:48 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468835221756_1050565259",
+      "id": "20160718-094701_299717493",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \u003c/head\u003e\n  \n   \u003cdiv id\u003d\"sankey2\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.osnews.com\u0027, \u0027img19.imageshack.us\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.youtube.com\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kdenews.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.persiadesign.net\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027wiki.videolan.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kde.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.theverge.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027blogs.zdnet.com\u0027, 2 ],[ \u0027www.osnews.com\u0027, \u0027www.h-online.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027tweakers.net\u0027, 1 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey2\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n\n\n"
+      },
+      "dateCreated": "Jul 18, 2016 9:47:01 AM",
+      "dateStarted": "Jul 20, 2016 10:44:48 AM",
+      "dateFinished": "Jul 20, 2016 10:44:48 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//sankey representation for outlinks from \u0027fangraphs.com\u0027\n\nprintln(s\"\"\"%html\n\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \u003c/head\u003e\n  \n   \u003cdiv id\u003d\"sankey1\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows($mayBegLnkWt1);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey1\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n\n\"\"\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 20, 2016 10:45:57 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468738973315_-262354159",
+      "id": "20160717-070253_585580025",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \u003c/head\u003e\n  \n   \u003cdiv id\u003d\"sankey1\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.fangraphs.com\u0027, \u0027twitter.com\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.hardballtimes.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.rotowire.com\u0027, 4 ],[ \u0027www.fangraphs.com\u0027, \u0027www.foxsports.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.stats.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.retrosheet.org\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027ottoneu.fangraphs.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.net\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.baseballinfosolutions.com\u0027, 125 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey1\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n\n\n"
+      },
+      "dateCreated": "Jul 17, 2016 7:02:53 AM",
+      "dateStarted": "Jul 20, 2016 10:45:57 AM",
+      "dateFinished": "Jul 20, 2016 10:45:58 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 18, 2016 1:06:34 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468740754704_1620918899",
+      "id": "20160717-073234_318503326",
+      "dateCreated": "Jul 17, 2016 7:32:34 AM",
+      "dateStarted": "Jul 18, 2016 12:42:22 PM",
+      "dateFinished": "Jul 18, 2016 12:42:23 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 18, 2016 1:06:34 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468845555820_1768338820",
+      "id": "20160718-123915_1536352968",
+      "dateCreated": "Jul 18, 2016 12:39:15 PM",
+      "dateStarted": "Jul 18, 2016 12:42:51 PM",
+      "dateFinished": "Jul 18, 2016 1:04:41 PM",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468845771609_-1196027218",
+      "id": "20160718-124251_1535643421",
+      "dateCreated": "Jul 18, 2016 12:42:51 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
