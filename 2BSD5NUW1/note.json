@@ -59,7 +59,7 @@
     {
       "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 20, 2016 9:12:11 AM",
+      "dateUpdated": "Jul 25, 2016 2:03:45 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -84,18 +84,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@743caec8\n"
+        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@d0cc05b\n"
       },
       "dateCreated": "Jul 16, 2016 1:26:09 PM",
-      "dateStarted": "Jul 20, 2016 9:12:11 AM",
-      "dateFinished": "Jul 20, 2016 9:12:17 AM",
+      "dateStarted": "Jul 25, 2016 2:03:45 AM",
+      "dateFinished": "Jul 25, 2016 2:03:50 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May\n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                     //combine the data for the last three segments of May",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 20, 2016 9:12:40 AM",
+      "dateUpdated": "Jul 25, 2016 2:03:56 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -123,8 +123,8 @@
         "msg": "import org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\nmayWarcSeg1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[2] at map at RecordLoader.scala:45\nmayWarcSeg2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[5] at map at RecordLoader.scala:45\nmayWarcSeg3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[8] at map at RecordLoader.scala:45\nmayBegData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[10] at union at \u003cconsole\u003e:41\nmayWarcSeg4: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[13] at map at RecordLoader.scala:45\nmayWarcSeg5: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[16] at map at RecordLoader.scala:45\nmayWarcSeg6: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[19] at map at RecordLoader.scala:45\nmayEndData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[21] at union at \u003cconsole\u003e:41\n"
       },
       "dateCreated": "Jul 16, 2016 1:32:27 PM",
-      "dateStarted": "Jul 20, 2016 9:12:40 AM",
-      "dateFinished": "Jul 20, 2016 9:12:50 AM",
+      "dateStarted": "Jul 25, 2016 2:03:57 AM",
+      "dateFinished": "Jul 25, 2016 2:04:06 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -319,8 +319,8 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n## 2. Analysis of the Site Link Structure\nWe shall analyse the site link structure for the May crawl data.",
-      "dateUpdated": "Jul 17, 2016 5:07:07 AM",
+      "text": "%md\n## 2. Analysis of the Site Link Structure\n\nThe analysis of site link structure would reveal important information about how the sites are linked and which websites benefit from being linked to others. The domain frequencies as indicated\nin the bar charts above suggest that few of the websites tend to be more frequent or prominent than the others and other domains may benefit from these prominent ones if they have  their  links\nplaced on the websites of the prominent domains, a phenomena on the web referred to as the **last click attribution model** which is finding out which link did the user click before landing  on\na particular page. This is specially profitable for those websites that have their links placed on the most prominent domains. The paragraph below generates the visualization  data  needed  for\nthe sankey diagrams which would best represent the outlinks from these more popularly used domains and the others that benefit from them. The paragraphs that follow present the sankey  diagrams\nthemselves.",
+      "dateUpdated": "Jul 25, 2016 2:06:00 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -347,9 +347,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//this paragraph attempts to generate the data needed for site link structure analysis\n/*\nimport StringUtils._\nimport org.apache.spark.rdd.RDD\nimport org.warcbase.spark.archive.io.ArchiveRecord\n\ndef getSankeyRep(inputDom : RDD[ArchiveRecord]) : Array[String] \u003d {                     //function to extract links from the crawl data for a particular domain\n    \n    inputDom.flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))                   //perform the series of extractions and filtering\n            .map(r \u003d\u003e (ExtractDomain(r._1), ExtractDomain(r._2)))\n            .filter(r \u003d\u003e (r._1.compareTo(r._2) !\u003d 0))\n            .map(r \u003d\u003e (r, 1))\n            .reduceByKey((x, y) \u003d\u003e x + y)\n            .map(r \u003d\u003e \"[ \u0027\" + r._1._1 + \"\u0027, \u0027\" + r._1._2 + \"\u0027, \" + r._2 + \" ]\")\n            .take(10)\n}\n\nval mayBegLink1 \u003d mayBegData.keepValidPages()                                           //generate the data for visualization for only \u0027www.fangraphs.com\u0027\n                            .keepDomains(Set(\"www.fangraphs.com\"))\nval mayBegLnkWt1 \u003d \"[\" + getSankeyRep(mayBegLink1).mkString(\",\") + \"]\"                  //get the link data for \u0027fangraphs.com\u0027 in Sankey representation\n*/\n                            \nval mayBegLink2 \u003d mayBegData.keepValidPages()                                           //generate the data for visualization for only \u0027www.osnews.com\u0027\n                            .keepDomains(Set(\"www.osnews.com\"))\nval mayBegLnkWt2 \u003d \"[\" + getSankeyRep(mayBegLink2).mkString(\",\") + \"]\"                  //get the link data for \u0027osnews.com\u0027 in Sankey representation\n\n\n                            /*.flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n                            .map(r \u003d\u003e (ExtractDomain(r._1), ExtractDomain(r._2)))\n                            .filter(r \u003d\u003e (r._1.compareTo(r._2) !\u003d 0))\n                            .map(r \u003d\u003e (r, 1))\n                            .reduceByKey((x, y) \u003d\u003e x + y)\n                            .map(r \u003d\u003e \"[ \u0027\" + r._1._1 + \"\u0027, \u0027\" + r._1._2 + \"\u0027, \" + r._2 + \" ]\")\n                            .take(20)\n                            \nval mayBegSanRep1 \u003d \"[\" + mayBegLink1.mkString(\",\") + \"]\"\n\nval mayBEgLink2 \u003d mayBegData.keepValidPages()\n                            .keepDomains(Set(\"www.osnews.com\"))\n*/\n/*\nval mayBegLinks \u003d mayBegData.keepValidPages()                                           //extract the link structure for the beginning segments of May\n                            .keepDomains(Set(\"www.fangraphs.com\", \"www.osnews.com\", \"www.google.com\"))\n                            .flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n                            .map(r \u003d\u003e (ExtractDomain(r._1), ExtractDomain(r._2)))\n                            .filter(r \u003d\u003e (r._1.compareTo(r._2) !\u003d 0))\n                            .map(r \u003d\u003e (r, 1))\n\nval mayEndLinks \u003d mayEndData.keepValidPages()                                           //extract the link structure for the ending segments of May\n                            .keepDomains(Set(\"www.economist.com\", \"www.build.com\", \"www.dailytech.com\"))\n                            .flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n                            .map(r \u003d\u003e (ExtractDomain(r._1), ExtractDomain(r._2)))\n                            .filter(r \u003d\u003e (r._1.compareTo(r._2) !\u003d 0))\n                            .map(r \u003d\u003e (r, 1))\n\nval mayBegLnkWt \u003d mayBegLinks.reduceByKey((x, y) \u003d\u003e x + y)\n                             .map(r \u003d\u003e \"[ \u0027\" + r._1._1 + \"\u0027, \u0027\" + r._1._2 + \"\u0027, \" + r._2 + \" ]\")\n                             .take(20)\n*/\n\n//val mayBegSanRep \u003d \"[\" + mayBegLnkWt.mkString(\",\") + \"]\"\n//val mayEndSanRep \u003d \"[\" + mayEndLinks.mkString(\",\") + \"]\"\n\n",
+      "text": "//this paragraph attempts to generate the data needed for site link structure analysis (the outlinks from the various most prominent domains)\n\nimport StringUtils._\nimport org.apache.spark.rdd.RDD\nimport org.warcbase.spark.archive.io.ArchiveRecord\n\ndef getSankeyRep(inputDom : RDD[ArchiveRecord]) : Array[String] \u003d {                     //function to extract links from the crawl data for a particular domain\n    \n    inputDom.flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))                   //perform the series of extractions and filtering\n            .map(r \u003d\u003e (ExtractDomain(r._1), ExtractDomain(r._2)))\n            .filter(r \u003d\u003e (r._1.compareTo(r._2) !\u003d 0))\n            .map(r \u003d\u003e (r, 1))\n            .reduceByKey((x, y) \u003d\u003e x + y)\n            .map(r \u003d\u003e \"[ \u0027\" + r._1._1 + \"\u0027, \u0027\" + r._1._2 + \"\u0027, \" + r._2 + \" ]\")\n            .take(10)\n}\n\nval mayBegLink1 \u003d mayBegData.keepValidPages()                                           //generate the data for visualization for only \u0027www.fangraphs.com\u0027\n                            .keepDomains(Set(\"www.fangraphs.com\"))\nval mayBegLnkWt1 \u003d \"[\" + getSankeyRep(mayBegLink1).mkString(\",\") + \"]\"                  //get the link data for \u0027fangraphs.com\u0027 in Sankey representation\n                            \nval mayBegLink2 \u003d mayBegData.keepValidPages()                                           //generate the data for visualization for only \u0027www.osnews.com\u0027\n                            .keepDomains(Set(\"www.osnews.com\"))\nval mayBegLnkWt2 \u003d \"[\" + getSankeyRep(mayBegLink2).mkString(\",\") + \"]\"                  //get the link data for \u0027osnews.com\u0027 in Sankey representation\n\nval mayBegLink3 \u003d mayBegData.keepValidPages()                                           //generate the data for visualization for only \u0027www.google.com\u0027\n                            .keepDomains(Set(\"www.google.com\"))\nval mayBegLnkWt3 \u003d \"[\" + getSankeyRep(mayBegLink3).mkString(\",\") + \"]\"                  //get the link data for \u0027google.com\u0027 in Sankey representation",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 20, 2016 10:37:47 AM",
+      "dateUpdated": "Jul 25, 2016 2:28:19 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -374,18 +374,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "mayBegLink2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[49] at filter at RecordRDD.scala:82\nmayBegLnkWt2: String \u003d [[ \u0027www.osnews.com\u0027, \u0027img19.imageshack.us\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.youtube.com\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kdenews.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.persiadesign.net\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027wiki.videolan.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kde.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.theverge.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027blogs.zdnet.com\u0027, 2 ],[ \u0027www.osnews.com\u0027, \u0027www.h-online.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027tweakers.net\u0027, 1 ]]\n"
+        "msg": "import StringUtils._\nimport org.apache.spark.rdd.RDD\nimport org.warcbase.spark.archive.io.ArchiveRecord\ngetSankeyRep: (inputDom: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord])Array[String]\nmayBegLink1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[23] at filter at RecordRDD.scala:82\nmayBegLnkWt1: String \u003d [[ \u0027www.fangraphs.com\u0027, \u0027twitter.com\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.hardballtimes.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.rotowire.com\u0027, 4 ],[ \u0027www.fangraphs.com\u0027, \u0027www.foxsports.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.stats.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.retrosheet.org\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027ottoneu.fangraphs.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.net\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.baseballinfosolutions.com\u0027, 125 ]]\nmayBegLink2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[31] at filter at RecordRDD.scala:82\nmayBegLnkWt2: String \u003d [[ \u0027www.osnews.com\u0027, \u0027img19.imageshack.us\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.youtube.com\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kdenews.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.persiadesign.net\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027wiki.videolan.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kde.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.theverge.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027blogs.zdnet.com\u0027, 2 ],[ \u0027www.osnews.com\u0027, \u0027www.h-online.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027tweakers.net\u0027, 1 ]]\nmayBegLink3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[39] at filter at RecordRDD.scala:82\nmayBegLnkWt3: String \u003d [[ \u0027www.google.com\u0027, \u0027www.google.ca\u0027, 1 ],[ \u0027www.google.com\u0027, \u0027drive.google.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027maps.google.com\u0027, 96 ],[ \u0027www.google.com\u0027, \u0027www.google.com.hk\u0027, 2 ],[ \u0027www.google.com\u0027, \u0027www.google.co.uk\u0027, 1 ],[ \u0027www.google.com\u0027, \u0027scholar.google.com\u0027, 336 ],[ \u0027www.google.com\u0027, \u0027support.google.com\u0027, 96 ],[ \u0027www.google.com\u0027, \u0027news.google.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027www.youtube.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027play.google.com\u0027, 95 ]]\nmayEndLink1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[47] at filter at RecordRDD.scala:82\nmayEndLnkWt1: String \u003d []\n"
       },
       "dateCreated": "Jul 17, 2016 6:41:20 AM",
-      "dateStarted": "Jul 20, 2016 10:37:47 AM",
-      "dateFinished": "Jul 20, 2016 10:39:48 AM",
+      "dateStarted": "Jul 25, 2016 2:08:54 AM",
+      "dateFinished": "Jul 25, 2016 2:17:08 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//count the number of elements in the rdds\nmayBegLinks.count()\n//mayEndLinks.count()",
+      "text": "%md\nThe diagrams below present the outlinks from the various sites that have huge web traffic inflows. The other sites that are linked to the these famous sites take advantage of the\nphenomenon of **\u0027random browsing\u0027** by which a general user after staying on a website for some time will change the website that he/she is viewing. So users that are on these sites have a high\nprobability of changing to websites that contain their links on these pages. This probability of switching to a particular site increases with the number of times that a particular  webpage  is\nmentioned on a source-page. For example, if a \u0027source-page\u0027 contains 5 links to \u0027destination-page1\u0027 and 2 links to \u0027destination-page2\u0027 then there is a higher probability of a viewer landing  on\n\u0027destination-page1\u0027 than on \u0027destination-page2\u0027. These link frequencies have been measured as \u0027weights\u0027 and thickness of the links in the sankey diagrams is proportional to the weight if a link\non hovering the mouse over a particular link in the diagram, the exact weight value of the link is displayed. This helps us know about the websites that benefit the most out of the popular ones.\n\n\u003e *Sports site links more to other sports sites*\n\nThe sports site \u0027fangraphs.com\u0027 links more to other sports sites with the most frequent being \u0027hardballtimes.com\u0027 with a weight value of 500 which means that 500 mentions of the latter site was\nfound on the crawl data of \u0027fangraphs.com\u0027. Few other sites that contain their links on \u0027fangraphs.com\u0027 are \u0027foxsports.com\u0027 and \u0027baseballinfosolutions.com\u0027 which are also sports sites.  A  good\namount of the traffic of \u0027fangraphs.com\u0027 may get deviated to these other sites. Furthermore, realizing that the importance of the site \u0027fangraphs.com\u0027 a lot of other domains may be under compet\n-ition to have their names and links appear on the site \u0027fangraphs.com\u0027 and this brings advantage to the site itself as it may charge these other sites for keeping these names on its sites. Cha\nrges may even vary for the sites that want to have more mentions of their links on \u0027fangraphs.com\u0027. This gives a pretty good picture of the working of the web advertisement and website business\nmodel.\n\n\u003e *Technology site links more to other technology sites*\n\nThe technology site \u0027osnewws.com\u0027 links more to other technology sites and to other video sites for videos that are embedded in the website or links to other videos for product  information  or\nnews about product launches. \u0027theverge.com\u0027 is another site that contains information about technology although it is more general than \u0027osnews.com\u0027, the important fact is  that  \u0027theverge.com\u0027\ncontains the maximum links or mentions on \u0027osnews.com\u0027, followed by \u0027h-online.com\u0027 and the others, however the weight values are not as much as they had been in the previous cases and differ on\n-ly slightly but still the other sites do benefit by having their names mentioned on the \u0027osnews.com\u0027 and it may be a source of constant revenue for \u0027osnews.com\u0027 to put the names of these other\nsites on its webpages.\n\n\u003e *Google links only to Google*\n\nThe last of the sankey diagrams in this section present the outlinks for \u0027google.com\u0027, the most used internet search service. We know that search is one of the most used services on the interne\n-t and \u0027google\u0027 by far dominates this service. More and more people turn to \u0027google\u0027 for their search queries and millions of search queries are services every day which means that  the  search\nservice has an increasingly large number of visitors that are only monotonically increasing. To take advantage of this situation, as we find in the graphs below, the website links only  to  its\nown domains with the most dominant being \u0027scholar.google.com\u0027, a website for scholarly articles, this is followed by \u0027drive.google.com\u0027 and \u0027mapa.google.com\u0027, google\u0027s cloud storage and map ser\n-vices respectively. This sort of creates a positive feedback cycle and directs the viewers to these other services of \u0027google.com\u0027 with apparently the most used being \u0027scholar.google.com\u0027  and\nso the users keep surfing the web within the domain boundaries of \u0027google.com\u0027. They may change the domains manually by typing another address in the address bar or through bookmarks. Further,\nas we might have noticed \u0027google\u0027 displays advertisements as small frames embedded in its pages, so for users surfing around only on the domains of \u0027google.com\u0027 he will get to see more  ads  of\ncompanies that have paid \u0027google\u0027 for displaying their ads. Through browser tracking and other optimizations, these ads get tailored to specific viewers depending on their  particular  browsing\nhistory.\n\nFor advertisement being the most important source of revenues on the internet, we find that the content of the domains helps them get more web traffic. Also, web traffic specifically is more on\nsites that contain content regarding sports, technology, news and ofcourse search services - the requirement to find almost anything on the internet.",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 20, 2016 7:55:16 AM",
+      "dateUpdated": "Jul 25, 2016 4:57:17 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -397,7 +397,8 @@
           "groups": [],
           "scatter": {}
         },
-        "enabled": true
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
       },
       "settings": {
         "params": {},
@@ -409,20 +410,21 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "res39: Long \u003d 3225\n"
+        "msg": "res3: Long \u003d 115\n"
       },
       "dateCreated": "Jul 19, 2016 7:41:55 AM",
-      "dateStarted": "Jul 20, 2016 7:55:16 AM",
-      "dateFinished": "Jul 20, 2016 7:57:17 AM",
+      "dateStarted": "Jul 25, 2016 2:21:21 AM",
+      "dateFinished": "Jul 25, 2016 2:23:23 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//sankey representation for outlinks from \u0027osnews.com\u0027\n\nprintln(s\"\"\"%html\n\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \u003c/head\u003e\n  \n   \u003cdiv id\u003d\"sankey2\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows($mayBegLnkWt2);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey2\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n\n\"\"\")",
+      "title": "Outlinks from \u0027fangraphs.com\u0027",
+      "text": "//sankey representation for outlinks from \u0027fangraphs.com\u0027\n\nprintln(s\"\"\"%html\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n    \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows($mayBegLnkWt1);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey1\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n      \n  \u003cdiv id\u003d\"sankey1\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\"\"\")",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 20, 2016 10:44:48 AM",
+      "dateUpdated": "Jul 25, 2016 3:47:35 AM",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "graph": {
           "mode": "table",
           "height": 300.0,
@@ -433,43 +435,9 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1468835221756_1050565259",
-      "id": "20160718-094701_299717493",
-      "result": {
-        "code": "SUCCESS",
-        "type": "HTML",
-        "msg": "\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \u003c/head\u003e\n  \n   \u003cdiv id\u003d\"sankey2\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.osnews.com\u0027, \u0027img19.imageshack.us\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.youtube.com\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kdenews.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.persiadesign.net\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027wiki.videolan.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kde.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.theverge.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027blogs.zdnet.com\u0027, 2 ],[ \u0027www.osnews.com\u0027, \u0027www.h-online.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027tweakers.net\u0027, 1 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey2\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n\n\n"
-      },
-      "dateCreated": "Jul 18, 2016 9:47:01 AM",
-      "dateStarted": "Jul 20, 2016 10:44:48 AM",
-      "dateFinished": "Jul 20, 2016 10:44:48 AM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "//sankey representation for outlinks from \u0027fangraphs.com\u0027\n\nprintln(s\"\"\"%html\n\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \u003c/head\u003e\n  \n   \u003cdiv id\u003d\"sankey1\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows($mayBegLnkWt1);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey1\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n\n\"\"\")",
-      "authenticationInfo": {},
-      "dateUpdated": "Jul 20, 2016 10:45:57 AM",
-      "config": {
-        "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
-        "enabled": true,
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -481,20 +449,21 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \u003c/head\u003e\n  \n   \u003cdiv id\u003d\"sankey1\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.fangraphs.com\u0027, \u0027twitter.com\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.hardballtimes.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.rotowire.com\u0027, 4 ],[ \u0027www.fangraphs.com\u0027, \u0027www.foxsports.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.stats.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.retrosheet.org\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027ottoneu.fangraphs.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.net\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.baseballinfosolutions.com\u0027, 125 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey1\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n\n\n"
+        "msg": "\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n    \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.fangraphs.com\u0027, \u0027twitter.com\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.hardballtimes.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.rotowire.com\u0027, 4 ],[ \u0027www.fangraphs.com\u0027, \u0027www.foxsports.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.stats.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.retrosheet.org\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027ottoneu.fangraphs.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.net\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.baseballinfosolutions.com\u0027, 125 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey1\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n      \n  \u003cdiv id\u003d\"sankey1\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\n"
       },
       "dateCreated": "Jul 17, 2016 7:02:53 AM",
-      "dateStarted": "Jul 20, 2016 10:45:57 AM",
-      "dateFinished": "Jul 20, 2016 10:45:58 AM",
+      "dateStarted": "Jul 25, 2016 3:47:36 AM",
+      "dateFinished": "Jul 25, 2016 3:47:36 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "title": "Outlinks from \u0027osnews.com\u0027",
+      "text": "//sankey representation for outlinks from \u0027osnews.com\u0027\n\nprintln(s\"\"\"%html\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows($mayBegLnkWt2);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey2\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n  \n  \u003cdiv id\u003d\"sankey2\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\"\"\")",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 18, 2016 1:06:34 PM",
+      "dateUpdated": "Jul 25, 2016 4:09:04 AM",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 6.0,
         "graph": {
           "mode": "table",
           "height": 300.0,
@@ -505,7 +474,48 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468835221756_1050565259",
+      "id": "20160718-094701_299717493",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.osnews.com\u0027, \u0027img19.imageshack.us\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.youtube.com\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kdenews.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.persiadesign.net\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027wiki.videolan.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kde.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.theverge.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027blogs.zdnet.com\u0027, 2 ],[ \u0027www.osnews.com\u0027, \u0027www.h-online.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027tweakers.net\u0027, 1 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey2\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n  \n  \u003cdiv id\u003d\"sankey2\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\n"
+      },
+      "dateCreated": "Jul 18, 2016 9:47:01 AM",
+      "dateStarted": "Jul 25, 2016 4:09:04 AM",
+      "dateFinished": "Jul 25, 2016 4:09:04 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Outlinks from \u0027google.com\u0027",
+      "text": "//sankey representation for outlinks from \u0027google.com\u0027\n\nprintln(s\"\"\"%html\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows($mayBegLnkWt3);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 800,\n          width: 900,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey3\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n  \n  \u003cdiv id\u003d\"sankey3\" style\u003d\"width: 900px; height: 800px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\"\"\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 25, 2016 4:32:28 AM",
+      "config": {
+        "colWidth": 9.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -514,17 +524,57 @@
       "apps": [],
       "jobName": "paragraph_1468740754704_1620918899",
       "id": "20160717-073234_318503326",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.google.com\u0027, \u0027www.google.ca\u0027, 1 ],[ \u0027www.google.com\u0027, \u0027drive.google.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027maps.google.com\u0027, 96 ],[ \u0027www.google.com\u0027, \u0027www.google.com.hk\u0027, 2 ],[ \u0027www.google.com\u0027, \u0027www.google.co.uk\u0027, 1 ],[ \u0027www.google.com\u0027, \u0027scholar.google.com\u0027, 336 ],[ \u0027www.google.com\u0027, \u0027support.google.com\u0027, 96 ],[ \u0027www.google.com\u0027, \u0027news.google.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027www.youtube.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027play.google.com\u0027, 95 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 800,\n          width: 900,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey3\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n  \n  \u003cdiv id\u003d\"sankey3\" style\u003d\"width: 900px; height: 800px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\n"
+      },
       "dateCreated": "Jul 17, 2016 7:32:34 AM",
-      "dateStarted": "Jul 18, 2016 12:42:22 PM",
-      "dateFinished": "Jul 18, 2016 12:42:23 PM",
+      "dateStarted": "Jul 25, 2016 4:32:28 AM",
+      "dateFinished": "Jul 25, 2016 4:32:29 AM",
       "status": "FINISHED",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "%md \n\n### **Fact File**\n![Doodle](http://www.google.com/logos/doodles/2016/holi-festival-2016-4796769118453760-hp2x.gif)\n\n1. Google takes over 200 factors into account before delivering the correct search results for any query in a fraction of a second.\n\n2. The company owns a bunch of domains that are common misspellings of \u0027Google\u0027 like \u0027Gooogle.com\u0027, \u0027Gogle.com\u0027, \u0027Googlr.com\u0027 and more.\n\n3. There are more than 2 million googles searches per second.\n\n4. In 2013, 91% of the revenues of \u0027Google.com\u0027 came from advertising alone.\n\n5. Google\u0027s search index is more than 100 million gigabytes in size. It would take 100,000 one-terabyte personal drives to contain the same amount of data.\n\n6. Google might be the only company with the explicit goal to REDUCE the amount of time people spend on its site. \n\n7. Google has photographed more than 5 million miles of road for its Street View maps.\n\n8. Google has acquired 24 companies this year alone — that\u0027s about three companies a month. ",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 18, 2016 1:06:34 PM",
+      "dateUpdated": "Jul 25, 2016 5:36:18 AM",
+      "config": {
+        "colWidth": 3.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1468845555820_1768338820",
+      "id": "20160718-123915_1536352968",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003e\u003cstrong\u003eFact File\u003c/strong\u003e\u003c/h3\u003e\n\u003cp\u003e\u003cimg src\u003d\"http://www.google.com/logos/doodles/2016/holi-festival-2016-4796769118453760-hp2x.gif\" alt\u003d\"Doodle\" /\u003e\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003eGoogle takes over 200 factors into account before delivering the correct search results for any query in a fraction of a second.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eThe company owns a bunch of domains that are common misspellings of \u0027Google\u0027 like \u0027Gooogle.com\u0027, \u0027Gogle.com\u0027, \u0027Googlr.com\u0027 and more.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eThere are more than 2 million googles searches per second.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eIn 2013, 91% of the revenues of \u0027Google.com\u0027 came from advertising alone.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eGoogle\u0027s search index is more than 100 million gigabytes in size. It would take 100,000 one-terabyte personal drives to contain the same amount of data.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eGoogle might be the only company with the explicit goal to REDUCE the amount of time people spend on its site.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eGoogle has photographed more than 5 million miles of road for its Street View maps.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eGoogle has acquired 24 companies this year alone — that\u0027s about three companies a month.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n"
+      },
+      "dateCreated": "Jul 18, 2016 12:39:15 PM",
+      "dateStarted": "Jul 25, 2016 5:36:13 AM",
+      "dateFinished": "Jul 25, 2016 5:36:13 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## 3. Analysis of the Web Graph structure using GraphX \nThis section examines the web graph structure of the web using the common crawl data and the GraphX libraries of Spark. We know that in random browsing, the probability that a web user/viewer\nwill land on a particular page is determined by the \u0027page rank\u0027 value of the page. Using the links contained in the pages of the crawl data, we first calculate the \u0027page rank\u0027 value of the pa\n-ges. This gives the size value of the nodes that represent the individual pages and the links that they have to other pages. Visualization for the graph is accomplished using D3 libraries.\n\nThe paragraph below first generates the data needed for the visualization.",
+      "dateUpdated": "Jul 25, 2016 12:24:08 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -537,20 +587,54 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/markdown"
       },
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1468845555820_1768338820",
-      "id": "20160718-123915_1536352968",
-      "dateCreated": "Jul 18, 2016 12:39:15 PM",
-      "dateStarted": "Jul 18, 2016 12:42:51 PM",
-      "dateFinished": "Jul 18, 2016 1:04:41 PM",
-      "status": "ERROR",
-      "errorMessage": "",
+      "jobName": "paragraph_1468845771609_-1196027218",
+      "id": "20160718-124251_1535643421",
+      "dateCreated": "Jul 18, 2016 12:42:51 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph generates the visualization needed for web structure analysis\n\nprintln(\"\"\"%html\n\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cmeta charset\u003d\"utf-8\" name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1\"\u003e\n    \u003clink rel\u003d\"shortcut icon\" href\u003d\"data:image/x-icon\" type\u003d\"image/x-icon\"\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css\"\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"linkassets/css/lib/nouislider.min.css\"\u003e\n    \u003c!-- App --\u003e\n    \u003clink href\u003d\"linkassets/css/app.css\" rel\u003d\"stylesheet\"\u003e\n  \u003c/head\u003e\n\n    \u003cdiv class\u003d\"container-fluid\"\u003e\n      \u003cheader\u003e\n        \u003cdiv class\u003d\"page-header\"\u003e\n          \u003ch1\u003eVisualization of the Web Graph Structure\u003c/h1\u003e\n        \u003c/div\u003e\n      \u003c/header\u003e\n\n      \u003csection\u003e\n        \u003cdiv class\u003d\"row sliders\"\u003e\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eMax sites to display\u003c/label\u003e\n            \u003cdiv id\u003d\"threshold-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t\u003c!--\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eYear\u003c/label\u003e\n            \u003cdiv id\u003d\"date-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t--\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"row\"\u003e\n          \u003cdiv id\u003d\"display\" class\u003d\"col-md-12\"\u003e\n            \u003cdiv id\u003d\"graph\" class\u003d\"d3-graph\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/section\u003e\n    \u003c/div\u003e\n\n    \u003c!-- jQuery --\u003e\n    \u003cscript src\u003d\"//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/jquery.isloading.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003cscript src\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/d3.tip.v0.6.3.js\"\u003e\u003c/script\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/nouislider.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Misc --\u003e\n    \u003cscript src\u003d\"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js\"\u003e\u003c/script\u003e\n    \u003c!-- App --\u003e\n    \u003cscript src\u003d\"/linkassets/js/app.js\"\u003e\u003c/script\u003e\n\n\u003c/html\u003e\n\n\"\"\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 25, 2016 12:55:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469449441162_-779669184",
+      "id": "20160725-122401_296434994",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cmeta charset\u003d\"utf-8\" name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1\"\u003e\n    \u003clink rel\u003d\"shortcut icon\" href\u003d\"data:image/x-icon\" type\u003d\"image/x-icon\"\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css\"\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"linkassets/css/lib/nouislider.min.css\"\u003e\n    \u003c!-- App --\u003e\n    \u003clink href\u003d\"linkassets/css/app.css\" rel\u003d\"stylesheet\"\u003e\n  \u003c/head\u003e\n\n    \u003cdiv class\u003d\"container-fluid\"\u003e\n      \u003cheader\u003e\n        \u003cdiv class\u003d\"page-header\"\u003e\n          \u003ch1\u003eVisualization of the Web Graph Structure\u003c/h1\u003e\n        \u003c/div\u003e\n      \u003c/header\u003e\n\n      \u003csection\u003e\n        \u003cdiv class\u003d\"row sliders\"\u003e\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eMax sites to display\u003c/label\u003e\n            \u003cdiv id\u003d\"threshold-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t\u003c!--\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eYear\u003c/label\u003e\n            \u003cdiv id\u003d\"date-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t--\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"row\"\u003e\n          \u003cdiv id\u003d\"display\" class\u003d\"col-md-12\"\u003e\n            \u003cdiv id\u003d\"graph\" class\u003d\"d3-graph\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/section\u003e\n    \u003c/div\u003e\n\n    \u003c!-- jQuery --\u003e\n    \u003cscript src\u003d\"//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/jquery.isloading.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003cscript src\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/d3.tip.v0.6.3.js\"\u003e\u003c/script\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/nouislider.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Misc --\u003e\n    \u003cscript src\u003d\"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js\"\u003e\u003c/script\u003e\n    \u003c!-- App --\u003e\n    \u003cscript src\u003d\"/linkassets/js/app.js\"\u003e\u003c/script\u003e\n\n\u003c/html\u003e\n\n\n"
+      },
+      "dateCreated": "Jul 25, 2016 12:24:01 PM",
+      "dateStarted": "Jul 25, 2016 12:51:08 PM",
+      "dateFinished": "Jul 25, 2016 12:51:17 PM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -560,9 +644,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1468845771609_-1196027218",
-      "id": "20160718-124251_1535643421",
-      "dateCreated": "Jul 18, 2016 12:42:51 PM",
+      "jobName": "paragraph_1469451068144_-2033055218",
+      "id": "20160725-125108_487895136",
+      "dateCreated": "Jul 25, 2016 12:51:08 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
