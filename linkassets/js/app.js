@@ -5,7 +5,7 @@
 //var width = document.getElementById("graph").offsetWidth;
 //var height = document.getElementById("graph").offsetHeight;
 
-var width = 900;
+var width = 1200;
 var height = 900;
 
 var all_links = [];

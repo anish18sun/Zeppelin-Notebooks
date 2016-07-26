@@ -50,8 +50,6 @@ footer {
 
 /* noUi sliders */
 .sliders > div {
-  position: relative;
-  left: 350px;
   height: 75px;
 }
 
