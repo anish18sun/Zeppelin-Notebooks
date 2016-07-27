@@ -26,6 +26,7 @@
       "id": "20160716-073240_1314434417",
       "dateCreated": "Jul 16, 2016 7:32:40 AM",
       "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -54,12 +55,13 @@
       "id": "20160716-073246_1723222826",
       "dateCreated": "Jul 16, 2016 7:32:46 AM",
       "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 25, 2016 2:03:45 AM",
+      "dateUpdated": "Jul 27, 2016 2:59:28 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -84,18 +86,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@d0cc05b\n"
+        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@5ec41bf7\n"
       },
       "dateCreated": "Jul 16, 2016 1:26:09 PM",
-      "dateStarted": "Jul 25, 2016 2:03:45 AM",
-      "dateFinished": "Jul 25, 2016 2:03:50 AM",
+      "dateStarted": "Jul 27, 2016 2:59:29 AM",
+      "dateFinished": "Jul 27, 2016 2:59:35 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May\n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                     //combine the data for the last three segments of May",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 25, 2016 2:03:56 AM",
+      "dateUpdated": "Jul 27, 2016 2:59:42 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -123,8 +125,8 @@
         "msg": "import org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\nmayWarcSeg1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[2] at map at RecordLoader.scala:45\nmayWarcSeg2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[5] at map at RecordLoader.scala:45\nmayWarcSeg3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[8] at map at RecordLoader.scala:45\nmayBegData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[10] at union at \u003cconsole\u003e:41\nmayWarcSeg4: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[13] at map at RecordLoader.scala:45\nmayWarcSeg5: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[16] at map at RecordLoader.scala:45\nmayWarcSeg6: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[19] at map at RecordLoader.scala:45\nmayEndData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[21] at union at \u003cconsole\u003e:41\n"
       },
       "dateCreated": "Jul 16, 2016 1:32:27 PM",
-      "dateStarted": "Jul 25, 2016 2:03:57 AM",
-      "dateFinished": "Jul 25, 2016 2:04:06 AM",
+      "dateStarted": "Jul 27, 2016 2:59:42 AM",
+      "dateFinished": "Jul 27, 2016 2:59:51 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -154,6 +156,7 @@
       "id": "20160717-031859_373936478",
       "dateCreated": "Jul 17, 2016 3:18:59 AM",
       "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -181,15 +184,11 @@
       "apps": [],
       "jobName": "paragraph_1468725908911_-740179100",
       "id": "20160717-032508_711515394",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "mayBegFreq: Array[(String, Int)] \u003d Array((www.fangraphs.com,125), (www.osnews.com,104), (forums.animesuki.com,101), (packages.ubuntu.com,97), (www.google.com,97), (www.kenyaun.org,96), (www.atoygarden.com,96), (www.wineexpress.com,95), (www.elegavenue.com,94), (www.blowoutcards.com,94), (www.insidehoops.com,93), (www.unhcr.org,92), (item.rakuten.co.jp,92), (www.jeepgarage.org,91), (www.dailytech.com,90), (www.heraldnet.com,89), (www.pbase.com,88), (www.democraticunderground.com,88), (www.chiefsplanet.com,88), (www.diaperswappers.com,87), (www.newrushmoreradio.com,87), (imgur.com,87), (www.tndeer.com,87), (starizona.com,87), (www.defensivecarry.com,86), (www.texasmotorspeedway.com,84), (www.camaro5.com,83), (www.lucasforums.com,82), (www.upi.com,81), (www.orangemane.com,80), (lists.w3.or...mayEndFreq: Array[(String, Int)] \u003d Array((www.economist.com,115), (www.build.com,106), (www.dailytech.com,98), (www.vesalia.de,97), (www.theday.com,96), (www.boxofficemojo.com,94), (www.callingcards.com,92), (www.tylerpaper.com,92), (www.orangemane.com,91), (www.lucasforums.com,91), (www.newrushmoreradio.com,89), (www.twopeasinabucket.com,89), (www.hotrodders.com,88), (www.elegavenue.com,87), (www.cosplay.com,87), (www.islamicfinder.org,87), (www.osnews.com,86), (hvac-talk.com,86), (www.dreamstime.com,85), (www.kenyaun.org,84), (www.insidehoops.com,84), (www.musicnotes.com,84), (www.heraldnet.com,84), (packages.ubuntu.com,83), (www.timesargus.com,83), (www.beau-coup.com,82), (forum.e46fanatics.com,82), (www.chiefsplanet.com,82), (www.bimmerfest.com,82), (forums.zimbra.com,82), (www.canc...mayBegFreqTbl: Unit \u003d ()\nmayEndFreqTbl: Unit \u003d ()\n"
-      },
       "dateCreated": "Jul 17, 2016 3:25:08 AM",
       "dateStarted": "Jul 17, 2016 4:01:49 AM",
       "dateFinished": "Jul 17, 2016 4:05:49 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -244,15 +243,11 @@
       "apps": [],
       "jobName": "paragraph_1468726424620_-1887180157",
       "id": "20160717-033344_1077678638",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TABLE",
-        "msg": "Domain\tFrequency\nwww.fangraphs.com\t125\nwww.osnews.com\t104\nforums.animesuki.com\t101\npackages.ubuntu.com\t97\nwww.google.com\t97\nwww.kenyaun.org\t96\nwww.atoygarden.com\t96\nwww.wineexpress.com\t95\nwww.elegavenue.com\t94\nwww.blowoutcards.com\t94\nwww.insidehoops.com\t93\nwww.unhcr.org\t92\nitem.rakuten.co.jp\t92\nwww.jeepgarage.org\t91\nwww.dailytech.com\t90\nwww.heraldnet.com\t89\nwww.pbase.com\t88\nwww.democraticunderground.com\t88\nwww.chiefsplanet.com\t88\nwww.diaperswappers.com\t87\nwww.newrushmoreradio.com\t87\nimgur.com\t87\nwww.tndeer.com\t87\nstarizona.com\t87\nwww.defensivecarry.com\t86\nwww.texasmotorspeedway.com\t84\nwww.camaro5.com\t83\nwww.lucasforums.com\t82\nwww.upi.com\t81\nwww.orangemane.com\t80\nlists.w3.org\t80\nwww.imagekind.com\t80\nwww.360cities.net\t80\nwww.build.com\t79\nwww.sailnet.com\t79\nwww.myfitnesspal.com\t78\nwww.opensecrets.org\t78\nwww.golfsmith.com\t77\nperezhilton.com\t77\nwww.summitpost.org\t77\nwww.timesargus.com\t77\nwww.beau-coup.com\t76\nwww.terrysvillage.com\t76\nwww.cancer.gov\t76\nwww.appbrain.com\t76\nwww.delmarfans.com\t75\nchroniclingamerica.loc.gov\t75\nwww.cosplay.com\t75\nforum.e46fanatics.com\t74\nwww.jjill.com\t74\nwww.greatlakes4x4.com\t74\nwww.maxbimmer.com\t74\nwww.dreamstime.com\t74\nwww.tylerpaper.com\t74\nwww.marksdailyapple.com\t74\nwww.twopeasinabucket.com\t73\nwww.findagrave.com\t73\nwww.airliners.net\t73\nwww.wakeworld.com\t73\ndocs.oracle.com\t73\n"
-      },
       "dateCreated": "Jul 17, 2016 3:33:44 AM",
       "dateStarted": "Jul 17, 2016 4:08:04 AM",
       "dateFinished": "Jul 17, 2016 4:08:05 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -307,15 +302,11 @@
       "apps": [],
       "jobName": "paragraph_1468728484862_817482312",
       "id": "20160717-040804_2122775753",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TABLE",
-        "msg": "Domain\tFrequency\nwww.economist.com\t115\nwww.build.com\t106\nwww.dailytech.com\t98\nwww.vesalia.de\t97\nwww.theday.com\t96\nwww.boxofficemojo.com\t94\nwww.callingcards.com\t92\nwww.tylerpaper.com\t92\nwww.orangemane.com\t91\nwww.lucasforums.com\t91\nwww.newrushmoreradio.com\t89\nwww.twopeasinabucket.com\t89\nwww.hotrodders.com\t88\nwww.elegavenue.com\t87\nwww.cosplay.com\t87\nwww.islamicfinder.org\t87\nwww.osnews.com\t86\nhvac-talk.com\t86\nwww.dreamstime.com\t85\nwww.kenyaun.org\t84\nwww.insidehoops.com\t84\nwww.musicnotes.com\t84\nwww.heraldnet.com\t84\npackages.ubuntu.com\t83\nwww.timesargus.com\t83\nwww.beau-coup.com\t82\nforum.e46fanatics.com\t82\nwww.chiefsplanet.com\t82\nwww.bimmerfest.com\t82\nforums.zimbra.com\t82\nwww.cancer.gov\t82\nwww.diyaudio.com\t82\nchroniclingamerica.loc.gov\t81\nwww.adidas.com\t81\nwww.atoygarden.com\t81\nwww.blowoutcards.com\t80\nwww.fangraphs.com\t80\nitem.rakuten.co.jp\t79\nwww.iherb.com\t78\nvotesmart.org\t78\nwww.maxbimmer.com\t78\nforums.animesuki.com\t77\nwww.wineexpress.com\t77\nwww.bullshido.net\t77\nwww.360cities.net\t77\nwww.medicinenet.com\t77\nwww.camaro5.com\t77\nwww.delmarfans.com\t76\nwww.beeradvocate.com\t76\nwww.discoverlife.org\t75\nwww.bikepics.com\t74\nlists.w3.org\t74\nwww.marksdailyapple.com\t74\ntvtropes.org\t73\nbleacherreport.com\t73\necom.datajoe.com\t72\nwww.myfitnesspal.com\t71\nmail-index.netbsd.org\t71\nwww.auswaertiges-amt.de\t71\nstarizona.com\t71\n"
-      },
       "dateCreated": "Jul 17, 2016 4:08:04 AM",
       "dateStarted": "Jul 17, 2016 4:11:22 AM",
       "dateFinished": "Jul 17, 2016 4:11:22 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -344,6 +335,7 @@
       "id": "20160717-041122_311565590",
       "dateCreated": "Jul 17, 2016 4:11:22 AM",
       "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -371,15 +363,11 @@
       "apps": [],
       "jobName": "paragraph_1468737680086_101191989",
       "id": "20160717-064120_1940741597",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "import StringUtils._\nimport org.apache.spark.rdd.RDD\nimport org.warcbase.spark.archive.io.ArchiveRecord\ngetSankeyRep: (inputDom: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord])Array[String]\nmayBegLink1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[23] at filter at RecordRDD.scala:82\nmayBegLnkWt1: String \u003d [[ \u0027www.fangraphs.com\u0027, \u0027twitter.com\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.hardballtimes.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.rotowire.com\u0027, 4 ],[ \u0027www.fangraphs.com\u0027, \u0027www.foxsports.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.stats.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.retrosheet.org\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027ottoneu.fangraphs.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.net\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.baseballinfosolutions.com\u0027, 125 ]]\nmayBegLink2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[31] at filter at RecordRDD.scala:82\nmayBegLnkWt2: String \u003d [[ \u0027www.osnews.com\u0027, \u0027img19.imageshack.us\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.youtube.com\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kdenews.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.persiadesign.net\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027wiki.videolan.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kde.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.theverge.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027blogs.zdnet.com\u0027, 2 ],[ \u0027www.osnews.com\u0027, \u0027www.h-online.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027tweakers.net\u0027, 1 ]]\nmayBegLink3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[39] at filter at RecordRDD.scala:82\nmayBegLnkWt3: String \u003d [[ \u0027www.google.com\u0027, \u0027www.google.ca\u0027, 1 ],[ \u0027www.google.com\u0027, \u0027drive.google.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027maps.google.com\u0027, 96 ],[ \u0027www.google.com\u0027, \u0027www.google.com.hk\u0027, 2 ],[ \u0027www.google.com\u0027, \u0027www.google.co.uk\u0027, 1 ],[ \u0027www.google.com\u0027, \u0027scholar.google.com\u0027, 336 ],[ \u0027www.google.com\u0027, \u0027support.google.com\u0027, 96 ],[ \u0027www.google.com\u0027, \u0027news.google.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027www.youtube.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027play.google.com\u0027, 95 ]]\nmayEndLink1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[47] at filter at RecordRDD.scala:82\nmayEndLnkWt1: String \u003d []\n"
-      },
       "dateCreated": "Jul 17, 2016 6:41:20 AM",
       "dateStarted": "Jul 25, 2016 2:08:54 AM",
       "dateFinished": "Jul 25, 2016 2:17:08 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -407,15 +395,11 @@
       "apps": [],
       "jobName": "paragraph_1468914115060_-1806170053",
       "id": "20160719-074155_787667829",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "res3: Long \u003d 115\n"
-      },
       "dateCreated": "Jul 19, 2016 7:41:55 AM",
       "dateStarted": "Jul 25, 2016 2:21:21 AM",
       "dateFinished": "Jul 25, 2016 2:23:23 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -446,15 +430,11 @@
       "apps": [],
       "jobName": "paragraph_1468738973315_-262354159",
       "id": "20160717-070253_585580025",
-      "result": {
-        "code": "SUCCESS",
-        "type": "HTML",
-        "msg": "\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n    \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.fangraphs.com\u0027, \u0027twitter.com\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.hardballtimes.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.rotowire.com\u0027, 4 ],[ \u0027www.fangraphs.com\u0027, \u0027www.foxsports.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.stats.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.retrosheet.org\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027ottoneu.fangraphs.com\u0027, 500 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.com\u0027, 125 ],[ \u0027www.fangraphs.com\u0027, \u0027www.tangotiger.net\u0027, 2 ],[ \u0027www.fangraphs.com\u0027, \u0027www.baseballinfosolutions.com\u0027, 125 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey1\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n      \n  \u003cdiv id\u003d\"sankey1\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\n"
-      },
       "dateCreated": "Jul 17, 2016 7:02:53 AM",
       "dateStarted": "Jul 25, 2016 3:47:36 AM",
       "dateFinished": "Jul 25, 2016 3:47:36 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -485,22 +465,18 @@
       "apps": [],
       "jobName": "paragraph_1468835221756_1050565259",
       "id": "20160718-094701_299717493",
-      "result": {
-        "code": "SUCCESS",
-        "type": "HTML",
-        "msg": "\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.osnews.com\u0027, \u0027img19.imageshack.us\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.youtube.com\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kdenews.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.persiadesign.net\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027wiki.videolan.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.kde.org\u0027, 1 ],[ \u0027www.osnews.com\u0027, \u0027www.theverge.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027blogs.zdnet.com\u0027, 2 ],[ \u0027www.osnews.com\u0027, \u0027www.h-online.com\u0027, 3 ],[ \u0027www.osnews.com\u0027, \u0027tweakers.net\u0027, 1 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 600,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey2\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n  \n  \u003cdiv id\u003d\"sankey2\" style\u003d\"width: 500px; height: 600px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\n"
-      },
       "dateCreated": "Jul 18, 2016 9:47:01 AM",
       "dateStarted": "Jul 25, 2016 4:09:04 AM",
       "dateFinished": "Jul 25, 2016 4:09:04 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Outlinks from \u0027google.com\u0027",
       "text": "//sankey representation for outlinks from \u0027google.com\u0027\n\nprintln(s\"\"\"%html\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows($mayBegLnkWt3);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 800,\n          width: 900,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey3\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n  \n  \u003cdiv id\u003d\"sankey3\" style\u003d\"width: 900px; height: 800px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\"\"\")",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 25, 2016 4:32:28 AM",
+      "dateUpdated": "Jul 25, 2016 1:01:29 PM",
       "config": {
         "colWidth": 9.0,
         "graph": {
@@ -524,21 +500,18 @@
       "apps": [],
       "jobName": "paragraph_1468740754704_1620918899",
       "id": "20160717-073234_318503326",
-      "result": {
-        "code": "SUCCESS",
-        "type": "HTML",
-        "msg": "\u003chtml\u003e\n  \u003chead\u003e\n    \u003cscript type\u003d\"text/javascript\" src\u003d\"https://www.gstatic.com/charts/loader.js\"\u003e\u003c/script\u003e\n  \n    \u003cscript type\u003d\"text/javascript\"\u003e\n      google.charts.load(\u0027current\u0027, {\u0027packages\u0027:[\u0027sankey\u0027]});\n      google.charts.setOnLoadCallback(drawChart);\n\n      function drawChart() {\n      \n        var data \u003d new google.visualization.DataTable();\n        data.addColumn(\u0027string\u0027, \u0027From\u0027);\n        data.addColumn(\u0027string\u0027, \u0027To\u0027);\n        data.addColumn(\u0027number\u0027, \u0027Weight\u0027);\n        data.addRows([[ \u0027www.google.com\u0027, \u0027www.google.ca\u0027, 1 ],[ \u0027www.google.com\u0027, \u0027drive.google.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027maps.google.com\u0027, 96 ],[ \u0027www.google.com\u0027, \u0027www.google.com.hk\u0027, 2 ],[ \u0027www.google.com\u0027, \u0027www.google.co.uk\u0027, 1 ],[ \u0027www.google.com\u0027, \u0027scholar.google.com\u0027, 336 ],[ \u0027www.google.com\u0027, \u0027support.google.com\u0027, 96 ],[ \u0027www.google.com\u0027, \u0027news.google.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027www.youtube.com\u0027, 95 ],[ \u0027www.google.com\u0027, \u0027play.google.com\u0027, 95 ]]);\n\n        var colors \u003d [\u0027#a6cee3\u0027, \u0027#b2df8a\u0027, \u0027#fb9a99\u0027, \u0027#fdbf6f\u0027,\n                  \u0027#cab2d6\u0027, \u0027#ffff99\u0027, \u0027#1f78b4\u0027, \u0027#33a02c\u0027];\n\n        var options \u003d {\n          height: 800,\n          width: 900,\n          sankey: {\n            node: {\n              colors: colors\n            },\n            link: {\n              colorMode: \u0027gradient\u0027,\n              colors: colors\n            }\n          }\n        };\n\n        // Instantiates and draws our chart, passing in some options.\n        var chart \u003d new google.visualization.Sankey(document.getElementById(\u0027sankey3\u0027));\n        chart.draw(data, options);\n      }\n    \u003c/script\u003e\n  \u003c/head\u003e\n  \n  \u003cdiv id\u003d\"sankey3\" style\u003d\"width: 900px; height: 800px;\"\u003e\u003c/div\u003e\n\u003c/html\u003e\n\n"
-      },
       "dateCreated": "Jul 17, 2016 7:32:34 AM",
-      "dateStarted": "Jul 25, 2016 4:32:28 AM",
-      "dateFinished": "Jul 25, 2016 4:32:29 AM",
-      "status": "FINISHED",
+      "dateStarted": "Jul 25, 2016 1:01:29 PM",
+      "dateFinished": "Jul 25, 2016 1:01:30 PM",
+      "status": "ERROR",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md \n\n### **Fact File**\n![Doodle](http://www.google.com/logos/doodles/2016/holi-festival-2016-4796769118453760-hp2x.gif)\n\n1. Google takes over 200 factors into account before delivering the correct search results for any query in a fraction of a second.\n\n2. The company owns a bunch of domains that are common misspellings of \u0027Google\u0027 like \u0027Gooogle.com\u0027, \u0027Gogle.com\u0027, \u0027Googlr.com\u0027 and more.\n\n3. There are more than 2 million googles searches per second.\n\n4. In 2013, 91% of the revenues of \u0027Google.com\u0027 came from advertising alone.\n\n5. Google\u0027s search index is more than 100 million gigabytes in size. It would take 100,000 one-terabyte personal drives to contain the same amount of data.\n\n6. Google might be the only company with the explicit goal to REDUCE the amount of time people spend on its site. \n\n7. Google has photographed more than 5 million miles of road for its Street View maps.\n\n8. Google has acquired 24 companies this year alone — that\u0027s about three companies a month. ",
+      "title": "Fact File",
+      "text": "%md \n![Doodle](http://www.google.com/logos/doodles/2016/holi-festival-2016-4796769118453760-hp2x.gif)\n\n1. Google takes over 200 factors into account before delivering the correct search results for any query in a fraction of a second.\n\n2. The company owns a bunch of domains that are common misspellings of \u0027Google\u0027 like \u0027Gooogle.com\u0027, \u0027Gogle.com\u0027, \u0027Googlr.com\u0027 and more.\n\n3. There are more than 2 million googles searches per second.\n\n4. In 2013, 91% of the revenues of \u0027Google.com\u0027 came from advertising alone.\n\n5. Google\u0027s search index is more than 100 million gigabytes in size. It would take 100,000 one-terabyte personal drives to contain the same amount of data.\n\n6. Google might be the only company with the explicit goal to REDUCE the amount of time people spend on its site. \n\n7. Google has photographed more than 5 million miles of road for its Street View maps.\n\n8. Google has acquired 24 companies this year alone — that\u0027s about three companies a month. ",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 25, 2016 5:36:18 AM",
+      "dateUpdated": "Jul 25, 2016 5:20:27 PM",
       "config": {
         "colWidth": 3.0,
         "graph": {
@@ -552,7 +525,8 @@
         },
         "enabled": true,
         "editorMode": "ace/mode/markdown",
-        "editorHide": true
+        "editorHide": true,
+        "title": true
       },
       "settings": {
         "params": {},
@@ -561,20 +535,17 @@
       "apps": [],
       "jobName": "paragraph_1468845555820_1768338820",
       "id": "20160718-123915_1536352968",
-      "result": {
-        "code": "SUCCESS",
-        "type": "HTML",
-        "msg": "\u003ch3\u003e\u003cstrong\u003eFact File\u003c/strong\u003e\u003c/h3\u003e\n\u003cp\u003e\u003cimg src\u003d\"http://www.google.com/logos/doodles/2016/holi-festival-2016-4796769118453760-hp2x.gif\" alt\u003d\"Doodle\" /\u003e\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003eGoogle takes over 200 factors into account before delivering the correct search results for any query in a fraction of a second.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eThe company owns a bunch of domains that are common misspellings of \u0027Google\u0027 like \u0027Gooogle.com\u0027, \u0027Gogle.com\u0027, \u0027Googlr.com\u0027 and more.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eThere are more than 2 million googles searches per second.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eIn 2013, 91% of the revenues of \u0027Google.com\u0027 came from advertising alone.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eGoogle\u0027s search index is more than 100 million gigabytes in size. It would take 100,000 one-terabyte personal drives to contain the same amount of data.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eGoogle might be the only company with the explicit goal to REDUCE the amount of time people spend on its site.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eGoogle has photographed more than 5 million miles of road for its Street View maps.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eGoogle has acquired 24 companies this year alone — that\u0027s about three companies a month.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n"
-      },
       "dateCreated": "Jul 18, 2016 12:39:15 PM",
-      "dateStarted": "Jul 25, 2016 5:36:13 AM",
-      "dateFinished": "Jul 25, 2016 5:36:13 AM",
+      "dateStarted": "Jul 25, 2016 5:20:28 PM",
+      "dateFinished": "Jul 25, 2016 5:20:28 PM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## 3. Analysis of the Web Graph structure using GraphX \nThis section examines the web graph structure of the web using the common crawl data and the GraphX libraries of Spark. We know that in random browsing, the probability that a web user/viewer\nwill land on a particular page is determined by the \u0027page rank\u0027 value of the page. Using the links contained in the pages of the crawl data, we first calculate the \u0027page rank\u0027 value of the pa\n-ges. This gives the size value of the nodes that represent the individual pages and the links that they have to other pages. Visualization for the graph is accomplished using D3 libraries.\n\nThe paragraph below first generates the data needed for the visualization.",
-      "dateUpdated": "Jul 25, 2016 12:24:08 PM",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 25, 2016 5:14:26 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -597,13 +568,80 @@
       "jobName": "paragraph_1468845771609_-1196027218",
       "id": "20160718-124251_1535643421",
       "dateCreated": "Jul 18, 2016 12:42:51 PM",
+      "dateStarted": "Jul 25, 2016 5:14:26 PM",
+      "dateFinished": "Jul 25, 2016 5:14:26 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph first generates the data for the visualization by extractign the link graph from the crawl data using GraphX\n\nval rawRecord \u003d mayBegData.keepValidPages().keepDomains(Set(\"www.fangraphs.com\", \"www.osnews.com\", \"www.google.com\"))       //extract only the domains needed to get smaller data\n\nval graph \u003d ExtractGraph(rawRecord, dynamic\u003dtrue)       //extract the graph from the data\ngraph.writeAsJson(\"/home/ubuntu/Documents/LinkGraphics/data/nodes\", \"/home/ubuntu/Documents/LinkGraphics/data/links\")       //write the data to disk to form the graph.json input file",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 27, 2016 3:27:38 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469508848154_1556987810",
+      "id": "20160726-045408_104185919",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "rawRecord: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[23] at filter at RecordRDD.scala:82\ngraph: org.apache.spark.graphx.Graph[org.warcbase.spark.matchbox.ExtractGraph.VertexData,org.warcbase.spark.matchbox.ExtractGraph.EdgeData] \u003d org.apache.spark.graphx.impl.GraphImpl@5e7bb67\norg.apache.hadoop.mapred.FileAlreadyExistsException: Output directory file:/home/ubuntu/Documents/LinkGraphics/data/links already exists\n\tat org.apache.hadoop.mapred.FileOutputFormat.checkOutputSpecs(FileOutputFormat.java:132)\n\tat org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply$mcV$sp(PairRDDFunctions.scala:1179)\n\tat org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1156)\n\tat org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopDataset$1.apply(PairRDDFunctions.scala:1156)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:150)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:111)\n\tat org.apache.spark.rdd.RDD.withScope(RDD.scala:316)\n\tat org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopDataset(PairRDDFunctions.scala:1156)\n\tat org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply$mcV$sp(PairRDDFunctions.scala:1060)\n\tat org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1026)\n\tat org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$4.apply(PairRDDFunctions.scala:1026)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:150)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:111)\n\tat org.apache.spark.rdd.RDD.withScope(RDD.scala:316)\n\tat org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:1026)\n\tat org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply$mcV$sp(PairRDDFunctions.scala:952)\n\tat org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:952)\n\tat org.apache.spark.rdd.PairRDDFunctions$$anonfun$saveAsHadoopFile$1.apply(PairRDDFunctions.scala:952)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:150)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:111)\n\tat org.apache.spark.rdd.RDD.withScope(RDD.scala:316)\n\tat org.apache.spark.rdd.PairRDDFunctions.saveAsHadoopFile(PairRDDFunctions.scala:951)\n\tat org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply$mcV$sp(RDD.scala:1443)\n\tat org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1422)\n\tat org.apache.spark.rdd.RDD$$anonfun$saveAsTextFile$1.apply(RDD.scala:1422)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:150)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:111)\n\tat org.apache.spark.rdd.RDD.withScope(RDD.scala:316)\n\tat org.apache.spark.rdd.RDD.saveAsTextFile(RDD.scala:1422)\n\tat org.warcbase.spark.matchbox.ExtractGraph$GraphWriter.writeAsJson(ExtractGraph.scala:87)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:48)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:53)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:55)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:57)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:59)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:61)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:63)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:65)\n\tat $iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:67)\n\tat $iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:69)\n\tat $iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:71)\n\tat $iwC.\u003cinit\u003e(\u003cconsole\u003e:73)\n\tat \u003cinit\u003e(\u003cconsole\u003e:75)\n\tat .\u003cinit\u003e(\u003cconsole\u003e:79)\n\tat .\u003cclinit\u003e(\u003cconsole\u003e)\n\tat .\u003cinit\u003e(\u003cconsole\u003e:7)\n\tat .\u003cclinit\u003e(\u003cconsole\u003e)\n\tat $print(\u003cconsole\u003e)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.apache.spark.repl.SparkIMain$ReadEvalPrint.call(SparkIMain.scala:1065)\n\tat org.apache.spark.repl.SparkIMain$Request.loadAndRun(SparkIMain.scala:1346)\n\tat org.apache.spark.repl.SparkIMain.loadAndRunReq$1(SparkIMain.scala:840)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:871)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:819)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpretInput(SparkInterpreter.java:813)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:759)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:752)\n\tat org.apache.zeppelin.interpreter.ClassloaderInterpreter.interpret(ClassloaderInterpreter.java:57)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:93)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:382)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:176)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler$1.run(FIFOScheduler.java:139)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:745)\n\n"
+      },
+      "dateCreated": "Jul 26, 2016 4:54:08 AM",
+      "dateStarted": "Jul 27, 2016 3:27:38 AM",
+      "dateFinished": "Jul 27, 2016 3:29:53 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nTo better understand the web structure of the internet, we have a visualization of the web graph structure shown below. The nodes represent the webpages and the links represent the\nlinks between the webpages. The size of the nodes is proportional to their \u0027page rank\u0027 values which in turn is calculated from the page ranking algorithm after considering the total inlinks\nand outlinks. \n\n\u003e *Page Rank : An indicator of the relative importance of the web sites*\n\nBy the size of the nodes, we may well be able to visually estimate the probability that any random user when surfing on the web will land on a particular page. For example, for users surfin\n-g on sports sites, we can estimate that their probability of landing on the site \u0027fangraphs.com\u0027 will be higher than the rest of the sites. Similarly, for sites of other subjects. This  is\nthe main idea behind the results returned by search engines - the results are displayed in the order of the decreasing page rank values of the pages. This fact is also confirmed by the doma\n-in frequency values calculated above, \u0027fangraphs.com\u0027 had the highest domain frequencies among all the others and here too it has the highest page rank value among all the nodes displayed.\nAdditionally, pages that are linked to these pages with a higher page rank value have the benefit of being visited by the visitors of the previous page.\n\n\u003e *Authorities and Hubs*\n\nThe node structure can better be explained by considering the following classification of the nodes : Authorities and Hubs. \u0027Authorities\u0027 refers to nodes that are linked by others and \u0027Hubs\u0027\nrefers to websites dealing with a lot of links. For \u0027Authorities\u0027, the more the number of inlinks, the bigger will be the nodes(more authority) which is also relected in its page rank value \nFor the visualization displayed below, we can find that all the bigger nodes that contain large number of links to other sites, namely \u0027fangraphs.com\u0027, \u0027osnews.com\u0027 and \u0027google.com\u0027 are \u0027Hu\n-bs\u0027 while the other sites that are linked to by other sites are \u0027Authorities\u0027. If the visualisation is taken to be a very small sub-space of the whole web, then we find that the \u0027Hubs\u0027 ten\n-d to dominate that space and draw more web traffic than \u0027Authorities\u0027. Further, \u0027Authorities\u0027 rely on the \u0027Hubs\u0027 for a part of the inflow of traffic to their websites which in turn facilit\n-ates advertisement revenues. This is easily visible in the graph structure shown below, \u0027hardballtimes.com\u0027 has more authority than any other site linked by \u0027fangraphs.com\u0027.\n\n\u003e *Edges of the graph are indicative of the strength of links*\n\nThe links between websites create \"attraction\" to make them appear closer to each other. A good way to test this is to pin \u0027google.com\u0027 and \u0027osnews.com\u0027 far apart from each other  and  then\nrelease them. The two domains will be pulled towards each other quite visibly which demonstrates the strength of the links between the websites. This is valid for all other websites too (if\nthey are linked). Moreover, the \u0027domains\u0027 that have more page rank values (bigger size) clutter around the bigger \u0027Hubs\u0027 and they tend to form clusters of communities in the web  space.  In\nthe sample web space seen below, we can easily notice the communities that are formed around \u0027fangraphs.com\u0027, \u0027osnews.com\u0027 and \u0027google.com\u0027. To test this further, one can just  move  freely\nany of these bigger \u0027hubs\u0027 and the websites that form the communities, move around along with them as is they were glued by some force which demonstrates the effect being described. The rel\n-ative strength of links is also indicated by the count of links which can be found by hovering the mouse over an edge of the graph.",
+      "dateUpdated": "Jul 26, 2016 8:17:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469509547401_1200887117",
+      "id": "20160726-050547_1843529404",
+      "dateCreated": "Jul 26, 2016 5:05:47 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//this paragraph generates the visualization needed for web structure analysis\n\nprintln(\"\"\"%html\n\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cmeta charset\u003d\"utf-8\" name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1\"\u003e\n    \u003clink rel\u003d\"shortcut icon\" href\u003d\"data:image/x-icon\" type\u003d\"image/x-icon\"\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css\"\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"linkassets/css/lib/nouislider.min.css\"\u003e\n    \u003c!-- App --\u003e\n    \u003clink href\u003d\"linkassets/css/app.css\" rel\u003d\"stylesheet\"\u003e\n  \u003c/head\u003e\n\n    \u003cdiv class\u003d\"container-fluid\"\u003e\n      \u003cheader\u003e\n        \u003cdiv class\u003d\"page-header\"\u003e\n          \u003ch1\u003eVisualization of the Web Graph Structure\u003c/h1\u003e\n        \u003c/div\u003e\n      \u003c/header\u003e\n\n      \u003csection\u003e\n        \u003cdiv class\u003d\"row sliders\"\u003e\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eMax sites to display\u003c/label\u003e\n            \u003cdiv id\u003d\"threshold-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t\u003c!--\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eYear\u003c/label\u003e\n            \u003cdiv id\u003d\"date-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t--\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"row\"\u003e\n          \u003cdiv id\u003d\"display\" class\u003d\"col-md-12\"\u003e\n            \u003cdiv id\u003d\"graph\" class\u003d\"d3-graph\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/section\u003e\n    \u003c/div\u003e\n\n    \u003c!-- jQuery --\u003e\n    \u003cscript src\u003d\"//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/jquery.isloading.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003cscript src\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/d3.tip.v0.6.3.js\"\u003e\u003c/script\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/nouislider.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Misc --\u003e\n    \u003cscript src\u003d\"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js\"\u003e\u003c/script\u003e\n    \u003c!-- App --\u003e\n    \u003cscript src\u003d\"/linkassets/js/app.js\"\u003e\u003c/script\u003e\n\n\u003c/html\u003e\n\n\"\"\")",
+      "text": "//this paragraph generates the visualization needed for web structure analysis\n\nprintln(\"\"\"%html\n\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cmeta charset\u003d\"utf-8\" name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1\"\u003e\n    \u003clink rel\u003d\"shortcut icon\" href\u003d\"data:image/x-icon\" type\u003d\"image/x-icon\"\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"linkassets/css/lib/nouislider.min.css\"\u003e\n    \u003c!-- App --\u003e\n    \u003clink href\u003d\"linkassets/css/app.css\" rel\u003d\"stylesheet\"\u003e\n  \u003c/head\u003e\n\n    \u003cdiv class\u003d\"container-fluid\"\u003e\n      \u003cheader\u003e\n        \u003cdiv class\u003d\"page-header\"\u003e\n          \u003ch1\u003eVisualization of the Web Graph Structure\u003c/h1\u003e\n        \u003c/div\u003e\n      \u003c/header\u003e\n\n      \u003csection\u003e\n        \u003cdiv class\u003d\"row sliders\"\u003e\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eMax sites to display\u003c/label\u003e\n            \u003cdiv id\u003d\"threshold-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t\u003c!--\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eYear\u003c/label\u003e\n            \u003cdiv id\u003d\"date-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t--\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"row\"\u003e\n          \u003cdiv id\u003d\"display\" class\u003d\"col-md-12\"\u003e\n            \u003cdiv id\u003d\"graph\" class\u003d\"d3-graph\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/section\u003e\n    \u003c/div\u003e\n    \u003c!-- jQuery --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/jquery.isloading.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/d3.tip.v0.6.3.js\"\u003e\u003c/script\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/nouislider.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- App --\u003e\n    \u003cscript src\u003d\"/linkassets/js/app.js\"\u003e\u003c/script\u003e\n\u003c/html\u003e\n\"\"\")",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 25, 2016 12:55:29 PM",
+      "dateUpdated": "Jul 26, 2016 4:51:44 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -617,7 +655,8 @@
         },
         "enabled": true,
         "editorMode": "ace/mode/scala",
-        "editorHide": false
+        "editorHide": true,
+        "title": false
       },
       "settings": {
         "params": {},
@@ -629,11 +668,220 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cmeta charset\u003d\"utf-8\" name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1\"\u003e\n    \u003clink rel\u003d\"shortcut icon\" href\u003d\"data:image/x-icon\" type\u003d\"image/x-icon\"\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css\"\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"linkassets/css/lib/nouislider.min.css\"\u003e\n    \u003c!-- App --\u003e\n    \u003clink href\u003d\"linkassets/css/app.css\" rel\u003d\"stylesheet\"\u003e\n  \u003c/head\u003e\n\n    \u003cdiv class\u003d\"container-fluid\"\u003e\n      \u003cheader\u003e\n        \u003cdiv class\u003d\"page-header\"\u003e\n          \u003ch1\u003eVisualization of the Web Graph Structure\u003c/h1\u003e\n        \u003c/div\u003e\n      \u003c/header\u003e\n\n      \u003csection\u003e\n        \u003cdiv class\u003d\"row sliders\"\u003e\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eMax sites to display\u003c/label\u003e\n            \u003cdiv id\u003d\"threshold-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t\u003c!--\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eYear\u003c/label\u003e\n            \u003cdiv id\u003d\"date-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t--\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"row\"\u003e\n          \u003cdiv id\u003d\"display\" class\u003d\"col-md-12\"\u003e\n            \u003cdiv id\u003d\"graph\" class\u003d\"d3-graph\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/section\u003e\n    \u003c/div\u003e\n\n    \u003c!-- jQuery --\u003e\n    \u003cscript src\u003d\"//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/jquery.isloading.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003cscript src\u003d\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js\"\u003e\u003c/script\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/d3.tip.v0.6.3.js\"\u003e\u003c/script\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/nouislider.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Misc --\u003e\n    \u003cscript src\u003d\"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js\"\u003e\u003c/script\u003e\n    \u003c!-- App --\u003e\n    \u003cscript src\u003d\"/linkassets/js/app.js\"\u003e\u003c/script\u003e\n\n\u003c/html\u003e\n\n\n"
+        "msg": "\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n  \u003chead\u003e\n    \u003cmeta charset\u003d\"utf-8\" name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1\"\u003e\n    \u003clink rel\u003d\"shortcut icon\" href\u003d\"data:image/x-icon\" type\u003d\"image/x-icon\"\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003clink rel\u003d\"stylesheet\" href\u003d\"linkassets/css/lib/nouislider.min.css\"\u003e\n    \u003c!-- App --\u003e\n    \u003clink href\u003d\"linkassets/css/app.css\" rel\u003d\"stylesheet\"\u003e\n  \u003c/head\u003e\n\n    \u003cdiv class\u003d\"container-fluid\"\u003e\n      \u003cheader\u003e\n        \u003cdiv class\u003d\"page-header\"\u003e\n          \u003ch1\u003eVisualization of the Web Graph Structure\u003c/h1\u003e\n        \u003c/div\u003e\n      \u003c/header\u003e\n\n      \u003csection\u003e\n        \u003cdiv class\u003d\"row sliders\"\u003e\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eMax sites to display\u003c/label\u003e\n            \u003cdiv id\u003d\"threshold-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t\u003c!--\n          \u003cdiv class\u003d\"col-md-6\"\u003e\n            \u003clabel for\u003d\"threshold-nodes\"\u003eYear\u003c/label\u003e\n            \u003cdiv id\u003d\"date-slider\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n\t--\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"row\"\u003e\n          \u003cdiv id\u003d\"display\" class\u003d\"col-md-12\"\u003e\n            \u003cdiv id\u003d\"graph\" class\u003d\"d3-graph\"\u003e\u003c/div\u003e\n          \u003c/div\u003e\n        \u003c/div\u003e\n      \u003c/section\u003e\n    \u003c/div\u003e\n    \u003c!-- jQuery --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/jquery.isloading.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- Bootstrap --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/d3.tip.v0.6.3.js\"\u003e\u003c/script\u003e\n    \u003c!-- noUiSlider --\u003e\n    \u003cscript src\u003d\"/linkassets/js/lib/nouislider.min.js\"\u003e\u003c/script\u003e\n    \u003c!-- App --\u003e\n    \u003cscript src\u003d\"/linkassets/js/app.js\"\u003e\u003c/script\u003e\n\u003c/html\u003e\n\n"
       },
       "dateCreated": "Jul 25, 2016 12:24:01 PM",
-      "dateStarted": "Jul 25, 2016 12:51:08 PM",
-      "dateFinished": "Jul 25, 2016 12:51:17 PM",
+      "dateStarted": "Jul 26, 2016 4:50:10 AM",
+      "dateFinished": "Jul 26, 2016 4:50:10 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## 4. Measuring the impact of Google Analytics\n[GoogleAnalytics}\n\nGoogle Analytics is by far the most preferred solution among website hosting companies to measure the inflow of web traffic to their sites. This section of the notebook measures the impact\nof google analytics on the web by considering the sample space of the data for the first three segments of May. Although this may not be completely sufficient to give exact and accurate re\n-sults but it will let us have an idea of the impact of google analytics. The strategy is simple and involves firstly finding the percentage of webpages that have google analytics  enabled\non their sites. Then, we proceed to calculate the leaked browser history, as given by Stephen Merity\u0027s simple algorithm :\n\n\u003e       *Algorithm for the leaked browsing history(for Google Analytics)*\n            for(each link \u003d {pageA} -\u003e {pageB})\n                totalLinks +\u003d 1\n                if({pageA} or {pageB} has Google Analytics)\n                    totalLeaked +\u003d 1\n        Leaked Browser History \u003d totalLeaked/totalLinks\n\nSince the number of pages(crawl data) is a subset of the whole common crawl corpus, we expect to find higher number of pages that have google analytics enabled on them. Nonetheless, we proc\n-eed to calculate the above quantities and try to draw conclusions based on the results.\n",
+      "dateUpdated": "Jul 27, 2016 5:02:12 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469451068144_-2033055218",
+      "id": "20160725-125108_487895136",
+      "dateCreated": "Jul 25, 2016 12:51:08 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph tests the links with Google Analytics in it\nimport org.apache.spark.graphx.Graph\n\ndef merge(edge1 : ExtractGraph.EdgeData, edge2 : ExtractGraph.EdgeData) : ExtractGraph.EdgeData \u003d edge1\n\nval domainWithGA \u003d rawRecord.keepContent(Set(\"google-analytics\".r))                                                      //get the pages that have google-analytics\n\nval trimGraph \u003d graph.groupEdges((ED1, ED2) \u003d\u003e merge(ED1, ED2))\nval links \u003d trimGraph.edges                                                                                              //get the edges of the graph\n\n//perform counting to check the possibility of taking cartesian product\ndomainWithGA.count()\nlinks.count()\n\n//start afresh\n\nval totalPages \u003d mayBegData.keepValidPages()\n\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 27, 2016 5:04:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469588341186_-599194795",
+      "id": "20160727-025901_2072319674",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark.graphx.Graph\nmerge: (edge1: org.warcbase.spark.matchbox.ExtractGraph.EdgeData, edge2: org.warcbase.spark.matchbox.ExtractGraph.EdgeData)org.warcbase.spark.matchbox.ExtractGraph.EdgeData\ndomainWithGA: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[403] at filter at RecordRDD.scala:90\ntrimGraph: org.apache.spark.graphx.Graph[org.warcbase.spark.matchbox.ExtractGraph.VertexData,org.warcbase.spark.matchbox.ExtractGraph.EdgeData] \u003d org.apache.spark.graphx.impl.GraphImpl@252292e2\nlinks: org.apache.spark.graphx.EdgeRDD[org.warcbase.spark.matchbox.ExtractGraph.EdgeData] \u003d EdgeRDDImpl[405] at RDD at EdgeRDD.scala:40\nres15: Long \u003d 324\nres16: Long \u003d 172\n"
+      },
+      "dateCreated": "Jul 27, 2016 2:59:01 AM",
+      "dateStarted": "Jul 27, 2016 3:57:52 AM",
+      "dateFinished": "Jul 27, 2016 3:59:53 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "links.take(10).foreach(println)",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 27, 2016 4:01:23 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469590355445_-935616407",
+      "id": "20160727-033235_1724010516",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "Edge(-1536293812,-1804144556,EdgeData(20160524,google.com,scholar.google.com))\nEdge(-1536293812,-1536293812,EdgeData(20160524,google.com,google.com))\nEdge(-1536293812,-78033866,EdgeData(20160524,google.com,youtube.com))\nEdge(-1536293812,28462918,EdgeData(20160524,google.com,play.google.com))\nEdge(-1536293812,186378243,EdgeData(20160524,google.com,maps.google.com))\nEdge(-1536293812,598282032,EdgeData(20160524,google.com,drive.google.com))\nEdge(-1536293812,847444939,EdgeData(20160524,google.com,support.google.com))\nEdge(-1536293812,1336620259,EdgeData(20160524,google.com,mail.google.com))\nEdge(-1536293812,1912841799,EdgeData(20160524,google.com,news.google.com))\nEdge(-643285558,-2095271699,EdgeData(20160524,osnews.com,apple.com))\n"
+      },
+      "dateCreated": "Jul 27, 2016 3:32:35 AM",
+      "dateStarted": "Jul 27, 2016 4:01:24 AM",
+      "dateFinished": "Jul 27, 2016 4:01:25 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val dispDomWithGA \u003d domainWithGA.map(r \u003d\u003e ExtractDomain(r.getUrl))\n\ndispDomWithGA.count()\ndispDomWithGA.take(10).foreach(println)",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 27, 2016 4:15:07 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469592083995_1508022904",
+      "id": "20160727-040123_1246632602",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "dispDomWithGA: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[407] at map at \u003cconsole\u003e:70\nres19: Long \u003d 324\nwww.fangraphs.com\nwww.fangraphs.com\nwww.fangraphs.com\nwww.fangraphs.com\nwww.fangraphs.com\nwww.fangraphs.com\nwww.fangraphs.com\nwww.fangraphs.com\nwww.fangraphs.com\nwww.fangraphs.com\n"
+      },
+      "dateCreated": "Jul 27, 2016 4:01:23 AM",
+      "dateStarted": "Jul 27, 2016 4:15:07 AM",
+      "dateFinished": "Jul 27, 2016 4:18:14 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val distinctDomWithGA \u003d dispDomWithGA.distinct()\n\ndistinctDomWithGA.count()",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 27, 2016 4:22:37 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469592418881_530602522",
+      "id": "20160727-040658_1211999994",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "distinctDomWithGA: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[410] at distinct at \u003cconsole\u003e:72\nres21: Long \u003d 3\n"
+      },
+      "dateCreated": "Jul 27, 2016 4:06:58 AM",
+      "dateStarted": "Jul 27, 2016 4:22:38 AM",
+      "dateFinished": "Jul 27, 2016 4:25:01 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "distinctDomWithGA.take(3).foreach(println)",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 27, 2016 4:38:14 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469593357365_1771226733",
+      "id": "20160727-042237_1336488480",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "www.osnews.com\nwww.google.com\nwww.fangraphs.com\n"
+      },
+      "dateCreated": "Jul 27, 2016 4:22:37 AM",
+      "dateStarted": "Jul 27, 2016 4:38:15 AM",
+      "dateFinished": "Jul 27, 2016 4:38:16 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -644,9 +892,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1469451068144_-2033055218",
-      "id": "20160725-125108_487895136",
-      "dateCreated": "Jul 25, 2016 12:51:08 PM",
+      "jobName": "paragraph_1469594294892_-817860295",
+      "id": "20160727-043814_618039290",
+      "dateCreated": "Jul 27, 2016 4:38:14 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
