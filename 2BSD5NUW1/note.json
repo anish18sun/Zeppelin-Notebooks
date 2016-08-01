@@ -828,9 +828,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//function to get the range of values associated with a location\ndef getRangeValues(index : Long) : Array[Long] \u003d {\n    \n    val indxArr \u003d new Array[Long](20)\n    for(i \u003c- -9 until 10){\n        indxArr(i + 9) \u003d index + i\n    }\n    return indxArr\n}\n\nval indxRange \u003d validIndexs.map(ele \u003d\u003e getRangeValues(ele)).take(10)\nvar cntxtArr \u003d Array[String]()\n\nfor(i \u003c- 0 until 10){\n    cntxtArr \u003d cntxtArr.:+(indexedText.filter(ele \u003d\u003e indxRange(i).contains(ele._2)).map( _._1).collect.mkString(\",\"))\n}\n",
+      "text": "//function to get the range of values associated with a location\n/*def getRangeValues(index : Long) : Array[Long] \u003d {\n    \n    val indxArr \u003d new Array[Long](20)\n    for(i \u003c- -9 until 10){\n        indxArr(i + 9) \u003d index + i\n    }\n    return indxArr\n}\n*/\nimport org.apache.spark.rdd.RDD\n\nval indxRange \u003d validIndexs.map(ele \u003d\u003e getRangeValues(ele)).take(200)\nvar cntxtArr \u003d Array[RDD[String]]()\n\nfor(i \u003c- 0 until 200){\n    cntxtArr \u003d cntxtArr.:+(indexedText.filter(ele \u003d\u003e indxRange(i).contains(ele._2)).map( _._1))\n}\n",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 1, 2016 1:12:41 PM",
+      "dateUpdated": "Aug 1, 2016 2:14:14 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -855,18 +855,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "getRangeValues: (index: Long)Array[Long]\nindxRange: Array[Array[Long]] \u003d Array(Array(1265, 1266, 1267, 1268, 1269, 1270, 1271, 1272, 1273, 1274, 1275, 1276, 1277, 1278, 1279, 1280, 1281, 1282, 1283, 0), Array(1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1333, 1334, 1335, 1336, 1337, 1338, 1339, 0), Array(1408, 1409, 1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 0), Array(1657, 1658, 1659, 1660, 1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670, 1671, 1672, 1673, 1674, 1675, 0), Array(1742, 1743, 1744, 1745, 1746, 1747, 1748, 1749, 1750, 1751, 1752, 1753, 1754, 1755, 1756, 1757, 1758, 1759, 1760, 0), Array(1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 0), Array(2468, 246...cntxtArr: Array[String] \u003d Array()\n"
+        "msg": "import org.apache.spark.rdd.RDD\nindxRange: Array[Array[Long]] \u003d Array(Array(1265, 1266, 1267, 1268, 1269, 1270, 1271, 1272, 1273, 1274, 1275, 1276, 1277, 1278, 1279, 1280, 1281, 1282, 1283, 0), Array(1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1333, 1334, 1335, 1336, 1337, 1338, 1339, 0), Array(1408, 1409, 1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 0), Array(1657, 1658, 1659, 1660, 1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670, 1671, 1672, 1673, 1674, 1675, 0), Array(1742, 1743, 1744, 1745, 1746, 1747, 1748, 1749, 1750, 1751, 1752, 1753, 1754, 1755, 1756, 1757, 1758, 1759, 1760, 0), Array(1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 0), Array(2468, 246...cntxtArr: Array[org.apache.spark.rdd.RDD[String]] \u003d Array()\n"
       },
       "dateCreated": "Jul 27, 2016 4:06:58 AM",
-      "dateStarted": "Aug 1, 2016 1:12:41 PM",
-      "dateFinished": "Aug 1, 2016 1:50:56 PM",
+      "dateStarted": "Aug 1, 2016 2:14:14 PM",
+      "dateFinished": "Aug 1, 2016 2:14:15 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "cntxtArr.foreach(println)",
+      "text": "cntxtArr(160).take(15).foreach(println)",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 1, 2016 1:53:31 PM",
+      "dateUpdated": "Aug 1, 2016 2:16:35 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -891,11 +891,11 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "warc10,kissing,apparently,swapping,spit,common,gesture,affection,throughout,animal,kingdom,with,lovers,kissing,with,their,tongues,jungles,deserts,bat\nwarc10,over,time,you,began,using,its,magical,powers,try,new,foods,learn,how,speak,sing,car,snuggle,up,with\nwarc10,forward,every,7th,birthday,when,my,tastebuds,change,try,new,food,every,7,years,am,amazed,at,what,like\nwarc10,614,pm\tyou,know,what,–,really,awesome,awesome,reply\tniki,baltimore,says\tdecember,15,2009,at,639,pm\tnot,mention,strongest,muscle\nwarc10,so,i’ve,heard,(anecdote,personally,i’m,medically,tongue-tied,–,little,fleshy,part,connects,my,tongue,bottom,my,mouth,quite\nwarc10,parasite,eats,tongue,fish,then,attaches,itself,stump,become,new,tongue,completely,horrifying,reply\tjdurley,says\tdecember,16,2009,at,1047\nwarc10,8,2011,at,555,pm\tthank,you,useful,information,waiting,new,posts,reply\tneuro,linguistic,programming,says\tseptember,4,2011,at,1243\nwarc10,finally,farting,after,guests,leave,happiness,equation,my,brand,new,book,available,now,read,first,50+,pages,right,here\nwarc10,through,first,20,pages,buy,now,#1,international,bestseller,new,york,times,bestseller,read,first,20,pages,buy,now\nwarc10,first,20,pages,buy,now,#1,international,bestseller,new,york,times,bestseller,read,first,20,pages,buy,now,#1\n"
+        "msg": "warc10\nbut\nactually\nborn\nbangkok\nthailand\n(army\nbrat)\nwhile\nattending\nvirginia\ntech\nworked\nat\nwkex\n"
       },
       "dateCreated": "Jul 27, 2016 4:22:37 AM",
-      "dateStarted": "Aug 1, 2016 1:53:31 PM",
-      "dateFinished": "Aug 1, 2016 1:53:31 PM",
+      "dateStarted": "Aug 1, 2016 2:16:35 PM",
+      "dateFinished": "Aug 1, 2016 2:16:35 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
