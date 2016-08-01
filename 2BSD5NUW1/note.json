@@ -760,9 +760,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n## 5. Text Based Search Engine.",
+      "text": "%md\n## 5. Analysing the context of Locations\nThe common crawl data has WET format files that contain only the text data extracted from the crawled content, in this section we use that text data to analyse the context of locations mentioned\nin the data. The analysis is performed on the smaple data of the first two segments of May to present a simple demostration of the location context search service described by the work  done  on\nthis subject by Vikas Bansal, Primal Pappachan and Abhishek Sethi. The simple procedure described by them is outlined below :-\n    \n\u003e    1. Analyse the web crawl data.\n     2. Create a list of locations that nearly covers the possible locations that may be present in the crawl data.\n     3. Filter top 100 words in the from the documents that mention a location.\n     4. Use an algorithm (such as Latent Dirichlet Allocation) to decipher topics from the data by using sufficient number of clusters.\n     5. Build an index of locations against the list of words/topics associated with that location.\n     6. Display the simple search service in the form of an interface.\n\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 27, 2016 7:34:44 AM",
+      "dateUpdated": "Jul 28, 2016 5:13:50 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -792,9 +792,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "//read the locations file to get the locations and the WET segments to get the text data needed for deriving context of locations\nimport scala.collection.mutable.HashMap\n\nval rawLocations \u003d sc.textFile(\"/home/ubuntu/ZeppelinData/CommonCrawl/places.txt\")                  //locations read from an exhaustive list of places - places.txt\nval locations \u003d rawLocations.flatMap(ele \u003d\u003e ele.split(\" \")).map( _.toLowerCase).distinct()\n\nval mayWetSeg1 \u003d sc.textFile(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWetSeg1.warc.wet.gz\")        //the WET segments of May\n\nval textSeg1 \u003d mayWetSeg1.map(ele \u003d\u003e ele.replace(\".\", \"\") .replace(\",\", \"\") .replace(\"?\", \"\")       //first remove all the punctuation marks \n                                        .replace(\"/\", \"\") .replace(\":\", \"\") .replace(\"!\", \"\") \n                                        .replace(\";\", \"\") .replace(\"\u0027\", \"\") .replace(\"*\", \"\")\n                                        .replace(\"\\\"\", \"\")\n                                        \n                                        .replace(\" for \", \" \").replace(\" to \", \" \") .replace(\" I \", \" \")        //remove unnecessary stop words\n                                        .replace(\" the \", \" \") .replace(\" an \", \" \") .replace(\" a \", \" \")\n                                        .replace(\" The \", \" \") .replace(\" An \", \" \") .replace(\" A \", \" \")\n                                        .replace(\" we \", \" \") .replace(\" in \", \" \") .replace(\" on \", \" \")\n                                        .replace(\" be \", \" \") .replace(\" is \", \" \") .replace(\" are \", \" \")\n                                        .replace(\" of \", \" \") .replace(\" or \", \" \") .replace(\" and \", \" \")\n                                        .replace(\" it \", \" \") .replace(\" if \", \" \") .replace(\" can \", \" \")\n                                        .replace(\" was \", \" \").replace(\" has \", \" \").replace(\" had \", \" \")\n                                        .replace(\" been \", \" \").replace(\" were \", \" \").replace(\" have \", \" \")\n                                        .replace(\" they \", \" \").replace(\" that \", \" \").replace(\" this \", \" \"))\n                         .flatMap( _.split(\" \"))\n                         .map( _.toLowerCase)\n                         \nval locInTextSeg1 \u003d textSeg1.intersection(locations)                                                //get the locations present in the text data\nval locationsArr \u003d locInTextSeg1.collect()\n\nval indexedText \u003d textSeg1.zipWithIndex                                                            //create indexed collection of text words to be easily able to retrieve them\nval indexedLocs \u003d indexedText.filter(ele \u003d\u003e locationsArr.contains(ele._1))                         //get the locations present in text segments\nval validIndexs \u003d indexedLocs.filter(ele \u003d\u003e !(ele._1.equals(\"\"))).map( _._2)                       //get the valid indexes after removing the blanks and null strings",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 27, 2016 7:06:59 AM",
+      "dateUpdated": "Aug 1, 2016 1:07:16 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -816,17 +816,21 @@
       "apps": [],
       "jobName": "paragraph_1469592083995_1508022904",
       "id": "20160727-040123_1246632602",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import scala.collection.mutable.HashMap\nrawLocations: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:30\nlocations: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[6] at distinct at \u003cconsole\u003e:32\nmayWetSeg1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[8] at textFile at \u003cconsole\u003e:30\ntextSeg1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[11] at map at \u003cconsole\u003e:48\nlocInTextSeg1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[17] at intersection at \u003cconsole\u003e:38\nlocationsArr: Array[String] \u003d Array(denver, sydney, denton, manchester, arabia, luxor, francisco, bogota, vegas, glasgow, lousiana, iran, paul, yuma, bolivia, montreal, arlington, springs, edinburgh, anchorage, georgia, manila, johannesburg, lexington, columbus, tuscon, topeka, richmond, leipzig, allentown, turkey, glendale, baton, minnesota, marseille, birmingham, budapest, wilmington, palm, peru, dakota, oregon, paraguay, uruguay, indiana, omaha, hong, janerio, malasia, lublin, austin, korea, tennessee, lakeland, michigan, mcallen, jefferson, honolulu, florence, prague, amsterdam, salt, finland, rio, las, downey, ana, jersey, orleans, dublin, heights, poland, louisville, park, leicester, louis, plaines, buenos, israel, boise, kent, copenhagen, beijing, norway, venice, savannah, arizon...indexedText: org.apache.spark.rdd.RDD[(String, Long)] \u003d ZippedWithIndexRDD[18] at zipWithIndex at \u003cconsole\u003e:34\nindexedLocs: org.apache.spark.rdd.RDD[(String, Long)] \u003d MapPartitionsRDD[19] at filter at \u003cconsole\u003e:44\nvalidIndexs: org.apache.spark.rdd.RDD[Long] \u003d MapPartitionsRDD[21] at map at \u003cconsole\u003e:46\n"
+      },
       "dateCreated": "Jul 27, 2016 4:01:23 AM",
-      "dateStarted": "Jul 27, 2016 6:25:58 AM",
-      "dateFinished": "Jul 27, 2016 6:30:48 AM",
+      "dateStarted": "Aug 1, 2016 1:07:16 PM",
+      "dateFinished": "Aug 1, 2016 1:12:01 PM",
       "status": "FINISHED",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "//function to get the range of values associated with a location\ndef getRangeValues(index : Long) : Array[Long] \u003d {\n    \n    val indxArr \u003d new Array[Long](20)\n    for(i \u003c- -9 until 10){\n        indxArr(i + 9) \u003d index + i\n    }\n    return indxArr\n}\n\nval indxRange \u003d validIndexs.map(ele \u003d\u003e getRangeValues(ele)).take(10)\nvar cntxtArr \u003d Array[String]()\n\nfor(i \u003c- 0 until 10){\n    cntxtArr \u003d cntxtArr.:+(indexedText.filter(ele \u003d\u003e indxRange(i).contains(ele._2)).map( _._1).collect.mkString(\",\"))\n}\n",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 27, 2016 5:58:54 AM",
+      "dateUpdated": "Aug 1, 2016 1:12:41 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -848,17 +852,21 @@
       "apps": [],
       "jobName": "paragraph_1469592418881_530602522",
       "id": "20160727-040658_1211999994",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "getRangeValues: (index: Long)Array[Long]\nindxRange: Array[Array[Long]] \u003d Array(Array(1265, 1266, 1267, 1268, 1269, 1270, 1271, 1272, 1273, 1274, 1275, 1276, 1277, 1278, 1279, 1280, 1281, 1282, 1283, 0), Array(1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1333, 1334, 1335, 1336, 1337, 1338, 1339, 0), Array(1408, 1409, 1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 0), Array(1657, 1658, 1659, 1660, 1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670, 1671, 1672, 1673, 1674, 1675, 0), Array(1742, 1743, 1744, 1745, 1746, 1747, 1748, 1749, 1750, 1751, 1752, 1753, 1754, 1755, 1756, 1757, 1758, 1759, 1760, 0), Array(1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 0), Array(2468, 246...cntxtArr: Array[String] \u003d Array()\n"
+      },
       "dateCreated": "Jul 27, 2016 4:06:58 AM",
-      "dateStarted": "Jul 27, 2016 4:22:38 AM",
-      "dateFinished": "Jul 27, 2016 4:25:01 AM",
+      "dateStarted": "Aug 1, 2016 1:12:41 PM",
+      "dateFinished": "Aug 1, 2016 1:50:56 PM",
       "status": "FINISHED",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "cntxtArr.foreach(println)",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 27, 2016 7:06:59 AM",
+      "dateUpdated": "Aug 1, 2016 1:53:31 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -880,11 +888,195 @@
       "apps": [],
       "jobName": "paragraph_1469593357365_1771226733",
       "id": "20160727-042237_1336488480",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "warc10,kissing,apparently,swapping,spit,common,gesture,affection,throughout,animal,kingdom,with,lovers,kissing,with,their,tongues,jungles,deserts,bat\nwarc10,over,time,you,began,using,its,magical,powers,try,new,foods,learn,how,speak,sing,car,snuggle,up,with\nwarc10,forward,every,7th,birthday,when,my,tastebuds,change,try,new,food,every,7,years,am,amazed,at,what,like\nwarc10,614,pm\tyou,know,what,–,really,awesome,awesome,reply\tniki,baltimore,says\tdecember,15,2009,at,639,pm\tnot,mention,strongest,muscle\nwarc10,so,i’ve,heard,(anecdote,personally,i’m,medically,tongue-tied,–,little,fleshy,part,connects,my,tongue,bottom,my,mouth,quite\nwarc10,parasite,eats,tongue,fish,then,attaches,itself,stump,become,new,tongue,completely,horrifying,reply\tjdurley,says\tdecember,16,2009,at,1047\nwarc10,8,2011,at,555,pm\tthank,you,useful,information,waiting,new,posts,reply\tneuro,linguistic,programming,says\tseptember,4,2011,at,1243\nwarc10,finally,farting,after,guests,leave,happiness,equation,my,brand,new,book,available,now,read,first,50+,pages,right,here\nwarc10,through,first,20,pages,buy,now,#1,international,bestseller,new,york,times,bestseller,read,first,20,pages,buy,now\nwarc10,first,20,pages,buy,now,#1,international,bestseller,new,york,times,bestseller,read,first,20,pages,buy,now,#1\n"
+      },
       "dateCreated": "Jul 27, 2016 4:22:37 AM",
-      "dateStarted": "Jul 27, 2016 4:38:15 AM",
-      "dateFinished": "Jul 27, 2016 4:38:16 AM",
+      "dateStarted": "Aug 1, 2016 1:53:31 PM",
+      "dateFinished": "Aug 1, 2016 1:53:31 PM",
       "status": "FINISHED",
-      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// val validFilLocs \u003d filLocs.filter(ele \u003d\u003e !(ele._1.equals(\"\")))\n\nvalidFilLocs.distinct.count",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 1, 2016 6:23:52 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469594294892_-817860295",
+      "id": "20160727-043814_618039290",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res30: Long \u003d 873200\n"
+      },
+      "dateCreated": "Jul 27, 2016 4:38:14 AM",
+      "dateStarted": "Aug 1, 2016 6:23:52 AM",
+      "dateFinished": "Aug 1, 2016 6:29:06 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "validFilLocs.take(20).foreach(println)",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 1, 2016 5:21:24 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469768692241_1248658660",
+      "id": "20160729-050452_1642695469",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "(kingdom,1274)\n(new,1330)\n(new,1417)\n(baltimore,1666)\n(little,1751)\n(new,1946)\n(new,2477)\n(new,2647)\n(new,2691)\n(york,2692)\n(new,2765)\n(brazil,2788)\n(china,2789)\n(england,2790)\n(germany,2791)\n(japan,2793)\n(korea,2794)\n(new,2795)\n(zealand,2796)\n(romania,2797)\n"
+      },
+      "dateCreated": "Jul 29, 2016 5:04:52 AM",
+      "dateStarted": "Aug 1, 2016 5:21:24 AM",
+      "dateFinished": "Aug 1, 2016 5:21:24 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "def filterLocations(indxEle : (String, Long)) : Boolean \u003d {\n    return locationsArr.contains(indxEle._1)\n}",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 31, 2016 4:37:48 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469768870351_1259091208",
+      "id": "20160729-050750_1126139486",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "filterLocations: (indxEle: (String, Long))Boolean\n"
+      },
+      "dateCreated": "Jul 29, 2016 5:07:50 AM",
+      "dateStarted": "Jul 31, 2016 4:37:48 PM",
+      "dateFinished": "Jul 31, 2016 4:37:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "locInTextSeg1.count",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 31, 2016 4:13:38 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469770685195_-1347240001",
+      "id": "20160729-053805_801187033",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res22: Long \u003d 381\n"
+      },
+      "dateCreated": "Jul 29, 2016 5:38:05 AM",
+      "dateStarted": "Jul 31, 2016 4:13:38 PM",
+      "dateFinished": "Jul 31, 2016 4:14:05 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "locInTextSeg1.take(141).foreach(print)",
+      "authenticationInfo": {},
+      "dateUpdated": "Jul 29, 2016 5:43:47 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1469770709194_1095777597",
+      "id": "20160729-053829_2047575871",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "denversydneydentonluxorspringsedinburghlexingtoncolumbustusconrichmondleipzigturkeywilmingtonperuoregonhonglublintennesseejeffersonhonoluluflorenceriodowneyjerseydublinheightslouisvilleleicesterlouisbuenosboisekentbeijingvenicesheffieldpittsburghsterlingdistrictdesshreveportlittleconcordhendersontokyocruzswedenmoscoweuropehuntsvilleberlinsevillephnommckinneylewisvillelyonbellevuedelhikentuckydoverhoustonlosbridgeportstockholmseoulrougeliverpoolmunichlondontownrhodenewdiegojosephlumpurunitedgreecejosenorthkongmontgomeryillinoisfullertonwisconsinwellingtonyonkersrosevillehelsinkipenhkingdommoinestorontobremennorfolkmississippiosloeldetroitlisbondortmunddusseldorfbostonirvinemontekievmemphisconnecticutberkeleychilecitybrownsvilleczechrocknuremburgpuebloyorkbelgiumbouldermelbournemissouripetersburgcolognezurichspringfieldsouthnorthvillewestminsterhollywoodbiloxirochesterromeshenzhenegyptsiliconmexicophoenixmorrisonleedsdcbrusselsohio"
+      },
+      "dateCreated": "Jul 29, 2016 5:38:29 AM",
+      "dateStarted": "Jul 29, 2016 5:43:47 AM",
+      "dateFinished": "Jul 29, 2016 5:44:28 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -894,9 +1086,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1469594294892_-817860295",
-      "id": "20160727-043814_618039290",
-      "dateCreated": "Jul 27, 2016 4:38:14 AM",
+      "jobName": "paragraph_1469770965145_981105456",
+      "id": "20160729-054245_803271288",
+      "dateCreated": "Jul 29, 2016 5:42:45 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
