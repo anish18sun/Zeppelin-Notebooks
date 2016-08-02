@@ -760,9 +760,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n## 5. Analysing the context of Locations\nThe common crawl data has WET format files that contain only the text data extracted from the crawled content, in this section we use that text data to analyse the context of locations mentioned\nin the data. The analysis is performed on the smaple data of the first two segments of May to present a simple demostration of the location context search service described by the work  done  on\nthis subject by Vikas Bansal, Primal Pappachan and Abhishek Sethi. The simple procedure described by them is outlined below :-\n    \n\u003e    1. Analyse the web crawl data.\n     2. Create a list of locations that nearly covers the possible locations that may be present in the crawl data.\n     3. Filter top 100 words in the from the documents that mention a location.\n     4. Use an algorithm (such as Latent Dirichlet Allocation) to decipher topics from the data by using sufficient number of clusters.\n     5. Build an index of locations against the list of words/topics associated with that location.\n     6. Display the simple search service in the form of an interface.\n\n",
+      "text": "%md\n## 5. Analysing the context of Locations\nThe common crawl data has WET format files that contain only the text data extracted from the crawled content, in this section we use that text data to analyse the context of locations mentioned\nin the data. The analysis is performed on the smaple data of the first segment of May to present a simple demostration of the location context search service described by the work done  on  this\nsubject by Vikas Bansal, Primal Pappachan and Abhishek Sethi. The simple procedure described by them is outlined below :-\n    \n\u003e    1. Analyse the web crawl data.\n     2. Create a list of locations that nearly covers the possible locations that may be present in the crawl data.\n     3. Filter top 100 words in the from the documents that mention a location.\n     4. Use an algorithm (such as Latent Dirichlet Allocation) to decipher topics from the data by using sufficient number of clusters.\n     5. Build an index of locations against the list of words/topics associated with that location.\n     6. Display the simple search service in the form of an interface.\n\nThe paragraph below first tries to create an index of the locations and their context by choosing the words closest to the location in the text data. The subsequent paragraph displays the subset\nof keys available and the interface for the search.",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 28, 2016 5:13:50 PM",
+      "dateUpdated": "Aug 2, 2016 3:18:18 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -792,9 +792,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//read the locations file to get the locations and the WET segments to get the text data needed for deriving context of locations\nimport scala.collection.mutable.HashMap\n\nval rawLocations \u003d sc.textFile(\"/home/ubuntu/ZeppelinData/CommonCrawl/places.txt\")                  //locations read from an exhaustive list of places - places.txt\nval locations \u003d rawLocations.flatMap(ele \u003d\u003e ele.split(\" \")).map( _.toLowerCase).distinct()\n\nval mayWetSeg1 \u003d sc.textFile(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWetSeg1.warc.wet.gz\")        //the WET segments of May\n\nval textSeg1 \u003d mayWetSeg1.map(ele \u003d\u003e ele.replace(\".\", \"\") .replace(\",\", \"\") .replace(\"?\", \"\")       //first remove all the punctuation marks \n                                        .replace(\"/\", \"\") .replace(\":\", \"\") .replace(\"!\", \"\") \n                                        .replace(\";\", \"\") .replace(\"\u0027\", \"\") .replace(\"*\", \"\")\n                                        .replace(\"\\\"\", \"\")\n                                        \n                                        .replace(\" for \", \" \").replace(\" to \", \" \") .replace(\" I \", \" \")        //remove unnecessary stop words\n                                        .replace(\" the \", \" \") .replace(\" an \", \" \") .replace(\" a \", \" \")\n                                        .replace(\" The \", \" \") .replace(\" An \", \" \") .replace(\" A \", \" \")\n                                        .replace(\" we \", \" \") .replace(\" in \", \" \") .replace(\" on \", \" \")\n                                        .replace(\" be \", \" \") .replace(\" is \", \" \") .replace(\" are \", \" \")\n                                        .replace(\" of \", \" \") .replace(\" or \", \" \") .replace(\" and \", \" \")\n                                        .replace(\" it \", \" \") .replace(\" if \", \" \") .replace(\" can \", \" \")\n                                        .replace(\" was \", \" \").replace(\" has \", \" \").replace(\" had \", \" \")\n                                        .replace(\" been \", \" \").replace(\" were \", \" \").replace(\" have \", \" \")\n                                        .replace(\" they \", \" \").replace(\" that \", \" \").replace(\" this \", \" \"))\n                         .flatMap( _.split(\" \"))\n                         .map( _.toLowerCase)\n                         \nval locInTextSeg1 \u003d textSeg1.intersection(locations)                                                //get the locations present in the text data\nval locationsArr \u003d locInTextSeg1.collect()\n\nval indexedText \u003d textSeg1.zipWithIndex                                                            //create indexed collection of text words to be easily able to retrieve them\nval indexedLocs \u003d indexedText.filter(ele \u003d\u003e locationsArr.contains(ele._1))                         //get the locations present in text segments\nval validIndexs \u003d indexedLocs.filter(ele \u003d\u003e !(ele._1.equals(\"\"))).map( _._2)                       //get the valid indexes after removing the blanks and null strings",
+      "text": "//this paragraph creates the index needed for the context of locations\nimport org.apache.spark.rdd.RDD\nimport scala.collection.mutable.HashMap\n\ndef getRangeValues(index : Long) : Array[Long] \u003d {                                                  //function to get the range of values associated with a location\n    \n    val indxArr \u003d new Array[Long](20)\n    for(i \u003c- -9 until 10){\n        indxArr(i + 9) \u003d index + i\n    }\n    return indxArr\n}\n\nval rawLocations \u003d sc.textFile(\"/home/ubuntu/ZeppelinData/CommonCrawl/places.txt\")                  //locations read from an exhaustive list of places - places.txt\nval locations \u003d rawLocations.flatMap(ele \u003d\u003e ele.split(\" \")).map( _.toLowerCase).distinct()\n\nval mayWetSeg1 \u003d sc.textFile(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWetSeg1.warc.wet.gz\")        //the WET segments of May\n\nval textSeg1 \u003d mayWetSeg1.map(ele \u003d\u003e ele.replace(\".\", \"\") .replace(\",\", \"\") .replace(\"?\", \"\")       //first remove all the punctuation marks \n                                        .replace(\"/\", \"\") .replace(\":\", \"\") .replace(\"!\", \"\") \n                                        .replace(\";\", \"\") .replace(\"\u0027\", \"\") .replace(\"*\", \"\")\n                                        .replace(\"\\\"\", \"\")\n                                        \n                                        .replace(\" for \", \" \").replace(\" to \", \" \") .replace(\" I \", \" \")        //remove unnecessary stop words\n                                        .replace(\" the \", \" \") .replace(\" an \", \" \") .replace(\" a \", \" \")\n                                        .replace(\" The \", \" \") .replace(\" An \", \" \") .replace(\" A \", \" \")\n                                        .replace(\" we \", \" \") .replace(\" in \", \" \") .replace(\" on \", \" \")\n                                        .replace(\" be \", \" \") .replace(\" is \", \" \") .replace(\" are \", \" \")\n                                        .replace(\" of \", \" \") .replace(\" or \", \" \") .replace(\" and \", \" \")\n                                        .replace(\" it \", \" \") .replace(\" if \", \" \") .replace(\" can \", \" \")\n                                        .replace(\" was \", \" \").replace(\" has \", \" \").replace(\" had \", \" \")\n                                        .replace(\" been \", \" \").replace(\" were \", \" \").replace(\" have \", \" \")\n                                        .replace(\" they \", \" \").replace(\" that \", \" \").replace(\" this \", \" \"))\n                         .flatMap( _.split(\" \"))\n                         .map( _.toLowerCase)\n                         \nval locInTextSeg1 \u003d textSeg1.intersection(locations)                                               //get the locations present in the text data\nval locationsArr \u003d locInTextSeg1.collect()\n\nval indexedText \u003d textSeg1.zipWithIndex                                                            //create indexed collection of text words to be easily able to retrieve them\nval indexedLocs \u003d indexedText.filter(ele \u003d\u003e locationsArr.contains(ele._1))                         //get the locations present in text segments\nval validIndexs \u003d indexedLocs.filter(ele \u003d\u003e !(ele._1.equals(\"\")))                                  //get the valid indexes after removing the blanks and null strings\n\nval indxRange \u003d validIndexs.map(ele \u003d\u003e (ele._1, getRangeValues(ele._2))).take(1000)                //take the first thousand values as a sample\nval cntxtMap \u003d new HashMap[String, RDD[String]]                                                    //the HashMap to store the index of locations and their context\n\nfor(i \u003c- 0 until 1000){\n    cntxtMap.put(indxRange(i)._1, indexedText.filter(ele \u003d\u003e indxRange(i)._2.contains(ele._2)).map( _._1))       //create the map of indexes\n}",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 1, 2016 1:07:16 PM",
+      "dateUpdated": "Aug 2, 2016 2:24:34 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -819,18 +819,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "import scala.collection.mutable.HashMap\nrawLocations: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:30\nlocations: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[6] at distinct at \u003cconsole\u003e:32\nmayWetSeg1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[8] at textFile at \u003cconsole\u003e:30\ntextSeg1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[11] at map at \u003cconsole\u003e:48\nlocInTextSeg1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[17] at intersection at \u003cconsole\u003e:38\nlocationsArr: Array[String] \u003d Array(denver, sydney, denton, manchester, arabia, luxor, francisco, bogota, vegas, glasgow, lousiana, iran, paul, yuma, bolivia, montreal, arlington, springs, edinburgh, anchorage, georgia, manila, johannesburg, lexington, columbus, tuscon, topeka, richmond, leipzig, allentown, turkey, glendale, baton, minnesota, marseille, birmingham, budapest, wilmington, palm, peru, dakota, oregon, paraguay, uruguay, indiana, omaha, hong, janerio, malasia, lublin, austin, korea, tennessee, lakeland, michigan, mcallen, jefferson, honolulu, florence, prague, amsterdam, salt, finland, rio, las, downey, ana, jersey, orleans, dublin, heights, poland, louisville, park, leicester, louis, plaines, buenos, israel, boise, kent, copenhagen, beijing, norway, venice, savannah, arizon...indexedText: org.apache.spark.rdd.RDD[(String, Long)] \u003d ZippedWithIndexRDD[18] at zipWithIndex at \u003cconsole\u003e:34\nindexedLocs: org.apache.spark.rdd.RDD[(String, Long)] \u003d MapPartitionsRDD[19] at filter at \u003cconsole\u003e:44\nvalidIndexs: org.apache.spark.rdd.RDD[Long] \u003d MapPartitionsRDD[21] at map at \u003cconsole\u003e:46\n"
+        "msg": "import org.apache.spark.rdd.RDD\nimport scala.collection.mutable.HashMap\ngetRangeValues: (index: Long)Array[Long]\nrawLocations: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:31\nlocations: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[6] at distinct at \u003cconsole\u003e:33\nmayWetSeg1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[8] at textFile at \u003cconsole\u003e:31\ntextSeg1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[11] at map at \u003cconsole\u003e:49\nlocInTextSeg1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[17] at intersection at \u003cconsole\u003e:39\nlocationsArr: Array[String] \u003d Array(denver, sydney, denton, manchester, arabia, luxor, francisco, bogota, vegas, glasgow, lousiana, iran, paul, yuma, bolivia, montreal, arlington, springs, edinburgh, anchorage, georgia, manila, johannesburg, lexington, columbus, tuscon, topeka, richmond, leipzig, allentown, turkey, glendale, baton, minnesota, marseille, birmingham, budapest, wilmington, palm, peru, dakota, oregon, paraguay, uruguay, indiana, omaha, hong, janerio, malasia, lublin, austin, korea, tennessee, lakeland, michigan, mcallen, jefferson, honolulu, florence, prague, amsterdam, salt, finland, rio, las, downey, ana, jersey, orleans, dublin, heights, poland, louisville, park, leicester, louis, plaines, buenos, israel, boise, kent, copenhagen, beijing, norway, venice, savannah, arizon...indexedText: org.apache.spark.rdd.RDD[(String, Long)] \u003d ZippedWithIndexRDD[18] at zipWithIndex at \u003cconsole\u003e:35\nindexedLocs: org.apache.spark.rdd.RDD[(String, Long)] \u003d MapPartitionsRDD[19] at filter at \u003cconsole\u003e:45\nvalidIndexs: org.apache.spark.rdd.RDD[(String, Long)] \u003d MapPartitionsRDD[20] at filter at \u003cconsole\u003e:47\nindxRange: Array[(String, Array[Long])] \u003d Array((kingdom,Array(1265, 1266, 1267, 1268, 1269, 1270, 1271, 1272, 1273, 1274, 1275, 1276, 1277, 1278, 1279, 1280, 1281, 1282, 1283, 0)), (new,Array(1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1333, 1334, 1335, 1336, 1337, 1338, 1339, 0)), (new,Array(1408, 1409, 1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 0)), (baltimore,Array(1657, 1658, 1659, 1660, 1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670, 1671, 1672, 1673, 1674, 1675, 0)), (little,Array(1742, 1743, 1744, 1745, 1746, 1747, 1748, 1749, 1750, 1751, 1752, 1753, 1754, 1755, 1756, 1757, 1758, 1759, 1760, 0)), (new,Array(1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 194...cntxtMap: scala.collection.mutable.HashMap[String,org.apache.spark.rdd.RDD[String]] \u003d Map()\n"
       },
       "dateCreated": "Jul 27, 2016 4:01:23 AM",
-      "dateStarted": "Aug 1, 2016 1:07:16 PM",
-      "dateFinished": "Aug 1, 2016 1:12:01 PM",
+      "dateStarted": "Aug 2, 2016 2:24:34 AM",
+      "dateFinished": "Aug 2, 2016 2:29:26 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//function to get the range of values associated with a location\n/*def getRangeValues(index : Long) : Array[Long] \u003d {\n    \n    val indxArr \u003d new Array[Long](20)\n    for(i \u003c- -9 until 10){\n        indxArr(i + 9) \u003d index + i\n    }\n    return indxArr\n}\n*/\nimport org.apache.spark.rdd.RDD\n\nval indxRange \u003d validIndexs.map(ele \u003d\u003e getRangeValues(ele)).take(200)\nvar cntxtArr \u003d Array[RDD[String]]()\n\nfor(i \u003c- 0 until 200){\n    cntxtArr \u003d cntxtArr.:+(indexedText.filter(ele \u003d\u003e indxRange(i).contains(ele._2)).map( _._1))\n}\n",
+      "text": "val keys \u003d cntxtMap.keySet                          //get to know the keys of the index to be able to try finding the context of locations\nprintln(keys)",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 1, 2016 2:14:14 PM",
+      "dateUpdated": "Aug 2, 2016 2:31:49 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -855,18 +855,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "import org.apache.spark.rdd.RDD\nindxRange: Array[Array[Long]] \u003d Array(Array(1265, 1266, 1267, 1268, 1269, 1270, 1271, 1272, 1273, 1274, 1275, 1276, 1277, 1278, 1279, 1280, 1281, 1282, 1283, 0), Array(1321, 1322, 1323, 1324, 1325, 1326, 1327, 1328, 1329, 1330, 1331, 1332, 1333, 1334, 1335, 1336, 1337, 1338, 1339, 0), Array(1408, 1409, 1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 0), Array(1657, 1658, 1659, 1660, 1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670, 1671, 1672, 1673, 1674, 1675, 0), Array(1742, 1743, 1744, 1745, 1746, 1747, 1748, 1749, 1750, 1751, 1752, 1753, 1754, 1755, 1756, 1757, 1758, 1759, 1760, 0), Array(1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 0), Array(2468, 246...cntxtArr: Array[org.apache.spark.rdd.RDD[String]] \u003d Array()\n"
+        "msg": "keys: scala.collection.Set[String] \u003d Set(china, paraguay, minnesota, tallahassee, diego, town, nashville, philadelphia, angeles, germany, iowa, nevada, illinois, massachusetts, europe, kingdom, connecticut, colorado, island, district, city, delhi, dakota, boston, tennessee, florida, silicon, france, lake, clara, chicago, virginia, palm, los, barcelona, joseph, haven, paul, dc, zealand, ana, salt, poland, arkansas, atlanta, kong, kansas, spain, rock, chile, norway, valley, japan, arizona, miami, york, liverpool, seattle, greece, saint, berkeley, missouri, albuquerque, las, tokyo, orange, united, turkey, jefferson, washington, dallas, florence, portland, vietnam, mississippi, georgia, alabama, bangkok, austria, manchester, finland, alaska, netherlands, sweden, park, louis, lakewood, welli...Set(china, paraguay, minnesota, tallahassee, diego, town, nashville, philadelphia, angeles, germany, iowa, nevada, illinois, massachusetts, europe, kingdom, connecticut, colorado, island, district, city, delhi, dakota, boston, tennessee, florida, silicon, france, lake, clara, chicago, virginia, palm, los, barcelona, joseph, haven, paul, dc, zealand, ana, salt, poland, arkansas, atlanta, kong, kansas, spain, rock, chile, norway, valley, japan, arizona, miami, york, liverpool, seattle, greece, saint, berkeley, missouri, albuquerque, las, tokyo, orange, united, turkey, jefferson, washington, dallas, florence, portland, vietnam, mississippi, georgia, alabama, bangkok, austria, manchester, finland, alaska, netherlands, sweden, park, louis, lakewood, wellington, sydney, louisiana, cleveland, australia, des, hague, richmond, hollywood, kentucky, jose, antonio, america, springs, wichita, california, detroit, romania, texas, columbia, san, argentina, carolina, states, idaho, athens, austin, maryland, jersey, north, jordan, ohio, el, pensacola, shreveport, paris, phoenix, frankfurt, oregon, mexico, delaware, santa, hong, england, brazil, asia, maria, buffalo, korea, melbourne, peru, czech, pennsylvania, italy, canada, venice, hampton, portugal, brussels, barbara, francisco, montgomery, new, michigan, baltimore, india, glasgow, south, uruguay, johannesburg, london, boise, little, cape)\n"
       },
       "dateCreated": "Jul 27, 2016 4:06:58 AM",
-      "dateStarted": "Aug 1, 2016 2:14:14 PM",
-      "dateFinished": "Aug 1, 2016 2:14:15 PM",
+      "dateStarted": "Aug 2, 2016 2:30:13 AM",
+      "dateFinished": "Aug 2, 2016 2:30:15 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "cntxtArr(160).take(15).foreach(println)",
+      "text": "//this paragraph contains the search query interface\n\nvar query \u003d z.input(\"Enter Location\", \"baltimore\").toString\n\nif(query.contains(\"new\") || query.contains(\"san\")){                                      //perform slight filtering on the input to get in retrieval form\n    query \u003d query.substring(4)\n}\n\nvar result \u003d \"\"\n{                                                        //check for exceptions if the value was not found in the index\n    try {                                                //try to get the value of the search query from the index\n        result \u003d cntxtMap(query).collect.mkString(\", \")\n    }\n    catch {\n        case ex : java.util.NoSuchElementException \u003d\u003e println(\"The location was not found in the search index.\")\n    }\n}\nprintln(\"Context of location \" + query + \" : \" + result)\n",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 1, 2016 2:16:35 PM",
+      "dateUpdated": "Aug 2, 2016 3:03:20 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -882,8 +882,18 @@
         "editorMode": "ace/mode/scala"
       },
       "settings": {
-        "params": {},
-        "forms": {}
+        "params": {
+          "Enter Location": "barcelona"
+        },
+        "forms": {
+          "Enter Location": {
+            "name": "Enter Location",
+            "displayName": "Enter Location",
+            "type": "input",
+            "defaultValue": "baltimore",
+            "hidden": false
+          }
+        }
       },
       "apps": [],
       "jobName": "paragraph_1469593357365_1771226733",
@@ -891,18 +901,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "warc10\nbut\nactually\nborn\nbangkok\nthailand\n(army\nbrat)\nwhile\nattending\nvirginia\ntech\nworked\nat\nwkex\n"
+        "msg": "query: String \u003d barcelona\nresult: String \u003d \"\"\nContext of location barcelona : warc10, 11, tracks, enrique, iglesiasnuclear, assaultelvis, crespo, south, america, spanish, barcelona, latin, s, published, january, 01, 2015, by, ececcece, latinx\n"
       },
       "dateCreated": "Jul 27, 2016 4:22:37 AM",
-      "dateStarted": "Aug 1, 2016 2:16:35 PM",
-      "dateFinished": "Aug 1, 2016 2:16:35 PM",
+      "dateStarted": "Aug 2, 2016 3:03:20 AM",
+      "dateFinished": "Aug 2, 2016 3:07:12 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "// val validFilLocs \u003d filLocs.filter(ele \u003d\u003e !(ele._1.equals(\"\")))\n\nvalidFilLocs.distinct.count",
+      "text": "%md\n## 6. Word Sense Disambiguation",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 1, 2016 6:23:52 AM",
+      "dateUpdated": "Aug 2, 2016 3:12:52 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -915,7 +925,7 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/markdown"
       },
       "settings": {
         "params": {},
@@ -924,21 +934,17 @@
       "apps": [],
       "jobName": "paragraph_1469594294892_-817860295",
       "id": "20160727-043814_618039290",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "res30: Long \u003d 873200\n"
-      },
       "dateCreated": "Jul 27, 2016 4:38:14 AM",
-      "dateStarted": "Aug 1, 2016 6:23:52 AM",
-      "dateFinished": "Aug 1, 2016 6:29:06 AM",
+      "dateStarted": "Aug 1, 2016 5:04:24 PM",
+      "dateFinished": "Aug 1, 2016 5:04:24 PM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "validFilLocs.take(20).foreach(println)",
+      "text": "",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 1, 2016 5:21:24 AM",
+      "dateUpdated": "Aug 2, 2016 3:03:23 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -960,21 +966,17 @@
       "apps": [],
       "jobName": "paragraph_1469768692241_1248658660",
       "id": "20160729-050452_1642695469",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "(kingdom,1274)\n(new,1330)\n(new,1417)\n(baltimore,1666)\n(little,1751)\n(new,1946)\n(new,2477)\n(new,2647)\n(new,2691)\n(york,2692)\n(new,2765)\n(brazil,2788)\n(china,2789)\n(england,2790)\n(germany,2791)\n(japan,2793)\n(korea,2794)\n(new,2795)\n(zealand,2796)\n(romania,2797)\n"
-      },
       "dateCreated": "Jul 29, 2016 5:04:52 AM",
       "dateStarted": "Aug 1, 2016 5:21:24 AM",
       "dateFinished": "Aug 1, 2016 5:21:24 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "def filterLocations(indxEle : (String, Long)) : Boolean \u003d {\n    return locationsArr.contains(indxEle._1)\n}",
+      "text": "",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 31, 2016 4:37:48 PM",
+      "dateUpdated": "Aug 2, 2016 3:03:23 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -996,21 +998,17 @@
       "apps": [],
       "jobName": "paragraph_1469768870351_1259091208",
       "id": "20160729-050750_1126139486",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "filterLocations: (indxEle: (String, Long))Boolean\n"
-      },
       "dateCreated": "Jul 29, 2016 5:07:50 AM",
       "dateStarted": "Jul 31, 2016 4:37:48 PM",
       "dateFinished": "Jul 31, 2016 4:37:48 PM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "locInTextSeg1.count",
+      "text": "",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 31, 2016 4:13:38 PM",
+      "dateUpdated": "Aug 2, 2016 3:03:23 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -1032,21 +1030,17 @@
       "apps": [],
       "jobName": "paragraph_1469770685195_-1347240001",
       "id": "20160729-053805_801187033",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "res22: Long \u003d 381\n"
-      },
       "dateCreated": "Jul 29, 2016 5:38:05 AM",
       "dateStarted": "Jul 31, 2016 4:13:38 PM",
       "dateFinished": "Jul 31, 2016 4:14:05 PM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "locInTextSeg1.take(141).foreach(print)",
+      "text": "",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 29, 2016 5:43:47 AM",
+      "dateUpdated": "Aug 2, 2016 3:03:23 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -1068,15 +1062,11 @@
       "apps": [],
       "jobName": "paragraph_1469770709194_1095777597",
       "id": "20160729-053829_2047575871",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "denversydneydentonluxorspringsedinburghlexingtoncolumbustusconrichmondleipzigturkeywilmingtonperuoregonhonglublintennesseejeffersonhonoluluflorenceriodowneyjerseydublinheightslouisvilleleicesterlouisbuenosboisekentbeijingvenicesheffieldpittsburghsterlingdistrictdesshreveportlittleconcordhendersontokyocruzswedenmoscoweuropehuntsvilleberlinsevillephnommckinneylewisvillelyonbellevuedelhikentuckydoverhoustonlosbridgeportstockholmseoulrougeliverpoolmunichlondontownrhodenewdiegojosephlumpurunitedgreecejosenorthkongmontgomeryillinoisfullertonwisconsinwellingtonyonkersrosevillehelsinkipenhkingdommoinestorontobremennorfolkmississippiosloeldetroitlisbondortmunddusseldorfbostonirvinemontekievmemphisconnecticutberkeleychilecitybrownsvilleczechrocknuremburgpuebloyorkbelgiumbouldermelbournemissouripetersburgcolognezurichspringfieldsouthnorthvillewestminsterhollywoodbiloxirochesterromeshenzhenegyptsiliconmexicophoenixmorrisonleedsdcbrusselsohio"
-      },
       "dateCreated": "Jul 29, 2016 5:38:29 AM",
       "dateStarted": "Jul 29, 2016 5:43:47 AM",
       "dateFinished": "Jul 29, 2016 5:44:28 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
