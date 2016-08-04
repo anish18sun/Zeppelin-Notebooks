@@ -62,9 +62,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")\n",
+      "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")\nz.load(\"/home/ubuntu/Softwares/machinelearning/stanford-ner-2015-12-09/stanford-ner.jar\")",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 27, 2016 2:59:28 AM",
+      "dateUpdated": "Aug 4, 2016 12:59:19 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -89,18 +89,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@5ec41bf7\n"
+        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@1eb34b31\n"
       },
       "dateCreated": "Jul 16, 2016 1:26:09 PM",
-      "dateStarted": "Jul 27, 2016 2:59:29 AM",
-      "dateFinished": "Jul 27, 2016 2:59:35 AM",
+      "dateStarted": "Aug 4, 2016 12:59:20 PM",
+      "dateFinished": "Aug 4, 2016 12:59:26 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May\n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                     //combine the data for the last three segments of May",
       "authenticationInfo": {},
-      "dateUpdated": "Jul 27, 2016 2:59:42 AM",
+      "dateUpdated": "Aug 4, 2016 12:59:35 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -128,8 +128,8 @@
         "msg": "import org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\nmayWarcSeg1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[2] at map at RecordLoader.scala:45\nmayWarcSeg2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[5] at map at RecordLoader.scala:45\nmayWarcSeg3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[8] at map at RecordLoader.scala:45\nmayBegData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[10] at union at \u003cconsole\u003e:41\nmayWarcSeg4: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[13] at map at RecordLoader.scala:45\nmayWarcSeg5: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[16] at map at RecordLoader.scala:45\nmayWarcSeg6: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[19] at map at RecordLoader.scala:45\nmayEndData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[21] at union at \u003cconsole\u003e:41\n"
       },
       "dateCreated": "Jul 16, 2016 1:32:27 PM",
-      "dateStarted": "Jul 27, 2016 2:59:42 AM",
-      "dateFinished": "Jul 27, 2016 2:59:51 AM",
+      "dateStarted": "Aug 4, 2016 12:59:36 PM",
+      "dateFinished": "Aug 4, 2016 12:59:46 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -910,9 +910,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n## 6. Word Sense Disambiguation",
+      "text": "%md\n## 6. Linking Entities in Common Crawl Datasets onto Wikipedia Concepts\nEvery **entity** that is mentioned in the web crawl data can be linked to one or more **contexts** on *wikipedia*, here we attempt to examine the crawl segemnts of May to extract the entities and\nmap them to their corresponding wikipedia concepts and at the same time derive a probability of how relevant or important a concept is for that particular entity since multiple entities may  have \nthe same contexts. This is done by first gathering all the entities after raw extraction and then grouping the contexts according to their entities and displaying the results in a visual  format.\nThe more the occurance of a particular context for an entity, the more are the chances of that context representing that entity accurately.",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 2, 2016 3:12:52 AM",
+      "dateUpdated": "Aug 2, 2016 12:39:27 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -942,9 +942,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "//use the May segments for the extraction of data and check for the wikipedia pages\nval mayData \u003d mayBegData.union(mayEndData)                                                      //get the combined data for the beginning and the ending segments\n\nval mayWikiLinks \u003d mayData.keepValidPages()                                                     //extract the links from the raw crawl data\n                            .keepDomains(Set(\"en.wikipedia.org\", \"www.wikipedia.org\"))\n                            .flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n\nval wikiSrcLinks \u003d mayWikiLinks.map(r \u003d\u003e r._1).filter(link \u003d\u003e link.contains(\"wikipedia\"))       //get the source links from the crawl data\nval wikiDstLinks \u003d mayWikiLinks.map(r \u003d\u003e r._2).filter(link \u003d\u003e link.contains(\"wikipedia\"))       //get the destination links from the crawl data\nval wikiLinks \u003d wikiSrcLinks.union(wikiDstLinks)                                                //get the total links that contain wikipedia in the url as the domain",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 2, 2016 3:03:23 AM",
+      "dateUpdated": "Aug 4, 2016 1:00:06 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -966,17 +966,21 @@
       "apps": [],
       "jobName": "paragraph_1469768692241_1248658660",
       "id": "20160729-050452_1642695469",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "mayData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[22] at union at \u003cconsole\u003e:52\nmayWikiLinks: org.apache.spark.rdd.RDD[(String, String, String)] \u003d MapPartitionsRDD[25] at flatMap at \u003cconsole\u003e:55\nwikiSrcLinks: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[27] at filter at \u003cconsole\u003e:55\nwikiDstLinks: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[29] at filter at \u003cconsole\u003e:55\nwikiLinks: org.apache.spark.rdd.RDD[String] \u003d UnionRDD[30] at union at \u003cconsole\u003e:59\n"
+      },
       "dateCreated": "Jul 29, 2016 5:04:52 AM",
-      "dateStarted": "Aug 1, 2016 5:21:24 AM",
-      "dateFinished": "Aug 1, 2016 5:21:24 AM",
+      "dateStarted": "Aug 4, 2016 1:00:06 PM",
+      "dateFinished": "Aug 4, 2016 1:00:07 PM",
       "status": "FINISHED",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "//this paragraph gets the entities and the links in the usable form by using the stanford NLP classifier model\nimport edu.stanford.nlp.ie.crf.CRFClassifier\nimport edu.stanford.nlp.ling.CoreAnnotations\nimport edu.stanford.nlp.ling.CoreLabel\n\nimport java.util.List\nimport scala.collection.mutable.ArraySeq\n\nval classifierPath \u003d \"/home/ubuntu/Softwares/machinelearning/stanford-ner-2015-12-09/classifiers/english.all.3class.distsim.crf.ser.gz\"     //the classifier for the NLP operation and finding entities\nval classifier \u003d CRFClassifier.getClassifierNoExceptions(classifierPath)                                                                    //get the CRF classifier\n\ndef getEntLnkMap(entLinks : (List[CoreLabel], String)) : Seq[(String, String)] \u003d {\n\n    val entLinkSeq \u003d new ArraySeq[(String, String)](entLinks._1.size())                 //the list to hold the (entity - Link) relationship\n    for(i \u003c- 0 until entLinks._1.size()){                                               //iterate over the entities for this link\n        entLinkSeq(i) \u003d (entLinks._1.get(i).toString, entLinks._2)\n    }\n    return entLinkSeq\n}\n\nval cleanLinks \u003d wikiLinks.map(urlString \u003d\u003e (urlString.replace(\"https:\", \"\") .replace(\"en.wikipedia.org\", \"\") .replace(\"www.wikipedia.org\", \"\") .replace(\".\", \" \")\n                                                     .replace(\"www.wikipedia.org/en\", \"\") .replace(\"/\", \" \") .replace(\"(\", \"\") .replace(\")\", \"\"), urlString))\nval entities \u003d cleanLinks.map(url \u003d\u003e (classifier.classify(url._1), url._2))             //task not serializable so classifier cannot be used in map operation\nval sentence \u003d entities.map(entity \u003d\u003e (entity._1.get(0), entity._2))\nval entLinkMap \u003d sentence.flatmap(senten \u003d\u003e getEntLnkMap(senten))                       //get the entities and the links in (entity, link) form",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 2, 2016 3:03:23 AM",
+      "dateUpdated": "Aug 4, 2016 1:27:36 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -998,17 +1002,21 @@
       "apps": [],
       "jobName": "paragraph_1469768870351_1259091208",
       "id": "20160729-050750_1126139486",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "import edu.stanford.nlp.ie.crf.CRFClassifier\nimport edu.stanford.nlp.ling.CoreAnnotations\nimport edu.stanford.nlp.ling.CoreLabel\nimport java.util.List\nimport scala.collection.mutable.ArraySeq\nclassifierPath: String \u003d /home/ubuntu/Softwares/machinelearning/stanford-ner-2015-12-09/classifiers/english.all.3class.distsim.crf.ser.gz\nclassifier: edu.stanford.nlp.ie.crf.CRFClassifier[edu.stanford.nlp.ling.CoreLabel] \u003d edu.stanford.nlp.ie.crf.CRFClassifier@5a18616d\ngetEntLnkMap: (entLinks: (java.util.List[edu.stanford.nlp.ling.CoreLabel], String))Seq[(String, String)]\ncleanLinks: org.apache.spark.rdd.RDD[(String, String)] \u003d MapPartitionsRDD[31] at map at \u003cconsole\u003e:78\norg.apache.spark.SparkException: Task not serializable\n\tat org.apache.spark.util.ClosureCleaner$.ensureSerializable(ClosureCleaner.scala:304)\n\tat org.apache.spark.util.ClosureCleaner$.org$apache$spark$util$ClosureCleaner$$clean(ClosureCleaner.scala:294)\n\tat org.apache.spark.util.ClosureCleaner$.clean(ClosureCleaner.scala:122)\n\tat org.apache.spark.SparkContext.clean(SparkContext.scala:2055)\n\tat org.apache.spark.rdd.RDD$$anonfun$map$1.apply(RDD.scala:324)\n\tat org.apache.spark.rdd.RDD$$anonfun$map$1.apply(RDD.scala:323)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:150)\n\tat org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:111)\n\tat org.apache.spark.rdd.RDD.withScope(RDD.scala:316)\n\tat org.apache.spark.rdd.RDD.map(RDD.scala:323)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:84)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:89)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:91)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:93)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:95)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:97)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:99)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:101)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:103)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:105)\n\tat $iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:107)\n\tat $iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:109)\n\tat $iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:111)\n\tat $iwC.\u003cinit\u003e(\u003cconsole\u003e:113)\n\tat \u003cinit\u003e(\u003cconsole\u003e:115)\n\tat .\u003cinit\u003e(\u003cconsole\u003e:119)\n\tat .\u003cclinit\u003e(\u003cconsole\u003e)\n\tat .\u003cinit\u003e(\u003cconsole\u003e:7)\n\tat .\u003cclinit\u003e(\u003cconsole\u003e)\n\tat $print(\u003cconsole\u003e)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.apache.spark.repl.SparkIMain$ReadEvalPrint.call(SparkIMain.scala:1065)\n\tat org.apache.spark.repl.SparkIMain$Request.loadAndRun(SparkIMain.scala:1346)\n\tat org.apache.spark.repl.SparkIMain.loadAndRunReq$1(SparkIMain.scala:840)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:871)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:819)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpretInput(SparkInterpreter.java:813)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:759)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:752)\n\tat org.apache.zeppelin.interpreter.ClassloaderInterpreter.interpret(ClassloaderInterpreter.java:57)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:93)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:382)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:176)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler$1.run(FIFOScheduler.java:139)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:745)\nCaused by: java.io.NotSerializableException: edu.stanford.nlp.ie.crf.CRFClassifier\nSerialization stack:\n\t- object not serializable (class: edu.stanford.nlp.ie.crf.CRFClassifier, value: edu.stanford.nlp.ie.crf.CRFClassifier@5a18616d)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: classifier, type: class edu.stanford.nlp.ie.crf.CRFClassifier)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@1ac61979)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@5a39e543)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@1b0a9f9d)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@17cda8f3)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@23f25542)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@16b4ba85)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@25451f4d)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@62ef30a1)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC@52ffe55b)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC@36b956bd)\n\t- field (class: $iwC$$iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC@51febf5f)\n\t- field (class: $iwC$$iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC, $iwC$$iwC$$iwC@143f6540)\n\t- field (class: $iwC$$iwC, name: $iw, type: class $iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC, $iwC$$iwC@ba72d01)\n\t- field (class: $iwC, name: $iw, type: class $iwC$$iwC)\n\t- object (class $iwC, $iwC@15e0f0ac)\n\t- field (class: line1665317302$67.$read, name: $iw, type: class $iwC)\n\t- object (class line1665317302$67.$read, line1665317302$67.$read@5036e6aa)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $VAL240, type: class line1665317302$67.$read)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@158d91ec)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, name: $outer, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC, $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC@4d735cf6)\n\t- field (class: $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$anonfun$1, name: $outer, type: class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC)\n\t- object (class $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$anonfun$1, \u003cfunction1\u003e)\n\tat org.apache.spark.serializer.SerializationDebugger$.improveException(SerializationDebugger.scala:40)\n\tat org.apache.spark.serializer.JavaSerializationStream.writeObject(JavaSerializer.scala:47)\n\tat org.apache.spark.serializer.JavaSerializerInstance.serialize(JavaSerializer.scala:101)\n\tat org.apache.spark.util.ClosureCleaner$.ensureSerializable(ClosureCleaner.scala:301)\n\t... 53 more\n\n"
+      },
       "dateCreated": "Jul 29, 2016 5:07:50 AM",
-      "dateStarted": "Jul 31, 2016 4:37:48 PM",
-      "dateFinished": "Jul 31, 2016 4:37:48 PM",
-      "status": "FINISHED",
-      "errorMessage": "",
+      "dateStarted": "Aug 4, 2016 1:25:18 PM",
+      "dateFinished": "Aug 4, 2016 1:25:21 PM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "wikiSrcLinks.count\nwikiDstLinks.count",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 2, 2016 3:03:23 AM",
+      "dateUpdated": "Aug 2, 2016 1:56:10 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -1030,17 +1038,21 @@
       "apps": [],
       "jobName": "paragraph_1469770685195_-1347240001",
       "id": "20160729-053805_801187033",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res6: Long \u003d 465\nres7: Long \u003d 15\n"
+      },
       "dateCreated": "Jul 29, 2016 5:38:05 AM",
-      "dateStarted": "Jul 31, 2016 4:13:38 PM",
-      "dateFinished": "Jul 31, 2016 4:14:05 PM",
+      "dateStarted": "Aug 2, 2016 1:56:10 PM",
+      "dateFinished": "Aug 2, 2016 2:04:18 PM",
       "status": "FINISHED",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "wikiDstLinks.take(10).foreach(println)",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 2, 2016 3:03:23 AM",
+      "dateUpdated": "Aug 2, 2016 2:07:24 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -1062,11 +1074,15 @@
       "apps": [],
       "jobName": "paragraph_1469770709194_1095777597",
       "id": "20160729-053829_2047575871",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "https://en.wikipedia.org/w/index.php?title\u003dBusiness_Model_Canvas\u0026oldid\u003d721351875\nhttps://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den\nhttps://www.wikidata.org/wiki/Q1393677#sitelinks-wikipedia\nhttps://en.wikipedia.org/w/index.php?title\u003dIreland\u0026oldid\u003d721683499\nhttps://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den\nhttps://www.wikidata.org/wiki/Q22890#sitelinks-wikipedia\nhttps://en.wikipedia.org/w/index.php?title\u003dKarl_Lagerfeld\u0026oldid\u003d722498966\nhttps://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den\nhttps://www.wikidata.org/wiki/Q76716#sitelinks-wikipedia\nhttps://en.wikipedia.org/w/index.php?title\u003dGeorge_Bernard_Shaw\u0026oldid\u003d722106118\n"
+      },
       "dateCreated": "Jul 29, 2016 5:38:29 AM",
-      "dateStarted": "Jul 29, 2016 5:43:47 AM",
-      "dateFinished": "Jul 29, 2016 5:44:28 AM",
+      "dateStarted": "Aug 2, 2016 2:07:24 PM",
+      "dateFinished": "Aug 2, 2016 2:12:39 PM",
       "status": "FINISHED",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
