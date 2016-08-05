@@ -64,7 +64,7 @@
     {
       "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")\nz.load(\"/home/ubuntu/Softwares/machinelearning/stanford-ner-2015-12-09/stanford-ner.jar\")",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 4, 2016 12:59:19 PM",
+      "dateUpdated": "Aug 5, 2016 4:33:07 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -89,18 +89,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@1eb34b31\n"
+        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@44d86cb9\n"
       },
       "dateCreated": "Jul 16, 2016 1:26:09 PM",
-      "dateStarted": "Aug 4, 2016 12:59:20 PM",
-      "dateFinished": "Aug 4, 2016 12:59:26 PM",
+      "dateStarted": "Aug 5, 2016 4:33:08 AM",
+      "dateFinished": "Aug 5, 2016 4:33:14 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May\n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                     //combine the data for the last three segments of May",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 4, 2016 12:59:35 PM",
+      "dateUpdated": "Aug 5, 2016 4:33:25 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -128,8 +128,8 @@
         "msg": "import org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\nmayWarcSeg1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[2] at map at RecordLoader.scala:45\nmayWarcSeg2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[5] at map at RecordLoader.scala:45\nmayWarcSeg3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[8] at map at RecordLoader.scala:45\nmayBegData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[10] at union at \u003cconsole\u003e:41\nmayWarcSeg4: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[13] at map at RecordLoader.scala:45\nmayWarcSeg5: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[16] at map at RecordLoader.scala:45\nmayWarcSeg6: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[19] at map at RecordLoader.scala:45\nmayEndData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[21] at union at \u003cconsole\u003e:41\n"
       },
       "dateCreated": "Jul 16, 2016 1:32:27 PM",
-      "dateStarted": "Aug 4, 2016 12:59:36 PM",
-      "dateFinished": "Aug 4, 2016 12:59:46 PM",
+      "dateStarted": "Aug 5, 2016 4:33:25 AM",
+      "dateFinished": "Aug 5, 2016 4:33:34 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -944,7 +944,7 @@
     {
       "text": "//use the May segments for the extraction of data and check for the wikipedia pages\nval mayData \u003d mayBegData.union(mayEndData)                                                      //get the combined data for the beginning and the ending segments\n\nval mayWikiLinks \u003d mayData.keepValidPages()                                                     //extract the links from the raw crawl data\n                            .keepDomains(Set(\"en.wikipedia.org\", \"www.wikipedia.org\"))\n                            .flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n\nval wikiSrcLinks \u003d mayWikiLinks.map(r \u003d\u003e r._1).filter(link \u003d\u003e link.contains(\"wikipedia\"))       //get the source links from the crawl data\nval wikiDstLinks \u003d mayWikiLinks.map(r \u003d\u003e r._2).filter(link \u003d\u003e link.contains(\"wikipedia\"))       //get the destination links from the crawl data\nval wikiLinks \u003d wikiSrcLinks.union(wikiDstLinks)                                                //get the total links that contain wikipedia in the url as the domain",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 4, 2016 1:00:06 PM",
+      "dateUpdated": "Aug 5, 2016 4:34:18 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -972,15 +972,15 @@
         "msg": "mayData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[22] at union at \u003cconsole\u003e:52\nmayWikiLinks: org.apache.spark.rdd.RDD[(String, String, String)] \u003d MapPartitionsRDD[25] at flatMap at \u003cconsole\u003e:55\nwikiSrcLinks: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[27] at filter at \u003cconsole\u003e:55\nwikiDstLinks: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[29] at filter at \u003cconsole\u003e:55\nwikiLinks: org.apache.spark.rdd.RDD[String] \u003d UnionRDD[30] at union at \u003cconsole\u003e:59\n"
       },
       "dateCreated": "Jul 29, 2016 5:04:52 AM",
-      "dateStarted": "Aug 4, 2016 1:00:06 PM",
-      "dateFinished": "Aug 4, 2016 1:00:07 PM",
+      "dateStarted": "Aug 5, 2016 4:34:18 AM",
+      "dateFinished": "Aug 5, 2016 4:34:19 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//this paragraph gets the entities and the links in the usable form by using the stanford NLP classifier model\n/*import edu.stanford.nlp.ie.crf.CRFClassifier\nimport edu.stanford.nlp.ling.CoreAnnotations\nimport edu.stanford.nlp.ling.CoreLabel\n\nimport java.util.List\nimport scala.collection.mutable.ArraySeq\n\nval classifierPath \u003d \"/home/ubuntu/Softwares/machinelearning/stanford-ner-2015-12-09/classifiers/english.all.3class.distsim.crf.ser.gz\"     //the classifier for the NLP operation and finding entities\nval classifier \u003d CRFClassifier.getClassifierNoExceptions(classifierPath)                                                                    //get the CRF classifier\n\ndef getEntLnkMap(entLinks : (List[CoreLabel], String)) : Seq[(String, String)] \u003d {\n\n    val entLinkSeq \u003d new ArraySeq[(String, String)](entLinks._1.size())                 //the list to hold the (entity - Link) relationship\n    for(i \u003c- 0 until entLinks._1.size()){                                               //iterate over the entities for this link\n        entLinkSeq(i) \u003d (entLinks._1.get(i).toString, entLinks._2)\n    }\n    return entLinkSeq\n}\n\nval cleanLinks \u003d wikiLinks.map(urlString \u003d\u003e (urlString.replace(\"https:\", \"\") .replace(\"en.wikipedia.org\", \"\") .replace(\"www.wikipedia.org\", \"\") .replace(\".\", \" \")\n                                                     .replace(\"www.wikipedia.org/en\", \"\") .replace(\"/\", \" \") .replace(\"(\", \"\") .replace(\")\", \"\"), urlString))\n// val entities \u003d cleanLinks.map(url \u003d\u003e (classifier.classify(url._1), url._2))          //task not serializable so classifier cannot be used in \u0027map\u0027 operation of an RDD\nval cLinkSize \u003d cleanLinks.count\n*/\n/*\nval size \u003d cLinkSize.toInt\nval entitySeq \u003d new ArraySeq[(List[List[CoreLabel]], String)](size)                //the sequence to get entities extracted from the urlStrings\n// val sentenSeq \u003d new ArraySeq[(List[CoreLabel], String)](cLinkSize)\nvar i \u003d 0\n\n//try to use iterator to get the values of the RDD and then perform the rest of the operations\nval urlIterator \u003d cleanLinks.toLocalIterator                                            //get the iterator for this RDD\n    while(urlIterator.hasNext){\n        val urlString \u003d urlIterator.next                                                //get the urlStrings\n        entitySeq(i) \u003d (classifier.classify(urlString._1), urlString._2)\n        i +\u003d 1\n    }\n\nval sentencSeq \u003d entitySeq.map(entity \u003d\u003e (entity._1.get(0), entity._2))\n*/\nval entLinkMap \u003d sentencSeq.flatMap(senten \u003d\u003e getEntLnkMap(senten))                     //get the entities and the links in (entity, link) form",
+      "text": "//this paragraph gets the entities and the links in the usable form by using the stanford NLP classifier model\n/*import edu.stanford.nlp.ie.crf.CRFClassifier\nimport edu.stanford.nlp.ling.CoreAnnotations\nimport edu.stanford.nlp.ling.CoreLabel\n\nimport java.util.List\nimport scala.collection.mutable.ArraySeq\n*/\nval classifierPath \u003d \"/home/ubuntu/Softwares/machinelearning/stanford-ner-2015-12-09/classifiers/english.conll.4class.distsim.crf.ser.gz\"     //the classifier for the NLP operation and finding entities\nval classifier \u003d CRFClassifier.getClassifierNoExceptions(classifierPath)                                                                    //get the CRF classifier\n/*\ndef getEntLnkMap(entLinks : (List[CoreLabel], String)) : Seq[(String, String)] \u003d {\n\n    val entLinkSeq \u003d new ArraySeq[(String, String)](entLinks._1.size())                 //the list to hold the (entity - Link) relationship\n    for(i \u003c- 0 until entLinks._1.size()){                                               //iterate over the entities for this link\n        entLinkSeq(i) \u003d (entLinks._1.get(i).toString, entLinks._2)\n    }\n    return entLinkSeq\n}\n*/\nval cleanLinks \u003d wikiLinks.map(urlString \u003d\u003e (urlString.replace(\"https:\", \"\") .replace(\"en.wikipedia.org\", \"\") .replace(\"www.wikipedia.org\", \"\") .replace(\".\", \" \")\n                                                      .replace(\"www.wikipedia.org/en\", \"\") .replace(\"/\", \" \") .replace(\"(\", \"\") .replace(\")\", \"\") .replace(\"\u0026\", \" \")\n                                                      .replace(\":\", \" \") .replace(\"_\", \" \") .replace(\"-\", \" \") .replace(\"\u003d\", \" \"), urlString))\nval cLinkSize \u003d cleanLinks.count.toInt\nval entitySeq \u003d new ArraySeq[(List[List[CoreLabel]], String)](cLinkSize)                //the sequence to get entities extracted from the urlStrings\nvar i \u003d 0\n\n// use iterator to get the values of the RDD and then perform the rest of the operations\nval urlIterator \u003d cleanLinks.toLocalIterator                                            //get the iterator for this RDD\n    while(urlIterator.hasNext){\n        val urlString \u003d urlIterator.next                                                //get the urlStrings\n        entitySeq(i) \u003d (classifier.classify(urlString._1), urlString._2)\n        i +\u003d 1\n    }\n\nval sentencSeq \u003d entitySeq.map(entity \u003d\u003e (entity._1.get(0), entity._2))\nval entLinkMap \u003d sentencSeq.flatMap(senten \u003d\u003e getEntLnkMap(senten))                     //get the entities and the links in (entity, link) form",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 4, 2016 3:36:33 PM",
+      "dateUpdated": "Aug 5, 2016 6:31:09 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -1005,18 +1005,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "entLinkMap: scala.collection.mutable.ArraySeq[(String, String)] \u003d ArraySeq((wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/B..."
+        "msg": "import edu.stanford.nlp.ie.crf.CRFClassifier\nimport edu.stanford.nlp.ling.CoreAnnotations\nimport edu.stanford.nlp.ling.CoreLabel\nimport java.util.List\nimport scala.collection.mutable.ArraySeq\nclassifierPath: String \u003d /home/ubuntu/Softwares/machinelearning/stanford-ner-2015-12-09/classifiers/english.all.3class.distsim.crf.ser.gz\nclassifier: edu.stanford.nlp.ie.crf.CRFClassifier[edu.stanford.nlp.ling.CoreLabel] \u003d edu.stanford.nlp.ie.crf.CRFClassifier@682c9f4b\ngetEntLnkMap: (entLinks: (java.util.List[edu.stanford.nlp.ling.CoreLabel], String))Seq[(String, String)]\ncleanLinks: org.apache.spark.rdd.RDD[(String, String)] \u003d MapPartitionsRDD[31] at map at \u003cconsole\u003e:66\ncLinkSize: Int \u003d 480\nentitySeq: scala.collection.mutable.ArraySeq[(java.util.List[java.util.List[edu.stanford.nlp.ling.CoreLabel]], String)] \u003d ArraySeq(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, ...i: Int \u003d 0\nurlIterator: Iterator[(String, String)] \u003d non-empty iterator\nsentencSeq: scala.collection.mutable.ArraySeq[(java.util.List[edu.stanford.nlp.ling.CoreLabel], String)] \u003d ArraySeq(([wiki, Business_Model_Canvas],https://en.wikipedia.org/wiki/Business_Model_Canvas), ([wiki, Business_Model_Canvas],https://en.wikipedia.org/wiki/Business_Model_Canvas), ([wiki, Business_Model_Canvas],https://en.wikipedia.org/wiki/Business_Model_Canvas), ([wiki, Business_Model_Canvas],https://en.wikipedia.org/wiki/Business_Model_Canvas), ([wiki, Business_Model_Canvas],https://en.wikipedia.org/wiki/Business_Model_Canvas), ([wiki, Business_Model_Canvas],https://en.wikipedia.org/wiki/Business_Model_Canvas), ([wiki, Business_Model_Canvas],https://en.wikipedia.org/wiki/Business_Model_Canvas), ([wiki, Business_Model_Canvas],https://en.wikipedia.org/wiki/Business_Model_Canvas), (...entLinkMap: scala.collection.mutable.ArraySeq[(String, String)] \u003d ArraySeq((wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/Business_Model_Canvas), (Business_Model_Canvas,https://en.wikipedia.org/wiki/Business_Model_Canvas), (wiki,https://en.wikipedia.org/wiki/B..."
       },
       "dateCreated": "Jul 29, 2016 5:07:50 AM",
-      "dateStarted": "Aug 4, 2016 3:36:33 PM",
-      "dateFinished": "Aug 4, 2016 3:36:36 PM",
+      "dateStarted": "Aug 5, 2016 4:43:47 AM",
+      "dateFinished": "Aug 5, 2016 5:08:54 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "wikiSrcLinks.count\nwikiDstLinks.count",
+      "text": "//this paragraph gets the entity and the links sequence to the form needed for the viualization and calculates the probabilities for each link of an entity\n\nval entLinkRdd \u003d sc.parallelize(entLinkMap)                             //get the entLinkMap as an RDD\n\nval entityCount \u003d entLinkRdd.map(ele \u003d\u003e ele._1) .map(ele \u003d\u003e (ele, 1)) .reduceByKey((x, y) \u003d\u003e x + y)             //get the count of the unique entities\nval linkCount   \u003d entLinkRdd.map(ele \u003d\u003e ((ele._1, ele._2), 1)) .reduceByKey((x, y) \u003d\u003e x + y)                    //get the count of the entity and specific links\nval entLinkKeys \u003d linkCount.map(ele \u003d\u003e (ele._1._1, (ele._1._2, ele._2)))\nval entLnkCount \u003d entLinkKeys.join(entityCount)                                                                 //get the count of each entity and the corresponding links to be able to get probabilities",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 2, 2016 1:56:10 PM",
+      "dateUpdated": "Aug 5, 2016 5:59:58 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -1041,11 +1041,11 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "res6: Long \u003d 465\nres7: Long \u003d 15\n"
+        "msg": "entLinkRdd: org.apache.spark.rdd.RDD[(String, String)] \u003d ParallelCollectionRDD[38] at parallelize at \u003cconsole\u003e:80\nentityCount: org.apache.spark.rdd.RDD[(String, Int)] \u003d ShuffledRDD[41] at reduceByKey at \u003cconsole\u003e:80\nlinkCount: org.apache.spark.rdd.RDD[((String, String), Int)] \u003d ShuffledRDD[43] at reduceByKey at \u003cconsole\u003e:80\nentLinkKeys: org.apache.spark.rdd.RDD[(String, (String, Int))] \u003d MapPartitionsRDD[44] at map at \u003cconsole\u003e:82\nentLnkCount: org.apache.spark.rdd.RDD[(String, ((String, Int), Int))] \u003d MapPartitionsRDD[47] at join at \u003cconsole\u003e:86\n"
       },
       "dateCreated": "Jul 29, 2016 5:38:05 AM",
-      "dateStarted": "Aug 2, 2016 1:56:10 PM",
-      "dateFinished": "Aug 2, 2016 2:04:18 PM",
+      "dateStarted": "Aug 5, 2016 5:59:58 AM",
+      "dateFinished": "Aug 5, 2016 5:59:59 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -1086,7 +1086,59 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "config": {},
+      "text": "entLnkCount.count",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 5, 2016 6:07:10 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470326311150_1564484674",
+      "id": "20160804-155831_2066546481",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res10: Long \u003d 107\n"
+      },
+      "dateCreated": "Aug 4, 2016 3:58:31 PM",
+      "dateStarted": "Aug 5, 2016 6:07:10 AM",
+      "dateFinished": "Aug 5, 2016 6:07:10 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "entLnkCount.take(107).foreach(println)",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 5, 2016 6:07:27 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
       "settings": {
         "params": {},
         "forms": {}
@@ -1094,7 +1146,27 @@
       "apps": [],
       "jobName": "paragraph_1469770965145_981105456",
       "id": "20160729-054245_803271288",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "(Q5565037,((https://www.wikidata.org/wiki/Q5565037#sitelinks-wikipedia,1),1))\n(Q76716,((https://www.wikidata.org/wiki/Q76716#sitelinks-wikipedia,1),1))\n(org,((https://www.wikidata.org/wiki/Q1393677#sitelinks-wikipedia,1),10))\n(org,((https://www.wikidata.org/wiki/Q76716#sitelinks-wikipedia,1),10))\n(org,((https://www.wikidata.org/wiki/Q5565037#sitelinks-wikipedia,1),10))\n(org,((https://www.wikidata.org/wiki/Q22890#sitelinks-wikipedia,1),10))\n(org,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),10))\n(org,((https://www.wikidata.org/wiki/Q19185#sitelinks-wikipedia,1),10))\n(wikimedia,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(sidebar,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(wiki,((https://en.wikipedia.org/wiki/Karl_Lagerfeld,65),475))\n(wiki,((https://www.wikidata.org/wiki/Q5565037#sitelinks-wikipedia,1),475))\n(wiki,((https://en.wikipedia.org/wiki/Gita_Sahgal,81),475))\n(wiki,((https://www.wikidata.org/wiki/Q22890#sitelinks-wikipedia,1),475))\n(wiki,((https://en.wikipedia.org/wiki/Ireland,174),475))\n(wiki,((https://www.wikidata.org/wiki/Q19185#sitelinks-wikipedia,1),475))\n(wiki,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),475))\n(wiki,((https://www.wikidata.org/wiki/Q1393677#sitelinks-wikipedia,1),475))\n(wiki,((https://www.wikidata.org/wiki/Q76716#sitelinks-wikipedia,1),475))\n(wiki,((https://en.wikipedia.org/wiki/George_Bernard_Shaw,123),475))\n(wiki,((https://en.wikipedia.org/wiki/Business_Model_Canvas,22),475))\n(Gita_Sahgal,((https://en.wikipedia.org/w/index.php?title\u003dGita_Sahgal\u0026oldid\u003d709738580,1),82))\n(Gita_Sahgal,((https://en.wikipedia.org/wiki/Gita_Sahgal,81),82))\n(722106118,((https://en.wikipedia.org/w/index.php?title\u003dGeorge_Bernard_Shaw\u0026oldid\u003d722106118,1),1))\n(\u003d,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,20),30))\n(\u003d,((https://en.wikipedia.org/w/index.php?title\u003dGeorge_Bernard_Shaw\u0026oldid\u003d722106118,2),30))\n(\u003d,((https://en.wikipedia.org/w/index.php?title\u003dIreland\u0026oldid\u003d721683499,2),30))\n(\u003d,((https://en.wikipedia.org/w/index.php?title\u003dKarl_Lagerfeld\u0026oldid\u003d722498966,2),30))\n(\u003d,((https://en.wikipedia.org/w/index.php?title\u003dGita_Sahgal\u0026oldid\u003d709738580,2),30))\n(\u003d,((https://en.wikipedia.org/w/index.php?title\u003dBusiness_Model_Canvas\u0026oldid\u003d721351875,2),30))\n(en,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(uselang,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(721683499,((https://en.wikipedia.org/w/index.php?title\u003dIreland\u0026oldid\u003d721683499,1),1))\n(Q19185,((https://www.wikidata.org/wiki/Q19185#sitelinks-wikipedia,1),1))\n(722498966,((https://en.wikipedia.org/w/index.php?title\u003dKarl_Lagerfeld\u0026oldid\u003d722498966,1),1))\n(721351875,((https://en.wikipedia.org/w/index.php?title\u003dBusiness_Model_Canvas\u0026oldid\u003d721351875,1),1))\n(Q1393677,((https://www.wikidata.org/wiki/Q1393677#sitelinks-wikipedia,1),1))\n(FundraiserRedirector?utm,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(-,((https://www.wikidata.org/wiki/Q22890#sitelinks-wikipedia,1),5))\n(-,((https://www.wikidata.org/wiki/Q76716#sitelinks-wikipedia,1),5))\n(-,((https://www.wikidata.org/wiki/Q19185#sitelinks-wikipedia,1),5))\n(-,((https://www.wikidata.org/wiki/Q5565037#sitelinks-wikipedia,1),5))\n(-,((https://www.wikidata.org/wiki/Q1393677#sitelinks-wikipedia,1),5))\n(Special,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(utm_campaign,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(C13,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(php?title,((https://en.wikipedia.org/w/index.php?title\u003dIreland\u0026oldid\u003d721683499,1),5))\n(php?title,((https://en.wikipedia.org/w/index.php?title\u003dKarl_Lagerfeld\u0026oldid\u003d722498966,1),5))\n(php?title,((https://en.wikipedia.org/w/index.php?title\u003dGita_Sahgal\u0026oldid\u003d709738580,1),5))\n(php?title,((https://en.wikipedia.org/w/index.php?title\u003dGeorge_Bernard_Shaw\u0026oldid\u003d722106118,1),5))\n(php?title,((https://en.wikipedia.org/w/index.php?title\u003dBusiness_Model_Canvas\u0026oldid\u003d721351875,1),5))\n(Business_Model_Canvas,((https://en.wikipedia.org/wiki/Business_Model_Canvas,22),23))\n(Business_Model_Canvas,((https://en.wikipedia.org/w/index.php?title\u003dBusiness_Model_Canvas\u0026oldid\u003d721351875,1),23))\n(709738580,((https://en.wikipedia.org/w/index.php?title\u003dGita_Sahgal\u0026oldid\u003d709738580,1),1))\n(index,((https://en.wikipedia.org/w/index.php?title\u003dGita_Sahgal\u0026oldid\u003d709738580,1),5))\n(index,((https://en.wikipedia.org/w/index.php?title\u003dKarl_Lagerfeld\u0026oldid\u003d722498966,1),5))\n(index,((https://en.wikipedia.org/w/index.php?title\u003dIreland\u0026oldid\u003d721683499,1),5))\n(index,((https://en.wikipedia.org/w/index.php?title\u003dGeorge_Bernard_Shaw\u0026oldid\u003d722106118,1),5))\n(index,((https://en.wikipedia.org/w/index.php?title\u003dBusiness_Model_Canvas\u0026oldid\u003d721351875,1),5))\n(wikidata,((https://www.wikidata.org/wiki/Q1393677#sitelinks-wikipedia,1),5))\n(wikidata,((https://www.wikidata.org/wiki/Q5565037#sitelinks-wikipedia,1),5))\n(wikidata,((https://www.wikidata.org/wiki/Q19185#sitelinks-wikipedia,1),5))\n(wikidata,((https://www.wikidata.org/wiki/Q76716#sitelinks-wikipedia,1),5))\n(wikidata,((https://www.wikidata.org/wiki/Q22890#sitelinks-wikipedia,1),5))\n(oldid,((https://en.wikipedia.org/w/index.php?title\u003dBusiness_Model_Canvas\u0026oldid\u003d721351875,1),5))\n(oldid,((https://en.wikipedia.org/w/index.php?title\u003dKarl_Lagerfeld\u0026oldid\u003d722498966,1),5))\n(oldid,((https://en.wikipedia.org/w/index.php?title\u003dGeorge_Bernard_Shaw\u0026oldid\u003d722106118,1),5))\n(oldid,((https://en.wikipedia.org/w/index.php?title\u003dGita_Sahgal\u0026oldid\u003d709738580,1),5))\n(oldid,((https://en.wikipedia.org/w/index.php?title\u003dIreland\u0026oldid\u003d721683499,1),5))\n(George_Bernard_Shaw,((https://en.wikipedia.org/wiki/George_Bernard_Shaw,123),124))\n(George_Bernard_Shaw,((https://en.wikipedia.org/w/index.php?title\u003dGeorge_Bernard_Shaw\u0026oldid\u003d722106118,1),124))\n(\u0026,((https://en.wikipedia.org/w/index.php?title\u003dGeorge_Bernard_Shaw\u0026oldid\u003d722106118,1),20))\n(\u0026,((https://en.wikipedia.org/w/index.php?title\u003dIreland\u0026oldid\u003d721683499,1),20))\n(\u0026,((https://en.wikipedia.org/w/index.php?title\u003dKarl_Lagerfeld\u0026oldid\u003d722498966,1),20))\n(\u0026,((https://en.wikipedia.org/w/index.php?title\u003dBusiness_Model_Canvas\u0026oldid\u003d721351875,1),20))\n(\u0026,((https://en.wikipedia.org/w/index.php?title\u003dGita_Sahgal\u0026oldid\u003d709738580,1),20))\n(\u0026,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,15),20))\n(utm_medium,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(:,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(Q22890,((https://www.wikidata.org/wiki/Q22890#sitelinks-wikipedia,1),1))\n(Karl_Lagerfeld,((https://en.wikipedia.org/wiki/Karl_Lagerfeld,65),66))\n(Karl_Lagerfeld,((https://en.wikipedia.org/w/index.php?title\u003dKarl_Lagerfeld\u0026oldid\u003d722498966,1),66))\n(w,((https://en.wikipedia.org/w/index.php?title\u003dGita_Sahgal\u0026oldid\u003d709738580,1),5))\n(w,((https://en.wikipedia.org/w/index.php?title\u003dBusiness_Model_Canvas\u0026oldid\u003d721351875,1),5))\n(w,((https://en.wikipedia.org/w/index.php?title\u003dKarl_Lagerfeld\u0026oldid\u003d722498966,1),5))\n(w,((https://en.wikipedia.org/w/index.php?title\u003dIreland\u0026oldid\u003d721683499,1),5))\n(w,((https://en.wikipedia.org/w/index.php?title\u003dGeorge_Bernard_Shaw\u0026oldid\u003d722106118,1),5))\n(www,((https://www.wikidata.org/wiki/Q22890#sitelinks-wikipedia,1),5))\n(www,((https://www.wikidata.org/wiki/Q76716#sitelinks-wikipedia,1),5))\n(www,((https://www.wikidata.org/wiki/Q19185#sitelinks-wikipedia,1),5))\n(www,((https://www.wikidata.org/wiki/Q5565037#sitelinks-wikipedia,1),5))\n(www,((https://www.wikidata.org/wiki/Q1393677#sitelinks-wikipedia,1),5))\n(wikipedia,((https://www.wikidata.org/wiki/Q19185#sitelinks-wikipedia,1),5))\n(wikipedia,((https://www.wikidata.org/wiki/Q22890#sitelinks-wikipedia,1),5))\n(wikipedia,((https://www.wikidata.org/wiki/Q5565037#sitelinks-wikipedia,1),5))\n(wikipedia,((https://www.wikidata.org/wiki/Q76716#sitelinks-wikipedia,1),5))\n(wikipedia,((https://www.wikidata.org/wiki/Q1393677#sitelinks-wikipedia,1),5))\n(_,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,10),10))\n(source,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,5),5))\n(Ireland,((https://en.wikipedia.org/w/index.php?title\u003dIreland\u0026oldid\u003d721683499,1),175))\n(Ireland,((https://en.wikipedia.org/wiki/Ireland,174),175))\n(#sitelinks,((https://www.wikidata.org/wiki/Q5565037#sitelinks-wikipedia,1),5))\n(#sitelinks,((https://www.wikidata.org/wiki/Q19185#sitelinks-wikipedia,1),5))\n(#sitelinks,((https://www.wikidata.org/wiki/Q76716#sitelinks-wikipedia,1),5))\n(#sitelinks,((https://www.wikidata.org/wiki/Q1393677#sitelinks-wikipedia,1),5))\n(#sitelinks,((https://www.wikidata.org/wiki/Q22890#sitelinks-wikipedia,1),5))\n(donate,((https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source\u003ddonate\u0026utm_medium\u003dsidebar\u0026utm_campaign\u003dC13_en.wikipedia.org\u0026uselang\u003den,10),10))\n"
+      },
       "dateCreated": "Jul 29, 2016 5:42:45 AM",
+      "dateStarted": "Aug 5, 2016 6:07:28 AM",
+      "dateFinished": "Aug 5, 2016 6:07:28 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470373994450_-1769236045",
+      "id": "20160805-051314_384172667",
+      "dateCreated": "Aug 5, 2016 5:13:14 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
