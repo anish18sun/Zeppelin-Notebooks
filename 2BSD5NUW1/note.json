@@ -62,9 +62,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")\nz.load(\"/home/ubuntu/Softwares/machinelearning/stanford-ner-2015-12-09/stanford-ner.jar\")",
+      "text": "%dep\n//this paragraph loads the warcbase library for analysis of warc files \nz.load(\"/home/ubuntu/Softwares/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar\")          //load the warcbase library \nz.load(\"/home/ubuntu/Softwares/machinelearning/stanford-ner-2015-12-09/stanford-ner.jar\")                       //load the stanford nlp library\n\n//load the lucene libraries\nz.load(\"/home/ubuntu/Softwares/lucene/lucene-6.1.0/core/lucene-core-6.1.0.jar\")\nz.load(\"/home/ubuntu/Softwares/lucene/lucene-6.1.0/queryparser/lucene-queryparser-6.1.0.jar\")\nz.load(\"/home/ubuntu/Softwares/lucene/lucene-6.1.0/analysis/common/lucene-analyzers-common-6.1.0.jar\")\n",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 6, 2016 4:10:59 AM",
+      "dateUpdated": "Aug 7, 2016 3:28:25 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -89,18 +89,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@41870abc\n"
+        "msg": "DepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@70ce5fc9\n"
       },
       "dateCreated": "Jul 16, 2016 1:26:09 PM",
-      "dateStarted": "Aug 6, 2016 4:10:59 AM",
-      "dateFinished": "Aug 6, 2016 4:11:05 AM",
+      "dateStarted": "Aug 7, 2016 3:28:26 AM",
+      "dateFinished": "Aug 7, 2016 3:28:31 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May\n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                     //combine the data for the last three segments of May",
+      "text": "//this paragraph loads the datasets in zeppelin for analysis\nimport org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\n\nval mayWarcSeg1 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg1.warc.gz\", sc)        //load the data sets for the first three segments of May\nval mayWarcSeg2 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg2.warc.gz\", sc)\nval mayWarcSeg3 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg3.warc.gz\", sc)\n\nval mayBegData \u003d mayWarcSeg1.union(mayWarcSeg2).union(mayWarcSeg3)                     //combine the data for the first three segments of May\n\nval mayWarcSeg4 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg4.warc.gz\", sc)        //load the data sets for the last three segments of May\nval mayWarcSeg5 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg5.warc.gz\", sc)\nval mayWarcSeg6 \u003d RecordLoader.loadArchives(\"/home/ubuntu/ZeppelinData/CommonCrawl/MayWarcSeg6.warc.gz\", sc)\n\nval mayEndData \u003d mayWarcSeg4.union(mayWarcSeg5).union(mayWarcSeg6)                     //combine the data for the last three segments of May\n\nval mayData \u003d mayBegData.union(mayEndData)                                             //combine data for the beginning and the ending segments of May",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 6, 2016 4:11:12 AM",
+      "dateUpdated": "Aug 7, 2016 3:28:38 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -125,11 +125,11 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "import org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\nmayWarcSeg1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[2] at map at RecordLoader.scala:45\nmayWarcSeg2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[5] at map at RecordLoader.scala:45\nmayWarcSeg3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[8] at map at RecordLoader.scala:45\nmayBegData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[10] at union at \u003cconsole\u003e:41\nmayWarcSeg4: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[13] at map at RecordLoader.scala:45\nmayWarcSeg5: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[16] at map at RecordLoader.scala:45\nmayWarcSeg6: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[19] at map at RecordLoader.scala:45\nmayEndData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[21] at union at \u003cconsole\u003e:41\n"
+        "msg": "import org.warcbase.spark.matchbox._\nimport org.warcbase.spark.rdd.RecordRDD._\nmayWarcSeg1: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[2] at map at RecordLoader.scala:45\nmayWarcSeg2: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[5] at map at RecordLoader.scala:45\nmayWarcSeg3: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[8] at map at RecordLoader.scala:45\nmayBegData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[10] at union at \u003cconsole\u003e:41\nmayWarcSeg4: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[13] at map at RecordLoader.scala:45\nmayWarcSeg5: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[16] at map at RecordLoader.scala:45\nmayWarcSeg6: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d MapPartitionsRDD[19] at map at RecordLoader.scala:45\nmayEndData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[21] at union at \u003cconsole\u003e:41\nmayData: org.apache.spark.rdd.RDD[org.warcbase.spark.archive.io.ArchiveRecord] \u003d UnionRDD[22] at union at \u003cconsole\u003e:51\n"
       },
       "dateCreated": "Jul 16, 2016 1:32:27 PM",
-      "dateStarted": "Aug 6, 2016 4:11:12 AM",
-      "dateFinished": "Aug 6, 2016 4:11:21 AM",
+      "dateStarted": "Aug 7, 2016 3:28:38 AM",
+      "dateFinished": "Aug 7, 2016 3:28:47 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -942,9 +942,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//use the May segments for the extraction of data and check for the wikipedia pages\nval mayData \u003d mayBegData.union(mayEndData)                                                      //get the combined data for the beginning and the ending segments\n\nval mayWikiLinks \u003d mayData.keepValidPages()                                                     //extract the links from the raw crawl data\n                            .keepDomains(Set(\"en.wikipedia.org\", \"www.wikipedia.org\"))\n                            .flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n\nval wikiSrcLinks \u003d mayWikiLinks.map(r \u003d\u003e r._1).filter(link \u003d\u003e link.contains(\"wikipedia\"))       //get the source links from the crawl data\nval wikiDstLinks \u003d mayWikiLinks.map(r \u003d\u003e r._2).filter(link \u003d\u003e link.contains(\"wikipedia\"))       //get the destination links from the crawl data\nval wikiLinks \u003d wikiSrcLinks.union(wikiDstLinks)                                                //get the total links that contain wikipedia in the url as the domain",
+      "text": "//use the May segments for the extraction of data and check for the wikipedia pages\nval mayWikiLinks \u003d mayData.keepValidPages()                                                     //extract the links from the raw crawl data\n                            .keepDomains(Set(\"en.wikipedia.org\", \"www.wikipedia.org\"))\n                            .flatMap(r \u003d\u003e ExtractLinks(r.getUrl, r.getContentString))\n\nval wikiSrcLinks \u003d mayWikiLinks.map(r \u003d\u003e r._1).filter(link \u003d\u003e link.contains(\"wikipedia\"))       //get the source links from the crawl data\nval wikiDstLinks \u003d mayWikiLinks.map(r \u003d\u003e r._2).filter(link \u003d\u003e link.contains(\"wikipedia\"))       //get the destination links from the crawl data\nval wikiLinks \u003d wikiSrcLinks.union(wikiDstLinks)                                                //get the total links that contain wikipedia in the url as the domain",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 6, 2016 4:16:25 AM",
+      "dateUpdated": "Aug 6, 2016 7:57:08 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -1089,9 +1089,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n## 7. Text Based Search Engine",
+      "text": "%md\n## 7. Text Based Search Engine\n[Image]\n\nThis section attempts to create a search engine using Apache Lucene. Since not all of the data can be accomodated on the EC2 instance that is used to run this search engine, domains have been\nfiltered from the crawl data. As required for desiging a search engine the first paragraph below creates an index of the web page documents and stores it on the hard disk directory of the ins\n-tance. The next paragraph retrives the index to create the \u0027Search Indexer\u0027 and display the searched results as an interface in the subsequent paragraph.",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 6, 2016 5:18:06 AM",
+      "dateUpdated": "Aug 7, 2016 4:30:06 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -1121,9 +1121,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "//this paragraph generates the data and creates the index of the search engine from the data\nimport org.apache.lucene.store.{Directory, FSDirectory}\nimport org.apache.lucene.analysis.standard.StandardAnalyzer\nimport org.apache.lucene.document.{Document, Field, TextField}\nimport org.apache.lucene.index.{IndexWriter, IndexWriterConfig}\n\nimport java.io.File\n\nval pagesDoc \u003d mayData.keepValidPages()\n                      .keepDomains(Set(\"www.fangraphs.com\", \"www.osnwes.com\", \"www.google.com\", \"en.wikipedia.org\"))\n                      .map(page \u003d\u003e (page.getUrl, page.getContentString))                         //get the valid pages out of the May data\n\nval analyser \u003d new StandardAnalyzer();\n\nval indexDir \u003d new File(\"/home/ubuntu/ZeppelinData/LuceneIndex\")                     //the directory to contain the generated index\nval directory \u003d FSDirectory.open(indexDir.toPath())\n\nval config \u003d new IndexWriterConfig(analyser)                    //the index writer configuration for the index\nval idxWriter \u003d new IndexWriter(directory, config)              //the index writer for the index derived from the input files\n\nval pageIter \u003d pagesDoc.toLocalIterator                         //get the iterator on the web pages to get each page\n\n    while(pageIter.hasNext){                                    //iterate over all the pages to get the document corresponding to each page\n        val page \u003d pageIter.next\n        val doc \u003d new Document()\n        doc.add(new Field(\"url\", page._1, TextField.TYPE_STORED))\n        doc.add(new Field(\"content\", page._2, TextField.TYPE_STORED))\n        idxWriter.addDocument(doc)\n    }\n\nidxWriter.close()",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 6, 2016 5:18:06 AM",
+      "dateUpdated": "Aug 7, 2016 3:41:47 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -1145,15 +1145,35 @@
       "apps": [],
       "jobName": "paragraph_1470373994450_-1769236045",
       "id": "20160805-051314_384172667",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
       "dateCreated": "Aug 5, 2016 5:13:14 AM",
-      "dateStarted": "Aug 5, 2016 5:39:05 PM",
-      "dateFinished": "Aug 5, 2016 5:39:11 PM",
+      "dateStarted": "Aug 6, 2016 5:07:34 PM",
+      "dateFinished": "Aug 6, 2016 5:15:02 PM",
       "status": "FINISHED",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "config": {},
+      "text": "//this paragraph instantiates the required classes for reading from the already created index \nimport org.apache.lucene.document.Document\nimport org.apache.lucene.store.FSDirectory\nimport org.apache.lucene.search.{IndexSearcher, Query}\nimport org.apache.lucene.queryparser.classic.QueryParser\nimport org.apache.lucene.analysis.standard.StandardAnalyzer\nimport org.apache.lucene.index.{IndexReader, DirectoryReader}\n\nimport java.io.File\n\nval analyser \u003d new StandardAnalyzer()\n\nval indexDir \u003d new File(\"/home/ubuntu/ZeppelinData/LuceneIndex\")\nval idxReader \u003d DirectoryReader.open(FSDirectory.open(indexDir.toPath()))                                   //read the index directory\nval idxSearcher \u003d new IndexSearcher(idxReader)                                                              //the index Searcher to search the index\nval qParser \u003d new QueryParser(\"content\", analyser)              //the query parser to parse the incoming queries and get them in the required form\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 7, 2016 3:39:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
       "settings": {
         "params": {},
         "forms": {}
@@ -1161,7 +1181,91 @@
       "apps": [],
       "jobName": "paragraph_1470403869827_-1946683619",
       "id": "20160805-133109_2044005162",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.lucene.document.Document\nimport org.apache.lucene.store.FSDirectory\nimport org.apache.lucene.search.{IndexSearcher, Query}\nimport org.apache.lucene.queryparser.classic.QueryParser\nimport org.apache.lucene.analysis.standard.StandardAnalyzer\nimport org.apache.lucene.index.{IndexReader, DirectoryReader}\nimport java.io.File\nanalyser: org.apache.lucene.analysis.standard.StandardAnalyzer \u003d org.apache.lucene.analysis.standard.StandardAnalyzer@19bc58ed\nindexDir: java.io.File \u003d /home/ubuntu/ZeppelinData/LuceneIndex\nidxReader: org.apache.lucene.index.DirectoryReader \u003d StandardDirectoryReader(segments_1:6 _0(6.1.0):c240 _1(6.1.0):c78)\nidxSearcher: org.apache.lucene.search.IndexSearcher \u003d IndexSearcher(StandardDirectoryReader(segments_1:6 _0(6.1.0):c240 _1(6.1.0):c78); executor\u003dnull)\nqParser: org.apache.lucene.queryparser.classic.QueryParser \u003d org.apache.lucene.queryparser.classic.QueryParser@1846c014\n"
+      },
       "dateCreated": "Aug 5, 2016 1:31:09 PM",
+      "dateStarted": "Aug 7, 2016 3:39:50 AM",
+      "dateFinished": "Aug 7, 2016 3:39:51 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Zeppelin Search Engine",
+      "text": "//this paragraph presents the interface for searching by taking the query and returning the results\n\nvar inpQry \u003d z.input(\"Enter Search Query\", \"fangraphs\").toString                                                //get the search from the user\nval query \u003d qParser.parse(inpQry)\n\nval pageHits \u003d idxSearcher.search(query, 10).scoreDocs          //get the top ten results for the query from the search index\n\nprintln(s\"%html \u003ch3\u003eResults for the search query \u0027$inpQry\u0027 \u003c/h3\u003e \u003cbr/\u003e \")\n    for(i \u003c- 0 until pageHits.length){                          //iterate through the results to display the pages that can be used for searching\n        val doc \u003d idxSearcher.doc(pageHits(i).doc)              //get the documents corresponding to the indexes\n        val urlString \u003d doc.get(\"url\")\n        println(s\"\"\"%html \u003ca href\u003d\"$urlString\"\u003e$urlString\u003c/a\u003e \u003cbr/\u003e\u003cbr/\u003e\"\"\")                                        //get the url corresponding to each of the pages/documents retrieved\n    }",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 7, 2016 4:24:23 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {
+          "Enter Search Query": "mac"
+        },
+        "forms": {
+          "Enter Search Query": {
+            "name": "Enter Search Query",
+            "displayName": "Enter Search Query",
+            "type": "input",
+            "defaultValue": "fangraphs",
+            "hidden": false
+          }
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1470470650080_-1972948421",
+      "id": "20160806-080410_1348915723",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003eResults for the search query \u0027mac\u0027 \u003c/h3\u003e \u003cbr/\u003e \n\u003ca href\u003d\"http://www.google.com/patents/US5905859?dq\u003d5,666,293\"\u003ehttp://www.google.com/patents/US5905859?dq\u003d5,666,293\u003c/a\u003e \u003cbr/\u003e\u003cbr/\u003e\n\u003ca href\u003d\"http://www.google.com/patents/US6157955?dq\u003d7,599,983\"\u003ehttp://www.google.com/patents/US6157955?dq\u003d7,599,983\u003c/a\u003e \u003cbr/\u003e\u003cbr/\u003e\n\u003ca href\u003d\"https://en.wikipedia.org/wiki/Ireland\"\u003ehttps://en.wikipedia.org/wiki/Ireland\u003c/a\u003e \u003cbr/\u003e\u003cbr/\u003e\n\u003ca href\u003d\"http://www.google.com/patents/US7778176?dq\u003dabelow\"\u003ehttp://www.google.com/patents/US7778176?dq\u003dabelow\u003c/a\u003e \u003cbr/\u003e\u003cbr/\u003e\n\u003ca href\u003d\"http://www.fangraphs.com/leaders.aspx?pos\u003dall\u0026stats\u003dpit\u0026lg\u003dall\u0026qual\u003dy\u0026type\u003d0\u0026season\u003d2003\u0026month\u003d0\u0026season1\u003d1993\u0026ind\u003d0\u0026team\u003d0\u0026rost\u003d0\u0026age\u003d0\u0026filter\u003d\u0026players\u003d0\u0026sort\u003d5,d\"\u003ehttp://www.fangraphs.com/leaders.aspx?pos\u003dall\u0026stats\u003dpit\u0026lg\u003dall\u0026qual\u003dy\u0026type\u003d0\u0026season\u003d2003\u0026month\u003d0\u0026season1\u003d1993\u0026ind\u003d0\u0026team\u003d0\u0026rost\u003d0\u0026age\u003d0\u0026filter\u003d\u0026players\u003d0\u0026sort\u003d5,d\u003c/a\u003e \u003cbr/\u003e\u003cbr/\u003e\n"
+      },
+      "dateCreated": "Aug 6, 2016 8:04:10 AM",
+      "dateStarted": "Aug 7, 2016 4:23:20 AM",
+      "dateFinished": "Aug 7, 2016 4:23:20 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n[Image - CommonCrawl]\nThis notebook presented the possible forms of analysis that could be done with the Common Crawl DataSet ending with a fully funtional search engine for domains that were filtered for\nmonth of May. With the amount of data that is generated, collecting and storing it is a herculean task and commercial companies have sole access to their data. The Common Crawl  data\ncorpus is definitely an asset to those who want to use web crawl data in their own applications, moreover, it\u0027s organized and is available for free. In the times to come, it is hoped\nthat the usage and availability of such important and precious data will be more.",
+      "dateUpdated": "Aug 7, 2016 4:05:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470541217494_-1271908118",
+      "id": "20160807-034017_1718754932",
+      "dateCreated": "Aug 7, 2016 3:40:17 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
