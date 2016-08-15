@@ -1,0 +1,631 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# **SnapBook**\n\nby Anish Singh\nblog site : [Zeppelin Notes](http://zeppelinnotes.blogspot.in)\n[Image]\n\n## Introduction\n\nThe introduction appears here",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 15, 2016 5:50:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470913487245_1542447763",
+      "id": "20160811-163447_11027791",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003e\u003cstrong\u003eSnapBook\u003c/strong\u003e\u003c/h1\u003e\n\u003cp\u003eby Anish Singh\n\u003cbr  /\u003eblog site : \u003ca href\u003d\"http://zeppelinnotes.blogspot.in\"\u003eZeppelin Notes\u003c/a\u003e\n\u003cbr  /\u003e[Image]\u003c/p\u003e\n\u003ch2\u003eIntroduction\u003c/h2\u003e\n\u003cp\u003eThe introduction appears here\u003c/p\u003e\n"
+      },
+      "dateCreated": "Aug 11, 2016 4:34:47 PM",
+      "dateStarted": "Aug 15, 2016 5:49:51 PM",
+      "dateFinished": "Aug 15, 2016 5:49:53 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//attempt to load the social networking data for a particular ego user - this paragraph only loads the data\n\nval rawFeatr \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.feat\")                 //load the features for other users\nval rawEdges \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.edges\")                //load the edges file\nval rawCicle \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.circles\")              //load the circles file\nval rawEFeat \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.egofeat\")              //load the file for the ego features for the ego user\nval featName \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.featnames\")            //load the names of features for the users",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 13, 2016 2:01:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470913578693_-1554690582",
+      "id": "20160811-163618_23466352",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "rawFeatr: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:31\nrawEdges: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[3] at textFile at \u003cconsole\u003e:29\nrawCicle: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[5] at textFile at \u003cconsole\u003e:29\nrawEFeat: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[7] at textFile at \u003cconsole\u003e:29\nfeatName: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[9] at textFile at \u003cconsole\u003e:29\n"
+      },
+      "dateCreated": "Aug 11, 2016 4:36:18 PM",
+      "dateStarted": "Aug 13, 2016 2:01:05 PM",
+      "dateFinished": "Aug 13, 2016 2:01:10 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//start proposed analysis on a testing basis - first get the circles that have maximum number of friends/users\n\ndef compare(circle1 : (String, Int), circle2 : (String, Int)) : Boolean \u003d {         //function to compare the values of circle lengths\n    if(circle1._2 \u003e\u003d circle2._2)\n        return true\n    else return false\n}\n\n//get the most prominent circles by getting the largest circles by size\nval circles \u003d rawCicle.map(ele \u003d\u003e ele.split(\"\\t\")).map(s \u003d\u003e (s(0), s.drop(1)))      //get the circles as labels and values of nodes in that circle\nval circLen \u003d circles.map(ele \u003d\u003e (ele._1, ele._2.length))\nval circLenArr \u003d circLen.collect()                                                  //get the circles lengths in array form to sort in descending order\ncircLenArr.sortWith((ele1, ele2) \u003d\u003e compare(ele1, ele2))                            //sorted in descending order to get the largest circle\n\n//get the users that comprise the circle 15 and circle 16 that are most prominent - largest in size\nval circle15 \u003d circles.filter(ele \u003d\u003e ele._1.equals(\"circle15\"))\nval circle16 \u003d circles.filter(ele \u003d\u003e ele._1.equals(\"circle16\"))\n\n//filter the feature names RDD to get the features in readable form\nval features \u003d featName.map(ele \u003d\u003e ele.split(\";anonymized\")(0)).map(ele \u003d\u003e ele.split(\" \")).map(s \u003d\u003e (s(0).toLong, s(1)))       //get the features from the file\nval nodeFeats \u003d rawFeatr.map(ele \u003d\u003e ele.split(\" \")).map(s \u003d\u003e (s(0), s.drop(1)))              //get the features for the rest of the nodes\n\nval circl15Arr \u003d circle15.collect()                 //get the circle 15 elements as an array\nval circ15Feat \u003d nodeFeats.filter(ele \u003d\u003e circl15Arr(0)._2.contains(ele._1))                  //the users in circle15 and their features\n\nval circl16Arr \u003d circle16.collect()                 //get the circle 16 elements as an array\nval circ16Feat \u003d nodeFeats.filter(ele \u003d\u003e circl16Arr(0)._2.contains(ele._1))                  //the users in circle16 and their features\n\nval featArr \u003d features.map(ele \u003d\u003e ele._2).collect()                                 //get the array corresponding to the feature strings\n\n//get the features for the users of the prominent circles\n\nval circ15FeatName \u003d circ15Feat.map(ele \u003d\u003e {                                        //get the feature labels that are present for users in circle 15\n    var featNmArr \u003d Array[String]()\n    for(i \u003c- 0 until ele._2.length){\n        if(ele._2(i) \u003d\u003d \"1\")\n            featNmArr \u003d featNmArr.:+(featArr(i))                                    //from the feature labels array extract those that are present for this user\n    }\n    (ele._1, featNmArr)\n})\n\nval circ16FeatName \u003d circ16Feat.map(ele \u003d\u003e {                                        //get the feature labels that are present for users in circle 16\n    var featNmArr \u003d Array[String]()\n    for(i \u003c- 0 until ele._2.length){\n        if(ele._2(i) \u003d\u003d \"1\")\n            featNmArr \u003d featNmArr.:+(featArr(i))                                    //from the feature labels array extract those that are present for this user\n    }\n    (ele._1, featNmArr)\n})\n\nval egoFeat \u003d rawEFeat.flatMap(ele \u003d\u003e ele.split(\" \"))                               //get the features of the ego user (only the indexes) of the valid features\n                      .map(ele \u003d\u003e ele.toInt)\n                      .zipWithIndex()\n                      .map( _.swap)\n                      .filter(ele \u003d\u003e (ele._2 \u003d\u003d 1))\n\nval egoFeatNm \u003d egoFeat.map(ele \u003d\u003e featArr(ele._1.toInt))                           //the features retrieved in the String form for the ego user\n\ncirc15FeatName.toDF().registerTempTable(\"User15\")                                   //get the dataframe and the table for the most prominent circle\ncirc16FeatName.toDF().registerTempTable(\"User16\")                                   //get the dataframe and the table for the second most prominent circle\n\nprintln(\"%html \u003ch4\u003eThe feature labels of the ego user are :- \u003c/h4\u003e\")                //print the features of the ego user\negoFeatNm.take(30).foreach(println)",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 13, 2016 2:01:13 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470914775166_654867633",
+      "id": "20160811-165615_24952283",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch4\u003eThe feature labels of the ego user are :- \u003c/h4\u003e\neducation;classes;id\neducation;concentration;id\neducation;school;id\neducation;school;id\neducation;school;id\neducation;type\neducation;type\neducation;type\neducation;year;id\ngender\nlast_name\nlocale\nlocation;id\nwork;employer;id\nwork;employer;id\nwork;employer;id\nwork;employer;id\nwork;end_date\nwork;end_date\nwork;end_date\nwork;end_date\nwork;location;id\nwork;position;id\nwork;position;id\nwork;start_date\nwork;start_date\nwork;start_date\nwork;start_date\nwork;start_date\nwork;start_date\n"
+      },
+      "dateCreated": "Aug 11, 2016 4:56:15 PM",
+      "dateStarted": "Aug 13, 2016 2:01:13 PM",
+      "dateFinished": "Aug 13, 2016 2:01:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Largest Circle Features by User ID",
+      "text": "%sql\nselect U._1 as UserID, U._2 as Topic from User15 U",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 12, 2016 7:53:11 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": true,
+          "keys": [
+            {
+              "name": "UserID",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "UserID",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Topic",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "helium": {},
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470975109188_2131534672",
+      "id": "20160812-094149_29502069",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "UserID\tTopic\n1\tWrappedArray(gender, locale)\n3\tWrappedArray(birthday, education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, locale, location;id, work;end_date, work;end_date, work;location;id, work;start_date, work;start_date)\n6\tWrappedArray(birthday, education;type, education;type, education;year;id, gender, last_name, locale, work;end_date, work;start_date)\n7\tWrappedArray(education;concentration;id, education;school;id, education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, gender, last_name, locale, location;id, work;employer;id, work;employer;id, work;start_date)\n9\tWrappedArray(gender, locale)\n10\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id, work;employer;id, work;end_date, work;start_date, work;start_date)\n15\tWrappedArray(education;school;id, education;type, gender, locale, work;start_date)\n16\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, gender, locale, location;id, work;employer;id)\n21\tWrappedArray(birthday, gender, languages;id, languages;id, locale)\n22\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, gender, locale)\n23\tWrappedArray(education;school;id, education;type, education;year;id, gender, locale, location;id)\n25\tWrappedArray(education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id, work;employer;id, work;end_date, work;end_date, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;position;id, work;position;id, work;start_date, work;start_date, work;start_date, work;start_date)\n26\tWrappedArray(gender, locale)\n31\tWrappedArray(education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, work;employer;id, work;end_date, work;location;id)\n36\tWrappedArray(education;concentration;id, education;degree;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale)\n38\tWrappedArray(education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, work;employer;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;end_date, work;location;id, work;location;id, work;location;id, work;start_date, work;start_date, work;start_date, work;start_date)\n39\tWrappedArray(gender, locale)\n40\tWrappedArray(birthday, education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;position;id, work;position;id, work;start_date, work;start_date)\n45\tWrappedArray(birthday, education;school;id, education;type, education;type, gender, locale, location;id)\n47\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale)\n49\tWrappedArray(education;school;id, education;type, education;type, education;year;id, gender, languages;id, locale, work;end_date, work;start_date, work;start_date)\n50\tWrappedArray(education;school;id, education;type, education;year;id, gender, last_name, locale, work;start_date)\n55\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, languages;id, locale, location;id)\n56\tWrappedArray(birthday, education;classes;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, first_name, gender, last_name, locale, location;id, work;employer;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;position;id, work;position;id, work;start_date, work;start_date)\n60\tWrappedArray(education;school;id, education;type, education;year;id, gender, locale, work;employer;id)\n62\tWrappedArray(education;concentration;id, education;school;id, education;type, gender, languages;id, locale, location;id)\n63\tWrappedArray(education;concentration;id, education;school;id, education;type, education;year;id, gender, languages;id, languages;id, locale, work;end_date, work;location;id, work;position;id, work;position;id, work;position;id, work;start_date, work;start_date, work;start_date)\n64\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, location;id)\n65\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, hometown;id, locale, location;id, work;end_date, work;location;id, work;position;id, work;start_date)\n67\tWrappedArray(education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, location;id, work;employer;id, work;end_date, work;location;id, work;location;id, work;position;id, work;position;id, work;position;id, work;start_date, work;start_date, work;start_date, work;start_date)\n69\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, gender, languages;id, languages;id, languages;id, locale, work;end_date, work;end_date, work;position;id, work;start_date, work;start_date, work;start_date)\n72\tWrappedArray(education;classes;id, education;concentration;id, education;school;id, education;type, education;type, education;year;id, gender, languages;id, locale, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;location;id, work;location;id, work;position;id, work;start_date)\n77\tWrappedArray(education;concentration;id, education;school;id, education;school;id, education;type, education;type, locale, location;id, work;employer;id, work;end_date, work;position;id, work;start_date)\n79\tWrappedArray(education;school;id, education;type, education;year;id, gender, languages;id, locale, location;id, work;location;id)\n82\tWrappedArray(birthday, education;concentration;id, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, education;year;id, gender, hometown;id, languages;id, languages;id, languages;id, languages;id, locale)\n87\tWrappedArray(birthday, education;school;id, education;school;id, education;type, education;type, education;year;id, gender, last_name, locale)\n89\tWrappedArray(gender, last_name, locale)\n95\tWrappedArray(education;school;id, education;type, education;type, gender, locale, location;id)\n96\tWrappedArray(gender, locale)\n98\tWrappedArray(gender, locale)\n103\tWrappedArray(education;school;id, education;type, education;type, education;year;id, gender, languages;id, languages;id, languages;id, locale, work;employer;id, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;position;id, work;start_date, work;start_date, work;start_date)\n104\tWrappedArray(education;school;id, education;type, education;type, education;year;id, education;year;id, gender, hometown;id, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id)\n105\tWrappedArray(education;concentration;id, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, work;employer;id, work;end_date, work;location;id, work;position;id, work;start_date)\n108\tWrappedArray(education;type, education;type, education;year;id, education;year;id, gender, locale)\n109\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, last_name, locale, location;id, work;employer;id, work;end_date, work;end_date, work;end_date, work;location;id, work;start_date, work;start_date, work;start_date)\n114\tWrappedArray(education;school;id, education;type, education;type, education;year;id, gender, languages;id, locale, location;id, work;end_date, work;end_date, work;location;id)\n117\tWrappedArray(education;school;id, education;type, gender, locale)\n119\tWrappedArray(education;concentration;id, education;degree;id, education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n121\tWrappedArray(birthday, education;school;id, education;type, education;type, gender, hometown;id, locale, work;employer;id, work;location;id)\n122\tWrappedArray(education;school;id, education;type, education;year;id, gender, locale, work;employer;id)\n123\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, location;id)\n124\tWrappedArray(education;type, education;type, education;year;id, gender, locale, work;location;id, work;position;id, work;start_date)\n125\tWrappedArray(birthday, gender)\n127\tWrappedArray(education;degree;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, work;end_date, work;position;id, work;start_date)\n128\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, gender, locale, location;id, work;employer;id, work;position;id)\n129\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, gender, locale)\n133\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n135\tWrappedArray(birthday, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n136\tWrappedArray(gender, locale)\n139\tWrappedArray(birthday, education;type, education;type, education;year;id, gender, languages;id, locale, work;employer;id, work;end_date, work;end_date, work;location;id, work;start_date, work;start_date, work;start_date)\n141\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, locale, location;id, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n142\tWrappedArray(education;school;id, education;type, education;year;id, gender, locale, location;id, work;employer;id, work;start_date)\n146\tWrappedArray(education;concentration;id, education;school;id, education;type, education;year;id, gender, languages;id, languages;id, locale, location;id)\n148\tWrappedArray(education;school;id, education;type, education;type, education;year;id, locale, work;end_date, work;end_date, work;start_date, work;start_date, work;start_date)\n152\tWrappedArray(education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, education;year;id, gender, hometown;id, languages;id, languages;id, locale, location;id, work;employer;id, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date, work;start_date)\n157\tWrappedArray(birthday, education;concentration;id, education;degree;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, location;id, work;location;id, work;start_date)\n168\tWrappedArray(education;concentration;id, education;school;id, education;type, first_name, gender, last_name, locale, location;id)\n169\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, work;end_date, work;position;id, work;start_date)\n170\tWrappedArray(birthday, education;classes;id, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, location;id, work;employer;id, work;end_date, work;end_date, work;end_date, work;end_date, work;location;id, work;location;id, work;location;id, work;position;id, work;start_date, work;start_date, work;start_date, work;start_date, work;start_date)\n171\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, work;end_date, work;start_date)\n172\tWrappedArray(birthday, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;employer;id, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n176\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, locale, location;id, work;end_date, work;end_date, work;location;id, work;start_date, work;start_date, work;start_date)\n183\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, gender, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;start_date, work;start_date)\n185\tWrappedArray(gender, locale)\n186\tWrappedArray(first_name, gender, locale)\n188\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, locale, work;end_date, work;location;id, work;start_date, work;start_date)\n189\tWrappedArray(gender, locale)\n190\tWrappedArray(gender, locale)\n196\tWrappedArray(birthday, education;concentration;id, education;degree;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;position;id, work;start_date)\n197\tWrappedArray(education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, work;employer;id, work;end_date, work;location;id, work;start_date)\n198\tWrappedArray(education;school;id, education;type, education;type, education;type, education;year;id, gender, languages;id, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;location;id, work;start_date, work;start_date)\n200\tWrappedArray(birthday, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;employer;id, work;location;id, work;location;id, work;start_date)\n207\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id, work;end_date)\n208\tWrappedArray(education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;start_date, work;start_date, work;start_date)\n213\tWrappedArray(education;concentration;id, education;degree;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id, work;end_date, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n219\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, work;end_date, work;start_date)\n224\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;location;id, work;location;id, work;position;id, work;start_date, work;start_date)\n233\tWrappedArray(birthday, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, location;id)\n236\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;year;id, gender, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;start_date, work;start_date, work;start_date, work;start_date, work;start_date)\n242\tWrappedArray(gender, locale)\n246\tWrappedArray(gender, last_name, locale)\n247\tWrappedArray(birthday, education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, hometown;id, languages;id, locale, work;end_date, work;end_date, work;end_date, work;position;id, work;position;id, work;start_date, work;start_date, work;start_date, work;start_date)\n248\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, work;employer;id, work;end_date, work;location;id, work;start_date, work;start_date)\n251\tWrappedArray(gender, locale)\n255\tWrappedArray(education;school;id, education;type, education;type, education;type, gender, locale)\n256\tWrappedArray(education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, languages;id, locale)\n261\tWrappedArray(education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, hometown;id, languages;id, languages;id, languages;id, locale, location;id, work;end_date, work;end_date, work;end_date, work;start_date, work;start_date, work;start_date)\n269\tWrappedArray(education;concentration;id, education;degree;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;location;id, work;position;id, work;start_date)\n271\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, gender, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;end_date, work;end_date, work;location;id, work;location;id, work;location;id, work;start_date, work;start_date, work;start_date, work;start_date)\n274\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, locale, location;id, work;end_date, work;end_date, work;end_date, work;end_date, work;location;id, work;start_date, work;start_date, work;start_date)\n276\tWrappedArray(birthday, education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, work;employer;id, work;employer;id, work;end_date, work;position;id, work;start_date, work;start_date)\n277\tWrappedArray(gender, locale, location;id)\n280\tWrappedArray(gender, locale)\n281\tWrappedArray(birthday, education;type, education;type, education;year;id, gender, languages;id, locale, work;employer;id, work;end_date, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n285\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, hometown;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;end_date, work;location;id, work;position;id, work;position;id, work;start_date, work;start_date, work;start_date, work;start_date)\n286\tWrappedArray(gender, locale)\n288\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n290\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, gender, locale, location;id)\n291\tWrappedArray(birthday, education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date, work;start_date)\n294\tWrappedArray(gender, locale)\n297\tWrappedArray(education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date, work;start_date)\n301\tWrappedArray(education;school;id, education;type, education;type, education;year;id, gender, locale)\n303\tWrappedArray(gender, locale)\n304\tWrappedArray(gender, last_name, locale)\n308\tWrappedArray(education;concentration;id, education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, hometown;id, locale, location;id)\n309\tWrappedArray(education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale)\n314\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, location;id, work;end_date, work;end_date, work;position;id, work;start_date)\n315\tWrappedArray(gender, hometown;id, languages;id, last_name, locale, location;id)\n316\tWrappedArray(gender, locale, location;id)\n317\tWrappedArray(education;school;id, education;type, education;type, education;year;id, gender, languages;id, languages;id, locale, location;id, work;end_date, work;start_date)\n318\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, gender, languages;id, languages;id, locale, location;id)\n319\tWrappedArray(education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n322\tWrappedArray(gender, last_name, locale)\n323\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, languages;id, languages;id, languages;id, languages;id, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;start_date, work;start_date)\n325\tWrappedArray(gender, locale)\n328\tWrappedArray(birthday, education;school;id, education;school;id, education;type, education;type, first_name, gender, locale, location;id, work;location;id)\n338\tWrappedArray(education;school;id, education;type, education;type, gender, locale, work;start_date)\n339\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, hometown;id, languages;id, languages;id, languages;id, languages;id, last_name, location;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;end_date, work;location;id, work;location;id, work;start_date, work;start_date, work;start_date, work;start_date, work;start_date, work;start_date)\n340\tWrappedArray(education;school;id, education;type, education;type, gender, locale, work;employer;id, work;end_date, work;start_date, work;start_date)\n341\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n342\tWrappedArray(education;school;id, education;type, education;type, education;year;id, education;year;id, first_name, gender, hometown;id, locale, location;id)\n345\tWrappedArray(education;school;id, education;type, education;year;id, gender, hometown;id, last_name, locale, location;id)\n347\tWrappedArray(education;concentration;id, education;school;id, education;type, education;year;id, gender, languages;id, last_name, locale, location;id)\n"
+      },
+      "dateCreated": "Aug 12, 2016 9:41:49 AM",
+      "dateStarted": "Aug 12, 2016 7:53:11 PM",
+      "dateFinished": "Aug 12, 2016 7:53:14 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Second Largest Circle Features by UserID",
+      "text": "%sql\nselect U._1 as UserID, U._2 as Topic from User16 U",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 12, 2016 7:53:17 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "UserID",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Topic",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "UserID",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Topic",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470918837174_2109008273",
+      "id": "20160811-180357_27933238",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "UserID\tTopic\n5\tWrappedArray(education;school;id, education;school;id, education;type, education;type, education;year;id, gender, locale)\n9\tWrappedArray(gender, locale)\n24\tWrappedArray(education;concentration;id, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, last_name, locale, location;id, work;location;id, work;start_date)\n34\tWrappedArray(education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, work;start_date)\n36\tWrappedArray(education;concentration;id, education;degree;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale)\n37\tWrappedArray(education;type, education;type, education;year;id, education;year;id, gender, last_name, locale, work;employer;id, work;end_date, work;position;id, work;start_date)\n48\tWrappedArray(education;school;id, education;type, education;type, education;year;id, gender, languages;id, locale, location;id, work;end_date, work;start_date)\n57\tWrappedArray(education;school;id, education;type, education;type, gender, last_name, locale, location;id)\n58\tWrappedArray(education;concentration;id, education;degree;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale)\n80\tWrappedArray(education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;position;id, work;start_date, work;start_date, work;start_date)\n85\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, work;employer;id, work;start_date)\n92\tWrappedArray(birthday, education;concentration;id, education;degree;id, education;degree;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n94\tWrappedArray(education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, work;employer;id, work;end_date, work;start_date)\n101\tWrappedArray(education;school;id, education;type, education;type, education;year;id, gender, last_name, locale, location;id)\n127\tWrappedArray(education;degree;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, work;end_date, work;position;id, work;start_date)\n135\tWrappedArray(birthday, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n139\tWrappedArray(birthday, education;type, education;type, education;year;id, gender, languages;id, locale, work;employer;id, work;end_date, work;end_date, work;location;id, work;start_date, work;start_date, work;start_date)\n173\tWrappedArray(education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, location;id, work;employer;id, work;end_date, work;location;id, work;position;id, work;position;id)\n180\tWrappedArray(education;school;id, education;school;id, education;type, education;type, education;type, gender, locale, location;id, work;end_date, work;start_date)\n187\tWrappedArray(education;school;id, education;type, gender, locale)\n194\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;type, education;year;id, gender, locale, location;id, work;end_date, work;start_date, work;start_date)\n197\tWrappedArray(education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, work;employer;id, work;end_date, work;location;id, work;start_date)\n202\tWrappedArray(education;degree;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n249\tWrappedArray(education;concentration;id, education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;type, gender, locale)\n251\tWrappedArray(gender, locale)\n254\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, last_name, locale, location;id, work;employer;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n258\tWrappedArray(education;classes;id, education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, locale, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;start_date, work;start_date, work;start_date, work;start_date)\n266\tWrappedArray(birthday, education;concentration;id, education;degree;id, education;degree;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, location;id, work;position;id, work;start_date)\n281\tWrappedArray(birthday, education;type, education;type, education;year;id, gender, languages;id, locale, work;employer;id, work;end_date, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n299\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n309\tWrappedArray(education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale)\n330\tWrappedArray(birthday, education;concentration;id, education;concentration;id, education;degree;id, education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, location;id, work;end_date, work;location;id, work;position;id, work;start_date)\n"
+      },
+      "dateCreated": "Aug 11, 2016 6:03:57 PM",
+      "dateStarted": "Aug 12, 2016 7:53:17 PM",
+      "dateFinished": "Aug 12, 2016 7:53:18 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph works on the second feature for the Social Networks - analysing users that are in multiple circles\n\nval allUsers \u003d rawCicle.flatMap(ele \u003d\u003e ele.split(\"\\t\"))                       //get the users in the string form \nval usrCount \u003d allUsers.map(ele \u003d\u003e (ele, 1)).reduceByKey((x, y) \u003d\u003e x + y)     //count all the users to get the duplicates \n\nval dupUsers \u003d usrCount.filter(ele \u003d\u003e (ele._2 !\u003d 1)).map(ele \u003d\u003e ele._1)       //get the duplicate users\nval dupUsrArr \u003d dupUsers.collect()                                            //the array of duplicate users\nval dupUsrFeat \u003d nodeFeats.filter(ele \u003d\u003e dupUsrArr.contains(ele._1))          //get the feature strings of the duplicate users\nval dupUsrFeatName \u003d dupUsrFeat.map(ele \u003d\u003e {\n    var featNmArr \u003d Array[String]()\n    for(i \u003c- 0 until ele._2.length){\n        if(ele._2(i) \u003d\u003d \"1\")\n            featNmArr \u003d featNmArr.:+(featArr(i))\n    }\n    (ele._1, featNmArr)\n})\n\ndupUsrFeatName.toDF().registerTempTable(\"DupUsers\")\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 12, 2016 9:57:22 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Topic",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Topic",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470919151270_1776830410",
+      "id": "20160811-180911_7876687",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "dupUsrFeatName: org.apache.spark.rdd.RDD[(String, Array[String])] \u003d MapPartitionsRDD[84] at map at \u003cconsole\u003e:60\n"
+      },
+      "dateCreated": "Aug 11, 2016 6:09:11 PM",
+      "dateStarted": "Aug 12, 2016 9:54:40 PM",
+      "dateFinished": "Aug 12, 2016 9:54:41 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Features for Users in multiple circles",
+      "text": "%sql\nselect U._1 as UserID, U._2 as Topic from DupUsers U",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 12, 2016 9:59:12 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "UserID",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Topic",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "UserID",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Topic",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "title": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470919796954_1938163316",
+      "id": "20160811-181956_26100038",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "UserID\tTopic\n9\tWrappedArray(gender, locale)\n17\tWrappedArray(birthday, education;school;id, education;school;id, education;type, education;type, gender, locale, location;id, work;end_date, work;location;id)\n20\tWrappedArray(birthday, education;type, education;type, education;year;id, education;year;id, gender, locale, work;start_date, work;start_date)\n23\tWrappedArray(education;school;id, education;type, education;year;id, gender, locale, location;id)\n36\tWrappedArray(education;concentration;id, education;degree;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale)\n41\tWrappedArray(gender, locale, location;id)\n52\tWrappedArray(education;school;id, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, location;id)\n54\tWrappedArray(gender, languages;id, languages;id, locale, location;id)\n55\tWrappedArray(education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, languages;id, locale, location;id)\n69\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;type, education;year;id, gender, languages;id, languages;id, languages;id, locale, work;end_date, work;end_date, work;position;id, work;start_date, work;start_date, work;start_date)\n93\tWrappedArray(education;type, education;type, gender, hometown;id, languages;id, locale, work;start_date)\n97\tWrappedArray(gender, locale)\n105\tWrappedArray(education;concentration;id, education;concentration;id, education;school;id, education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale, work;employer;id, work;end_date, work;location;id, work;position;id, work;start_date)\n115\tWrappedArray(education;school;id, education;type, education;type, education;year;id, gender, hometown;id, locale, work;employer;id, work;start_date)\n122\tWrappedArray(education;school;id, education;type, education;year;id, gender, locale, work;employer;id)\n125\tWrappedArray(birthday, gender)\n127\tWrappedArray(education;degree;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, work;end_date, work;position;id, work;start_date)\n135\tWrappedArray(birthday, education;school;id, education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, location;id)\n137\tWrappedArray(education;type, education;type, gender, hometown;id, locale, location;id, work;end_date)\n139\tWrappedArray(birthday, education;type, education;type, education;year;id, gender, languages;id, locale, work;employer;id, work;end_date, work;end_date, work;location;id, work;start_date, work;start_date, work;start_date)\n146\tWrappedArray(education;concentration;id, education;school;id, education;type, education;year;id, gender, languages;id, languages;id, locale, location;id)\n172\tWrappedArray(birthday, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;employer;id, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n173\tWrappedArray(education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, location;id, work;employer;id, work;end_date, work;location;id, work;position;id, work;position;id)\n183\tWrappedArray(birthday, education;school;id, education;type, education;type, education;year;id, gender, languages;id, languages;id, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;start_date, work;start_date)\n197\tWrappedArray(education;type, education;type, education;type, education;year;id, education;year;id, gender, locale, work;employer;id, work;end_date, work;location;id, work;start_date)\n214\tWrappedArray(education;school;id, education;type, gender, hometown;id, locale, location;id, work;end_date, work;location;id, work;start_date)\n236\tWrappedArray(birthday, education;concentration;id, education;school;id, education;type, education;year;id, gender, locale, location;id, work;employer;id, work;employer;id, work;end_date, work;end_date, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;start_date, work;start_date, work;start_date, work;start_date, work;start_date)\n251\tWrappedArray(gender, locale)\n258\tWrappedArray(education;classes;id, education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, languages;id, locale, work;employer;id, work;employer;id, work;end_date, work;end_date, work;location;id, work;location;id, work;position;id, work;start_date, work;start_date, work;start_date, work;start_date)\n280\tWrappedArray(gender, locale)\n281\tWrappedArray(birthday, education;type, education;type, education;year;id, gender, languages;id, locale, work;employer;id, work;end_date, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n282\tWrappedArray(education;type, gender, locale)\n294\tWrappedArray(gender, locale)\n298\tWrappedArray(birthday, education;type, education;year;id, gender, locale, work;employer;id, work;end_date, work;location;id, work;position;id, work;start_date, work;start_date)\n308\tWrappedArray(education;concentration;id, education;concentration;id, education;school;id, education;school;id, education;type, education;type, education;year;id, education;year;id, gender, hometown;id, locale, location;id)\n309\tWrappedArray(education;type, education;type, education;year;id, education;year;id, education;year;id, gender, locale)\n312\tWrappedArray(gender, last_name, locale)\n326\tWrappedArray(education;school;id, education;school;id, education;type, education;type, gender, hometown;id, last_name, locale, location;id, work;employer;id, work;end_date, work;location;id, work;start_date)\n343\tWrappedArray(birthday, gender, hometown;id, last_name, locale)\n"
+      },
+      "dateCreated": "Aug 11, 2016 6:19:56 PM",
+      "dateStarted": "Aug 12, 2016 9:54:44 PM",
+      "dateFinished": "Aug 12, 2016 9:54:44 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph finds the strength of the circles by finding the mutual relationships within the circles\n\nval edgeRdd \u003d rawEdges.map(ele \u003d\u003e ele.split(\" \")).map(ele \u003d\u003e (ele(0), ele(1)))      //convert the input edges to tuples of edges(source, destination)\nval edgeMapRdd \u003d edgeRdd.groupByKey()                                               //get the map for the edges using just groupByKey()\nval edgeMap \u003d edgeMapRdd.map(ele \u003d\u003e (ele._1, ele._2.toArray)).collectAsMap()\n\n\n//iterate through the edges in the circles and calculate the connection percentages for each of them\nval circStrength \u003d circles.map(ele \u003d\u003e {\n    \n    var trueConnec \u003d 0                                      //counter to count the connections that actually exist within the circles\n    \n    for(i \u003c- 0 until ele._2.length - 1){                    //check all the nodes in the circles for the connections in the network graph\n        \n        val valSeq \u003d edgeMap.getOrElse(ele._2(i), null)                             //get the nodes that are connected to current node\n        \n        if(valSeq !\u003d null){\n            for(j \u003c- (i+1) until ele._2.length){\n                if(valSeq.contains(ele._2(j))){\n                    trueConnec +\u003d 1                         //the connection between these two nodes exist so increment the trueConnec counter\n                }\n            }\n        }\n    }\n    (ele._1, trueConnec)\n})\n\nval ptveStrgth \u003d circStrength.filter(ele \u003d\u003e (ele._2 !\u003d 0))\nptveStrgth.toDF().registerTempTable(\"Strengths\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 13, 2016 9:59:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1470919857151_915393470",
+      "id": "20160811-182057_21487538",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import scala.collection.mutable.ArraySeq\nlinksArr: scala.collection.mutable.ArraySeq[String] \u003d ArraySeq()\ncircStrength: org.apache.spark.rdd.RDD[(String, Int)] \u003d MapPartitionsRDD[60] at map at \u003cconsole\u003e:53\nptveStrgth: org.apache.spark.rdd.RDD[(String, Int)] \u003d MapPartitionsRDD[61] at filter at \u003cconsole\u003e:55\n"
+      },
+      "dateCreated": "Aug 11, 2016 6:20:57 PM",
+      "dateStarted": "Aug 13, 2016 6:36:38 PM",
+      "dateFinished": "Aug 13, 2016 6:36:41 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Circle Strengths - Mutual Friendships",
+      "text": "%sql\nselect S._1 as Circle, S._2 as Strength from Strengths S",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 13, 2016 4:36:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "scatterChart",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Circle",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "Strength",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Circle",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "Strength",
+              "index": 1.0,
+              "aggr": "sum"
+            },
+            "size": {
+              "name": "Strength",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "helium": {},
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471016054775_1437592602",
+      "id": "20160812-210414_27377658",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Circle\tStrength\ncircle0\t8\ncircle2\t3\ncircle3\t3\ncircle4\t25\ncircle6\t61\ncircle11\t79\ncircle13\t2\ncircle14\t1\ncircle15\t942\ncircle16\t113\ncircle17\t2\ncircle19\t41\ncircle20\t3\ncircle23\t2\n"
+      },
+      "dateCreated": "Aug 12, 2016 9:04:14 PM",
+      "dateStarted": "Aug 13, 2016 4:33:56 PM",
+      "dateFinished": "Aug 13, 2016 4:33:57 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph generates the data needed for the visualization of the circles in the social network\nimport scala.collection.mutable.ArraySeq\n\nval circlesArr \u003d circles.collect()                      //get the array for the circles\nvar linksArr \u003d ArraySeq[String]()                       //the array to hold the links in the circles\nvar nodesArr \u003d ArraySeq[String]()                       //the array to hold the nodes in the graph\n\nfor(i \u003c- 10 until 17){\n    for(j \u003c- 0 until circlesArr(i)._2.length){\n        \n        nodesArr \u003d nodesArr.:+(\"{ \\\"id\\\" : \\\"\" + circlesArr(i)._2(j) + \"\\\", \\\"group\\\" : \" + circlesArr(i)._1.substring(6) + \"}\")        //create the nodes string\n        val valSeq \u003d edgeMap.getOrElse(circlesArr(i)._2(j), null)\n        \n        if(valSeq !\u003d null){\n            for(k \u003c- (j+1) until circlesArr(i)._2.length){\n                if(valSeq.contains(circlesArr(i)._2(k))){\n                    linksArr \u003d linksArr.:+(\"{ \\\"source\\\" : \\\"\" + circlesArr(i)._2(j) + \"\\\", \\\"target\\\" : \\\"\" + circlesArr(i)._2(k) + \"\\\", \\\"value\\\" : 1 }\"  )\n                }\n            }\n        }\n    }\n}\n\nval nodes \u003d nodesArr.mkString(\",\")                      //collect all the nodes\nval links \u003d linksArr.mkString(\",\")                      //collect all the links\n\nval circleGraph \u003d s\"\"\"\n{\n    \"nodes\" : [$nodes],\n    \"links\" : [$links]\n}\n\"\"\"",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 13, 2016 9:57:27 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471077537320_1000644571",
+      "id": "20160813-140857_28087717",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import scala.collection.mutable.ArraySeq\ncirclesArr: Array[(String, Array[String])] \u003d Array((circle0,Array(71, 215, 54, 61, 298, 229, 81, 253, 193, 97, 264, 29, 132, 110, 163, 259, 183, 334, 245, 222)), (circle1,Array(173)), (circle2,Array(155, 99, 327, 140, 116, 147, 144, 150, 270)), (circle3,Array(51, 83, 237)), (circle4,Array(125, 344, 295, 257, 55, 122, 223, 59, 268, 280, 84, 156, 258, 236, 250, 239, 69)), (circle5,Array(23)), (circle6,Array(337, 289, 93, 17, 111, 52, 137, 343, 192, 35, 326, 310, 214, 32, 115, 321, 209, 312, 41, 20)), (circle7,Array(225, 46)), (circle8,Array(282)), (circle9,Array(336, 204, 74, 206, 292, 146, 154, 164, 279, 73)), (circle10,Array(42, 14, 216, 2)), (circle11,Array(324, 265, 54, 161, 298, 76, 165, 199, 203, 13, 66, 113, 97, 252, 313, 238, 158, 240, 331, 332, 134, 218, 118, 235, 311, 151, 308, ...linksArr: scala.collection.mutable.ArraySeq[String] \u003d ArraySeq()\nnodesArr: scala.collection.mutable.ArraySeq[String] \u003d ArraySeq()\nnodes: String \u003d { \"id\" : \"42\", \"group\" : 10},{ \"id\" : \"14\", \"group\" : 10},{ \"id\" : \"216\", \"group\" : 10},{ \"id\" : \"2\", \"group\" : 10},{ \"id\" : \"324\", \"group\" : 11},{ \"id\" : \"265\", \"group\" : 11},{ \"id\" : \"54\", \"group\" : 11},{ \"id\" : \"161\", \"group\" : 11},{ \"id\" : \"298\", \"group\" : 11},{ \"id\" : \"76\", \"group\" : 11},{ \"id\" : \"165\", \"group\" : 11},{ \"id\" : \"199\", \"group\" : 11},{ \"id\" : \"203\", \"group\" : 11},{ \"id\" : \"13\", \"group\" : 11},{ \"id\" : \"66\", \"group\" : 11},{ \"id\" : \"113\", \"group\" : 11},{ \"id\" : \"97\", \"group\" : 11},{ \"id\" : \"252\", \"group\" : 11},{ \"id\" : \"313\", \"group\" : 11},{ \"id\" : \"238\", \"group\" : 11},{ \"id\" : \"158\", \"group\" : 11},{ \"id\" : \"240\", \"group\" : 11},{ \"id\" : \"331\", \"group\" : 11},{ \"id\" : \"332\", \"group\" : 11},{ \"id\" : \"134\", \"group\" : 11},{ \"id\" : \"218\", \"group\" : 11},{ \"id\" : \"...links: String \u003d { \"source\" : \"324\", \"target\" : \"199\", \"value\" : 1 },{ \"source\" : \"324\", \"target\" : \"203\", \"value\" : 1 },{ \"source\" : \"324\", \"target\" : \"252\", \"value\" : 1 },{ \"source\" : \"324\", \"target\" : \"238\", \"value\" : 1 },{ \"source\" : \"324\", \"target\" : \"331\", \"value\" : 1 },{ \"source\" : \"324\", \"target\" : \"332\", \"value\" : 1 },{ \"source\" : \"324\", \"target\" : \"118\", \"value\" : 1 },{ \"source\" : \"265\", \"target\" : \"298\", \"value\" : 1 },{ \"source\" : \"265\", \"target\" : \"199\", \"value\" : 1 },{ \"source\" : \"265\", \"target\" : \"203\", \"value\" : 1 },{ \"source\" : \"265\", \"target\" : \"13\", \"value\" : 1 },{ \"source\" : \"265\", \"target\" : \"252\", \"value\" : 1 },{ \"source\" : \"265\", \"target\" : \"313\", \"value\" : 1 },{ \"source\" : \"265\", \"target\" : \"238\", \"value\" : 1 },{ \"source\" : \"265\", \"target\" : \"331\", \"value\" : 1 },{ ...circleGraph: String \u003d \n\"\n{\n    \"nodes\" : [{ \"id\" : \"42\", \"group\" : 10},{ \"id\" : \"14\", \"group\" : 10},{ \"id\" : \"216\", \"group\" : 10},{ \"id\" : \"2\", \"group\" : 10},{ \"id\" : \"324\", \"group\" : 11},{ \"id\" : \"265\", \"group\" : 11},{ \"id\" : \"54\", \"group\" : 11},{ \"id\" : \"161\", \"group\" : 11},{ \"id\" : \"298\", \"group\" : 11},{ \"id\" : \"76\", \"group\" : 11},{ \"id\" : \"165\", \"group\" : 11},{ \"id\" : \"199\", \"group\" : 11},{ \"id\" : \"203\", \"group\" : 11},{ \"id\" : \"13\", \"group\" : 11},{ \"id\" : \"66\", \"group\" : 11},{ \"id\" : \"113\", \"group\" : 11},{ \"id\" : \"97\", \"group\" : 11},{ \"id\" : \"252\", \"group\" : 11},{ \"id\" : \"313\", \"group\" : 11},{ \"id\" : \"238\", \"group\" : 11},{ \"id\" : \"158\", \"group\" : 11},{ \"id\" : \"240\", \"group\" : 11},{ \"id\" : \"331\", \"group\" : 11},{ \"id\" : \"332\", \"group\" : 11},{ \"id\" : \"134\", \"group\" : 11},{ \"id\" : \"218\"..."
+      },
+      "dateCreated": "Aug 13, 2016 2:08:57 PM",
+      "dateStarted": "Aug 13, 2016 7:18:05 PM",
+      "dateFinished": "Aug 13, 2016 7:18:08 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Circles in Social Network - Facebook",
+      "text": "//this paragraph generates the visualization for the circles in the social network\nprintln(\"\"\"%html\n\u003cstyle\u003e\n    #circlegraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"circlegraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#circlegraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-3);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"circleGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\"\"\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 15, 2016 5:45:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471077796875_2065040106",
+      "id": "20160813-141316_7064082",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cstyle\u003e\n    #circlegraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"circlegraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#circlegraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-3);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"circleGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\n"
+      },
+      "dateCreated": "Aug 13, 2016 2:13:16 PM",
+      "dateStarted": "Aug 15, 2016 5:45:59 PM",
+      "dateFinished": "Aug 15, 2016 5:46:30 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//the paragraphs below experiment with the Web Graph Data",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 13, 2016 10:09:08 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471078052259_167026165",
+      "id": "20160813-141732_25418510",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res22: Option[scala.collection.mutable.ArraySeq[String]] \u003d None\n"
+      },
+      "dateCreated": "Aug 13, 2016 2:17:32 PM",
+      "dateStarted": "Aug 13, 2016 2:26:09 PM",
+      "dateFinished": "Aug 13, 2016 2:26:09 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "newEdgeRdd.take(5).foreach(println)",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 13, 2016 2:52:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471078569299_-1281233281",
+      "id": "20160813-142609_14827083",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "(422,236,186)\n(829,122,285)\n(1199,24,346)\n(1774,271,304)\n(1959,176,9)\n"
+      },
+      "dateCreated": "Aug 13, 2016 2:26:09 PM",
+      "dateStarted": "Aug 13, 2016 2:52:32 PM",
+      "dateFinished": "Aug 13, 2016 2:52:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471080031315_1871915295",
+      "id": "20160813-145031_4501751",
+      "dateCreated": "Aug 13, 2016 2:50:31 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "SnapBook",
+  "id": "2BTXWXKRW",
+  "angularObjects": {
+    "2BKYVPVHQ:shared_process": [],
+    "2BJHT1EUY:shared_process": [],
+    "2BHNGA31P:shared_process": [],
+    "2BKANQRJP:shared_process": [],
+    "2BHHZGS2H:shared_process": [],
+    "2BKCY8U96:shared_process": [],
+    "2BJK6TKNA:shared_process": [],
+    "2BGSWRYAZ:shared_process": [],
+    "2BM95J7ZS:shared_process": [],
+    "2BM8CEXAK:shared_process": [],
+    "2BHNSU7Q1:shared_process": [],
+    "2BJQHFGZ4:shared_process": [],
+    "2BGNRNVYW:shared_process": [],
+    "2BM4AWSEE:shared_process": [],
+    "2BHCW1XSS:shared_process": [],
+    "2BJ2SKSZC:shared_process": [],
+    "2BKAJNA6U:shared_process": [],
+    "2BJ8NAWSV:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
