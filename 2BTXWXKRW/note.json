@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n# **SnapBook**\n\nby Anish Singh\nblog site : [Zeppelin Notes](http://zeppelinnotes.blogspot.in)\n[Image]\n\n## Introduction\n\nThe introduction appears here",
+      "text": "%md\n# **SnapBook**\n\nby Anish Singh\nblog site : [Zeppelin Notes](http://zeppelinnotes.blogspot.in)\n[Image]\n\n## Introduction\n\n\u003cbr/\u003e\n**SnapBook** is a notebook on the Stanford Network Analysis Project(SNAP) datasets. These datasets are largely network based graph datasets that generally contain the \u003cbr/\u003e\negdes files between the nodes in the graph. Some of the datasets used in the notebook also contain other data files such as circles of users in social  networks  and  \u003cbr/\u003e\nfeatures of individual users. These have also been used in the analysis presented in the notebook to identify the prefrences of users and the likeliness of their add  \u003cbr/\u003e\n-ing people to their circles. Social Network datasets have particularly been considered in this notebook as they have more scope for analysis. The notebook also atte  \u003cbr/\u003e\n-mpts to find the commmunities present in the social network data based on a paper on the same topic that uses the \u0027conductance\u0027 measure of the graph for  a  set  of  \u003cbr/\u003e\nnodes to segregate the communities. The working of this algorithm has been shown graphically. More details and explanation about the creation of the notebook can  be  \u003cbr/\u003e\nfound on the blog site mentioned above.\n\n\u003cbr/\u003e\nThe notebook was created using Apache Spark and the visualization capabilities of Apache Zeppelin. Custom visualizations were created using D3 libraries.\n",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 15, 2016 5:50:01 PM",
+      "dateUpdated": "Aug 17, 2016 6:45:28 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -29,18 +29,91 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\u003ch1\u003e\u003cstrong\u003eSnapBook\u003c/strong\u003e\u003c/h1\u003e\n\u003cp\u003eby Anish Singh\n\u003cbr  /\u003eblog site : \u003ca href\u003d\"http://zeppelinnotes.blogspot.in\"\u003eZeppelin Notes\u003c/a\u003e\n\u003cbr  /\u003e[Image]\u003c/p\u003e\n\u003ch2\u003eIntroduction\u003c/h2\u003e\n\u003cp\u003eThe introduction appears here\u003c/p\u003e\n"
+        "msg": "\u003ch1\u003e\u003cstrong\u003eSnapBook\u003c/strong\u003e\u003c/h1\u003e\n\u003cp\u003eby Anish Singh\n\u003cbr  /\u003eblog site : \u003ca href\u003d\"http://zeppelinnotes.blogspot.in\"\u003eZeppelin Notes\u003c/a\u003e\n\u003cbr  /\u003e[Image]\u003c/p\u003e\n\u003ch2\u003eIntroduction\u003c/h2\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003e\u003cstrong\u003eSnapBook\u003c/strong\u003e is a notebook on the Stanford Network Analysis Project(SNAP) datasets. These datasets are largely network based graph datasets that generally contain the \u003cbr /\u003e\n\u003cbr  /\u003eegdes files between the nodes in the graph. Some of the datasets used in the notebook also contain other data files such as circles of users in social  networks  and  \u003cbr /\u003e\n\u003cbr  /\u003efeatures of individual users. These have also been used in the analysis presented in the notebook to identify the prefrences of users and the likeliness of their add  \u003cbr /\u003e\n\u003cbr  /\u003e-ing people to their circles. Social Network datasets have particularly been considered in this notebook as they have more scope for analysis. The notebook also atte  \u003cbr /\u003e\n\u003cbr  /\u003e-mpts to find the commmunities present in the social network data based on a paper on the same topic that uses the \u0027conductance\u0027 measure of the graph for  a  set  of  \u003cbr /\u003e\n\u003cbr  /\u003enodes to segregate the communities. The working of this algorithm has been shown graphically. More details and explanation about the creation of the notebook can  be  \u003cbr /\u003e\n\u003cbr  /\u003efound on the blog site mentioned above.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eThe notebook was created using Apache Spark and the visualization capabilities of Apache Zeppelin. Custom visualizations were created using D3 libraries.\u003c/p\u003e\n"
       },
       "dateCreated": "Aug 11, 2016 4:34:47 PM",
-      "dateStarted": "Aug 15, 2016 5:49:51 PM",
-      "dateFinished": "Aug 15, 2016 5:49:53 PM",
+      "dateStarted": "Aug 17, 2016 6:45:15 PM",
+      "dateFinished": "Aug 17, 2016 6:45:15 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//attempt to load the social networking data for a particular ego user - this paragraph only loads the data\n\nval rawFeatr \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.feat\")                 //load the features for other users\nval rawEdges \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.edges\")                //load the edges file\nval rawCicle \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.circles\")              //load the circles file\nval rawEFeat \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.egofeat\")              //load the file for the ego features for the ego user\nval featName \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.featnames\")            //load the names of features for the users",
+      "text": "%sh\n#this paragraph downloads the datasets needed for analysis in the notebook\n\nwget -O ~/ZeppelinData/SNAP/facebook.tar.gz \"http://snap.stanford.edu/data/facebook.tar.gz\" \u0026\u0026 tar -xzf ~/ZeppelinData/SNAP/facebook.tar.gz -C ~/ZeppelinData/SNAP\nwget -O ~/ZeppelinData/SNAP/GPlus.tar.gz \"http://snap.stanford.edu/data/gplus.tar.gz\" \u0026\u0026 tar -xzf ~/ZeppelinData/SNAP/GPlus.tar.gz -C ~/ZeppelinData/SNAP",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 13, 2016 2:01:05 PM",
+      "dateUpdated": "Aug 17, 2016 6:49:38 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": false,
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471439752527_-1724710190",
+      "id": "20160817-184552_31738080",
+      "dateCreated": "Aug 17, 2016 6:45:52 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val homeDir \u003d z.input(\"Home Directory\", \"anish\").toString                   //get the home directory of the user",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 17, 2016 6:49:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {
+          "Home Directory": {
+            "name": "Home Directory",
+            "displayName": "Home Directory",
+            "type": "input",
+            "defaultValue": "anish",
+            "hidden": false
+          }
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1471439917588_1548042220",
+      "id": "20160817-184837_22100231",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "homeDir: String \u003d anish\n"
+      },
+      "dateCreated": "Aug 17, 2016 6:48:37 PM",
+      "dateStarted": "Aug 17, 2016 6:49:39 PM",
+      "dateFinished": "Aug 17, 2016 6:49:39 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//attempt to load the social networking data for a particular ego user - this paragraph only loads the data\n\n//load the sample dataset for facebook\nval rawFeatr \u003d sc.textFile(\"/home/\" + homeDir + \"/ZeppelinData/SNAP/facebook/0.feat\")                 //load the features for other users\nval rawEdges \u003d sc.textFile(\"/home/\" + homeDir + \"/ZeppelinData/SNAP/facebook/0.edges\")                //load the edges file\nval rawCicle \u003d sc.textFile(\"/home/\" + homeDir + \"/ZeppelinData/SNAP/facebook/0.circles\")              //load the circles file\nval rawEFeat \u003d sc.textFile(\"/home/\" + homeDir + \"/ZeppelinData/SNAP/facebook/0.egofeat\")              //load the file for the ego features for the ego user\nval featName \u003d sc.textFile(\"/home/\" + homeDir + \"/ZeppelinData/SNAP/facebook/0.featnames\")            //load the names of features for the users",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 17, 2016 6:51:13 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -71,6 +144,34 @@
       "dateStarted": "Aug 13, 2016 2:01:05 PM",
       "dateFinished": "Aug 13, 2016 2:01:10 PM",
       "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## The Social Network\n[Image - facebook]\n\nThe analysis that follows takes as input the SNAP data for facebook that is loaded in the above paragraph. The input data contains files for the edges in the net\n-work, the features of the users, the names of the features and the circles that users have formed. Few terms have been used in the datasets as well as in the an\n-alysis that follows. These terms have been described in [this](http://i.stanford.edu/~julian/pdfs/nips2012.pdf) research paper. The paper describes how to  find\ncircles in social networks. A lot of the analysis is inspired from the work done in this paper. The paragraphs that follow attempt to find the circles  that  are\nmore prominent for the current user under consideration. Naturally these tend to be the ones that have more number of users in them, additionally by examining th\n-e features in these more prominent circles and the features of the use under consideration, we may get to know the categories from which the current user is lik\n-ely to make more friends and increase the circle size.\n\nThe paragraph directly below computes the most prominent circles by examining the length of the circles and then arranging them in the decreasing order of  their\nsize. According to the terms defined in the paper referenced above, the current user is called the \u0027ego\u0027 user. The network for the current user is called the \u0027eg\n-o network\u0027. The features of the \u0027ego\u0027 user are listed directly below. We find that the current user is more inclined towards topics such as \u0027education\u0027, \u0027work\u0027\nand \u0027employment\u0027, the paragraphs that follow list the features of the users in the most prominent circles of this ego user and there too we find that the majorit\n-y of them have these topics mentioned as their own features. Therefore, it can be concluded that the current ego user is more likely to make friends with  users\nthat have these features.\n",
+      "dateUpdated": "Aug 17, 2016 7:19:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471440224402_-256618945",
+      "id": "20160817-185344_5700304",
+      "dateCreated": "Aug 17, 2016 6:53:44 PM",
+      "status": "READY",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -229,6 +330,34 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\nSome of the users for this \u0027ego\u0027 user appear in multiple circles. They may be more important for the user. For example, a person can be a friend as well\nas a colleague and may appear in both the circles as compared to a person who might either be a friend or a colleague. The paragraph below  first  finds\nthe users that appear in multiple circles and them visualizes their features in the form of a table for ease of viewing. The table still reveals the sam\n-e conclusions as above that the user is more interested in people with the feature labels : \u0027education\u0027, \u0027work\u0027, \u0027employment\u0027 and \u0027birthday\u0027. Others us\n-ers that are known by this user and have the same feature labels in the network are likely to be friends with this user.",
+      "dateUpdated": "Aug 17, 2016 7:29:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471441834576_1757824484",
+      "id": "20160817-192034_26310795",
+      "dateCreated": "Aug 17, 2016 7:20:34 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "//this paragraph works on the second feature for the Social Networks - analysing users that are in multiple circles\n\nval allUsers \u003d rawCicle.flatMap(ele \u003d\u003e ele.split(\"\\t\"))                       //get the users in the string form \nval usrCount \u003d allUsers.map(ele \u003d\u003e (ele, 1)).reduceByKey((x, y) \u003d\u003e x + y)     //count all the users to get the duplicates \n\nval dupUsers \u003d usrCount.filter(ele \u003d\u003e (ele._2 !\u003d 1)).map(ele \u003d\u003e ele._1)       //get the duplicate users\nval dupUsrArr \u003d dupUsers.collect()                                            //the array of duplicate users\nval dupUsrFeat \u003d nodeFeats.filter(ele \u003d\u003e dupUsrArr.contains(ele._1))          //get the feature strings of the duplicate users\nval dupUsrFeatName \u003d dupUsrFeat.map(ele \u003d\u003e {\n    var featNmArr \u003d Array[String]()\n    for(i \u003c- 0 until ele._2.length){\n        if(ele._2(i) \u003d\u003d \"1\")\n            featNmArr \u003d featNmArr.:+(featArr(i))\n    }\n    (ele._1, featNmArr)\n})\n\ndupUsrFeatName.toDF().registerTempTable(\"DupUsers\")\n",
       "authenticationInfo": {},
       "dateUpdated": "Aug 12, 2016 9:57:22 PM",
@@ -340,6 +469,34 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\nNext, we attempt to find the strength of the circles that are discovered in the social network of this user as a measure of the number of internal/mutual\nconnections between the users of a particular circle. The paragraph below first generates the data needed for the visualization, that is to count the num\n-ber of mutual friendships. Here again we find that the most prominent circle leads the other circles in terms of the number of mutual relationships  and\nby a very large value, as evident in the plot shown below. The most prominent circle also has the greatest strength and this is followed by the second mo\n-st prominent circle. This also implies that people in those circles know each other more than people in other circles know themselves. The other circles\nare likely to be in their infancy stage - they are just being formed, especially the ones with the least mutual relationships between the users  and  the\nleast number of users.",
+      "dateUpdated": "Aug 17, 2016 8:26:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471441893479_1025155309",
+      "id": "20160817-192133_3913168",
+      "dateCreated": "Aug 17, 2016 7:21:33 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "//this paragraph finds the strength of the circles by finding the mutual relationships within the circles\n\nval edgeRdd \u003d rawEdges.map(ele \u003d\u003e ele.split(\" \")).map(ele \u003d\u003e (ele(0), ele(1)))      //convert the input edges to tuples of edges(source, destination)\nval edgeMapRdd \u003d edgeRdd.groupByKey()                                               //get the map for the edges using just groupByKey()\nval edgeMap \u003d edgeMapRdd.map(ele \u003d\u003e (ele._1, ele._2.toArray)).collectAsMap()\n\n\n//iterate through the edges in the circles and calculate the connection percentages for each of them\nval circStrength \u003d circles.map(ele \u003d\u003e {\n    \n    var trueConnec \u003d 0                                      //counter to count the connections that actually exist within the circles\n    \n    for(i \u003c- 0 until ele._2.length - 1){                    //check all the nodes in the circles for the connections in the network graph\n        \n        val valSeq \u003d edgeMap.getOrElse(ele._2(i), null)                             //get the nodes that are connected to current node\n        \n        if(valSeq !\u003d null){\n            for(j \u003c- (i+1) until ele._2.length){\n                if(valSeq.contains(ele._2(j))){\n                    trueConnec +\u003d 1                         //the connection between these two nodes exist so increment the trueConnec counter\n                }\n            }\n        }\n    }\n    (ele._1, trueConnec)\n})\n\nval ptveStrgth \u003d circStrength.filter(ele \u003d\u003e (ele._2 !\u003d 0))\nptveStrgth.toDF().registerTempTable(\"Strengths\")",
       "authenticationInfo": {},
       "dateUpdated": "Aug 13, 2016 9:59:05 PM",
@@ -444,6 +601,34 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\nWe also attempt to visualize the circles in the social network, for which the paragraph below generates the data. The paragraph that follows displays the\ndata in visual format as a graph having nodes and vertices. The different circles for this ego user are displayed as nodes with distinct colors and peopl\n-e from the same circles tend to cluster around each other. Hovering the mouse over the nodes displays the ID of that node. The conclusions of the  above\nparagraph are also verified by the visualization of the circles for this user. Colors represent the circles and some nodes with the same color are separa\n-ted from each other. However, one big cluster of green nodes lies in the center - this represents the circle with the most mutual relationships ",
+      "dateUpdated": "Aug 17, 2016 8:35:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471441908760_-2124383863",
+      "id": "20160817-192148_12731552",
+      "dateCreated": "Aug 17, 2016 7:21:48 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "//this paragraph generates the data needed for the visualization of the circles in the social network\nimport scala.collection.mutable.ArraySeq\n\nval circlesArr \u003d circles.collect()                      //get the array for the circles\nvar linksArr \u003d ArraySeq[String]()                       //the array to hold the links in the circles\nvar nodesArr \u003d ArraySeq[String]()                       //the array to hold the nodes in the graph\n\nfor(i \u003c- 10 until 17){\n    for(j \u003c- 0 until circlesArr(i)._2.length){\n        \n        nodesArr \u003d nodesArr.:+(\"{ \\\"id\\\" : \\\"\" + circlesArr(i)._2(j) + \"\\\", \\\"group\\\" : \" + circlesArr(i)._1.substring(6) + \"}\")        //create the nodes string\n        val valSeq \u003d edgeMap.getOrElse(circlesArr(i)._2(j), null)\n        \n        if(valSeq !\u003d null){\n            for(k \u003c- (j+1) until circlesArr(i)._2.length){\n                if(valSeq.contains(circlesArr(i)._2(k))){\n                    linksArr \u003d linksArr.:+(\"{ \\\"source\\\" : \\\"\" + circlesArr(i)._2(j) + \"\\\", \\\"target\\\" : \\\"\" + circlesArr(i)._2(k) + \"\\\", \\\"value\\\" : 1 }\"  )\n                }\n            }\n        }\n    }\n}\n\nval nodes \u003d nodesArr.mkString(\",\")                      //collect all the nodes\nval links \u003d linksArr.mkString(\",\")                      //collect all the links\n\nval circleGraph \u003d s\"\"\"\n{\n    \"nodes\" : [$nodes],\n    \"links\" : [$links]\n}\n\"\"\"",
       "authenticationInfo": {},
       "dateUpdated": "Aug 13, 2016 9:57:27 PM",
@@ -483,7 +668,7 @@
       "title": "Circles in Social Network - Facebook",
       "text": "//this paragraph generates the visualization for the circles in the social network\nprintln(\"\"\"%html\n\u003cstyle\u003e\n    #circlegraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"circlegraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#circlegraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-3);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"circleGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\"\"\")",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 15, 2016 5:45:58 PM",
+      "dateUpdated": "Aug 17, 2016 6:39:20 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -513,15 +698,15 @@
         "msg": "\u003cstyle\u003e\n    #circlegraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"circlegraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#circlegraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-3);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"circleGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\n"
       },
       "dateCreated": "Aug 13, 2016 2:13:16 PM",
-      "dateStarted": "Aug 15, 2016 5:45:59 PM",
-      "dateFinished": "Aug 15, 2016 5:46:30 PM",
+      "dateStarted": "Aug 17, 2016 6:39:20 PM",
+      "dateFinished": "Aug 17, 2016 6:39:21 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//the paragraphs below experiment with the Web Graph Data",
+      "text": "%md\n## ",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 13, 2016 10:09:08 PM",
+      "dateUpdated": "Aug 17, 2016 6:25:55 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -534,7 +719,7 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/markdown"
       },
       "settings": {
         "params": {},
@@ -543,21 +728,17 @@
       "apps": [],
       "jobName": "paragraph_1471078052259_167026165",
       "id": "20160813-141732_25418510",
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "res22: Option[scala.collection.mutable.ArraySeq[String]] \u003d None\n"
-      },
       "dateCreated": "Aug 13, 2016 2:17:32 PM",
-      "dateStarted": "Aug 13, 2016 2:26:09 PM",
-      "dateFinished": "Aug 13, 2016 2:26:09 PM",
+      "dateStarted": "Aug 16, 2016 10:27:56 AM",
+      "dateFinished": "Aug 16, 2016 10:28:39 AM",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "newEdgeRdd.take(5).foreach(println)",
+      "text": "//this paragraph attempts the custom implementation of the data structure used to represent the graph - from the beginning\nimport scala.collection.mutable.HashMap\n\nval edgeFile \u003d sc.textFile(\"/home/anish/ZeppelinData/SNAP/facebook/0.edges\")            //load the edges file\nval edgeList \u003d edgeFile.map(ele \u003d\u003e ele.split(\" \")).map(ele \u003d\u003e (ele(0), ele(1)))         //create the edges from the file\n\nval graph \u003d edgeList.groupByKey()                                                       //get the edges in the adjacency list representation\nval graphMap \u003d graph.map(ele \u003d\u003e (ele._1, ele._2.toArray)).collectAsMap()                //the Map of the graph in the adjacency list representation\n\nval edgeList1 \u003d edgeList.map(ele \u003d\u003e ele._1)                 //the set of edges in the first column - the source edges\nval edgeList2 \u003d edgeList.map(ele \u003d\u003e ele._2)                 //the set of edges in the second column - the destination edges\nval vertices \u003d edgeList1.union(edgeList2)                   //the set of verices in the graph\n                        .distinct()\n\nval colorMapIter \u003d vertices.map(ele \u003d\u003e (ele, 0)).toLocalIterator                        //get the iterator on this collection and create the HashMap\nval colorMap \u003d new HashMap[String, Int]                                                 //the Map containing the color values\n\n    while(colorMapIter.hasNext){                            //iterate over the list of nodes to color them\n        val colorNode \u003d colorMapIter.next\n        colorMap.put(colorNode._1, colorNode._2)            //put the elements in the map\n    }",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 13, 2016 2:52:32 PM",
+      "dateUpdated": "Aug 17, 2016 11:39:13 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -582,11 +763,158 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "(422,236,186)\n(829,122,285)\n(1199,24,346)\n(1774,271,304)\n(1959,176,9)\n"
+        "msg": "import scala.collection.mutable.HashMap\nedgeFile: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[15] at textFile at \u003cconsole\u003e:32\nedgeList: org.apache.spark.rdd.RDD[(String, String)] \u003d MapPartitionsRDD[17] at map at \u003cconsole\u003e:34\ngraph: org.apache.spark.rdd.RDD[(String, Iterable[String])] \u003d ShuffledRDD[18] at groupByKey at \u003cconsole\u003e:36\ngraphMap: scala.collection.Map[String,Array[String]] \u003d Map(188 -\u003e Array(133, 119, 285, 104, 304, 315, 170, 323, 25, 165, 56, 67, 291, 239, 30, 26, 342, 9, 277, 21, 75, 290, 252, 274, 142, 224, 3, 113, 297, 271, 176, 272, 258, 322, 200, 341, 185, 334, 79, 122, 280, 223, 156, 85, 186, 13, 208), 204 -\u003e Array(213, 196, 5, 94, 130, 92, 53, 249, 266, 57, 329, 242, 80, 346, 254, 101, 277, 330, 302, 194, 180), 194 -\u003e Array(242, 196, 80, 266, 346, 101, 180, 204, 249, 254, 92, 94, 24, 187, 1, 299, 302, 53), 90 -\u003e Array(179), 272 -\u003e Array(186, 159, 203, 346, 21, 108, 304, 9, 211, 236, 285, 297, 185, 271, 277, 213, 40, 281, 75, 148, 156, 258, 25, 98, 239, 127, 122, 320, 72, 184, 188, 280, 329, 291, 178, 197, 141, 79, 257, 105, 252, 56, 67, 85), 111 -\u003e Array(343, 279, 337, 312, 310, 20, 17, 214, 41,...edgeList1: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[20] at map at \u003cconsole\u003e:36\nedgeList2: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[21] at map at \u003cconsole\u003e:36\nvertices: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[25] at distinct at \u003cconsole\u003e:41\ncolorMapIter: Iterator[(String, Int)] \u003d non-empty iterator\ncolorMap: scala.collection.mutable.HashMap[String,Int] \u003d Map()\n"
       },
       "dateCreated": "Aug 13, 2016 2:26:09 PM",
-      "dateStarted": "Aug 13, 2016 2:52:32 PM",
-      "dateFinished": "Aug 13, 2016 2:52:33 PM",
+      "dateStarted": "Aug 17, 2016 11:39:13 AM",
+      "dateFinished": "Aug 17, 2016 11:39:19 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph contains the sample implementation of the community finding algorithm - starting from the edge 123\nimport scala.collection.mutable.Queue\n\nvar queue \u003d new Queue[String]()                 //this queue to store the indices\n\ncolorMap.put(\"123\", 2)                          //blacken the first vertex\nqueue.enqueue(\"123\")                            //get the first vertices in the queue to start the algorithm\n\nvar tripCond \u003d false                            //the trip condition - if the conductance in the current round increases more than the previous value\nvar startVertex : String \u003d null                 //the vertex at which the algorithm starts traversal after the first round\nvar cutEdges \u003d 0\nvar internalEdges \u003d 0\nvar conductance \u003d 0.0                           //the measure of the current conductance \u003d cutEdges/internalEdges\n\n    while(!queue.isEmpty){                      //breadth - wise traversal\n        val u \u003d queue.dequeue()\n        \n        if(colorMap(u) \u003d\u003d 2){                   //if the dequeued vertex is black - the start of a new community\n            for(i \u003c- 0 until graphMap(u).length){\n                val v \u003d graphMap(u)(i)                                                  //get the vertices that are adjacent to the current vertex\n                \n                if(colorMap(v) !\u003d 2){\n                    cutEdges +\u003d 1\n                    colorMap.put(v, 1)          //paint the vertex grey\n                    queue.enqueue(v)\n                }\n            }\n            conductance +\u003d cutEdges             //increase the initial conductance value to the start conductance\n            internalEdges +\u003d cutEdges\n            cutEdges \u003d 0\n        }\n        \n        else{                                   //if the dequeued vertex is grey\n            tripCond \u003d false\n            \n            if(startVertex \u003d\u003d u){\n                for(i \u003c- 0 until graphMap(u).length){\n                    if(colorMap(graphMap(u)(i)) \u003d\u003d 0){\n                        \n                        val v \u003d graphMap(u)(i)                                              //get the vertex closest to the current vertex that is white\n                        colorMap.put(v, 2)              //blacken the vertex - the first one from the new community\n                        queue \u003d new Queue[String]()                                         //renew the queue\n                        queue.enqueue(v)\n                    }\n                }\n                conductance \u003d 0.0               //refresh all the values to start a new community\n                internalEdges \u003d 0\n                cutEdges \u003d 0\n                startVertex \u003d null\n            }\n            \n            for(i \u003c- 0 until graphMap(u).length; if(!tripCond)){\n                val v \u003d graphMap(u)(i)                                                  //get the vertices adjacent to the current vertex\n                \n                if(colorMap(v) \u003d\u003d 0){\n                    if(startVertex \u003d\u003d null) startVertex \u003d v;                            //initialize the startVertex if its not initialized\n                    \n                    cutEdges +\u003d 1\n                    if(conductance \u003c (cutEdges * 1.0)/internalEdges){                   //the trip condition achieved\n                        conductance \u003d (cutEdges * 1.0)/internalEdges\n                        internalEdges +\u003d cutEdges\n                        cutEdges \u003d 0\n                        tripCond \u003d true\n                        startVertex \u003d u\n                    }\n                    colorMap.put(v, 1)          //paint the vertex grey as it has been encountered\n                    queue.enqueue(v)\n                }\n                \n                if(tripCond) queue.enqueue(u)                       // enqueue the vertex on which the trip condition was achieved\n            }\n            if(!tripCond)\n            colorMap.put(u, 2)                                      //paint the vertex black as it has now become an internal node of the community\n        }\n    }\n\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 17, 2016 12:00:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471080031315_1871915295",
+      "id": "20160813-145031_4501751",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import scala.collection.mutable.Queue\nqueue: scala.collection.mutable.Queue[String] \u003d Queue()\nres12: Option[Int] \u003d Some(0)\ntripCond: Boolean \u003d false\nstartVertex: String \u003d null\ncutEdges: Int \u003d 0\ninternalEdges: Int \u003d 0\nconductance: Double \u003d 0.0\n"
+      },
+      "dateCreated": "Aug 13, 2016 2:50:31 PM",
+      "dateStarted": "Aug 17, 2016 12:00:45 PM",
+      "dateFinished": "Aug 17, 2016 12:00:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//this paragraph prepares the data for the visualization\nimport scala.collection.mutable.ArraySeq\n\nval coloredArr \u003d colorMap.toArray.filter(ele \u003d\u003e (ele._2 !\u003d 0))                       //get the elements that have been colored\n\nvar nodesArr \u003d ArraySeq[String]()                           //the arraySeq to collect the nodes\nvar linksArr \u003d ArraySeq[String]()                           //the arraySeq to collect the links\n\nfor(i \u003c- 0 until coloredArr.length){                        //get the nodes and links for the visualization\n    nodesArr \u003d nodesArr.:+(\"{ \\\"id\\\" : \\\"\" + coloredArr(i)._1 + \"\\\", \\\"group\\\" : \" + coloredArr(i)._2 + \"}\")        //form each of the nodes\n    val adjNodes \u003d graphMap(coloredArr(i)._1)\n    \n    for(j \u003c- 0 until adjNodes.length){\n        if(colorMap(adjNodes(j)) !\u003d 0)\n            linksArr \u003d linksArr.:+(\"{ \\\"source\\\" : \\\"\" + coloredArr(i)._1 + \"\\\", \\\"target\\\" : \\\"\" + adjNodes(j) + \"\\\", \\\"value\\\" : 1 }\")\n    }\n}\n\nval nodes \u003d nodesArr.mkString(\",\")\nval links \u003d linksArr.mkString(\",\")\n\nval commGraph \u003d s\"\"\"\n{\n    \"nodes\" : [$nodes],\n    \"links\" : [$links]\n}\n\"\"\"",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 17, 2016 6:22:31 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 143.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471368546055_2085094339",
+      "id": "20160816-225906_5510909",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "commGraph: String \u003d \n\"\n{\n    \"nodes\" : [{ \"id\" : \"188\", \"group\" : 2},{ \"id\" : \"204\", \"group\" : 1},{ \"id\" : \"194\", \"group\" : 1},{ \"id\" : \"303\", \"group\" : 2},{ \"id\" : \"272\", \"group\" : 2},{ \"id\" : \"57\", \"group\" : 1},{ \"id\" : \"84\", \"group\" : 2},{ \"id\" : \"318\", \"group\" : 2},{ \"id\" : \"63\", \"group\" : 2},{ \"id\" : \"266\", \"group\" : 1},{ \"id\" : \"105\", \"group\" : 2},{ \"id\" : \"347\", \"group\" : 1},{ \"id\" : \"45\", \"group\" : 2},{ \"id\" : \"30\", \"group\" : 2},{ \"id\" : \"197\", \"group\" : 2},{ \"id\" : \"248\", \"group\" : 2},{ \"id\" : \"39\", \"group\" : 2},{ \"id\" : \"281\", \"group\" : 2},{ \"id\" : \"66\", \"group\" : 2},{ \"id\" : \"161\", \"group\" : 2},{ \"id\" : \"51\", \"group\" : 1},{ \"id\" : \"87\", \"group\" : 1},{ \"id\" : \"260\", \"group\" : 1},{ \"id\" : \"269\", \"group\" : 2},{ \"id\" : \"176\", \"group\" : 2},{ \"id\" : \"72\", \"group\" : 2},{ \"id\" : \"254..."
+      },
+      "dateCreated": "Aug 16, 2016 10:59:06 PM",
+      "dateStarted": "Aug 17, 2016 1:04:16 PM",
+      "dateFinished": "Aug 17, 2016 1:04:16 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Communities in Social Network - Facebook",
+      "text": "//this paragraph contains the visualization for the communities\nprintln(\"\"\"%html\n\u003cstyle\u003e\n    #commgraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"commgraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#commgraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-9);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"commGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\"\"\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 17, 2016 6:21:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471368676894_1024493219",
+      "id": "20160816-230116_31542742",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cstyle\u003e\n    #commgraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"commgraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#commgraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-9);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"commGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\n"
+      },
+      "dateCreated": "Aug 16, 2016 11:01:16 PM",
+      "dateStarted": "Aug 17, 2016 6:18:20 PM",
+      "dateFinished": "Aug 17, 2016 6:18:21 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## Google Plus Data Analysis",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 17, 2016 6:52:48 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1471368769973_1908200146",
+      "id": "20160816-230249_25650907",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Aug 16, 2016 11:02:49 PM",
+      "dateStarted": "Aug 17, 2016 11:45:49 AM",
+      "dateFinished": "Aug 17, 2016 11:45:51 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -597,9 +925,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1471080031315_1871915295",
-      "id": "20160813-145031_4501751",
-      "dateCreated": "Aug 13, 2016 2:50:31 PM",
+      "jobName": "paragraph_1471369597111_-386834145",
+      "id": "20160816-231637_32616429",
+      "dateCreated": "Aug 16, 2016 11:16:37 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
