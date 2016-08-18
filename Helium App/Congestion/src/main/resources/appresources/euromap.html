@@ -1,0 +1,67 @@
+
+	<head>
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
+	</head>
+
+	<div id ="map" style="width: 900px; height: 500px">My Map</div>
+
+	<script>
+		
+		//add the script to generate the map
+		var mapCanvas = document.getElementById("map")
+		var mapOptions = {
+			center : new google.maps.LatLng(50.512184, 9.416764),
+			zoom : 4,
+		};
+		var map = new google.maps.Map(mapCanvas, mapOptions);
+
+		//add the markers to the maps for the congestion data of the cities
+
+		function getMarker(city, lat, lng){		//function to get the marker for the given values
+			return new google.maps.Marker({
+				position : new google.maps.LatLng(lat, lng),
+				map : map,
+				icon : 'https://raw.githubusercontent.com/anish18sun/Zeppelin-Notebooks/master/resources/MapMarker.png',
+				title : city
+			});
+		}
+		
+		var trafficLayer = new google.maps.TrafficLayer();		//add the traffic layer to the map
+		trafficLayer.setMap(map);
+
+		var transitLayer = new google.maps.TransitLayer();		//add the transit layer to the map
+		transitLayer.setMap(map);
+
+		function setMarker(){					//set the marker for the specifies values
+
+			var cities = ['Moscow(44%)', 'Bucharest(43%)', 'St. Petersburg(40%)', 'Warsaw(38%)',
+			'Rome(38%)', 'London(38%)', 'Marseille(38%)', 'Manchester(37%)', 'Athens(36%)', 'Paris(36%)',
+		    'Brussels(35%)', 'Sunderland(31%)', 'Naples(31%)', 'Hamburg(30%)', 'Cologne(30%)',
+		    'Munich(29%)', 'Milan(29%)', 'Stockholm(29%)', 'Liverpool(29%)', 'Barcelona(28%)',
+		    'Berlin(28%)', 'Vienna(28%)', 'Birmingham(27%)', 'Prague(27%)', 'Bradford(27%)', 'Glasgow(26%)',
+		    'Lyon(26%)', 'Antwerp(26%)', 'Frankfurt(26%)', 'Oslo(25%)', 'Turin(23%)', 'Madrid(23%)',
+		    'Budapest(22%)', 'Copenhagen(21%)', 'Valencia(21%)', 'Lille(21%)', 'Ruhr(20%)',
+		    'Amsterdam(20%)', 'Urbana Katowice(14%)'];
+
+			var lattitudes = [55.765517, 44.425482, 59.946532, 52.231169, 41.902576, 51.505234, 43.296799,
+			53.479111, 37.987299, 48.855612, 50.851857, 54.969179, 40.850406, 53.547639, 50.939606,
+			48.138332, 45.465538, 59.324440, 53.407546, 41.384917, 52.514733, 48.208246, 52.485300, 
+			50.072555, 53.795151, 55.863858, 45.762725, 51.224802, 50.107478, 59.912030, 45.068554,
+			40.419053, 47.495720, 55.675447, 39.470806, 50.629522, 51.405128, 52.369079, 50.195076];
+
+			var longitudes = [37.629611, 26.090506, 30.300219, 21.020740, 12.492005, -0.122237, 5.357749,
+			-2.247634, 23.724947, 2.355099, 4.356840, -1.621441, 14.281447, 9.982728, 6.976895, 11.592637,
+			9.178408, 18.076778, -2.965787, 2.173475, 13.418231, 16.378676, -1.875314, 14.439491,
+			-1.757109, -4.257187, 4.836491, 4.396706, 8.688052, 10.752150, 7.689328, -3.691909, 19.060222,
+			12.586922, -0.362210, 3.0574458, 7.627689, 4.893111, 18.995119];
+
+			for (var i = 0; i < cities.length; i++) {		//set the marker for each of the values
+				
+				getMarker(cities[i], lattitudes[i], longitudes[i]);
+			}
+		};
+		
+		setMarker();
+		//google.maps.event.addListener(map, 'load', setMarker);    //set the markers on window load
+	</script>
+

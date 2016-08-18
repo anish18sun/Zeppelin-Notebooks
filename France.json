@@ -1,0 +1,185 @@
+
+    {
+        "name": "France",
+        "children": [
+            {
+                "name": "HIGH",
+                "children": [
+            {
+                "name": "DEG1",
+                "children": [{ "name": "QUINTILE1(6.5 )", "size": 6.5  },
+{ "name": "QUINTILE2(5.3 )", "size": 5.3  },
+{ "name": "QUINTILE3(7.3 )", "size": 7.3  },
+{ "name": "QUINTILE4(6.9 )", "size": 6.9  },
+{ "name": "QUINTILE5(8.1 )", "size": 8.1  },
+{ "name": "TOTAL(6.9 )", "size": 6.9  }]
+            }
+            ,
+            {
+                "name": "DEG2",
+                "children": [{ "name": "QUINTILE1(8.5 )", "size": 8.5  },
+{ "name": "QUINTILE2(15.1 )", "size": 15.1  },
+{ "name": "QUINTILE3(14.9 )", "size": 14.9  },
+{ "name": "QUINTILE4(14.1 )", "size": 14.1  },
+{ "name": "QUINTILE5(10.8 )", "size": 10.8  },
+{ "name": "TOTAL(12.4 )", "size": 12.4  }]
+            }
+            ,
+            {
+                "name": "DEG3",
+                "children": [{ "name": "QUINTILE1(14.0 )", "size": 14.0  },
+{ "name": "QUINTILE2(14.1 )", "size": 14.1  },
+{ "name": "QUINTILE3(21.0 )", "size": 21.0  },
+{ "name": "QUINTILE4(15.8 )", "size": 15.8  },
+{ "name": "QUINTILE5(19.5 )", "size": 19.5  },
+{ "name": "TOTAL(16.8 )", "size": 16.8  }]
+            }
+            ,
+            {
+                "name": "TOTAL",
+                "children": [{ "name": "QUINTILE1(7.5 )", "size": 7.5  },
+{ "name": "QUINTILE2(8.4 )", "size": 8.4  },
+{ "name": "QUINTILE3(10.4 )", "size": 10.4  },
+{ "name": "QUINTILE4(8.9 )", "size": 8.9  },
+{ "name": "QUINTILE5(9.3 )", "size": 9.3  },
+{ "name": "TOTAL(8.8 )", "size": 8.8  }]
+            }
+            ]
+            }
+            ,
+            {
+                "name": "LOW",
+                "children": [
+            {
+                "name": "DEG1",
+                "children": [{ "name": "QUINTILE1(36.3 )", "size": 36.3  },
+{ "name": "QUINTILE2(37.1 )", "size": 37.1  },
+{ "name": "QUINTILE3(33.5 )", "size": 33.5  },
+{ "name": "QUINTILE4(35.8 )", "size": 35.8  },
+{ "name": "QUINTILE5(31.5 )", "size": 31.5  },
+{ "name": "TOTAL(34.7 )", "size": 34.7  }]
+            }
+            ,
+            {
+                "name": "DEG2",
+                "children": [{ "name": "QUINTILE1(54.1 )", "size": 54.1  },
+{ "name": "QUINTILE2(44.3 )", "size": 44.3  },
+{ "name": "QUINTILE3(43.1 )", "size": 43.1  },
+{ "name": "QUINTILE4(52.2 )", "size": 52.2  },
+{ "name": "QUINTILE5(57.9 )", "size": 57.9  },
+{ "name": "TOTAL(50.3 )", "size": 50.3  }]
+            }
+            ,
+            {
+                "name": "DEG3",
+                "children": [{ "name": "QUINTILE1(44.3 )", "size": 44.3  },
+{ "name": "QUINTILE2(39.4 )", "size": 39.4  },
+{ "name": "QUINTILE3(42.7 )", "size": 42.7  },
+{ "name": "QUINTILE4(40.3 )", "size": 40.3  },
+{ "name": "QUINTILE5(39.4 )", "size": 39.4  },
+{ "name": "TOTAL(41.3 )", "size": 41.3  }]
+            }
+            ,
+            {
+                "name": "TOTAL",
+                "children": [{ "name": "QUINTILE1(39.7 )", "size": 39.7  },
+{ "name": "QUINTILE2(38.7 )", "size": 38.7  },
+{ "name": "QUINTILE3(36.1 )", "size": 36.1  },
+{ "name": "QUINTILE4(38.4 )", "size": 38.4  },
+{ "name": "QUINTILE5(34.7 )", "size": 34.7  },
+{ "name": "TOTAL(37.5 )", "size": 37.5  }]
+            }
+            ]
+            }
+            ,
+            {
+                "name": "VHIGH",
+                "children": [
+            {
+                "name": "DEG1",
+                "children": [{ "name": "QUINTILE1(1.8 )", "size": 1.8  },
+{ "name": "QUINTILE2(2.3 )", "size": 2.3  },
+{ "name": "QUINTILE3(3.5 )", "size": 3.5  },
+{ "name": "QUINTILE4(3.6 )", "size": 3.6  },
+{ "name": "QUINTILE5(2.1 )", "size": 2.1  },
+{ "name": "TOTAL(2.6 )", "size": 2.6  }]
+            }
+            ,
+            {
+                "name": "DEG2",
+                "children": [{ "name": "QUINTILE1(3.1 )", "size": 3.1  },
+{ "name": "QUINTILE2(4.1 )", "size": 4.1  },
+{ "name": "QUINTILE3(2.8 )", "size": 2.8  },
+{ "name": "QUINTILE4(9.3 )", "size": 9.3  },
+{ "name": "QUINTILE5(2.4 )", "size": 2.4  },
+{ "name": "TOTAL(4.2 )", "size": 4.2  }]
+            }
+            ,
+            {
+                "name": "DEG3",
+                "children": [{ "name": "QUINTILE1(9.4 )", "size": 9.4  },
+{ "name": "QUINTILE2(15.0 )", "size": 15.0  },
+{ "name": "QUINTILE3(6.2 )", "size": 6.2  },
+{ "name": "QUINTILE4(12.1 )", "size": 12.1  },
+{ "name": "QUINTILE5(6.9 )", "size": 6.9  },
+{ "name": "TOTAL(10.1 )", "size": 10.1  }]
+            }
+            ,
+            {
+                "name": "TOTAL",
+                "children": [{ "name": "QUINTILE1(2.8 )", "size": 2.8  },
+{ "name": "QUINTILE2(4.5 )", "size": 4.5  },
+{ "name": "QUINTILE3(3.8 )", "size": 3.8  },
+{ "name": "QUINTILE4(5.3 )", "size": 5.3  },
+{ "name": "QUINTILE5(2.5 )", "size": 2.5  },
+{ "name": "TOTAL(3.7 )", "size": 3.7  }]
+            }
+            ]
+            }
+            ,
+    {
+        "name": "VLOW",
+        "children": [
+            {
+                "name": "DEG1",
+                "children": [{ "name": "QUINTILE1(55.4 )", "size": 55.4  },
+{ "name": "QUINTILE2(55.3 )", "size": 55.3  },
+{ "name": "QUINTILE3(55.6 )", "size": 55.6  },
+{ "name": "QUINTILE4(53.8 )", "size": 53.8  },
+{ "name": "QUINTILE5(58.4 )", "size": 58.4  },
+{ "name": "TOTAL(55.9 )", "size": 55.9  }]
+            }
+            ,
+            {
+                "name": "DEG2",
+                "children": [{ "name": "QUINTILE1(34.3 )", "size": 34.3  },
+{ "name": "QUINTILE2(36.5 )", "size": 36.5  },
+{ "name": "QUINTILE3(39.2 )", "size": 39.2  },
+{ "name": "QUINTILE4(24.5 )", "size": 24.5  },
+{ "name": "QUINTILE5(28.8 )", "size": 28.8  },
+{ "name": "TOTAL(33.1 )", "size": 33.1  }]
+            }
+            ,
+            {
+                "name": "DEG3",
+                "children": [{ "name": "QUINTILE1(32.3 )", "size": 32.3  },
+{ "name": "QUINTILE2(31.5 )", "size": 31.5  },
+{ "name": "QUINTILE3(30.1 )", "size": 30.1  },
+{ "name": "QUINTILE4(31.7 )", "size": 31.7  },
+{ "name": "QUINTILE5(34.2 )", "size": 34.2  },
+{ "name": "TOTAL(31.8 )", "size": 31.8  }]
+            }
+            ,
+    {
+        "name": "TOTAL",
+        "children": [{ "name": "QUINTILE1(49.9 )", "size": 49.9  },
+{ "name": "QUINTILE2(48.4 )", "size": 48.4  },
+{ "name": "QUINTILE3(49.7 )", "size": 49.7  },
+{ "name": "QUINTILE4(47.5 )", "size": 47.5  },
+{ "name": "QUINTILE5(53.5 )", "size": 53.5  },
+{ "name": "TOTAL(50.0 )", "size": 50.0  }]
+    }
+    ]
+    }
+    ]
+    }
