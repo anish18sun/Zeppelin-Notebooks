@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n# **SnapBook**\n\nby Anish Singh\nblog site : [Zeppelin Notes](http://zeppelinnotes.blogspot.in)\n[Image]\n\n## Introduction\n\n\u003cbr/\u003e\n**SnapBook** is a notebook on the Stanford Network Analysis Project(SNAP) datasets. These datasets are largely network based graph datasets that generally contain the \u003cbr/\u003e\negdes files between the nodes in the graph. Some of the datasets used in the notebook also contain other data files such as circles of users in social  networks  and  \u003cbr/\u003e\nfeatures of individual users. These have also been used in the analysis presented in the notebook to identify the prefrences of users and the likeliness of their add  \u003cbr/\u003e\n-ing people to their circles. Social Network datasets have particularly been considered in this notebook as they have more scope for analysis. The notebook also atte  \u003cbr/\u003e\n-mpts to find the commmunities present in the social network data based on a paper on the same topic that uses the \u0027conductance\u0027 measure of the graph for  a  set  of  \u003cbr/\u003e\nnodes to segregate the communities. The working of this algorithm has been shown graphically. More details and explanation about the creation of the notebook can  be  \u003cbr/\u003e\nfound on the blog site mentioned above.\n\n\u003cbr/\u003e\nThe notebook was created using Apache Spark and the visualization capabilities of Apache Zeppelin. Custom visualizations were created using D3 libraries.\n",
+      "text": "%md\n# **SnapBook**\n\nby Anish Singh\nblog site : [Zeppelin Notes](http://zeppelinnotes.blogspot.in)\n![Stanford](http://hdwallpaperbackgrounds.net/wp-content/uploads/2015/07/Stanford-University-Wallpapers-1.jpg)\n\n\u003cbr/\u003e\n## Introduction\n\n**SnapBook** is a notebook on the Stanford Network Analysis Project(SNAP) datasets. These datasets are largely network based graph datasets that generally contain the \u003cbr/\u003e\negdes files between the nodes in the graph. Some of the datasets used in the notebook also contain other data files such as circles of users in social  networks  and  \u003cbr/\u003e\nfeatures of individual users. These have also been used in the analysis presented in the notebook to identify the prefrences of users and the likeliness of their add  \u003cbr/\u003e\n-ing people to their circles. Social Network datasets have particularly been considered in this notebook as they have more scope for analysis. The notebook also atte  \u003cbr/\u003e\n-mpts to find the commmunities present in the social network data based on a paper on the same topic that uses the \u0027conductance\u0027 measure of the graph for  a  set  of  \u003cbr/\u003e\nnodes to segregate the communities. The working of this algorithm has been shown graphically. More details and explanation about the creation of the notebook can  be  \u003cbr/\u003e\nfound on the blog site mentioned above.\n\n\u003cbr/\u003e\nThe notebook was created using Apache Spark and the visualization capabilities of Apache Zeppelin. Custom visualizations were created using D3 libraries.\n",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 17, 2016 6:45:28 PM",
+      "dateUpdated": "Aug 18, 2016 8:54:39 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -29,18 +29,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
-        "msg": "\u003ch1\u003e\u003cstrong\u003eSnapBook\u003c/strong\u003e\u003c/h1\u003e\n\u003cp\u003eby Anish Singh\n\u003cbr  /\u003eblog site : \u003ca href\u003d\"http://zeppelinnotes.blogspot.in\"\u003eZeppelin Notes\u003c/a\u003e\n\u003cbr  /\u003e[Image]\u003c/p\u003e\n\u003ch2\u003eIntroduction\u003c/h2\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003e\u003cstrong\u003eSnapBook\u003c/strong\u003e is a notebook on the Stanford Network Analysis Project(SNAP) datasets. These datasets are largely network based graph datasets that generally contain the \u003cbr /\u003e\n\u003cbr  /\u003eegdes files between the nodes in the graph. Some of the datasets used in the notebook also contain other data files such as circles of users in social  networks  and  \u003cbr /\u003e\n\u003cbr  /\u003efeatures of individual users. These have also been used in the analysis presented in the notebook to identify the prefrences of users and the likeliness of their add  \u003cbr /\u003e\n\u003cbr  /\u003e-ing people to their circles. Social Network datasets have particularly been considered in this notebook as they have more scope for analysis. The notebook also atte  \u003cbr /\u003e\n\u003cbr  /\u003e-mpts to find the commmunities present in the social network data based on a paper on the same topic that uses the \u0027conductance\u0027 measure of the graph for  a  set  of  \u003cbr /\u003e\n\u003cbr  /\u003enodes to segregate the communities. The working of this algorithm has been shown graphically. More details and explanation about the creation of the notebook can  be  \u003cbr /\u003e\n\u003cbr  /\u003efound on the blog site mentioned above.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eThe notebook was created using Apache Spark and the visualization capabilities of Apache Zeppelin. Custom visualizations were created using D3 libraries.\u003c/p\u003e\n"
+        "msg": "\u003ch1\u003e\u003cstrong\u003eSnapBook\u003c/strong\u003e\u003c/h1\u003e\n\u003cp\u003eby Anish Singh\n\u003cbr  /\u003eblog site : \u003ca href\u003d\"http://zeppelinnotes.blogspot.in\"\u003eZeppelin Notes\u003c/a\u003e\n\u003cbr  /\u003e\u003cimg src\u003d\"http://hdwallpaperbackgrounds.net/wp-content/uploads/2015/07/Stanford-University-Wallpapers-1.jpg\" alt\u003d\"Stanford\" /\u003e\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\u003c/p\u003e\n\u003ch2\u003eIntroduction\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eSnapBook\u003c/strong\u003e is a notebook on the Stanford Network Analysis Project(SNAP) datasets. These datasets are largely network based graph datasets that generally contain the \u003cbr /\u003e\n\u003cbr  /\u003eegdes files between the nodes in the graph. Some of the datasets used in the notebook also contain other data files such as circles of users in social  networks  and  \u003cbr /\u003e\n\u003cbr  /\u003efeatures of individual users. These have also been used in the analysis presented in the notebook to identify the prefrences of users and the likeliness of their add  \u003cbr /\u003e\n\u003cbr  /\u003e-ing people to their circles. Social Network datasets have particularly been considered in this notebook as they have more scope for analysis. The notebook also atte  \u003cbr /\u003e\n\u003cbr  /\u003e-mpts to find the commmunities present in the social network data based on a paper on the same topic that uses the \u0027conductance\u0027 measure of the graph for  a  set  of  \u003cbr /\u003e\n\u003cbr  /\u003enodes to segregate the communities. The working of this algorithm has been shown graphically. More details and explanation about the creation of the notebook can  be  \u003cbr /\u003e\n\u003cbr  /\u003efound on the blog site mentioned above.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eThe notebook was created using Apache Spark and the visualization capabilities of Apache Zeppelin. Custom visualizations were created using D3 libraries.\u003c/p\u003e\n"
       },
       "dateCreated": "Aug 11, 2016 4:34:47 PM",
-      "dateStarted": "Aug 17, 2016 6:45:15 PM",
-      "dateFinished": "Aug 17, 2016 6:45:15 PM",
+      "dateStarted": "Aug 18, 2016 8:54:14 AM",
+      "dateFinished": "Aug 18, 2016 8:54:14 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%sh\n#this paragraph downloads the datasets needed for analysis in the notebook\n\nwget -O ~/ZeppelinData/SNAP/facebook.tar.gz \"http://snap.stanford.edu/data/facebook.tar.gz\" \u0026\u0026 tar -xzf ~/ZeppelinData/SNAP/facebook.tar.gz -C ~/ZeppelinData/SNAP\nwget -O ~/ZeppelinData/SNAP/GPlus.tar.gz \"http://snap.stanford.edu/data/gplus.tar.gz\" \u0026\u0026 tar -xzf ~/ZeppelinData/SNAP/GPlus.tar.gz -C ~/ZeppelinData/SNAP",
+      "text": "%sh\n#this paragraph downloads the datasets needed for analysis in the notebook\n\nwget -O ~/ZeppelinData/SNAP/facebook.tar.gz \"http://snap.stanford.edu/data/facebook.tar.gz\" \u0026\u0026 tar -xzf ~/ZeppelinData/SNAP/facebook.tar.gz -C ~/ZeppelinData/SNAP",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 17, 2016 6:49:38 PM",
+      "dateUpdated": "Aug 18, 2016 7:51:17 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -147,8 +147,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n## The Social Network\n[Image - facebook]\n\nThe analysis that follows takes as input the SNAP data for facebook that is loaded in the above paragraph. The input data contains files for the edges in the net\n-work, the features of the users, the names of the features and the circles that users have formed. Few terms have been used in the datasets as well as in the an\n-alysis that follows. These terms have been described in [this](http://i.stanford.edu/~julian/pdfs/nips2012.pdf) research paper. The paper describes how to  find\ncircles in social networks. A lot of the analysis is inspired from the work done in this paper. The paragraphs that follow attempt to find the circles  that  are\nmore prominent for the current user under consideration. Naturally these tend to be the ones that have more number of users in them, additionally by examining th\n-e features in these more prominent circles and the features of the use under consideration, we may get to know the categories from which the current user is lik\n-ely to make more friends and increase the circle size.\n\nThe paragraph directly below computes the most prominent circles by examining the length of the circles and then arranging them in the decreasing order of  their\nsize. According to the terms defined in the paper referenced above, the current user is called the \u0027ego\u0027 user. The network for the current user is called the \u0027eg\n-o network\u0027. The features of the \u0027ego\u0027 user are listed directly below. We find that the current user is more inclined towards topics such as \u0027education\u0027, \u0027work\u0027\nand \u0027employment\u0027, the paragraphs that follow list the features of the users in the most prominent circles of this ego user and there too we find that the majorit\n-y of them have these topics mentioned as their own features. Therefore, it can be concluded that the current ego user is more likely to make friends with  users\nthat have these features.\n",
-      "dateUpdated": "Aug 17, 2016 7:19:19 PM",
+      "text": "%md\n## The Social Network\n![SocialNetwork](https://c2.staticflickr.com/8/7142/6481980713_e9c7eaef15_b.jpg)\n\n\u003cbr/\u003e\nThe analysis that follows takes as input the SNAP data for facebook that is loaded in the above paragraph. The input data contains files for the edges in the net   \u003cbr/\u003e\n-work, the features of the users, the names of the features and the circles that users have formed. Few terms have been used in the datasets as well as in the an   \u003cbr/\u003e\n-alysis that follows. These terms have been described in [this](http://i.stanford.edu/~julian/pdfs/nips2012.pdf) research paper. The paper describes how to  find   \u003cbr/\u003e\ncircles in social networks. A lot of the analysis is inspired from the work done in this paper. The paragraphs that follow attempt to find the circles  that  are   \u003cbr/\u003e\nmore prominent for the current user under consideration. Naturally these tend to be the ones that have more number of users in them, additionally by examining th   \u003cbr/\u003e\n-e features in these more prominent circles and the features of the use under consideration, we may get to know the categories from which the current user is lik   \u003cbr/\u003e\n-ely to make more friends and increase the circle size.\n\n\u003cbr/\u003e\nThe paragraph directly below computes the most prominent circles by examining the length of the circles and then arranging them in the decreasing order of  their   \u003cbr/\u003e\nsize. According to the terms defined in the paper referenced above, the current user is called the \u0027ego\u0027 user. The network for the current user is called the \u0027eg   \u003cbr/\u003e\n-o network\u0027. The features of the \u0027ego\u0027 user are listed directly below. We find that the current user is more inclined towards topics such as \u0027education\u0027, \u0027work\u0027    \u003cbr/\u003e\nand \u0027employment\u0027, the paragraphs that follow list the features of the users in the most prominent circles of this ego user and there too we find that the majorit   \u003cbr/\u003e\n-y of them have these topics mentioned as their own features. Therefore, it can be concluded that the current ego user is more likely to make friends with  users   \u003cbr/\u003e\nthat have these features.\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 18, 2016 8:41:00 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -161,7 +162,8 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
       },
       "settings": {
         "params": {},
@@ -170,8 +172,15 @@
       "apps": [],
       "jobName": "paragraph_1471440224402_-256618945",
       "id": "20160817-185344_5700304",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch2\u003eThe Social Network\u003c/h2\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://c2.staticflickr.com/8/7142/6481980713_e9c7eaef15_b.jpg\" alt\u003d\"SocialNetwork\" /\u003e\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eThe analysis that follows takes as input the SNAP data for facebook that is loaded in the above paragraph. The input data contains files for the edges in the net   \u003cbr /\u003e\n\u003cbr  /\u003e-work, the features of the users, the names of the features and the circles that users have formed. Few terms have been used in the datasets as well as in the an   \u003cbr /\u003e\n\u003cbr  /\u003e-alysis that follows. These terms have been described in \u003ca href\u003d\"http://i.stanford.edu/~julian/pdfs/nips2012.pdf\"\u003ethis\u003c/a\u003e research paper. The paper describes how to  find   \u003cbr /\u003e\n\u003cbr  /\u003ecircles in social networks. A lot of the analysis is inspired from the work done in this paper. The paragraphs that follow attempt to find the circles  that  are   \u003cbr /\u003e\n\u003cbr  /\u003emore prominent for the current user under consideration. Naturally these tend to be the ones that have more number of users in them, additionally by examining th   \u003cbr /\u003e\n\u003cbr  /\u003e-e features in these more prominent circles and the features of the use under consideration, we may get to know the categories from which the current user is lik   \u003cbr /\u003e\n\u003cbr  /\u003e-ely to make more friends and increase the circle size.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eThe paragraph directly below computes the most prominent circles by examining the length of the circles and then arranging them in the decreasing order of  their   \u003cbr /\u003e\n\u003cbr  /\u003esize. According to the terms defined in the paper referenced above, the current user is called the \u0027ego\u0027 user. The network for the current user is called the \u0027eg   \u003cbr /\u003e\n\u003cbr  /\u003e-o network\u0027. The features of the \u0027ego\u0027 user are listed directly below. We find that the current user is more inclined towards topics such as \u0027education\u0027, \u0027work\u0027    \u003cbr /\u003e\n\u003cbr  /\u003eand \u0027employment\u0027, the paragraphs that follow list the features of the users in the most prominent circles of this ego user and there too we find that the majorit   \u003cbr /\u003e\n\u003cbr  /\u003e-y of them have these topics mentioned as their own features. Therefore, it can be concluded that the current ego user is more likely to make friends with  users   \u003cbr /\u003e\n\u003cbr  /\u003ethat have these features.\u003c/p\u003e\n"
+      },
       "dateCreated": "Aug 17, 2016 6:53:44 PM",
-      "status": "READY",
+      "dateStarted": "Aug 18, 2016 8:40:56 AM",
+      "dateFinished": "Aug 18, 2016 8:40:56 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -330,8 +339,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\nSome of the users for this \u0027ego\u0027 user appear in multiple circles. They may be more important for the user. For example, a person can be a friend as well\nas a colleague and may appear in both the circles as compared to a person who might either be a friend or a colleague. The paragraph below  first  finds\nthe users that appear in multiple circles and them visualizes their features in the form of a table for ease of viewing. The table still reveals the sam\n-e conclusions as above that the user is more interested in people with the feature labels : \u0027education\u0027, \u0027work\u0027, \u0027employment\u0027 and \u0027birthday\u0027. Others us\n-ers that are known by this user and have the same feature labels in the network are likely to be friends with this user.",
-      "dateUpdated": "Aug 17, 2016 7:29:55 PM",
+      "text": "%md\nSome of the users for this \u0027ego\u0027 user appear in multiple circles. They may be more important for the user. For example, a person can be a friend as well    \u003cbr/\u003e\nas a colleague and may appear in both the circles as compared to a person who might either be a friend or a colleague. The paragraph below  first  finds    \u003cbr/\u003e\nthe users that appear in multiple circles and them visualizes their features in the form of a table for ease of viewing. The table still reveals the sam    \u003cbr/\u003e\n-e conclusions as above that the user is more interested in people with the feature labels : \u0027education\u0027, \u0027work\u0027, \u0027employment\u0027 and \u0027birthday\u0027. Others us    \u003cbr/\u003e\n-ers that are known by this user and have the same feature labels in the network are likely to be friends with this user.",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 18, 2016 7:50:18 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -344,7 +354,8 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
       },
       "settings": {
         "params": {},
@@ -353,8 +364,15 @@
       "apps": [],
       "jobName": "paragraph_1471441834576_1757824484",
       "id": "20160817-192034_26310795",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eSome of the users for this \u0027ego\u0027 user appear in multiple circles. They may be more important for the user. For example, a person can be a friend as well    \u003cbr /\u003e\n\u003cbr  /\u003eas a colleague and may appear in both the circles as compared to a person who might either be a friend or a colleague. The paragraph below  first  finds    \u003cbr /\u003e\n\u003cbr  /\u003ethe users that appear in multiple circles and them visualizes their features in the form of a table for ease of viewing. The table still reveals the sam    \u003cbr /\u003e\n\u003cbr  /\u003e-e conclusions as above that the user is more interested in people with the feature labels : \u0027education\u0027, \u0027work\u0027, \u0027employment\u0027 and \u0027birthday\u0027. Others us    \u003cbr /\u003e\n\u003cbr  /\u003e-ers that are known by this user and have the same feature labels in the network are likely to be friends with this user.\u003c/p\u003e\n"
+      },
       "dateCreated": "Aug 17, 2016 7:20:34 PM",
-      "status": "READY",
+      "dateStarted": "Aug 18, 2016 7:50:16 AM",
+      "dateFinished": "Aug 18, 2016 7:50:16 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -469,8 +487,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\nNext, we attempt to find the strength of the circles that are discovered in the social network of this user as a measure of the number of internal/mutual\nconnections between the users of a particular circle. The paragraph below first generates the data needed for the visualization, that is to count the num\n-ber of mutual friendships. Here again we find that the most prominent circle leads the other circles in terms of the number of mutual relationships  and\nby a very large value, as evident in the plot shown below. The most prominent circle also has the greatest strength and this is followed by the second mo\n-st prominent circle. This also implies that people in those circles know each other more than people in other circles know themselves. The other circles\nare likely to be in their infancy stage - they are just being formed, especially the ones with the least mutual relationships between the users  and  the\nleast number of users.",
-      "dateUpdated": "Aug 17, 2016 8:26:59 PM",
+      "text": "%md\nNext, we attempt to find the strength of the circles that are discovered in the social network of this user as a measure of the number of internal/mutual   \u003cbr/\u003e\nconnections between the users of a particular circle. The paragraph below first generates the data needed for the visualization, that is to count the num   \u003cbr/\u003e\n-ber of mutual friendships. Here again we find that the most prominent circle leads the other circles in terms of the number of mutual relationships  and   \u003cbr/\u003e\nby a very large value, as evident in the plot shown below. The most prominent circle also has the greatest strength and this is followed by the second mo   \u003cbr/\u003e\n-st prominent circle. This also implies that people in those circles know each other more than people in other circles know themselves. The other circles   \u003cbr/\u003e\nare likely to be in their infancy stage - they are just being formed, especially the ones with the least mutual relationships between the users  and  the   \u003cbr/\u003e\nleast number of users.",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 18, 2016 7:49:51 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -483,7 +502,8 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
       },
       "settings": {
         "params": {},
@@ -492,8 +512,15 @@
       "apps": [],
       "jobName": "paragraph_1471441893479_1025155309",
       "id": "20160817-192133_3913168",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eNext, we attempt to find the strength of the circles that are discovered in the social network of this user as a measure of the number of internal/mutual   \u003cbr /\u003e\n\u003cbr  /\u003econnections between the users of a particular circle. The paragraph below first generates the data needed for the visualization, that is to count the num   \u003cbr /\u003e\n\u003cbr  /\u003e-ber of mutual friendships. Here again we find that the most prominent circle leads the other circles in terms of the number of mutual relationships  and   \u003cbr /\u003e\n\u003cbr  /\u003eby a very large value, as evident in the plot shown below. The most prominent circle also has the greatest strength and this is followed by the second mo   \u003cbr /\u003e\n\u003cbr  /\u003e-st prominent circle. This also implies that people in those circles know each other more than people in other circles know themselves. The other circles   \u003cbr /\u003e\n\u003cbr  /\u003eare likely to be in their infancy stage - they are just being formed, especially the ones with the least mutual relationships between the users  and  the   \u003cbr /\u003e\n\u003cbr  /\u003eleast number of users.\u003c/p\u003e\n"
+      },
       "dateCreated": "Aug 17, 2016 7:21:33 PM",
-      "status": "READY",
+      "dateStarted": "Aug 18, 2016 7:49:47 AM",
+      "dateFinished": "Aug 18, 2016 7:49:47 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -601,8 +628,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\nWe also attempt to visualize the circles in the social network, for which the paragraph below generates the data. The paragraph that follows displays the\ndata in visual format as a graph having nodes and vertices. The different circles for this ego user are displayed as nodes with distinct colors and peopl\n-e from the same circles tend to cluster around each other. Hovering the mouse over the nodes displays the ID of that node. The conclusions of the  above\nparagraph are also verified by the visualization of the circles for this user. Colors represent the circles and some nodes with the same color are separa\n-ted from each other. However, one big cluster of green nodes lies in the center - this represents the circle with the most mutual relationships ",
-      "dateUpdated": "Aug 17, 2016 8:35:57 PM",
+      "text": "%md\nWe also attempt to visualize the circles in the social network, for which the paragraph below generates the data. The paragraph that follows displays the   \u003cbr/\u003e\ndata in visual format as a graph having nodes and vertices. The different circles for this ego user are displayed as nodes with distinct colors and peopl   \u003cbr/\u003e\n-e from the same circles tend to cluster around each other. Hovering the mouse over the nodes displays the ID of that node. The conclusions of the  above   \u003cbr/\u003e\nparagraph are also verified by the visualization of the circles for this user. Colors represent the circles and some nodes with the same color are separa   \u003cbr/\u003e\n-ted from each other. However, one big cluster of green nodes lies in the center - this represents the circle with the most mutual relationships. Here, \u003cbr/\u003e\nwe are clearly able to see the density of relationships and the strengths of the circles.",
+      "authenticationInfo": {},
+      "dateUpdated": "Aug 18, 2016 7:49:26 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -615,7 +643,8 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
       },
       "settings": {
         "params": {},
@@ -624,8 +653,15 @@
       "apps": [],
       "jobName": "paragraph_1471441908760_-2124383863",
       "id": "20160817-192148_12731552",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eWe also attempt to visualize the circles in the social network, for which the paragraph below generates the data. The paragraph that follows displays the   \u003cbr /\u003e\n\u003cbr  /\u003edata in visual format as a graph having nodes and vertices. The different circles for this ego user are displayed as nodes with distinct colors and peopl   \u003cbr /\u003e\n\u003cbr  /\u003e-e from the same circles tend to cluster around each other. Hovering the mouse over the nodes displays the ID of that node. The conclusions of the  above   \u003cbr /\u003e\n\u003cbr  /\u003eparagraph are also verified by the visualization of the circles for this user. Colors represent the circles and some nodes with the same color are separa   \u003cbr /\u003e\n\u003cbr  /\u003e-ted from each other. However, one big cluster of green nodes lies in the center - this represents the circle with the most mutual relationships. Here, \u003cbr /\u003e\n\u003cbr  /\u003ewe are clearly able to see the density of relationships and the strengths of the circles.\u003c/p\u003e\n"
+      },
       "dateCreated": "Aug 17, 2016 7:21:48 PM",
-      "status": "READY",
+      "dateStarted": "Aug 18, 2016 7:49:20 AM",
+      "dateFinished": "Aug 18, 2016 7:49:20 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -668,7 +704,7 @@
       "title": "Circles in Social Network - Facebook",
       "text": "//this paragraph generates the visualization for the circles in the social network\nprintln(\"\"\"%html\n\u003cstyle\u003e\n    #circlegraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"circlegraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#circlegraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-3);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"circleGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\"\"\")",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 17, 2016 6:39:20 PM",
+      "dateUpdated": "Aug 18, 2016 8:56:01 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -698,15 +734,15 @@
         "msg": "\u003cstyle\u003e\n    #circlegraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"circlegraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#circlegraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-3);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"circleGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\n"
       },
       "dateCreated": "Aug 13, 2016 2:13:16 PM",
-      "dateStarted": "Aug 17, 2016 6:39:20 PM",
-      "dateFinished": "Aug 17, 2016 6:39:21 PM",
+      "dateStarted": "Aug 18, 2016 8:56:01 AM",
+      "dateFinished": "Aug 18, 2016 8:56:34 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n## ",
+      "text": "%md\nFinally, we attempt to find the communities in the social network data. The specific algorithm for finding the communities is best described in the \u003cbr/\u003e\npaper mentioned [here](http://arxiv.org/abs/0810.1355). The paper describes a parameter called \u0027conductance\u0027 which is inherently present in the web \u003cbr/\u003e\ngraphs and which can be used to find the communities. Note that communities are different from circles such that multiple circles may be present in \u003cbr/\u003e\none community. To discover the communities, we choose a connected component of the graph and pick one(any one) of the nodes as the  starting  point \u003cbr/\u003e\nof the algorithm. We use a coloring scheme to distinguish the nodes, initially the nodes are white(untraversed), then they become grey( nodes  that \u003cbr/\u003e\nare touched and that form the border of a community) and finally they are black(the internal nodes of a community). The algorithm traverses in a bre \u003cbr/\u003e\n-adth first manner and covers the nodes spirally starting from the first node. At each point, we measure the conductance value which  is  equal  to \u003cbr/\u003e\nthe cut edges divided by the internal edges in the community. Cut edges refers to the edges that link the members of a community to members outside \u003cbr/\u003e\nthe communities. If at any point, the current conductance increases for a particular circle, we start afresh for that circle.\n\n\u003cbr/\u003e\nTo be able to run the algorithm on the input data, the following paragraph creates the adjacency list of vertices in the graph and  the  color  map \u003cbr/\u003e\nused to get the colors of the nodes when running the algorithm. Initially, all the vertices are kept white. We then run the algorithm on the  input \u003cbr/\u003e\ndataset to color the vertices appropriately and lastly display them in the form of graph. The visualization contains the dark blue  vertices  which \u003cbr/\u003e\nare internal to a community and the light blue vertices represent the margins or the borders of the communities derived on the basis of the conduct \u003cbr/\u003e\n-ance values.\n",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 17, 2016 6:25:55 PM",
+      "dateUpdated": "Aug 18, 2016 7:48:41 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -719,7 +755,8 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
       },
       "settings": {
         "params": {},
@@ -728,11 +765,15 @@
       "apps": [],
       "jobName": "paragraph_1471078052259_167026165",
       "id": "20160813-141732_25418510",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eFinally, we attempt to find the communities in the social network data. The specific algorithm for finding the communities is best described in the \u003cbr /\u003e\n\u003cbr  /\u003epaper mentioned \u003ca href\u003d\"http://arxiv.org/abs/0810.1355\"\u003ehere\u003c/a\u003e. The paper describes a parameter called \u0027conductance\u0027 which is inherently present in the web \u003cbr /\u003e\n\u003cbr  /\u003egraphs and which can be used to find the communities. Note that communities are different from circles such that multiple circles may be present in \u003cbr /\u003e\n\u003cbr  /\u003eone community. To discover the communities, we choose a connected component of the graph and pick one(any one) of the nodes as the  starting  point \u003cbr /\u003e\n\u003cbr  /\u003eof the algorithm. We use a coloring scheme to distinguish the nodes, initially the nodes are white(untraversed), then they become grey( nodes  that \u003cbr /\u003e\n\u003cbr  /\u003eare touched and that form the border of a community) and finally they are black(the internal nodes of a community). The algorithm traverses in a bre \u003cbr /\u003e\n\u003cbr  /\u003e-adth first manner and covers the nodes spirally starting from the first node. At each point, we measure the conductance value which  is  equal  to \u003cbr /\u003e\n\u003cbr  /\u003ethe cut edges divided by the internal edges in the community. Cut edges refers to the edges that link the members of a community to members outside \u003cbr /\u003e\n\u003cbr  /\u003ethe communities. If at any point, the current conductance increases for a particular circle, we start afresh for that circle.\u003c/p\u003e\n\u003cp\u003e\u003cbr /\u003e\n\u003cbr  /\u003eTo be able to run the algorithm on the input data, the following paragraph creates the adjacency list of vertices in the graph and  the  color  map \u003cbr /\u003e\n\u003cbr  /\u003eused to get the colors of the nodes when running the algorithm. Initially, all the vertices are kept white. We then run the algorithm on the  input \u003cbr /\u003e\n\u003cbr  /\u003edataset to color the vertices appropriately and lastly display them in the form of graph. The visualization contains the dark blue  vertices  which \u003cbr /\u003e\n\u003cbr  /\u003eare internal to a community and the light blue vertices represent the margins or the borders of the communities derived on the basis of the conduct \u003cbr /\u003e\n\u003cbr  /\u003e-ance values.\u003c/p\u003e\n"
+      },
       "dateCreated": "Aug 13, 2016 2:17:32 PM",
-      "dateStarted": "Aug 16, 2016 10:27:56 AM",
-      "dateFinished": "Aug 16, 2016 10:28:39 AM",
+      "dateStarted": "Aug 18, 2016 7:48:35 AM",
+      "dateFinished": "Aug 18, 2016 7:48:35 AM",
       "status": "FINISHED",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -847,7 +888,7 @@
       "title": "Communities in Social Network - Facebook",
       "text": "//this paragraph contains the visualization for the communities\nprintln(\"\"\"%html\n\u003cstyle\u003e\n    #commgraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"commgraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#commgraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-9);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"commGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\"\"\")",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 17, 2016 6:21:15 PM",
+      "dateUpdated": "Aug 18, 2016 8:57:26 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -877,15 +918,15 @@
         "msg": "\u003cstyle\u003e\n    #commgraph{\n        width: 960;\n        height: 600;\n    }\n    .links line {\n      stroke: #999;\n      stroke-opacity: 0.6;\n    }\n    \n    .nodes circle {\n      stroke: #fff;\n      stroke-width: 1.5px;\n    }\n\u003c/style\u003e\n\n\u003cscript src\u003d\"https://d3js.org/d3.v4.min.js\"\u003e\u003c/script\u003e\n\u003cdiv id\u003d\"commgraph\"\u003e\u003c/div\u003e\n\n\u003cscript\u003e\n    \n    var svg \u003d d3.select(\"#commgraph\")\n                .append(\"svg\")\n                    .attr(\"width\", 960)\n                    .attr(\"height\", 600),\n        width \u003d +svg.attr(\"width\"),\n        height \u003d +svg.attr(\"height\");\n    \n    var color \u003d d3.scaleOrdinal(d3.schemeCategory20);\n    \n    var chargeForce \u003d d3.forceManyBody()\n                        .strength(-9);\n\n    var simulation \u003d d3.forceSimulation()\n        .force(\"link\", d3.forceLink().id(function(d) { return d.id; }))\n        .force(\"charge\", chargeForce)\n        .force(\"center\", d3.forceCenter(width / 2, height / 2));\n    \n    d3.json(\"commGraph.json\", function(error, graph) {\n      if (error) throw error;\n    \n      var link \u003d svg.append(\"g\")\n          .attr(\"class\", \"links\")\n        .selectAll(\"line\")\n        .data(graph.links)\n        .enter().append(\"line\")\n          .attr(\"stroke-width\", function(d) { return Math.sqrt(d.value); });\n    \n      var node \u003d svg.append(\"g\")\n          .attr(\"class\", \"nodes\")\n        .selectAll(\"circle\")\n        .data(graph.nodes)\n        .enter().append(\"circle\")\n          .attr(\"r\", 5)\n          .attr(\"fill\", function(d) { return color(d.group); })\n          .call(d3.drag()\n              .on(\"start\", dragstarted)\n              .on(\"drag\", dragged)\n              .on(\"end\", dragended));\n    \n      node.append(\"title\")\n          .text(function(d) { return d.id; });\n    \n      simulation\n          .nodes(graph.nodes)\n          .on(\"tick\", ticked);\n    \n      simulation.force(\"link\")\n          .links(graph.links);\n    \n      function ticked() {\n        link\n            .attr(\"x1\", function(d) { return d.source.x; })\n            .attr(\"y1\", function(d) { return d.source.y; })\n            .attr(\"x2\", function(d) { return d.target.x; })\n            .attr(\"y2\", function(d) { return d.target.y; });\n    \n        node\n            .attr(\"cx\", function(d) { return d.x; })\n            .attr(\"cy\", function(d) { return d.y; });\n      }\n    });\n    \n    function dragstarted(d) {\n      if (!d3.event.active) simulation.alphaTarget(0.3).restart();\n      d.fx \u003d d.x;\n      d.fy \u003d d.y;\n    }\n    \n    function dragged(d) {\n      d.fx \u003d d3.event.x;\n      d.fy \u003d d3.event.y;\n    }\n    \n    function dragended(d) {\n      if (!d3.event.active) simulation.alphaTarget(0);\n      d.fx \u003d null;\n      d.fy \u003d null;\n    }\n\u003c/script\u003e\n\n"
       },
       "dateCreated": "Aug 16, 2016 11:01:16 PM",
-      "dateStarted": "Aug 17, 2016 6:18:20 PM",
-      "dateFinished": "Aug 17, 2016 6:18:21 PM",
+      "dateStarted": "Aug 18, 2016 8:57:26 AM",
+      "dateFinished": "Aug 18, 2016 8:57:27 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n## Google Plus Data Analysis",
+      "text": "%md\nIn the analysis presented above, we were able to see some of the inherent characteristics of social networks graphs and the properties that they        \u003cbr/\u003e\nexhibit. This is very helpful in getting to know the type of person and the preferences of that person. This along with some other forms of analysis    \u003cbr/\u003e\nmay be used by companies like Facebook to suggest friends. Moreover, the community finding algorithm is generic enough to be able to find communities   \u003cbr/\u003e\nin almost any web graph.\n",
       "authenticationInfo": {},
-      "dateUpdated": "Aug 17, 2016 6:52:48 PM",
+      "dateUpdated": "Aug 18, 2016 7:46:46 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -898,7 +939,8 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
       },
       "settings": {
         "params": {},
@@ -909,12 +951,12 @@
       "id": "20160816-230249_25650907",
       "result": {
         "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": ""
+        "type": "HTML",
+        "msg": "\u003cp\u003eIn the analysis presented above, we were able to see some of the inherent characteristics of social networks graphs and the properties that they        \u003cbr /\u003e\n\u003cbr  /\u003eexhibit. This is very helpful in getting to know the type of person and the preferences of that person. This along with some other forms of analysis    \u003cbr /\u003e\n\u003cbr  /\u003emay be used by companies like Facebook to suggest friends. Moreover, the community finding algorithm is generic enough to be able to find communities   \u003cbr /\u003e\n\u003cbr  /\u003ein almost any web graph.\u003c/p\u003e\n"
       },
       "dateCreated": "Aug 16, 2016 11:02:49 PM",
-      "dateStarted": "Aug 17, 2016 11:45:49 AM",
-      "dateFinished": "Aug 17, 2016 11:45:51 AM",
+      "dateStarted": "Aug 18, 2016 7:46:39 AM",
+      "dateFinished": "Aug 18, 2016 7:46:41 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
